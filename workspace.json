@@ -78,6 +78,19 @@
         }
       }
     },
+    "shared-theme": {
+      "root": "libs/shared/theme",
+      "sourceRoot": "libs/shared/theme/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/shared/theme/**/*.{ts,tsx,js,jsx}"]
+          }
+        }
+      }
+    },
     "shared-ui": {
       "root": "libs/shared/ui",
       "sourceRoot": "libs/shared/ui/src",
