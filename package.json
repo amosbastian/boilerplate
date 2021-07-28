@@ -33,6 +33,7 @@
     "@emotion/react": "^11.4.0",
     "@emotion/server": "11.0.0",
     "@emotion/styled": "^11.3.0",
+    "@n8tb1t/use-scroll-position": "^2.0.3",
     "@nrwl/next": "12.6.2",
     "core-js": "^3.6.5",
     "document-register-element": "1.13.1",

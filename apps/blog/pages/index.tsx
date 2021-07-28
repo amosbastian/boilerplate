@@ -1,7 +1,7 @@
-import { getLayout } from "@boilerplate/shared/ui";
+import { Container, getLayout } from "@boilerplate/shared/ui";
 
 export function Index() {
-  return <>Blog</>;
+  return <Container>Blog</Container>;
 }
 
 Index.getLayout = getLayout;
