@@ -27,6 +27,13 @@
     ]
   },
   "projects": {
+    "blog": {
+      "tags": []
+    },
+    "blog-e2e": {
+      "tags": [],
+      "implicitDependencies": ["blog"]
+    },
     "web": {
       "tags": []
     },
