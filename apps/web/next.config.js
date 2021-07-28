@@ -1,14 +1,28 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const withNx = require('@nrwl/next/plugins/with-nx');
+const withNx = require("@nrwl/next/plugins/with-nx");
+
+const { BLOG_URL } = process.env;
 
 /**
  * @type {import('@nrwl/next/plugins/with-nx').WithNxOptions}
  **/
 const nextConfig = {
-  nx: {
-    // Set this to false if you do not want to use SVGR
-    // See: https://github.com/gregberge/svgr
-    svgr: true,
+  nx: { svgr: true },
+  async rewrites() {
+    return [
+      {
+        source: "/:path*",
+        destination: `/:path*`,
+      },
+      {
+        source: "/blog",
+        destination: `${BLOG_URL}/blog`,
+      },
+      {
+        source: "/blog/:path*",
+        destination: `${BLOG_URL}/blog/:path*`,
+      },
+    ];
   },
 };
 
