@@ -1,7 +1,8 @@
-import { AppProps } from 'next/app';
-import Head from 'next/head';
-import { ReactComponent as NxLogo } from '../public/nx-logo-white.svg';
-import './styles.css';
+import { Footer, Header } from "@boilerplate/shared/ui";
+import { AppProps } from "next/app";
+import Head from "next/head";
+import * as React from "react";
+import "./styles.css";
 
 function CustomApp({ Component, pageProps }: AppProps) {
   return (
@@ -10,13 +11,11 @@ function CustomApp({ Component, pageProps }: AppProps) {
         <title>Welcome to web!</title>
       </Head>
       <div className="app">
-        <header className="flex">
-          <NxLogo width="75" height="50" />
-          <h1>Welcome to web!</h1>
-        </header>
+        <Header />
         <main>
           <Component {...pageProps} />
         </main>
+        <Footer />
       </div>
     </>
   );
