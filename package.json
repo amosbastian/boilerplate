@@ -4,6 +4,7 @@
   "license": "MIT",
   "scripts": {
     "nx": "nx",
+    "commit": "git-cz",
     "start": "nx serve",
     "build": "nx build",
     "test": "nx test",
@@ -23,7 +24,8 @@
     "update": "nx migrate latest",
     "workspace-generator": "nx workspace-generator",
     "dep-graph": "nx dep-graph",
-    "help": "nx help"
+    "help": "nx help",
+    "prepare": "husky install"
   },
   "private": true,
   "dependencies": {
@@ -63,6 +65,8 @@
     "@typescript-eslint/parser": "~4.28.3",
     "babel-jest": "27.0.6",
     "cypress": "^7.3.0",
+    "cz-conventional-changelog": "^3.3.0",
+    "cz-customizable": "^6.3.0",
     "dotenv": "8.2.0",
     "eslint": "7.22.0",
     "eslint-config-next": "11.0.1",
@@ -72,10 +76,23 @@
     "eslint-plugin-jsx-a11y": "6.4.1",
     "eslint-plugin-react": "7.23.1",
     "eslint-plugin-react-hooks": "4.2.0",
+    "husky": "^7.0.1",
     "jest": "27.0.3",
+    "lint-staged": "^11.1.1",
     "prettier": "^2.3.1",
     "ts-jest": "27.0.3",
     "ts-node": "~9.1.1",
     "typescript": "~4.3.5"
+  },
+  "lint-staged": {
+    "*.{js,ts,jsx,tsx}": [
+      "eslint --cache --fix",
+      "prettier --write"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-customizable"
+    }
   }
 }
