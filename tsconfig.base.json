@@ -17,6 +17,7 @@
     "baseUrl": ".",
     "paths": {
       "@boilerplate/shared/theme": ["libs/shared/theme/src/index.ts"],
+      "@boilerplate/shared/types": ["libs/shared/types/src/index.ts"],
       "@boilerplate/shared/ui": ["libs/shared/ui/src/index.ts"]
     }
   },
