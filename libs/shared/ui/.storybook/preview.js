@@ -1,5 +1,5 @@
 import { theme } from "@boilerplate/shared/theme";
-import { ChakraProvider, Flex, IconButton, useColorMode, useColorModeValue } from "@chakra-ui/react";
+import { Box, ChakraProvider, IconButton, useColorMode, useColorModeValue } from "@chakra-ui/react";
 import { RouterContext } from "next/dist/next-server/lib/router-context";
 import * as NextImage from "next/image";
 import { RiMoonFill, RiSunFill } from "react-icons/ri";
@@ -44,36 +44,35 @@ export const parameters = {
   },
 };
 
-const ColorModeToggleBar = () => {
+const ColorModeToggleButton = () => {
   const { toggleColorMode } = useColorMode();
   const SwitchIcon = useColorModeValue(RiMoonFill, RiSunFill);
   const nextMode = useColorModeValue("dark", "light");
 
   return (
-    <Flex justify="flex-end" alignItems="flex-end" h="100vh" position="absolute" flexDir="column" inset={0}>
-      <IconButton
-        size="md"
-        fontSize="lg"
-        aria-label={`Switch to ${nextMode} mode`}
-        variant="ghost"
-        color="current"
-        onClick={toggleColorMode}
-        icon={<SwitchIcon />}
-        maxW="max-content"
-        mb={2}
-        mr={2}
-      />
-    </Flex>
+    <IconButton
+      position="absolute"
+      size="md"
+      fontSize="lg"
+      aria-label={`Switch to ${nextMode} mode`}
+      variant="ghost"
+      color="current"
+      onClick={toggleColorMode}
+      icon={<SwitchIcon />}
+      maxW="max-content"
+      bottom={2}
+      right={2}
+    />
   );
 };
 
 const withChakra = (StoryFn) => {
   return (
     <ChakraProvider theme={theme}>
-      <div id="story-wrapper">
+      <Box id="story-wrapper" h="100vh">
         <StoryFn />
-        <ColorModeToggleBar />
-      </div>
+        <ColorModeToggleButton />
+      </Box>
     </ChakraProvider>
   );
 };

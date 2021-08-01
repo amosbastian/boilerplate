@@ -7,7 +7,7 @@ interface LayoutProps {
   children: React.ReactNode;
 }
 
-export const Layout = ({ children }: LayoutProps) => {
+export function Layout({ children }: LayoutProps) {
   const backgroundColor = useColorModeValue("white", "gray.900");
 
   return (
@@ -19,6 +19,8 @@ export const Layout = ({ children }: LayoutProps) => {
       <Footer />
     </Box>
   );
-};
+}
 
 export const getLayout = (page: Page<unknown>) => <Layout>{page}</Layout>;
+
+export default Layout;

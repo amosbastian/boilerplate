@@ -8,7 +8,7 @@ const HEADER_HEIGHT = 56;
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface HeaderProps {}
 
-export const Header = () => {
+export function Header() {
   const [scrolled, setScrolled] = React.useState<boolean>(false);
 
   useScrollPosition(({ currPos }) => {
@@ -41,4 +41,6 @@ export const Header = () => {
       </Container>
     </Flex>
   );
-};
+}
+
+export default Header;

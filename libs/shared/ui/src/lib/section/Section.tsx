@@ -21,7 +21,7 @@ interface SectionProps {
   description: string;
 }
 
-export const Section = ({ heading, description, children, ...rest }: BoxProps) => {
+export const Section = ({ heading, description, children, ...rest }: SectionProps & BoxProps) => {
   const styles = useMultiStyleConfig("Section", {});
 
   return (
