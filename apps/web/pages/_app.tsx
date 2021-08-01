@@ -1,9 +1,8 @@
 import { theme } from "@boilerplate/shared/theme";
 import type { Page } from "@boilerplate/shared/types";
-import { Chakra } from "@boilerplate/shared/ui";
+import { Chakra, Head } from "@boilerplate/shared/ui";
 import { ChakraProvider } from "@chakra-ui/react";
 import { AppProps } from "next/app";
-import Head from "next/head";
 import React from "react";
 
 type CustomAppProps = AppProps & {
@@ -16,9 +15,7 @@ function CustomApp({ Component, pageProps }: CustomAppProps) {
   return (
     <Chakra cookies={pageProps.cookies}>
       <ChakraProvider theme={theme} resetCSS>
-        <Head>
-          <title>Welcome to web!</title>
-        </Head>
+        <Head />
         <div className="app">
           <main>{getLayout(<Component {...pageProps} />)}</main>
         </div>

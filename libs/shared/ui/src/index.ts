@@ -1,3 +1,4 @@
+export * from "./lib/head/Head";
 export * from "./lib/chakra/Chakra";
 export * from "./lib/container/Container";
 export * from "./lib/dropdown-menu/DropdownMenu";
