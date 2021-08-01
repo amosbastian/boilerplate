@@ -17,6 +17,16 @@
             "production": {}
           }
         },
+        "postbuild": {
+          "executor": "@nrwl/workspace:run-commands",
+          "options": {
+            "commands": [
+              {
+                "command": "npx next-sitemap --config apps/blog/next-sitemap.js"
+              }
+            ]
+          }
+        },
         "serve": {
           "executor": "@nrwl/next:server",
           "options": {
@@ -196,6 +206,16 @@
           },
           "configurations": {
             "production": {}
+          }
+        },
+        "postbuild": {
+          "executor": "@nrwl/workspace:run-commands",
+          "options": {
+            "commands": [
+              {
+                "command": "next-sitemap --config apps/web/next-sitemap.js"
+              }
+            ]
           }
         },
         "serve": {

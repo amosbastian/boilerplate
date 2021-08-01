@@ -1,8 +1,6 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const withNx = require("@nrwl/next/plugins/with-nx");
 
-const { BLOG_URL } = process.env;
-
 /**
  * @type {import('@nrwl/next/plugins/with-nx').WithNxOptions}
  **/
@@ -16,11 +14,11 @@ const nextConfig = {
       },
       {
         source: "/blog",
-        destination: `${BLOG_URL}/blog`,
+        destination: `${process.env.NEXT_PUBLIC_BLOG_URL}/blog`,
       },
       {
         source: "/blog/:path*",
-        destination: `${BLOG_URL}/blog/:path*`,
+        destination: `${process.env.NEXT_PUBLIC_BLOG_URL}/blog/:path*`,
       },
     ];
   },
