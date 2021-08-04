@@ -88,6 +88,19 @@
         }
       }
     },
+    "blog-i18n": {
+      "root": "libs/blog/i18n",
+      "sourceRoot": "libs/blog/i18n/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/blog/i18n/**/*.ts"]
+          }
+        }
+      }
+    },
     "shared-i18n": {
       "root": "libs/shared/i18n",
       "sourceRoot": "libs/shared/i18n/src",

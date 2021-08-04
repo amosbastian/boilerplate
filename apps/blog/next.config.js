@@ -1,12 +1,9 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
+const nextTranslate = require("next-translate");
 const withNx = require("@nrwl/next/plugins/with-nx");
+const withPlugins = require("next-compose-plugins");
 
-/**
- * @type {import('@nrwl/next/plugins/with-nx').WithNxOptions}
- **/
-const nextConfig = {
+module.exports = withPlugins([withNx, nextTranslate], {
   nx: { svgr: true },
   basePath: "/blog",
-};
-
-module.exports = withNx(nextConfig);
+});
