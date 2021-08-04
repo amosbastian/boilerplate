@@ -2,6 +2,7 @@ import { theme } from "@boilerplate/shared/theme";
 import type { Page } from "@boilerplate/shared/types";
 import { Chakra, Head } from "@boilerplate/shared/ui";
 import { ChakraProvider } from "@chakra-ui/react";
+import "focus-visible/dist/focus-visible";
 import { AppProps } from "next/app";
 import React from "react";
 
