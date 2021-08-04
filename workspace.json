@@ -282,6 +282,19 @@
           }
         }
       }
+    },
+    "site-i18n": {
+      "root": "libs/site/i18n",
+      "sourceRoot": "libs/site/i18n/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/site/i18n/**/*.ts"]
+          }
+        }
+      }
     }
   },
   "cli": {

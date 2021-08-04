@@ -56,6 +56,9 @@
     "site-e2e": {
       "tags": [],
       "implicitDependencies": ["site"]
+    },
+    "site-i18n": {
+      "tags": []
     }
   }
 }
