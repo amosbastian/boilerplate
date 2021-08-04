@@ -1,13 +1,6 @@
-import { Box, Heading, Icon, ListItem, Text, useColorModeValue } from "@chakra-ui/react";
+import { Box, Heading, Icon, Link, MenuItem, Text, useColorModeValue } from "@chakra-ui/react";
+import NextLink from "next/link";
 import type { IconType } from "react-icons";
-import { Link, LinkProps } from "../link/Link";
-
-export const MenuLink = (props: LinkProps) => {
-  const bg = useColorModeValue("gray.100", "gray.800");
-
-  return <Link _hover={{ bg }} display="flex" px={5} py={3} borderRadius="lg" {...props} />;
-};
-
 export interface FlyoutMenuItemProps {
   description: string;
   heading: string;
@@ -16,13 +9,25 @@ export interface FlyoutMenuItemProps {
 }
 
 export function FlyoutMenuItem({ description, heading, href, iconType }: FlyoutMenuItemProps) {
-  const color = useColorModeValue("gray.600", "whiteAlpha.600");
-  const hoverColor = useColorModeValue("gray.700", "whiteAlpha.800");
+  const color = useColorModeValue("gray.600", "whiteAlpha.700");
+  const hoverColor = useColorModeValue("gray.800", "whiteAlpha.800");
+  const headingColor = useColorModeValue("gray.900", "white");
 
   return (
-    <ListItem>
-      <MenuLink href={href}>
-        <Box role="group" display="flex">
+    <Box role="group" px={2}>
+      <NextLink href={href} passHref>
+        <MenuItem
+          as={Link}
+          minW="240px"
+          py={3}
+          borderRadius="lg"
+          href={href}
+          pl={iconType ? 3 : 5}
+          pr={5}
+          alignItems="flex-start"
+          transitionProperty="background"
+          transitionDuration="normal"
+        >
           {iconType && (
             <Icon
               color={color}
@@ -33,7 +38,9 @@ export function FlyoutMenuItem({ description, heading, href, iconType }: FlyoutM
             />
           )}
           <Box>
-            <Heading fontSize="md">{heading}</Heading>
+            <Heading fontSize="md" color={headingColor} as="p">
+              {heading}
+            </Heading>
             <Text
               color={color}
               _groupHover={{ color: hoverColor, transitionDuration: "normal", transitionProperty: "color" }}
@@ -42,9 +49,9 @@ export function FlyoutMenuItem({ description, heading, href, iconType }: FlyoutM
               {description}
             </Text>
           </Box>
-        </Box>
-      </MenuLink>
-    </ListItem>
+        </MenuItem>
+      </NextLink>
+    </Box>
   );
 }
 

@@ -1,5 +1,6 @@
 import { theme } from "@boilerplate/shared/theme";
 import { Box, ChakraProvider, IconButton, useColorMode, useColorModeValue } from "@chakra-ui/react";
+import "focus-visible/dist/focus-visible";
 import { RouterContext } from "next/dist/next-server/lib/router-context";
 import * as NextImage from "next/image";
 import { RiMoonFill, RiSunFill } from "react-icons/ri";

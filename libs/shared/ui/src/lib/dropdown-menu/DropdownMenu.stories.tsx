@@ -1,5 +1,7 @@
 import { MenuItem } from "@chakra-ui/react";
 import { Meta, Story } from "@storybook/react";
+import { RiGameFill, RiGameLine } from "react-icons/ri";
+import FlyoutMenuItem from "../flyout-menu-item/FlyoutMenuItem";
 import { DropdownMenu, DropdownMenuProps } from "./DropdownMenu";
 
 export default {
@@ -26,14 +28,17 @@ Primary.args = {
 
 export const Unstyled = Template.bind({});
 Unstyled.args = {
-  label: "Click / hover me",
+  ...Primary.args,
+  variant: "unstyled",
+};
+
+export const WithFlyoutMenuItem = Template.bind({});
+WithFlyoutMenuItem.args = {
+  ...Primary.args,
   children: (
     <>
-      <MenuItem>Download</MenuItem>
-      <MenuItem>Create a Copy</MenuItem>
-      <MenuItem>Mark as Draft</MenuItem>
-      <MenuItem>Delete</MenuItem>
-      <MenuItem>Attend a Workshop</MenuItem>
+      <FlyoutMenuItem description="Description" heading="Heading" href="/" iconType={RiGameFill} />
+      <FlyoutMenuItem description="Description" heading="Heading" href="/" iconType={RiGameLine} />
     </>
   ),
 };
