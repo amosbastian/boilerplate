@@ -1,7 +1,7 @@
 import type { ButtonProps, MenuProps } from "@chakra-ui/react";
-import { Button, Icon, Menu, MenuButton, useDisclosure } from "@chakra-ui/react";
+import { Menu, useDisclosure } from "@chakra-ui/react";
 import * as React from "react";
-import { RiArrowDownSLine } from "react-icons/ri";
+import { MenuButton } from "../menu-button/MenuButton";
 import { MenuList } from "../menu-list/MenuList";
 
 const TIMEOUT_LENGTH = 200;
@@ -39,18 +39,7 @@ export function DropdownMenu({ children, label, variant = "unstyled", ...rest }:
 
   return (
     <Menu isOpen={isOpen || mouseOverButton || mouseOverMenu} onClose={onClose} {...rest}>
-      <MenuButton
-        as={Button}
-        variant={variant}
-        onClick={onOpen}
-        onMouseEnter={enterButton}
-        onMouseLeave={leaveButton}
-        fontSize="sm"
-        rightIcon={<Icon fontSize="md" as={RiArrowDownSLine} />}
-        display="inline-flex"
-        fontWeight="medium"
-        lineHeight={1.2}
-      >
+      <MenuButton variant={variant} onClick={onOpen} onMouseEnter={enterButton} onMouseLeave={leaveButton}>
         {label}
       </MenuButton>
       <MenuList onMouseEnter={enterMenu} onMouseLeave={leaveMenu}>
