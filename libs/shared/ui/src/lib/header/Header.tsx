@@ -1,4 +1,4 @@
-import { Flex, useColorModeValue, useStyleConfig } from "@chakra-ui/react";
+import { Flex, useColorModeValue } from "@chakra-ui/react";
 import { useScrollPosition } from "@n8tb1t/use-scroll-position";
 import * as React from "react";
 import { Container } from "../container/Container";
