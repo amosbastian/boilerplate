@@ -16,6 +16,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@boilerplate/shared/i18n": ["libs/shared/i18n/src/index.ts"],
       "@boilerplate/shared/theme": ["libs/shared/theme/src/index.ts"],
       "@boilerplate/shared/types": ["libs/shared/types/src/index.ts"],
       "@boilerplate/shared/ui": ["libs/shared/ui/src/index.ts"]

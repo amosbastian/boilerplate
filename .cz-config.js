@@ -25,7 +25,7 @@ module.exports = {
   ],
 
   scopes: [
-    { name: "web", description: "anything web specific" },
+    { name: "site", description: "anything site specific" },
     { name: "blog", description: "anything blog specific" },
     { name: "linter", description: "anything linter specific" },
     { name: "storybook", description: "anything Storybook specific" },

@@ -34,6 +34,9 @@
       "tags": [],
       "implicitDependencies": ["blog"]
     },
+    "shared-i18n": {
+      "tags": []
+    },
     "shared-theme": {
       "tags": []
     },
@@ -47,12 +50,12 @@
       "tags": [],
       "implicitDependencies": ["shared-ui"]
     },
-    "web": {
+    "site": {
       "tags": []
     },
-    "web-e2e": {
+    "site-e2e": {
       "tags": [],
-      "implicitDependencies": ["web"]
+      "implicitDependencies": ["site"]
     }
   }
 }
