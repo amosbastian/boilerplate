@@ -18,22 +18,22 @@ export function FlyoutMenuItem({ description, heading, href, iconType }: FlyoutM
       <NextLink href={href} passHref>
         <MenuItem
           as={Link}
-          minW="240px"
-          py={3}
+          minW="320px"
+          py={5}
           borderRadius="lg"
           href={href}
-          pl={iconType ? 3 : 5}
-          pr={5}
+          px={5}
           alignItems="flex-start"
           transitionProperty="background"
           transitionDuration="normal"
         >
           {iconType && (
             <Icon
+              mt={1}
               color={color}
               _groupHover={{ color: hoverColor, transitionDuration: "normal", transitionProperty: "color" }}
               as={iconType}
-              mr={3}
+              mr={4}
               boxSize={5}
             />
           )}

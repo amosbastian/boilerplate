@@ -1,5 +1,4 @@
-import type { ButtonProps, MenuProps } from "@chakra-ui/react";
-import { Menu, useDisclosure } from "@chakra-ui/react";
+import { ButtonProps, Menu, MenuProps, useColorModeValue, useDisclosure } from "@chakra-ui/react";
 import * as React from "react";
 import { MenuButton } from "../menu-button/MenuButton";
 import { MenuList } from "../menu-list/MenuList";
@@ -16,6 +15,7 @@ export function DropdownMenu({ children, label, variant = "unstyled", ...rest }:
   const [mouseOverButton, setMouseOverButton] = React.useState<boolean>(false);
   const [mouseOverMenu, setMouseOverMenu] = React.useState<boolean>(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const hoverColor = useColorModeValue("gray.500", "whiteAlpha.600");
 
   const enterButton = () => {
     setMouseOverButton(true);
@@ -37,12 +37,20 @@ export function DropdownMenu({ children, label, variant = "unstyled", ...rest }:
     }, TIMEOUT_LENGTH);
   };
 
+  const open = isOpen || mouseOverButton || mouseOverMenu;
+
   return (
-    <Menu isOpen={isOpen || mouseOverButton || mouseOverMenu} onClose={onClose} {...rest}>
-      <MenuButton variant={variant} onClick={onOpen} onMouseEnter={enterButton} onMouseLeave={leaveButton}>
+    <Menu isOpen={open} onClose={onClose} {...rest}>
+      <MenuButton
+        variant={variant}
+        onClick={onOpen}
+        onMouseEnter={enterButton}
+        onMouseLeave={leaveButton}
+        color={open && variant === "unstyled" ? hoverColor : undefined}
+      >
         {label}
       </MenuButton>
-      <MenuList onMouseEnter={enterMenu} onMouseLeave={leaveMenu}>
+      <MenuList onMouseEnter={enterMenu} onMouseLeave={leaveMenu} overflow="hidden">
         {children}
       </MenuList>
     </Menu>

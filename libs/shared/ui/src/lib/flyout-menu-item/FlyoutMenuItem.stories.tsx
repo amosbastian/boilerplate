@@ -1,6 +1,6 @@
 import { List, Menu } from "@chakra-ui/react";
 import { Meta, Story } from "@storybook/react";
-import { RiFootballFill } from "react-icons/ri";
+import { RiBook3Fill } from "react-icons/ri";
 import { FlyoutMenuItem, FlyoutMenuItemProps } from "./FlyoutMenuItem";
 
 export default {
@@ -26,5 +26,5 @@ Primary.args = {
 export const WithIcon = Template.bind({});
 WithIcon.args = {
   ...Primary.args,
-  iconType: RiFootballFill,
+  iconType: RiBook3Fill,
 };
