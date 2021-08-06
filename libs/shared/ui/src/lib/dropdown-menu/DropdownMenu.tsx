@@ -15,7 +15,7 @@ export function DropdownMenu({ children, label, variant = "unstyled", ...rest }:
   const [mouseOverButton, setMouseOverButton] = React.useState<boolean>(false);
   const [mouseOverMenu, setMouseOverMenu] = React.useState<boolean>(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const hoverColor = useColorModeValue("gray.500", "whiteAlpha.600");
+  const hoverColor = useColorModeValue("gray.500", "whiteAlpha.700");
 
   const enterButton = () => {
     setMouseOverButton(true);

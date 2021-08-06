@@ -72,7 +72,7 @@ interface HeaderLinkProps {
 }
 
 const HeaderLink = ({ children, href, onClick }: HeaderLinkProps) => {
-  const hoverColor = useColorModeValue("gray.500", "whiteAlpha.600");
+  const hoverColor = useColorModeValue("gray.500", "whiteAlpha.700");
 
   return (
     <Link fontSize="sm" _hover={{ color: hoverColor }} href={href} onClick={onClick} fontWeight="medium">
