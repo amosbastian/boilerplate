@@ -17,6 +17,7 @@ import {
 } from "@chakra-ui/react";
 import useTranslation from "next-translate/useTranslation";
 import { RiGithubFill, RiInstagramLine, RiLinkedinBoxFill, RiTwitterFill } from "react-icons/ri";
+import { ChangeLanguage } from "../change-language/ChangeLanguage";
 import { Link } from "../link/Link";
 
 const NewsletterSignup = () => {
@@ -108,7 +109,7 @@ export function Footer(props: FooterProps) {
       <Grid
         templateColumns={{ base: "1fr", lg: "2fr 1fr" }}
         px={{ base: 4, lg: 8 }}
-        py={{ base: 4, lg: 8 }}
+        py={8}
         maxW="container.xl"
         m="0 auto"
         gap={{ base: 6, lg: 12 }}
@@ -150,6 +151,7 @@ export function Footer(props: FooterProps) {
           <Link href="/terms-and-conditions" fontSize="sm" fontWeight="normal">
             {t("terms-and-conditions")}
           </Link>
+          <ChangeLanguage />
           {/* <ChangeTheme />
           <ChangeLanguage /> */}
         </Grid>
