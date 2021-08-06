@@ -6,6 +6,7 @@ import { setCookie } from "nookies";
 import React from "react";
 // FIXME: change to ri when fixed https://github.com/react-icons/react-icons/issues/446
 import { HiTranslate } from "react-icons/hi";
+import { RiArrowDropDownLine } from "react-icons/ri";
 
 const locales = ["en", "nl"];
 
@@ -18,7 +19,7 @@ export interface ChangeLanguageProps {
   withIcon?: boolean;
 }
 
-export function ChangeLanguage({ withIcon, ...rest }: ChangeLanguageProps & SelectProps) {
+export function ChangeLanguage({ withIcon = true, ...rest }: ChangeLanguageProps & SelectProps) {
   const { pathname, push } = useRouter();
   const { t, lang: currentLanguage } = useTranslation("common");
 
@@ -38,6 +39,7 @@ export function ChangeLanguage({ withIcon, ...rest }: ChangeLanguageProps & Sele
         onChange={handleChange}
         variant="unstyled"
         fontSize="sm"
+        icon={<RiArrowDropDownLine />}
         {...rest}
       >
         {locales.map((language) => {

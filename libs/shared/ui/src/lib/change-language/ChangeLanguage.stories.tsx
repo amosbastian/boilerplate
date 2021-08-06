@@ -9,6 +9,4 @@ export default {
 const Template: Story<ChangeLanguageProps> = (args) => <ChangeLanguage {...args} />;
 
 export const Primary = Template.bind({});
-Primary.args = {
-  withIcon: true,
-};
+Primary.args = {};

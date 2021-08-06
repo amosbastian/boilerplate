@@ -18,6 +18,7 @@ import {
 import useTranslation from "next-translate/useTranslation";
 import { RiGithubFill, RiInstagramLine, RiLinkedinBoxFill, RiTwitterFill } from "react-icons/ri";
 import { ChangeLanguage } from "../change-language/ChangeLanguage";
+import { ChangeTheme } from "../change-theme/ChangeTheme";
 import { Link } from "../link/Link";
 
 const NewsletterSignup = () => {
@@ -151,9 +152,8 @@ export function Footer(props: FooterProps) {
           <Link href="/terms-and-conditions" fontSize="sm" fontWeight="normal">
             {t("terms-and-conditions")}
           </Link>
+          <ChangeTheme />
           <ChangeLanguage />
-          {/* <ChangeTheme />
-          <ChangeLanguage /> */}
         </Grid>
         <HStack spacing={4}>
           <ChakraLink aria-label="GitHub" variant="link" href="https://github.com/amosbastian/frontend" isExternal>
