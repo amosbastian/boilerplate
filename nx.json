@@ -40,6 +40,9 @@
     "shared-i18n": {
       "tags": []
     },
+    "shared-storybook": {
+      "tags": []
+    },
     "shared-theme": {
       "tags": []
     },
@@ -62,6 +65,13 @@
     },
     "site-i18n": {
       "tags": []
+    },
+    "site-ui": {
+      "tags": []
+    },
+    "site-ui-e2e": {
+      "tags": [],
+      "implicitDependencies": ["site-ui"]
     }
   }
 }
