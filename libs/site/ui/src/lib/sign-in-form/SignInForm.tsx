@@ -39,7 +39,7 @@ export function SignInForm({ providers = [] }: SignInFormProps) {
   };
 
   return (
-    <Card mt={4} px={10} py={8} flexDirection="column" minWidth={{ base: "100%", sm: "400px" }}>
+    <Card mt={4} px={10} py={8} flexDirection="column" minWidth={{ base: "100%", md: "400px" }}>
       <FormControl id="email">
         <FormLabel>{t("common:email-address")}</FormLabel>
         <Input type="text" name="email" value={email} onChange={handleChange} />
@@ -76,7 +76,7 @@ export function SignInForm({ providers = [] }: SignInFormProps) {
                   aria-label={provider.name}
                   onClick={() => signIn(provider.id)}
                 >
-                  <Icon as={providerConfiguration.icon} size="20px" color={providerConfiguration.color} />
+                  <Icon as={providerConfiguration.icon} boxSize={5} color={providerConfiguration.color} />
                 </IconButton>
               );
             })}
