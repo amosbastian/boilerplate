@@ -8,5 +8,6 @@ export * from "./lib/head/Head";
 export * from "./lib/header/Header";
 export * from "./lib/layout/Layout";
 export * from "./lib/link/Link";
+export * from "./lib/logo/Logo";
 export * from "./lib/menu-list/MenuList";
 export * from "./lib/section/Section";
