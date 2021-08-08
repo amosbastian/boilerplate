@@ -38,7 +38,7 @@ const NewsletterSignup = () => {
           mb={{ base: 4, md: 0 }}
           maxW={{ base: "100%", md: "320px" }}
         />
-        <Button w={{ md: "max-content" }} ml={{ base: 0, md: 4 }} colorScheme="primary">
+        <Button w={{ md: "max-content" }} ml={{ base: 0, md: 4 }} flexShrink={0} colorScheme="primary">
           {t("newsletter-cta")}
         </Button>
       </InputGroup>

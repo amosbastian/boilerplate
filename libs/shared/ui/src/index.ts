@@ -1,3 +1,4 @@
+export * from "./lib/card/Card";
 export * from "./lib/chakra/Chakra";
 export * from "./lib/container/Container";
 export * from "./lib/dropdown-menu/DropdownMenu";
