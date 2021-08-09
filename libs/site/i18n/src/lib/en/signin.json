@@ -1,3 +1,6 @@
 {
-  "or-continue-with": "Or continue with"
+  "meta-title": "Sign in",
+  "heading": "Sign in to Boilerplate",
+  "sign-in-with": "Sign in with {{provider}}",
+  "or": "Or"
 }
