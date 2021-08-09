@@ -1,5 +1,5 @@
 import { Card } from "@boilerplate/shared/ui";
-import { Button, Divider, FormControl, FormLabel, Grid, Icon, IconButton, Input, Text } from "@chakra-ui/react";
+import { Button, Divider, FormControl, FormLabel, Grid, Icon, Input, Text } from "@chakra-ui/react";
 import type { ClientSafeProvider } from "next-auth/client";
 import { signIn } from "next-auth/client";
 import useTranslation from "next-translate/useTranslation";
@@ -41,7 +41,7 @@ export function SignInForm({ providers = [] }: SignInFormProps) {
   return (
     <Card mt={4} px={10} py={8} flexDirection="column" minWidth={{ base: "100%", md: "400px" }}>
       <FormControl id="email">
-        <FormLabel>{t("common:email-address")}</FormLabel>
+        <FormLabel fontSize="sm">{t("common:email-address")}</FormLabel>
         <Input type="text" name="email" value={email} onChange={handleChange} />
       </FormControl>
       <Button
@@ -52,6 +52,7 @@ export function SignInForm({ providers = [] }: SignInFormProps) {
         disabled={email.length === 0}
         isFullWidth
         isLoading={signinLoading}
+        fontSize="sm"
       >
         {t("common:sign-in")}
       </Button>
@@ -59,25 +60,34 @@ export function SignInForm({ providers = [] }: SignInFormProps) {
         <>
           <Grid mt={6} gap={4} gridTemplateColumns="1fr max-content 1fr" justifyItems="center" alignItems="center">
             <Divider />
-            <Text>{t("or-continue-with")}</Text>
+            <Text>{t("or")}</Text>
             <Divider />
           </Grid>
-          <Grid gridTemplateColumns="repeat(2, 1fr)" gap={4} mt={6}>
+          <Grid gap={4} mt={6}>
             {providers.map((provider) => {
               const providerConfiguration = PROVIDER_CONFIGURATION[provider.id];
 
               if (!provider) return null;
 
               return (
-                <IconButton
+                <Button
                   key={provider.name}
                   colorScheme="gray"
                   borderRadius="base"
                   aria-label={provider.name}
                   onClick={() => signIn(provider.id)}
+                  position="relative"
+                  fontSize="sm"
                 >
-                  <Icon as={providerConfiguration.icon} boxSize={5} color={providerConfiguration.color} />
-                </IconButton>
+                  <Icon
+                    position="absolute"
+                    left={4}
+                    as={providerConfiguration.icon}
+                    boxSize={5}
+                    color={providerConfiguration.color}
+                  />
+                  {t("sign-in-with", { provider: provider.name })}
+                </Button>
               );
             })}
           </Grid>
