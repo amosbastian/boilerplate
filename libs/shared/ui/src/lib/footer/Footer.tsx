@@ -27,7 +27,7 @@ const NewsletterSignup = () => {
 
   return (
     <Box>
-      <Heading fontSize="md" mb={4}>
+      <Heading as="h3" fontSize="sm" mb={4}>
         {t("newsletter-heading")}
       </Heading>
       <Text mb={4}>{t("newsletter-subtitle")}</Text>
@@ -57,7 +57,7 @@ const FooterList = ({ navItem }: { navItem: NavItem }) => {
 
   return (
     <Flex flexDirection="column">
-      <Heading fontSize="md" mb={4}>
+      <Heading as="h3" fontSize="sm" mb={4}>
         {t(navItem.id)}
       </Heading>
       <List>
