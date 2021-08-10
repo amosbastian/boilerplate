@@ -166,7 +166,11 @@ export function Header() {
       borderBottomColor={scrolled ? borderBottomColor : "transparent"}
     >
       <Container display="flex" justifyContent="space-between" alignItems="center" h={16} w="100%">
-        <Logo />
+        <NextLink href="/">
+          <a href="/">
+            <Logo />
+          </a>
+        </NextLink>
         <IconButton display={{ base: "flex", lg: "none" }} aria-label={t("open-menu")} variant="ghost" onClick={onOpen}>
           <Icon as={RiMenuFill} />
         </IconButton>
