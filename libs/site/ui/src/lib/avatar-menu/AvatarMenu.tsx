@@ -1,8 +1,8 @@
-import type { MenuProps } from "@chakra-ui/react";
-import { Avatar, Link as ChakraLink, Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/react";
+import { Avatar, Link as ChakraLink, Icon, Menu, MenuButton, MenuDivider, MenuItem, MenuList } from "@chakra-ui/react";
 import { signOut, useSession } from "next-auth/client";
 import useTranslation from "next-translate/useTranslation";
 import NextLink from "next/link";
+import { RiSettings2Line, RiLogoutBoxLine } from "react-icons/ri";
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface AvatarMenuProps {}
@@ -28,8 +28,14 @@ export function AvatarMenu(props: AvatarMenuProps) {
         />
       </MenuButton>
       <MenuList>
+        <NextLink href="/settings" passHref>
+          <MenuItem as={ChakraLink} icon={<Icon as={RiSettings2Line} boxSize={5} />}>
+            {t("settings")}
+          </MenuItem>
+        </NextLink>
+        <MenuDivider />
         <NextLink href="/api/auth/signout" passHref>
-          <MenuItem as={ChakraLink} _hover={{ textDecoration: "none" }} onClick={handleSignOut}>
+          <MenuItem as={ChakraLink} icon={<Icon as={RiLogoutBoxLine} boxSize={5} />} onClick={handleSignOut}>
             {t("sign-out")}
           </MenuItem>
         </NextLink>
