@@ -27,5 +27,6 @@
   "newsletter-cta": "Subscribe",
   "light": "Light",
   "dark": "Dark",
-  "selected-theme-aria-label": "Selected theme: {{theme}}"
+  "selected-theme-aria-label": "Selected theme: {{theme}}",
+  "home": "Home"
 }

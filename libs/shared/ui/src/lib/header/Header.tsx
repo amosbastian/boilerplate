@@ -18,6 +18,7 @@ import {
   useColorModeValue,
   useDisclosure,
   VStack,
+  VisuallyHidden,
 } from "@chakra-ui/react";
 import { useScrollPosition } from "@n8tb1t/use-scroll-position";
 import useTranslation from "next-translate/useTranslation";
@@ -72,15 +73,11 @@ interface HeaderLinkProps {
   onClick?: () => void;
 }
 
-const HeaderLink = ({ children, href, onClick }: HeaderLinkProps) => {
-  const hoverColor = useColorModeValue("gray.500", "whiteAlpha.700");
-
-  return (
-    <Link fontSize="sm" _hover={{ color: hoverColor }} href={href} onClick={onClick} fontWeight="medium">
-      {children}
-    </Link>
-  );
-};
+const HeaderLink = ({ children, href, onClick }: HeaderLinkProps) => (
+  <Link fontSize="sm" href={href} onClick={onClick} fontWeight="medium">
+    {children}
+  </Link>
+);
 
 interface MobileNavListProps {
   onClick?: () => void;
@@ -166,8 +163,9 @@ export function Header() {
       borderBottomColor={scrolled ? borderBottomColor : "transparent"}
     >
       <Container display="flex" justifyContent="space-between" alignItems="center" h={16} w="100%">
-        <NextLink href="/">
-          <a href="/">
+        <NextLink href="/home">
+          <a href="/home">
+            <VisuallyHidden>{t("home")}</VisuallyHidden>
             <Logo />
           </a>
         </NextLink>

@@ -4,7 +4,7 @@ import { mode } from "@chakra-ui/theme-tools";
 type Dict = Record<string, any>;
 
 const baseStyle = (props: Dict): SystemStyleObject => ({
-  color: mode("gray.700", "whiteAlpha.700")(props),
+  color: mode("gray.700", "whiteAlpha.900")(props),
   _hover: {
     color: mode("gray.900", "white")(props),
     textDecoration: "none",
