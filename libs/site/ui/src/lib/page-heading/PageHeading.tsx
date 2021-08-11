@@ -3,7 +3,7 @@ import { Container } from "@boilerplate/shared/ui";
 import { Flex, Heading } from "@chakra-ui/react";
 
 export interface PageHeadingProps extends ContainerProps {
-  actions: React.ReactNode;
+  actions?: React.ReactNode;
   heading: string;
 }
 

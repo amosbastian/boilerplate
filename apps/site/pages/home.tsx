@@ -1,5 +1,5 @@
 import { Container } from "@boilerplate/shared/ui";
-import { getLayout } from "@boilerplate/site/ui";
+import { getLayout, PageHeading } from "@boilerplate/site/ui";
 import type { GetServerSidePropsContext } from "next";
 import { getSession } from "next-auth/client";
 import { NextSeo } from "next-seo";
@@ -28,6 +28,7 @@ export default function Home() {
   return (
     <Container>
       <NextSeo title={t("meta-title")} />
+      <PageHeading heading={t("page-heading")} />
     </Container>
   );
 }
