@@ -12,7 +12,7 @@ export interface AsideLinkProps {
 
 export function AsideLink({ icon, href, label, onClick }: AsideLinkProps) {
   const color = useColorModeValue("gray.700", "whiteAlpha.700");
-  const hoverColor = useColorModeValue("gray.900", "white");
+  const hoverColor = useColorModeValue("primary.600", "primary.200");
   const backgroundColor = useColorModeValue("gray.100", "whiteAlpha.100");
   const router = useRouter();
   const active = router.pathname.startsWith(href);
