@@ -12,7 +12,7 @@ export function Header() {
   const { t } = useTranslation("common");
 
   return (
-    <Flex as="header" h={16} zIndex={1} position="fixed" w="100%" backgroundColor={backgroundColor}>
+    <Flex as="nav" h={16} zIndex={1} position="fixed" w="100%" backgroundColor={backgroundColor}>
       <Container display="flex" justifyContent="space-between" alignItems="center" h={16} w="100%">
         <NextLink href="/home">
           <a href="/home">

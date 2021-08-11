@@ -114,7 +114,7 @@ const NavModal = ({ isOpen, onClose }: Pick<ModalProps, "isOpen" | "onClose">) =
       <ModalContent width="calc(100% - 32px)" marginTop={4}>
         <ModalHeader />
         <ModalCloseButton />
-        <VStack spacing={8} as="nav" alignItems="start" divider={<StackDivider opacity={0.6} />}>
+        <VStack spacing={8} alignItems="start" divider={<StackDivider opacity={0.6} />}>
           {NAV_ITEMS.map((navItem) => {
             return <MobileNavList key={navItem.id} onClick={onClose} headerNavItem={navItem} />;
           })}
@@ -153,7 +153,7 @@ export function Header() {
 
   return (
     <Flex
-      as="header"
+      as="nav"
       h={16}
       zIndex={1}
       position="fixed"
@@ -173,7 +173,7 @@ export function Header() {
           <Icon as={RiMenuFill} />
         </IconButton>
         <NavModal isOpen={isOpen} onClose={onClose} />
-        <HStack spacing={8} as="nav" display={{ base: "none", lg: "flex" }} alignItems="baseline">
+        <HStack spacing={8} display={{ base: "none", lg: "flex" }} alignItems="baseline">
           {NAV_ITEMS.map((navItem) => {
             if (navItem.links.length > 1) {
               return (
