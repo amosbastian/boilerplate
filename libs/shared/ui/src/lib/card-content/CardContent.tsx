@@ -1,16 +1,16 @@
 import type { BoxProps } from "@chakra-ui/react";
 import { Box, useMultiStyleConfig } from "@chakra-ui/react";
 
-export type CardProps = BoxProps;
+export type CardContentProps = BoxProps;
 
-export function Card({ children, ...rest }: CardProps) {
+export function CardContent({ children, ...rest }: CardContentProps) {
   const styles = useMultiStyleConfig("Card", {});
 
   return (
-    <Box sx={styles.card} {...rest}>
+    <Box sx={styles.content} {...rest}>
       {children}
     </Box>
   );
 }
 
-export default Card;
+export default CardContent;

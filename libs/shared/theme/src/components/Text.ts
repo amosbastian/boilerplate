@@ -9,7 +9,7 @@ function variantSecondary(props: Dict) {
 }
 
 const variants = {
-  textSecondary: variantSecondary,
+  secondary: variantSecondary,
 };
 
 export const Text = {

@@ -1,3 +1,6 @@
+export * from "./lib/card-footer/CardFooter";
+export * from "./lib/card-header/CardHeader";
+export * from "./lib/card-content/CardContent";
 export * from "./lib/card/Card";
 export * from "./lib/chakra/Chakra";
 export * from "./lib/container/Container";
