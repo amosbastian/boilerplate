@@ -1,9 +1,10 @@
-import { Container, Card } from "@boilerplate/shared/ui";
+import { Card, Container } from "@boilerplate/shared/ui";
 import { getLayout, PageHeading, Settings } from "@boilerplate/site/ui";
 import type { GetServerSidePropsContext } from "next";
 import { getSession } from "next-auth/client";
 import { NextSeo } from "next-seo";
 import useTranslation from "next-translate/useTranslation";
+import React from "react";
 
 export const getServerSideProps = async (context: GetServerSidePropsContext) => {
   const session = await getSession(context);
@@ -22,7 +23,7 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
   };
 };
 
-export default function SettingsPage() {
+export default function Billing() {
   const { t } = useTranslation("settings");
 
   return (
@@ -31,11 +32,11 @@ export default function SettingsPage() {
       <PageHeading heading={t("page-heading")} />
       <Container>
         <Settings>
-          <Card>Profile</Card>
+          <Card>Billing</Card>
         </Settings>
       </Container>
     </>
   );
 }
 
-SettingsPage.getLayout = getLayout;
+Billing.getLayout = getLayout;

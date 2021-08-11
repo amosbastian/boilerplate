@@ -6,7 +6,7 @@ const baseStyle = (props: Dict) => ({
   bg: mode("white", "whiteAlpha.100")(props),
   boxShadow: mode("sm", "xl")(props),
   overflow: "hidden",
-  borderRadius: "xl",
+  borderRadius: "md",
 });
 
 export const Card = {

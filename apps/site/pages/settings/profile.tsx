@@ -22,7 +22,7 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
   };
 };
 
-export default function SettingsPage() {
+export default function Profile() {
   const { t } = useTranslation("settings");
 
   return (
@@ -38,4 +38,4 @@ export default function SettingsPage() {
   );
 }
 
-SettingsPage.getLayout = getLayout;
+Profile.getLayout = getLayout;

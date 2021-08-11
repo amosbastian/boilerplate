@@ -5,6 +5,7 @@ module.exports = {
     "*": ["common"],
     "/home": ["home"],
     "/signin": ["signin"],
+    "rgx:^/settings": ["settings"],
   },
   loadLocaleFrom: async (locale, namespace) => {
     const i18nShared = await import(`../../libs/shared/i18n/src/lib/${locale}/common`).then((m) => m.default);

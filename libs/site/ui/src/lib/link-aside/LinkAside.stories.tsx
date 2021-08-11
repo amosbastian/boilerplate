@@ -9,7 +9,7 @@ export default {
 
 const Template: Story<LinkAsideProps> = (args) => <LinkAside {...args} />;
 
-const settingsLinks = [
+const links = [
   {
     href: "/",
     label: "profile",
@@ -24,5 +24,5 @@ const settingsLinks = [
 
 export const Active = Template.bind({});
 Active.args = {
-  settingsLinks,
+  links,
 };
