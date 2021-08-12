@@ -1,5 +1,5 @@
 import { Container, Card } from "@boilerplate/shared/ui";
-import { getLayout, PageHeading, Settings } from "@boilerplate/site/ui";
+import { getLayout, PageHeading, SettingsSection, SettingsAside } from "@boilerplate/site/ui";
 import type { GetServerSidePropsContext } from "next";
 import { getSession } from "next-auth/client";
 import { NextSeo } from "next-seo";
@@ -22,7 +22,7 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
   };
 };
 
-export default function SettingsPage() {
+export default function Settings() {
   const { t } = useTranslation("settings");
 
   return (
@@ -30,12 +30,13 @@ export default function SettingsPage() {
       <NextSeo title={t("meta-title")} />
       <PageHeading heading={t("page-heading")} />
       <Container>
-        <Settings>
+        <SettingsAside position="relative" display={{ lg: "none" }} />
+        <SettingsSection display={{ base: "none", lg: "grid" }}>
           <Card>Profile</Card>
-        </Settings>
+        </SettingsSection>
       </Container>
     </>
   );
 }
 
-SettingsPage.getLayout = getLayout;
+Settings.getLayout = getLayout;

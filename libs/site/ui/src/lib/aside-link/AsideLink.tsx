@@ -1,16 +1,16 @@
-import { Link } from "@boilerplate/shared/ui";
+import { Link, LinkProps } from "@boilerplate/shared/ui";
 import { Icon, useColorModeValue } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import type { IconType } from "react-icons";
 
-export interface AsideLinkProps {
+export interface AsideLinkProps extends LinkProps {
   icon: IconType;
   href: string;
   label: string;
   onClick?: () => void;
 }
 
-export function AsideLink({ icon, href, label, onClick }: AsideLinkProps) {
+export function AsideLink({ icon, href, label, onClick, ...rest }: AsideLinkProps) {
   const color = useColorModeValue("gray.700", "whiteAlpha.700");
   const hoverColor = useColorModeValue("primary.600", "primary.200");
   const backgroundColor = useColorModeValue("whiteAlpha.700", "whiteAlpha.100");
@@ -31,6 +31,7 @@ export function AsideLink({ icon, href, label, onClick }: AsideLinkProps) {
       alignItems="center"
       px={3}
       py={2}
+      {...rest}
       aria-label={label}
     >
       <Icon as={icon} mr={4} color="inherit" w={5} h={5} />

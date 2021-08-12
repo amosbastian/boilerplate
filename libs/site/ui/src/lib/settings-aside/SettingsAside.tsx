@@ -1,4 +1,4 @@
-import type { StackProps } from "@chakra-ui/react";
+import { StackProps, useBreakpointValue } from "@chakra-ui/react";
 import useTranslation from "next-translate/useTranslation";
 import { RiAccountCircleLine, RiBankCardLine } from "react-icons/ri";
 import LinkAside from "../link-aside/LinkAside";
@@ -7,15 +7,14 @@ export type SettingsAsideProps = StackProps;
 
 export function SettingsAside(props: SettingsAsideProps) {
   const { t } = useTranslation("settings");
+  const profileSettingsHref = useBreakpointValue({ base: "/settings/profile", lg: "/settings" }, "/settings/profile");
 
   return (
     <LinkAside
-      top="84px"
-      position="sticky"
       alignSelf="flex-start"
       links={[
         {
-          href: "/settings",
+          href: profileSettingsHref ?? "/settings",
           label: t("profile"),
           icon: RiAccountCircleLine,
         },
