@@ -3,7 +3,11 @@ module.exports = {
   defaultLocale: "en",
   pages: {
     "*": ["common"],
+    "/about": ["about"],
+    "/contact": ["contact"],
+    "/faq": ["faq"],
     "/home": ["home"],
+    "/pricing": ["pricing"],
     "/signin": ["signin"],
     "rgx:^/settings": ["settings"],
   },

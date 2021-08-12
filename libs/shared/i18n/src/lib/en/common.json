@@ -31,5 +31,9 @@
   "home": "Home",
   "back": "Back",
   "remove": "Remove",
-  "change": "Change"
+  "change": "Change",
+  "feature-1": "feature-1",
+  "feature-1-description": "feature-1-description",
+  "feature-2": "feature-2",
+  "feature-2-description": "feature-2-description"
 }
