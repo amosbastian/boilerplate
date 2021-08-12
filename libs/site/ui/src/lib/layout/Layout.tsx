@@ -13,7 +13,7 @@ export function Layout({ children }: LayoutProps) {
   return (
     <Box backgroundColor={backgroundColor}>
       <Header />
-      <Box as="main" minHeight="100vh" pt={16}>
+      <Box as="main" minHeight={{ base: "80vh", lg: "100vh" }} pt={16}>
         {children}
       </Box>
       <Footer />

@@ -1,5 +1,5 @@
-import { Container, Card } from "@boilerplate/shared/ui";
-import { getLayout, PageHeading, SettingsSection } from "@boilerplate/site/ui";
+import { Container } from "@boilerplate/shared/ui";
+import { getLayout, PageHeading, ProfileSettingsForm, SettingsSection } from "@boilerplate/site/ui";
 import type { GetServerSidePropsContext } from "next";
 import { getSession } from "next-auth/client";
 import { NextSeo } from "next-seo";
@@ -29,9 +29,9 @@ export default function Profile() {
     <>
       <NextSeo title={t("meta-title")} />
       <PageHeading heading={t("page-heading")} />
-      <Container>
+      <Container pb={{ base: 4, md: 10 }}>
         <SettingsSection>
-          <Card>Profile</Card>
+          <ProfileSettingsForm />
         </SettingsSection>
       </Container>
     </>

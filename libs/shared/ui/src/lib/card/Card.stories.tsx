@@ -26,7 +26,7 @@ export const Primary = Template.bind({});
 Primary.args = {
   children: (
     <>
-      <CardHeader heading="Heading" subtitle="subtitle" />
+      <CardHeader title="Title" subtitle="subtitle" />
       <CardContent>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris lectus dolor, dapibus dapibus ultricies et,
         fringilla blandit justo. Fusce ac hendrerit justo. Phasellus leo purus, venenatis nec dolor id, tincidunt

@@ -24,7 +24,7 @@ const baseStyle = (props: Dict) => ({
   },
   content: {
     px: 6,
-    py: 4,
+    py: 6,
   },
   footer: {
     py: 3,

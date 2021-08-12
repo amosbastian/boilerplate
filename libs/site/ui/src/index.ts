@@ -1,3 +1,5 @@
+export * from "./lib/file-upload/FileUpload";
+export * from "./lib/profile-settings-form/ProfileSettingsForm";
 export * from "./lib/avatar-menu/AvatarMenu";
 export * from "./lib/header/Header";
 export * from "./lib/layout/Layout";

@@ -25,7 +25,7 @@ export function AsideLink({ icon, href, label, onClick, ...rest }: AsideLinkProp
       fontWeight="medium"
       fontSize="sm"
       borderRadius="lg"
-      backgroundColor={active ? backgroundColor : "initial"}
+      backgroundColor={{ base: backgroundColor, lg: active ? backgroundColor : "initial" }}
       color={active ? hoverColor : color}
       _hover={{ backgroundColor, color: hoverColor }}
       alignItems="center"

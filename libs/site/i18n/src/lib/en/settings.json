@@ -2,5 +2,9 @@
   "meta-title": "Settings",
   "page-heading": "Settings",
   "profile": "Profile",
-  "plan-and-billing": "Plan & Billing"
+  "plan-and-billing": "Plan & Billing",
+  "name-label": "Name",
+  "image-label": "Profile picture",
+  "profile-settings-title": "Profile settings",
+  "profile-settings-subtitle": "profile-settings-subtitle"
 }

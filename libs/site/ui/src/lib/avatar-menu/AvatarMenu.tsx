@@ -20,12 +20,7 @@ export function AvatarMenu(props: AvatarMenuProps) {
   return (
     <Menu {...props}>
       <MenuButton borderRadius="50%" _focus={{ boxShadow: "outline" }}>
-        <Avatar
-          name={session?.user?.email || session?.user?.name || undefined}
-          src={session?.user?.image || undefined}
-          h={7}
-          w={7}
-        />
+        <Avatar src={session?.user?.image || undefined} h={7} w={7} />
       </MenuButton>
       <MenuList>
         <NextLink href="/settings" passHref>

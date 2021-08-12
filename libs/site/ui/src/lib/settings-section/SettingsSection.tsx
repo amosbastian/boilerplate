@@ -10,8 +10,14 @@ export function SettingsSection({ children, ...rest }: SettingsSectionProps) {
   const { t } = useTranslation();
 
   return (
-    <Grid gridTemplateColumns={{ base: "1fr", lg: "1fr 3fr" }} gap={6} {...rest}>
-      <AsideLink display={{ lg: "none" }} href="/settings" label={t("common:back")} icon={RiArrowLeftSLine} />
+    <Grid gridTemplateColumns={{ base: "1fr", lg: "1fr 3fr" }} gap={{ base: 2, md: 6 }} {...rest}>
+      <AsideLink
+        bg="transparent"
+        display={{ lg: "none" }}
+        href="/settings"
+        label={t("common:back")}
+        icon={RiArrowLeftSLine}
+      />
       <SettingsAside display={{ base: "none", lg: "initial" }} top="84px" position="sticky" />
       <Stack spacing={6} {...rest}>
         {children}
