@@ -7,7 +7,7 @@ export type SettingsAsideProps = StackProps;
 
 export function SettingsAside(props: SettingsAsideProps) {
   const { t } = useTranslation("settings");
-  const profileSettingsHref = useBreakpointValue({ base: "/settings/profile", lg: "/settings" }, "/settings/profile");
+  const profileSettingsHref = useBreakpointValue({ base: "/settings/general", lg: "/settings" }, "/settings/general");
 
   return (
     <LinkAside

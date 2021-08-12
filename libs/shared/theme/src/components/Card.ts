@@ -11,7 +11,6 @@ const baseStyle = (props: Dict) => ({
     boxShadow: mode("sm", "md")(props),
     overflow: "hidden",
     borderRadius: "md",
-    w: "100%",
   },
   header: {
     py: 4,
