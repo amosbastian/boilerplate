@@ -8,7 +8,7 @@ const parts = ["card", "header", "content", "footer"];
 const baseStyle = (props: Dict) => ({
   card: {
     bg: mode("white", "whiteAlpha.100")(props),
-    boxShadow: mode("sm", "xl")(props),
+    boxShadow: mode("sm", "md")(props),
     overflow: "hidden",
     borderRadius: "md",
     w: "100%",

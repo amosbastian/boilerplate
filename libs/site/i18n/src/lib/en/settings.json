@@ -7,8 +7,10 @@
   "image-label": "Profile picture",
   "language-label": "Language",
   "theme-label": "Theme",
-  "account-settings-title": "Account settings",
+  "account-settings-title": "Account",
   "account-settings-subtitle": "account-settings-subtitle",
-  "profile-settings-title": "Profile settings",
+  "plan-settings-title": "Plan",
+  "plan-settings-subtitle": "plan-settings-subtitle",
+  "profile-settings-title": "Profile",
   "profile-settings-subtitle": "profile-settings-subtitle"
 }
