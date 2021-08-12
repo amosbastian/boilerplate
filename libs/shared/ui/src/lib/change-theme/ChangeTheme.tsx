@@ -17,7 +17,7 @@ export function ChangeTheme({ withIcon = true, ...rest }: ChangeThemeProps & Sel
   };
 
   return (
-    <HStack spacing={2} maxW="max-content">
+    <HStack spacing={2}>
       {withIcon && (isDark ? <Icon as={RiMoonClearFill} fontSize="sm" /> : <Icon as={RiSunFill} fontSize="sm" />)}
       <Select
         aria-label={t("selected-theme-aria-label", { theme: colorMode })}

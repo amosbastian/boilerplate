@@ -15,7 +15,7 @@ export function SettingsAside(props: SettingsAsideProps) {
       links={[
         {
           href: profileSettingsHref ?? "/settings",
-          label: t("profile"),
+          label: t("general"),
           icon: RiAccountCircleLine,
         },
         {

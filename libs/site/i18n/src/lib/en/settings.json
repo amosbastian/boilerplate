@@ -1,10 +1,14 @@
 {
   "meta-title": "Settings",
   "page-heading": "Settings",
-  "profile": "Profile",
+  "general": "General",
   "plan-and-billing": "Plan & Billing",
   "name-label": "Name",
   "image-label": "Profile picture",
+  "language-label": "Language",
+  "theme-label": "Theme",
+  "account-settings-title": "Account settings",
+  "account-settings-subtitle": "account-settings-subtitle",
   "profile-settings-title": "Profile settings",
   "profile-settings-subtitle": "profile-settings-subtitle"
 }

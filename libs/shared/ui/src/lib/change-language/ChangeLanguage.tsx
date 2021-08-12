@@ -29,7 +29,7 @@ export function ChangeLanguage({ withIcon = true, ...rest }: ChangeLanguageProps
   };
 
   return (
-    <HStack spacing={2} maxW="max-content">
+    <HStack spacing={2}>
       {withIcon && <Icon as={HiTranslate} fontSize="sm" />}
       <Select
         aria-label={t("selected-language-aria-label", { language: languageNames[currentLanguage] })}

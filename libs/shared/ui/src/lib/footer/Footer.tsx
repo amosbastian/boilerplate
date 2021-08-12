@@ -152,8 +152,8 @@ export function Footer(props: FooterProps) {
           <Link href="/terms-and-conditions" fontSize="sm" fontWeight="normal">
             {t("terms-and-conditions")}
           </Link>
-          <ChangeTheme />
-          <ChangeLanguage />
+          <ChangeTheme maxW="max-content" />
+          <ChangeLanguage maxW="max-content" />
         </Grid>
         <HStack spacing={4}>
           <ChakraLink aria-label="GitHub" variant="link" href="https://github.com/amosbastian/frontend" isExternal>

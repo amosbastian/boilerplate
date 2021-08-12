@@ -1,3 +1,4 @@
+export * from "./lib/account-settings-form/AccountSettingsForm";
 export * from "./lib/file-upload/FileUpload";
 export * from "./lib/profile-settings-form/ProfileSettingsForm";
 export * from "./lib/avatar-menu/AvatarMenu";
