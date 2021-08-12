@@ -38,7 +38,12 @@ export function DropdownMenu({ children, label, variant = "unstyled", ...rest }:
     }, TIMEOUT_LENGTH);
   };
 
-  const open = isOpen || mouseOverButton || mouseOverMenu;
+  const onClick = () => {
+    setMouseOverMenu(false);
+    setMouseOverButton(false);
+  };
+
+  const open = (isOpen || mouseOverButton || mouseOverMenu) && !x;
 
   return (
     <Menu isOpen={open} onClose={onClose} {...rest}>
@@ -52,7 +57,12 @@ export function DropdownMenu({ children, label, variant = "unstyled", ...rest }:
         {label}
       </MenuButton>
       <MenuList onMouseEnter={enterMenu} onMouseLeave={leaveMenu} overflow="hidden">
-        {children}
+        {React.Children.map(children, (child) => {
+          if (React.isValidElement(child)) {
+            return React.cloneElement(child, { onClick });
+          }
+          return child;
+        })}
       </MenuList>
     </Menu>
   );

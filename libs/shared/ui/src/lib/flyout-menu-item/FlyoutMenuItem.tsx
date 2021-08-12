@@ -1,14 +1,16 @@
 import { Box, Heading, Icon, Link, MenuItem, Text, useColorModeValue } from "@chakra-ui/react";
 import NextLink from "next/link";
 import type { IconType } from "react-icons";
-export interface FlyoutMenuItemProps {
+import type { MenuItemProps } from "@chakra-ui/react";
+
+export interface FlyoutMenuItemProps extends MenuItemProps {
   description: string;
   heading: string;
   href: string;
   iconType?: IconType;
 }
 
-export function FlyoutMenuItem({ description, heading, href, iconType }: FlyoutMenuItemProps) {
+export function FlyoutMenuItem({ description, heading, href, iconType, ...rest }: FlyoutMenuItemProps) {
   const color = useColorModeValue("gray.600", "whiteAlpha.700");
   const hoverColor = useColorModeValue("gray.800", "whiteAlpha.800");
   const headingColor = useColorModeValue("gray.900", "white");
@@ -26,6 +28,7 @@ export function FlyoutMenuItem({ description, heading, href, iconType }: FlyoutM
           alignItems="flex-start"
           transitionProperty="background"
           transitionDuration="normal"
+          {...rest}
         >
           {iconType && (
             <Icon
