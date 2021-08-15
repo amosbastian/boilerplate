@@ -75,6 +75,9 @@
     "site-ui-e2e": {
       "tags": [],
       "implicitDependencies": ["site-ui"]
+    },
+    "stripe": {
+      "tags": []
     }
   }
 }

@@ -23,7 +23,8 @@
       "@boilerplate/shared/types": ["libs/shared/types/src/index.ts"],
       "@boilerplate/shared/ui": ["libs/shared/ui/src/index.ts"],
       "@boilerplate/site/i18n": ["libs/site/i18n/src/index.ts"],
-      "@boilerplate/site/ui": ["libs/site/ui/src/index.ts"]
+      "@boilerplate/site/ui": ["libs/site/ui/src/index.ts"],
+      "@boilerplate/stripe": ["libs/stripe/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
