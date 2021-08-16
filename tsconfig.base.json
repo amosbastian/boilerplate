@@ -16,6 +16,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@boilerplate/api/data-access": ["libs/api/data-access/src/index.ts"],
       "@boilerplate/blog/i18n": ["libs/blog/i18n/src/index.ts"],
       "@boilerplate/shared/i18n": ["libs/shared/i18n/src/index.ts"],
       "@boilerplate/shared/storybook": ["libs/shared/storybook/src/index.ts"],

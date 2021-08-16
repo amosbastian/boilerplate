@@ -51,6 +51,27 @@
         }
       }
     },
+    "api-data-access": {
+      "root": "libs/api/data-access",
+      "sourceRoot": "libs/api/data-access/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/api/data-access/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/api/data-access"],
+          "options": {
+            "jestConfig": "libs/api/data-access/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "blog": {
       "root": "apps/blog",
       "sourceRoot": "apps/blog",
