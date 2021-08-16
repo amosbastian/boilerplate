@@ -1,18 +1,29 @@
-/**
- * This is not a production server yet!
- * This is only a minimal backend to get started.
- */
-
+import { PrismaClient } from "@prisma/client";
 import * as express from "express";
+import { createApolloServer } from "./app/create-apollo-server/createApolloServer";
 
-const app = express();
+export const prisma = new PrismaClient();
 
-app.get("/api", (req, res) => {
-  res.send({ message: "Welcome to api!" });
-});
+const main = async () => {
+  const apolloServer = await createApolloServer(prisma);
+  await apolloServer.start();
 
-const port = process.env.port || 3333;
-const server = app.listen(port, () => {
-  console.log(`Listening at http://localhost:${port}/api`);
-});
-server.on("error", console.error);
+  const app = express();
+
+  apolloServer.applyMiddleware({ app });
+
+  const port = process.env.PORT || 3333;
+
+  const url =
+    process.env.NODE_ENV || "development" === "development"
+      ? `http://localhost:${port}/graphql`
+      : `https://${process.env.DOMAIN_NAME}/graphql`;
+
+  const server = app.listen(port, () => {
+    console.log(`Listening at ${url}`);
+  });
+
+  server.on("error", console.error);
+};
+
+main();
