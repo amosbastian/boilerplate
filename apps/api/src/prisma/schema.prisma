@@ -10,6 +10,11 @@ generator client {
   provider = "prisma-client-js"
 }
 
+generator typegraphql {
+  provider = "typegraphql-prisma"
+  output   = "../../../../node_modules/@generated/type-graphql"
+}
+
 model Account {
   id                 String    @id @default(cuid())
   userId             String
@@ -49,6 +54,15 @@ model User {
   subscription     Subscription?
   accounts         Account[]
   sessions         Session[]
+  roles            Role[]
+}
+
+model Role {
+  id        Int      @id @default(autoincrement())
+  name      String   @unique
+  users     User[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model VerificationRequest {
