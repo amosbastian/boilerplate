@@ -1,4 +1,4 @@
-import { Context } from "@boilerplate/shared/types";
+import type { Context } from "@boilerplate/shared/types";
 import { AuthChecker } from "type-graphql";
 
 export const authChecker: AuthChecker<Context> = ({ context: { user } }, roles) => {

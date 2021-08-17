@@ -1,8 +1,6 @@
-import { PrismaClient } from "@prisma/client";
 import * as express from "express";
 import { createApolloServer } from "./app/create-apollo-server/createApolloServer";
-
-export const prisma = new PrismaClient();
+import { prisma } from "./app/prisma";
 
 const main = async () => {
   const apolloServer = await createApolloServer(prisma);
