@@ -1,6 +1,6 @@
-import { User } from "@generated/type-graphql";
+import type { User } from "@generated/type-graphql";
 import { PrismaClient } from "@prisma/client";
-import { Request, Response } from "express";
+import type { Request, Response } from "express";
 
 export interface Context {
   prisma: PrismaClient;

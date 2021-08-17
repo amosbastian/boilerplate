@@ -12,4 +12,6 @@ module.exports = {
   },
   moduleFileExtensions: ["ts", "js", "html"],
   coverageDirectory: "../../coverage/apps/api",
+  setupFilesAfterEnv: ["<rootDir>/src/test/setupFilesAfterEnv.ts"],
+  globalSetup: "<rootDir>/src/test/globalSetup.ts",
 };
