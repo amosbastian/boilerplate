@@ -1,6 +1,6 @@
 import * as express from "express";
-import { createApolloServer } from "./app/create-apollo-server/createApolloServer";
-import { prisma } from "./app/prisma";
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
+import { createApolloServer, prisma } from "@boilerplate/api/utility";
 
 const main = async () => {
   const apolloServer = await createApolloServer(prisma);

@@ -1,10 +1,10 @@
+// import { join } from "path";
 import { PrismaClient } from "@prisma/client";
 // import { ApolloServer } from "apollo-server-express";
 import { createTestClient, TestQuery, TestSetOptions } from "apollo-server-integration-testing";
 import { execSync } from "child_process";
-// import { join } from "path";
-import { createApolloServer } from "../app/create-apollo-server/createApolloServer";
-import { prisma } from "../app/prisma";
+import { createApolloServer } from "../create-apollo-server/createApolloServer";
+import { prisma } from "../prisma";
 
 type TestContext = {
   client: {
