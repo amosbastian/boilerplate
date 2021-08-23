@@ -8,7 +8,7 @@ export default class Document extends NextDocument {
       <Html lang="en">
         <Head>
           <link
-            href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=optional"
+            href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,100..900;1,100..900&display=optional"
             rel="stylesheet"
             crossOrigin="anonymous"
           />
