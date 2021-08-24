@@ -102,7 +102,7 @@ model Product {
   image         String
   metadata      Json
   subscriptions Subscription[]
-  price         Price?
+  prices        Price[]
 }
 
 enum SubscriptionStatus {

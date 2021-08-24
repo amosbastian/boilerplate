@@ -1,9 +1,14 @@
 import { theme } from "@boilerplate/shared/theme";
+import { setGraphqlEndpoint } from "@boilerplate/shared/utility/graphql";
 import { Box, ChakraProvider, IconButton, useColorMode, useColorModeValue } from "@chakra-ui/react";
 import "focus-visible/dist/focus-visible";
 import { RouterContext } from "next/dist/shared/lib/router-context";
 import * as NextImage from "next/image";
 import { RiMoonFill, RiSunFill } from "react-icons/ri";
+import { QueryCache, QueryClient, QueryClientProvider } from "react-query";
+
+const queryCache = new QueryCache();
+const queryClient = new QueryClient({ queryCache });
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
@@ -88,4 +93,14 @@ Object.defineProperty(NextImage, "default", {
   value: (props) => <OriginalNextImage {...props} unoptimized />,
 });
 
-export const decorators = [withChakra];
+const withReactQuery = (StoryFn) => {
+  setGraphqlEndpoint(process.env.API_ENDPOINT ?? "http://localhost:3333/graphql");
+
+  return (
+    <QueryClientProvider client={queryClient}>
+      <StoryFn />
+    </QueryClientProvider>
+  );
+};
+
+export const decorators = [withReactQuery, withChakra];
