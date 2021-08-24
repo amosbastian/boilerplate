@@ -1,16 +1,16 @@
 {
-  "meta-title": "Settings",
-  "page-heading": "Settings",
+  "account-settings-subtitle": "account-settings-subtitle",
+  "account-settings-title": "Account",
   "general": "General",
-  "plan-and-billing": "Plan & Billing",
-  "name-label": "Name",
   "image-label": "Profile picture",
   "language-label": "Language",
-  "theme-label": "Theme",
-  "account-settings-title": "Account",
-  "account-settings-subtitle": "account-settings-subtitle",
-  "plan-settings-title": "Plan",
+  "meta-title": "Settings",
+  "name-label": "Name",
+  "page-heading": "Settings",
+  "plan-and-billing": "Plan & Billing",
   "plan-settings-subtitle": "plan-settings-subtitle",
+  "plan-settings-title": "Plan",
+  "profile-settings-subtitle": "profile-settings-subtitle",
   "profile-settings-title": "Profile",
-  "profile-settings-subtitle": "profile-settings-subtitle"
+  "theme-label": "Theme"
 }
