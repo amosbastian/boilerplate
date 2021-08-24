@@ -19,11 +19,13 @@
       "@boilerplate/api/data-access": ["libs/api/data-access/src/index.ts"],
       "@boilerplate/api/utility": ["libs/api/utility/src/index.ts"],
       "@boilerplate/blog/i18n": ["libs/blog/i18n/src/index.ts"],
+      "@boilerplate/generated/graphql": ["libs/generated/graphql/src/index.ts"],
       "@boilerplate/shared/i18n": ["libs/shared/i18n/src/index.ts"],
       "@boilerplate/shared/storybook": ["libs/shared/storybook/src/index.ts"],
       "@boilerplate/shared/theme": ["libs/shared/theme/src/index.ts"],
       "@boilerplate/shared/types": ["libs/shared/types/src/index.ts"],
       "@boilerplate/shared/ui": ["libs/shared/ui/src/index.ts"],
+      "@boilerplate/site-feature": ["libs/site/feature/src/index.ts"],
       "@boilerplate/site/i18n": ["libs/site/i18n/src/index.ts"],
       "@boilerplate/site/ui": ["libs/site/ui/src/index.ts"],
       "@boilerplate/stripe": ["libs/stripe/src/index.ts"]

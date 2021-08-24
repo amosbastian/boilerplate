@@ -193,6 +193,19 @@
         }
       }
     },
+    "generated-graphql": {
+      "root": "libs/generated/graphql",
+      "sourceRoot": "libs/generated/graphql/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/generated/graphql/**/*.ts"]
+          }
+        }
+      }
+    },
     "shared-i18n": {
       "root": "libs/shared/i18n",
       "sourceRoot": "libs/shared/i18n/src",
@@ -429,6 +442,27 @@
           "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["apps/site-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    },
+    "site-feature": {
+      "root": "libs/site/feature",
+      "sourceRoot": "libs/site/feature/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/site/feature/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/site/feature"],
+          "options": {
+            "jestConfig": "libs/site/feature/jest.config.js",
+            "passWithNoTests": true
           }
         }
       }

@@ -46,6 +46,9 @@
     "blog-i18n": {
       "tags": []
     },
+    "generated-graphql": {
+      "tags": []
+    },
     "shared-i18n": {
       "tags": []
     },
@@ -71,6 +74,9 @@
     "site-e2e": {
       "tags": [],
       "implicitDependencies": ["site"]
+    },
+    "site-feature": {
+      "tags": []
     },
     "site-i18n": {
       "tags": []
