@@ -367,6 +367,27 @@
         }
       }
     },
+    "shared-utility-graphql": {
+      "root": "libs/shared/utility//graphql",
+      "sourceRoot": "libs/shared/utility/graphql/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/shared/utility//graphql/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/shared/utility/graphql"],
+          "options": {
+            "jestConfig": "libs/shared/utility/graphql/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "site": {
       "root": "apps/site",
       "sourceRoot": "apps/site",

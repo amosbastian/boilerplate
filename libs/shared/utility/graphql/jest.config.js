@@ -1,5 +1,5 @@
 module.exports = {
-  displayName: "shared-utility--graphql",
+  displayName: "shared-utility-graphql",
   preset: "../../../../jest.preset.js",
   globals: {
     "ts-jest": {

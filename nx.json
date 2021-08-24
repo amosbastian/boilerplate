@@ -68,6 +68,9 @@
       "tags": [],
       "implicitDependencies": ["shared-ui"]
     },
+    "shared-utility-graphql": {
+      "tags": []
+    },
     "site": {
       "tags": []
     },

@@ -5,23 +5,30 @@ import { ChakraProvider } from "@chakra-ui/react";
 import "focus-visible/dist/focus-visible";
 import { AppProps } from "next/app";
 import React from "react";
+import { QueryClient, QueryClientProvider } from "react-query";
+import { Hydrate } from "react-query/hydration";
 
 type CustomAppProps = AppProps & {
   Component: Page<unknown>;
 };
 
 function CustomApp({ Component, pageProps }: CustomAppProps) {
+  const [queryClient] = React.useState(() => new QueryClient());
   const getLayout = Component.getLayout ?? ((page) => page);
 
   return (
-    <Chakra cookies={pageProps.cookies}>
-      <ChakraProvider theme={theme} resetCSS>
-        <Head />
-        <div className="app">
-          <main>{getLayout(<Component {...pageProps} />)}</main>
-        </div>
-      </ChakraProvider>
-    </Chakra>
+    <QueryClientProvider client={queryClient}>
+      <Hydrate state={pageProps.dehydratedState}>
+        <Chakra cookies={pageProps.cookies}>
+          <ChakraProvider theme={theme} resetCSS>
+            <Head />
+            <div className="app">
+              <main>{getLayout(<Component {...pageProps} />)}</main>
+            </div>
+          </ChakraProvider>
+        </Chakra>
+      </Hydrate>
+    </QueryClientProvider>
   );
 }
 
