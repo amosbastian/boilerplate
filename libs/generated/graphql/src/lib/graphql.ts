@@ -203,10 +203,33 @@ export type Price = {
   currency: Scalars["String"];
 };
 
-export type PriceRelationFilter = {
-  is?: Maybe<PriceWhereInput>;
-  isNot?: Maybe<PriceWhereInput>;
+export type PriceListRelationFilter = {
+  every?: Maybe<PriceWhereInput>;
+  some?: Maybe<PriceWhereInput>;
+  none?: Maybe<PriceWhereInput>;
 };
+
+export type PriceOrderByInput = {
+  id?: Maybe<SortOrder>;
+  active?: Maybe<SortOrder>;
+  productId?: Maybe<SortOrder>;
+  unitAmount?: Maybe<SortOrder>;
+  type?: Maybe<SortOrder>;
+  recurring?: Maybe<SortOrder>;
+  metadata?: Maybe<SortOrder>;
+  currency?: Maybe<SortOrder>;
+};
+
+export enum PriceScalarFieldEnum {
+  Id = "id",
+  Active = "active",
+  ProductId = "productId",
+  UnitAmount = "unitAmount",
+  Type = "type",
+  Recurring = "recurring",
+  Metadata = "metadata",
+  Currency = "currency",
+}
 
 export enum PriceType {
   OneTime = "ONE_TIME",
@@ -228,6 +251,10 @@ export type PriceWhereInput = {
   currency?: Maybe<StringFilter>;
 };
 
+export type PriceWhereUniqueInput = {
+  id?: Maybe<Scalars["String"]>;
+};
+
 export type Product = {
   __typename?: "Product";
   id: Scalars["String"];
@@ -235,7 +262,16 @@ export type Product = {
   active: Scalars["Boolean"];
   image: Scalars["String"];
   metadata: Scalars["JSON"];
-  price: Price;
+  prices: Array<Price>;
+};
+
+export type ProductPricesArgs = {
+  where?: Maybe<PriceWhereInput>;
+  orderBy?: Maybe<Array<PriceOrderByInput>>;
+  cursor?: Maybe<PriceWhereUniqueInput>;
+  take?: Maybe<Scalars["Int"]>;
+  skip?: Maybe<Scalars["Int"]>;
+  distinct?: Maybe<Array<PriceScalarFieldEnum>>;
 };
 
 export type ProductOrderByInput = {
@@ -269,7 +305,7 @@ export type ProductWhereInput = {
   image?: Maybe<StringFilter>;
   metadata?: Maybe<JsonFilter>;
   subscriptions?: Maybe<SubscriptionListRelationFilter>;
-  price?: Maybe<PriceRelationFilter>;
+  prices?: Maybe<PriceListRelationFilter>;
 };
 
 export type ProductWhereUniqueInput = {
@@ -517,7 +553,7 @@ export type PlanCardProductFragmentFragment = {
   id: string;
   name: string;
   metadata: any;
-  price: { __typename?: "Price"; currency: string; unitAmount: number };
+  prices: Array<{ __typename?: "Price"; currency: string; recurring: any; unitAmount: number }>;
 };
 
 export type ProductsQueryVariables = Exact<{ [key: string]: never }>;
@@ -529,7 +565,7 @@ export type ProductsQuery = {
     id: string;
     name: string;
     metadata: any;
-    price: { __typename?: "Price"; currency: string; unitAmount: number };
+    prices: Array<{ __typename?: "Price"; currency: string; recurring: any; unitAmount: number }>;
   }>;
 };
 
@@ -548,11 +584,12 @@ export const PlanCardProductFragmentFragmentDoc = {
           { kind: "Field", name: { kind: "Name", value: "metadata" } },
           {
             kind: "Field",
-            name: { kind: "Name", value: "price" },
+            name: { kind: "Name", value: "prices" },
             selectionSet: {
               kind: "SelectionSet",
               selections: [
                 { kind: "Field", name: { kind: "Name", value: "currency" } },
+                { kind: "Field", name: { kind: "Name", value: "recurring" } },
                 { kind: "Field", name: { kind: "Name", value: "unitAmount" } },
               ],
             },

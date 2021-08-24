@@ -3,7 +3,7 @@ import { Footer } from "@boilerplate/shared/ui";
 import { Header } from "../header/Header";
 import { Box, useColorModeValue } from "@chakra-ui/react";
 
-interface LayoutProps {
+export interface LayoutProps {
   children: React.ReactNode;
 }
 
