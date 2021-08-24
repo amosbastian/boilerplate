@@ -13,10 +13,13 @@ Primary.args = {
   plan: {
     id: "1",
     name: "Basic",
-    price: {
-      currency: "GBP",
-      unitAmount: 300,
-    },
+    prices: [
+      {
+        currency: "GBP",
+        unitAmount: 300,
+        recurring: { interval: "month" },
+      },
+    ],
     metadata: {},
   },
 };

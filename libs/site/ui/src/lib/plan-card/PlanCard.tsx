@@ -28,8 +28,9 @@ export const PlanCardProductFragment = gql(/* GraphQL */ `
     id
     name
     metadata
-    price {
+    prices {
       currency
+      recurring
       unitAmount
     }
   }
@@ -45,6 +46,7 @@ export function PlanCard({ plan, recommended = false, ...rest }: PlanCardProps &
   const backgroundColor = useColorModeValue("gray.100", "gray.800");
 
   const planName = plan.name.toLowerCase();
+  const planPrice = plan.prices.find((price) => price.recurring.interval === "month");
 
   return (
     <Card
@@ -54,30 +56,35 @@ export function PlanCard({ plan, recommended = false, ...rest }: PlanCardProps &
       textAlign="left"
       borderWidth={recommended ? 2 : 0}
       borderColor="primary.500"
+      display="flex"
+      flexDirection="column"
+      justifyContent="space-between"
       {...rest}
     >
-      <Heading as="h2" size="md" mb={4}>
-        {t(`common:${planName}`)}
-      </Heading>
-      <Text mb={2}>{t(`${planName}-description`)}</Text>
-      <Box mb={8} display="flex" alignItems="baseline">
-        <Trans
-          i18nKey="common:price-per-month"
-          components={[
-            <Text key="0" fontSize="6xl" fontWeight="bold" />,
-            <Text key="1" ml={1} pb={1} fontWeight="bold" />,
-          ]}
-          values={{ currencySymbol: currencyMap[plan.price.currency], price: plan.price.unitAmount }}
-        />
+      <Box>
+        <Heading as="h2" size="md" mb={4}>
+          {t(`common:${planName}`)}
+        </Heading>
+        <Text mb={2}>{t(`${planName}-description`)}</Text>
+        <Box mb={8} display="flex" alignItems="baseline">
+          <Trans
+            i18nKey="common:price-per-month"
+            components={[
+              <Text key="0" fontSize="6xl" fontWeight="bold" />,
+              <Text key="1" ml={1} pb={1} fontWeight="bold" />,
+            ]}
+            values={{ currencySymbol: currencyMap[planPrice?.currency ?? "GBP"], price: planPrice?.unitAmount ?? 0 }}
+          />
+        </Box>
+        <List spacing={3} mb={8}>
+          {featuresMap[planName].map((feature, index) => (
+            <ListItem key={feature.name} display="flex" alignItems="center">
+              <ListIcon mr={4} mt={1} as={RiCheckFill} boxSize={5} color="primary.500" />
+              {t(`${planName}-feature-${index + 1}`)}
+            </ListItem>
+          ))}
+        </List>
       </Box>
-      <List spacing={3} mb={8}>
-        {featuresMap[planName].map((feature, index) => (
-          <ListItem key={feature.name} display="flex" alignItems="center">
-            <ListIcon mr={4} mt={1} as={RiCheckFill} boxSize={5} color="primary.500" />
-            {t(`${planName}-feature-${index + 1}`)}
-          </ListItem>
-        ))}
-      </List>
       <Button colorScheme={recommended ? "primary" : "gray"} isFullWidth>
         {t(`${planName}-cta-button-text`)}
       </Button>
