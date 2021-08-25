@@ -1,10 +1,10 @@
 import { render } from "@testing-library/react";
 
-import PlanCard from "./PlanCard";
+import ProductCard from "./ProductCard";
 
-describe("PlanCard", () => {
+describe("ProductCard", () => {
   it("should render successfully", () => {
-    const { baseElement } = render(<PlanCard />);
+    const { baseElement } = render(<ProductCard />);
     expect(baseElement).toBeTruthy();
   });
 });

@@ -23,8 +23,8 @@ const featuresMap: Record<string, { name: string }[]> = {
   premium: [{ name: "premium-feature-1" }, { name: "premium-feature-2" }, { name: "premium-feature-3" }],
 };
 
-export const PlanCardProductFragment = gql(/* GraphQL */ `
-  fragment PlanCardProductFragment on Product {
+export const ProductCardProductFragment = gql(/* GraphQL */ `
+  fragment ProductCardProductFragment on Product {
     id
     name
     metadata
@@ -36,12 +36,12 @@ export const PlanCardProductFragment = gql(/* GraphQL */ `
   }
 `);
 
-export interface PlanCardProps {
-  plan: DocumentType<typeof PlanCardProductFragment>;
+export interface ProductCardProps {
+  plan: DocumentType<typeof ProductCardProductFragment>;
   recommended?: boolean;
 }
 
-export function PlanCard({ plan, recommended = false, ...rest }: PlanCardProps & CardProps) {
+export function ProductCard({ plan, recommended = false, ...rest }: ProductCardProps & CardProps) {
   const { t } = useTranslation("pricing");
   const backgroundColor = useColorModeValue("gray.100", "gray.800");
 
@@ -92,4 +92,4 @@ export function PlanCard({ plan, recommended = false, ...rest }: PlanCardProps &
   );
 }
 
-export default PlanCard;
+export default ProductCard;

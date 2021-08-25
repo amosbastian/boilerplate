@@ -1,6 +1,6 @@
 import { gql } from "@boilerplate/generated/graphql";
 import { useGraphqlQuery } from "@boilerplate/shared/utility/graphql";
-import { PlanCard } from "@boilerplate/site/ui";
+import { ProductCard } from "@boilerplate/site/ui";
 import { Grid } from "@chakra-ui/react";
 import type { GridProps } from "@chakra-ui/react";
 
@@ -8,19 +8,19 @@ const ProductsQuery = gql(/* GraphQL */ `
   query Products {
     products {
       id
-      ...PlanCardProductFragment
+      ...ProductCardProductFragment
     }
   }
 `);
 
-export type ProductsProps = GridProps;
+export type ProductCardsProps = GridProps;
 
-export function Products(props: ProductsProps) {
+export function ProductCards(props: ProductCardsProps) {
   const { data } = useGraphqlQuery(ProductsQuery);
 
   return (
     <Grid templateColumns={{ base: "1fr", md: "1fr 1fr 1fr" }} gap={8} position="relative" {...props}>
-      <PlanCard
+      <ProductCard
         plan={{
           id: "",
           name: "free",
@@ -29,10 +29,10 @@ export function Products(props: ProductsProps) {
         }}
       />
       {data?.products.map((plan, index) => (
-        <PlanCard plan={plan} recommended={index === 0} position="relative" top={index === 0 ? -8 : 0} />
+        <ProductCard plan={plan} recommended={index === 0} position="relative" top={index === 0 ? -8 : 0} />
       ))}
     </Grid>
   );
 }
 
-export default Products;
+export default ProductCards;

@@ -1,12 +1,12 @@
 import { Meta, Story } from "@storybook/react";
-import { PlanCard, PlanCardProps } from "./PlanCard";
+import { ProductCard, ProductCardProps } from "./ProductCard";
 
 export default {
-  component: PlanCard,
-  title: "PlanCard",
+  component: ProductCard,
+  title: "ProductCard",
 } as Meta;
 
-const Template: Story<PlanCardProps> = (args) => <PlanCard {...args} />;
+const Template: Story<ProductCardProps> = (args) => <ProductCard {...args} />;
 
 export const Primary = Template.bind({});
 Primary.args = {

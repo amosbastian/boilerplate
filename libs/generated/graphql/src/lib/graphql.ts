@@ -548,7 +548,7 @@ export type UserWhereUniqueInput = {
   email?: Maybe<Scalars["String"]>;
 };
 
-export type PlanCardProductFragmentFragment = {
+export type ProductCardProductFragmentFragment = {
   __typename?: "Product";
   id: string;
   name: string;
@@ -569,12 +569,12 @@ export type ProductsQuery = {
   }>;
 };
 
-export const PlanCardProductFragmentFragmentDoc = {
+export const ProductCardProductFragmentFragmentDoc = {
   kind: "Document",
   definitions: [
     {
       kind: "FragmentDefinition",
-      name: { kind: "Name", value: "PlanCardProductFragment" },
+      name: { kind: "Name", value: "ProductCardProductFragment" },
       typeCondition: { kind: "NamedType", name: { kind: "Name", value: "Product" } },
       selectionSet: {
         kind: "SelectionSet",
@@ -598,7 +598,7 @@ export const PlanCardProductFragmentFragmentDoc = {
       },
     },
   ],
-} as unknown as DocumentNode<PlanCardProductFragmentFragment, unknown>;
+} as unknown as DocumentNode<ProductCardProductFragmentFragment, unknown>;
 export const ProductsDocument = {
   kind: "Document",
   definitions: [
@@ -616,13 +616,13 @@ export const ProductsDocument = {
               kind: "SelectionSet",
               selections: [
                 { kind: "Field", name: { kind: "Name", value: "id" } },
-                { kind: "FragmentSpread", name: { kind: "Name", value: "PlanCardProductFragment" } },
+                { kind: "FragmentSpread", name: { kind: "Name", value: "ProductCardProductFragment" } },
               ],
             },
           },
         ],
       },
     },
-    ...PlanCardProductFragmentFragmentDoc.definitions,
+    ...ProductCardProductFragmentFragmentDoc.definitions,
   ],
 } as unknown as DocumentNode<ProductsQuery, ProductsQueryVariables>;

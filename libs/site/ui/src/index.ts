@@ -1,4 +1,4 @@
-export * from "./lib/plan-card/PlanCard";
+export * from "./lib/product-card/ProductCard";
 export * from "./lib/plan-form/PlanForm";
 export * from "./lib/account-settings-form/AccountSettingsForm";
 export * from "./lib/file-upload/FileUpload";
