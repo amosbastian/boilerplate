@@ -1,0 +1,49 @@
+import {
+  Accordion,
+  AccordionButton,
+  AccordionIcon,
+  AccordionItem,
+  AccordionPanel,
+  Box,
+  Heading,
+  Text,
+} from "@chakra-ui/react";
+import { FAQPageJsonLd } from "next-seo";
+import type { Question } from "next-seo/lib/jsonld/faqPage";
+import useTranslation from "next-translate/useTranslation";
+
+export interface FaqSectionProps {
+  defaultNs?: string;
+  faq: Question[];
+  title: string;
+}
+
+export function FaqSection({ defaultNs = "faq", faq, title }: FaqSectionProps) {
+  const { t } = useTranslation(defaultNs);
+
+  return (
+    <Box>
+      <FAQPageJsonLd mainEntity={faq} />
+      <Heading textAlign="center" mb={{ base: 4, md: 6, lg: 8 }}>
+        {title}
+      </Heading>
+      <Accordion allowToggle allowMultiple>
+        {faq.map(({ questionName: question, acceptedAnswerText: answer }) => (
+          <AccordionItem key={question}>
+            <Heading>
+              <AccordionButton>
+                <Text variant="textSecondary" flex="1" textAlign="left">
+                  {t(question)}
+                </Text>
+                <AccordionIcon />
+              </AccordionButton>
+            </Heading>
+            <AccordionPanel pb={4}>{t(answer)}</AccordionPanel>
+          </AccordionItem>
+        ))}
+      </Accordion>
+    </Box>
+  );
+}
+
+export default FaqSection;
