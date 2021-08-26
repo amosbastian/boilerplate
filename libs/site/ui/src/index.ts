@@ -1,3 +1,4 @@
+export * from "./lib/cta-card/CtaCard";
 export * from "./lib/account-settings-form/AccountSettingsForm";
 export * from "./lib/avatar-menu/AvatarMenu";
 export * from "./lib/faq-section/FaqSection";
