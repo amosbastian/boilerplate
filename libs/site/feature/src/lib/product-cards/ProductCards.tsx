@@ -19,7 +19,13 @@ export function ProductCards(props: ProductCardsProps) {
   const { data } = useGraphqlQuery(ProductsQuery);
 
   return (
-    <Grid templateColumns={{ base: "1fr", md: "1fr 1fr 1fr" }} gap={8} position="relative" {...props}>
+    <Grid
+      templateColumns={{ base: "1fr", lg: "1fr 1fr 1fr" }}
+      gap={8}
+      position="relative"
+      justifyItems={{ base: "center", lg: "unset" }}
+      {...props}
+    >
       <ProductCard
         plan={{
           id: "",
@@ -27,9 +33,16 @@ export function ProductCards(props: ProductCardsProps) {
           prices: [{ currency: "EUR", unitAmount: 0, recurring: { interval: "monthly" } }],
           metadata: {},
         }}
+        w={{ md: "440px", lg: "100%" }}
       />
       {data?.products.map((plan, index) => (
-        <ProductCard plan={plan} recommended={index === 0} position="relative" top={index === 0 ? -8 : 0} />
+        <ProductCard
+          plan={plan}
+          recommended={index === 0}
+          position="relative"
+          w={{ md: "440px", lg: "100%" }}
+          top={{ lg: index === 0 ? -8 : 0 }}
+        />
       ))}
     </Grid>
   );

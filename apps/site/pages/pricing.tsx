@@ -5,6 +5,7 @@ import { Button, Heading, Link as ChakraLink, Text, useColorModeValue } from "@c
 import { NextSeo } from "next-seo";
 import type { Question } from "next-seo/lib/jsonld/faqPage";
 import useTranslation from "next-translate/useTranslation";
+// import type { GetStaticPropsContext } from "next";
 
 const FREQUENTLY_ASKED_QUESTIONS: Question[] = [
   { questionName: "pricing:question-1", acceptedAnswerText: "pricing:answer-1" },
@@ -12,6 +13,10 @@ const FREQUENTLY_ASKED_QUESTIONS: Question[] = [
   { questionName: "pricing:question-3", acceptedAnswerText: "pricing:answer-3" },
   { questionName: "pricing:question-4", acceptedAnswerText: "pricing:answer-4" },
 ];
+
+// export const getStaticProps = async ({ params }: GetStaticPropsContext) => {
+//   // TODO: DO SOME PREFETCH FOR HYDRATION
+// };
 
 export default function Pricing() {
   const { t } = useTranslation("pricing");
@@ -21,20 +26,16 @@ export default function Pricing() {
     <>
       <NextSeo title={t("meta-title")} />
       <Section variant="transparent">
-        <Container>
-          <Heading textAlign="center" mb={{ base: 4, sm: 6, md: 8 }}>
-            {t("heading")}
-          </Heading>
-          <Text mb={16} variant="textSecondary" fontSize="lg" textAlign="center">
-            {t("subtitle")}
-          </Text>
-          <ProductCards />
-        </Container>
+        <Heading textAlign="center" mb={{ base: 4, sm: 6, md: 8 }}>
+          {t("heading")}
+        </Heading>
+        <Text mb={16} variant="textSecondary" fontSize="lg" textAlign="center">
+          {t("subtitle")}
+        </Text>
+        <ProductCards />
       </Section>
-      <Section>
-        <Container maxW="container.md" m="0 auto">
-          <FaqSection heading={t("faq-heading")} faq={FREQUENTLY_ASKED_QUESTIONS} />
-        </Container>
+      <Section maxW="container.md">
+        <FaqSection heading={t("faq-heading")} faq={FREQUENTLY_ASKED_QUESTIONS} />
       </Section>
       <Section variant="transparent">
         <CtaCard backgroundColor={cardBackgroundColor} heading={t("cta-heading")} subtitle={t("cta-subtitle")}>
