@@ -1,10 +1,10 @@
-import { getLayout, Section, Container } from "@boilerplate/shared/ui";
-import { NextSeo } from "next-seo";
-import useTranslation from "next-translate/useTranslation";
-import { Heading, Text } from "@chakra-ui/react";
+import { Container, getLayout, Section } from "@boilerplate/shared/ui";
 import { ProductCards } from "@boilerplate/site-feature";
+import { CtaCard, FaqSection } from "@boilerplate/site/ui";
+import { Button, Heading, Link as ChakraLink, Text, useColorModeValue } from "@chakra-ui/react";
+import { NextSeo } from "next-seo";
 import type { Question } from "next-seo/lib/jsonld/faqPage";
-import { FaqSection } from "@boilerplate/site/ui";
+import useTranslation from "next-translate/useTranslation";
 
 const FREQUENTLY_ASKED_QUESTIONS: Question[] = [
   { questionName: "pricing:question-1", acceptedAnswerText: "pricing:answer-1" },
@@ -15,6 +15,7 @@ const FREQUENTLY_ASKED_QUESTIONS: Question[] = [
 
 export default function Pricing() {
   const { t } = useTranslation("pricing");
+  const cardBackgroundColor = useColorModeValue("primary.100", "primary.500");
 
   return (
     <>
@@ -32,17 +33,17 @@ export default function Pricing() {
       </Section>
       <Section>
         <Container maxW="container.md" m="0 auto">
-          <FaqSection heading={t("faq:heading")} faq={FREQUENTLY_ASKED_QUESTIONS} />
+          <FaqSection heading={t("faq-heading")} faq={FREQUENTLY_ASKED_QUESTIONS} />
         </Container>
       </Section>
       <Section variant="transparent">
-        {/* <CtaCard backgroundColor={cardBackgroundColor} heading={t("cta-heading")} subtitle={t("cta-subtitle")}>
+        <CtaCard backgroundColor={cardBackgroundColor} heading={t("cta-heading")} subtitle={t("cta-subtitle")}>
           <ChakraLink>
             <Button w="100%" colorScheme="primary" href="mailto:support@frontend.com">
               {t("cta-button-text")}
             </Button>
           </ChakraLink>
-        </CtaCard> */}
+        </CtaCard>
       </Section>
     </>
   );
