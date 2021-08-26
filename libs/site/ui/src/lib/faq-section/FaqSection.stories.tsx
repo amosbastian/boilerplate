@@ -16,5 +16,5 @@ Primary.args = {
     { questionName: "pricing:question-3", acceptedAnswerText: "pricing:answer-3" },
     { questionName: "pricing:question-4", acceptedAnswerText: "pricing:answer-4" },
   ],
-  title: "Frequently asked questions",
+  heading: "Frequently asked questions",
 };

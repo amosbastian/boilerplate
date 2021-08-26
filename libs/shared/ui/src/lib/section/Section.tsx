@@ -1,10 +1,12 @@
 import { Box, BoxProps, StylesProvider, useMultiStyleConfig } from "@chakra-ui/react";
 import { Container } from "../container/Container";
 
-export type SectionProps = BoxProps;
+export interface SectionProps extends BoxProps {
+  variant?: "transparent";
+}
 
-export const Section = ({ children, ...rest }: BoxProps) => {
-  const styles = useMultiStyleConfig("Section", {});
+export const Section = ({ children, variant, ...rest }: SectionProps) => {
+  const styles = useMultiStyleConfig("Section", { variant });
 
   return (
     <Box as="section" __css={styles.section} {...rest}>

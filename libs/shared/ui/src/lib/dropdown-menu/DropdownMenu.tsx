@@ -43,7 +43,7 @@ export function DropdownMenu({ children, label, variant = "unstyled", ...rest }:
     setMouseOverButton(false);
   };
 
-  const open = (isOpen || mouseOverButton || mouseOverMenu) && !x;
+  const open = isOpen || mouseOverButton || mouseOverMenu;
 
   return (
     <Menu isOpen={open} onClose={onClose} {...rest}>

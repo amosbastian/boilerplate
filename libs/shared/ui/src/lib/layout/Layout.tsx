@@ -8,12 +8,12 @@ interface LayoutProps {
 }
 
 export function Layout({ children }: LayoutProps) {
-  const backgroundColor = useColorModeValue("gray.100", "gray.900");
+  const backgroundColor = useColorModeValue("white", "gray.900");
 
   return (
     <Box backgroundColor={backgroundColor}>
       <Header />
-      <Box as="main" minHeight="100vh" pt={16}>
+      <Box as="main" minHeight="100vh">
         {children}
       </Box>
       <Footer />

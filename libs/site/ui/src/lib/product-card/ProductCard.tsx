@@ -1,4 +1,5 @@
 import { DocumentType, gql } from "@boilerplate/generated/graphql";
+import { useProvidedStyles } from "@boilerplate/shared/theme";
 import type { CardProps } from "@boilerplate/shared/ui";
 import { Card } from "@boilerplate/shared/ui";
 import { Box, Button, Heading, List, ListIcon, ListItem, Text, useColorModeValue } from "@chakra-ui/react";
@@ -43,19 +44,23 @@ export interface ProductCardProps {
 
 export function ProductCard({ plan, recommended = false, ...rest }: ProductCardProps & CardProps) {
   const { t } = useTranslation("pricing");
-  const backgroundColor = useColorModeValue("gray.100", "gray.800");
+  const styles = useProvidedStyles({ name: "card" });
 
   const planName = plan.name.toLowerCase();
   const planPrice = plan.prices.find((price) => price.recurring.interval === "month");
 
+  const borderWidth = useColorModeValue(1, 0);
+
   return (
     <Card
+      sx={{
+        ...styles,
+        borderWidth: recommended ? 2 : borderWidth,
+        borderColor: recommended ? "primary.500" : "gray.200",
+      }}
       px={{ base: 6, sm: 8, md: 12 }}
       py={{ base: 6, md: 12 }}
-      backgroundColor={backgroundColor}
       textAlign="left"
-      borderWidth={recommended ? 2 : 0}
-      borderColor="primary.500"
       display="flex"
       flexDirection="column"
       justifyContent="space-between"
@@ -73,7 +78,10 @@ export function ProductCard({ plan, recommended = false, ...rest }: ProductCardP
               <Text key="0" fontSize="6xl" fontWeight="bold" />,
               <Text key="1" ml={1} pb={1} fontWeight="bold" />,
             ]}
-            values={{ currencySymbol: currencyMap[planPrice?.currency ?? "GBP"], price: planPrice?.unitAmount ?? 0 }}
+            values={{
+              currencySymbol: currencyMap[planPrice?.currency ?? "GBP"],
+              price: (planPrice?.unitAmount ?? 0) / 100,
+            }}
           />
         </Box>
         <List spacing={3} mb={8}>

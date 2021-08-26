@@ -148,19 +148,21 @@ export function Header() {
     }
   });
 
-  const backgroundColor = useColorModeValue("whiteAlpha.900", "blackAlpha.900");
-  const borderBottomColor = useColorModeValue("gray.200", "gray.700");
+  const bg = useColorModeValue("white", "gray.900");
+  const scrolledBg = useColorModeValue("whiteAlpha.900", "blackAlpha.900");
 
   return (
     <Flex
       as="nav"
       h={16}
       zIndex={1}
-      position="fixed"
+      position="sticky"
+      top={0}
       w="100%"
-      backgroundColor={scrolled ? backgroundColor : "transparent"}
-      borderBottom="1px solid"
-      borderBottomColor={scrolled ? borderBottomColor : "transparent"}
+      bg={scrolled ? scrolledBg : bg}
+      boxShadow={scrolled ? "sm" : undefined}
+      transition="background, box-shadow"
+      transitionDuration="normal"
     >
       <Container display="flex" justifyContent="space-between" alignItems="center" h={16} w="100%">
         <NextLink href="/home">

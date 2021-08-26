@@ -8,6 +8,9 @@ const parts = ["card", "header", "content", "footer"];
 const baseStyle = (props: Dict) => ({
   card: {
     bg: mode("white", "whiteAlpha.100")(props),
+    borderWidth: mode("1px", "0px")(props),
+    borderColor: mode("gray.50", "whiteAlpha.200")(props),
+    borderStyle: mode("solid", "solid")(props),
     boxShadow: mode("sm", "md")(props),
     overflow: "hidden",
     borderRadius: "md",
