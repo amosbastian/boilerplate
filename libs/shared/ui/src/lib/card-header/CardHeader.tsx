@@ -10,7 +10,7 @@ export function CardHeader({ title, subtitle, ...rest }: CardHeaderProps) {
   const styles = useMultiStyleConfig("Card", {});
 
   return (
-    <Box sx={styles.header} {...rest}>
+    <Box __css={styles.header} {...rest}>
       <Box>
         <Heading as="h3" fontSize="md" mb={subtitle ? 1 : 0}>
           {title}

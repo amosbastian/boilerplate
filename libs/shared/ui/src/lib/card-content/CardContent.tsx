@@ -7,7 +7,7 @@ export function CardContent({ children, ...rest }: CardContentProps) {
   const styles = useMultiStyleConfig("Card", {});
 
   return (
-    <Box sx={styles.content} {...rest}>
+    <Box __css={styles.content} {...rest}>
       {children}
     </Box>
   );

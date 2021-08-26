@@ -7,7 +7,7 @@ export function CardFooter({ children, ...rest }: CardFooterProps) {
   const styles = useMultiStyleConfig("Card", {});
 
   return (
-    <Box sx={styles.footer} {...rest}>
+    <Box __css={styles.footer} {...rest}>
       <HStack spacer={4}>{children}</HStack>
     </Box>
   );
