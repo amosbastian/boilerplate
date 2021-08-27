@@ -13,9 +13,7 @@ export function Layout({ children }: LayoutProps) {
   return (
     <Box backgroundColor={backgroundColor}>
       <Header />
-      <Box as="main" minHeight="100vh">
-        {children}
-      </Box>
+      <Box as="main">{children}</Box>
       <Footer />
     </Box>
   );

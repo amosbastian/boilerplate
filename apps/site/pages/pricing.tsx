@@ -1,4 +1,4 @@
-import { Container, getLayout, Section } from "@boilerplate/shared/ui";
+import { getLayout, Section } from "@boilerplate/shared/ui";
 import { ProductCards } from "@boilerplate/site-feature";
 import { CtaCard, FaqSection } from "@boilerplate/site/ui";
 import { Button, Heading, Link as ChakraLink, Text, useColorModeValue } from "@chakra-ui/react";
