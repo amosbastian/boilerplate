@@ -165,8 +165,8 @@ export function Header() {
       transitionDuration="normal"
     >
       <Container display="flex" justifyContent="space-between" alignItems="center" h={16} w="100%">
-        <NextLink href="/home">
-          <a href="/home">
+        <NextLink href="/">
+          <a href="/">
             <VisuallyHidden>{t("home")}</VisuallyHidden>
             <Logo />
           </a>
@@ -179,7 +179,7 @@ export function Header() {
           {NAV_ITEMS.map((navItem) => {
             if (navItem.links.length > 1) {
               return (
-                <DropdownMenu label={t(navItem.id)}>
+                <DropdownMenu key={navItem.id} label={t(navItem.id)}>
                   {navItem.links.map((link) => (
                     <FlyoutMenuItem
                       key={link.id}
