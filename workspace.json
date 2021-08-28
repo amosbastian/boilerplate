@@ -206,6 +206,27 @@
         }
       }
     },
+    "markdown": {
+      "root": "libs/markdown",
+      "sourceRoot": "libs/markdown/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/markdown/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/markdown"],
+          "options": {
+            "jestConfig": "libs/markdown/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "shared-i18n": {
       "root": "libs/shared/i18n",
       "sourceRoot": "libs/shared/i18n/src",
@@ -215,6 +236,27 @@
           "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["libs/shared/i18n/**/*.ts"]
+          }
+        }
+      }
+    },
+    "shared-mdx": {
+      "root": "libs/shared/mdx",
+      "sourceRoot": "libs/shared/mdx/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/shared/mdx/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/shared/mdx"],
+          "options": {
+            "jestConfig": "libs/shared/mdx/jest.config.js",
+            "passWithNoTests": true
           }
         }
       }
