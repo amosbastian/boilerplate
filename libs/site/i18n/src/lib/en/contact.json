@@ -1,3 +1,14 @@
 {
-  "meta-title": "Contact"
+  "cta-button-text": "cta-button-text",
+  "cta-heading": "cta-heading",
+  "cta-subtitle": "cta-subtitle",
+  "first-name": "First name",
+  "heading": "heading",
+  "last-name": "Last name",
+  "message": "Message",
+  "meta-description": "meta-description",
+  "meta-title": "Contact us",
+  "privacy-policy-agreement": "I agree to the <link>privacy policy</link>.",
+  "subject": "Subject",
+  "subtitle": "subtitle"
 }

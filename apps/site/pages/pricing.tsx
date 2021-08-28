@@ -34,7 +34,7 @@ export default function Pricing() {
         </Text>
         <ProductCards />
       </Section>
-      <Section maxW="container.md">
+      <Section containerProps={{ maxW: "container.md" }}>
         <FaqSection heading={t("faq-heading")} faq={FREQUENTLY_ASKED_QUESTIONS} />
       </Section>
       <Section variant="transparent">

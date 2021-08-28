@@ -9,6 +9,10 @@
   "basic-feature-2": "basic-feature-2",
   "basic-feature-3": "basic-feature-3",
   "basic-feature-4": "basic-feature-4",
+  "cta-button-text": "cta-button-text",
+  "cta-heading": "cta-heading",
+  "cta-subtitle": "cta-subtitle",
+  "faq-heading": "faq-heading",
   "free-cta-button-text": "free-cta-button-text",
   "free-description": "free-description",
   "free-feature-1": "free-feature-1",
@@ -23,9 +27,5 @@
   "question-1": "question-1",
   "question-2": "question-2",
   "question-3": "question-3",
-  "question-4": "question-4",
-  "faq-heading": "faq-heading",
-  "cta-heading": "cta-heading",
-  "cta-subtitle": "cta-subtitle",
-  "cta-button-text": "cta-button-text"
+  "question-4": "question-4"
 }

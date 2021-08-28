@@ -6,15 +6,13 @@ export interface SectionProps extends BoxProps {
   variant?: "transparent";
 }
 
-export const Section = ({ children, containerProps, maxW = "container.xl", variant, ...rest }: SectionProps) => {
+export const Section = ({ children, containerProps, variant, ...rest }: SectionProps) => {
   const styles = useMultiStyleConfig("Section", { variant });
 
   return (
     <Box as="section" __css={styles.section} {...rest}>
       <StylesProvider value={styles}>
-        <Container {...containerProps} maxW={maxW}>
-          {children}
-        </Container>
+        <Container {...containerProps}>{children}</Container>
       </StylesProvider>
     </Box>
   );
