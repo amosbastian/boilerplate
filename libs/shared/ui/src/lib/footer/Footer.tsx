@@ -157,16 +157,16 @@ export function Footer(props: FooterProps) {
         </Grid>
         <HStack spacing={4}>
           <ChakraLink aria-label="GitHub" variant="link" href="https://github.com/amosbastian/frontend" isExternal>
-            <Icon boxSize={4} as={RiGithubFill} />
+            <Icon boxSize={5} as={RiGithubFill} />
           </ChakraLink>
           <ChakraLink aria-label="Twitter" variant="link" href="https://twitter.com/amosbastian" isExternal>
-            <Icon boxSize={4} as={RiTwitterFill} />
+            <Icon boxSize={5} as={RiTwitterFill} />
           </ChakraLink>
           <ChakraLink aria-label="Instagram" variant="link" href="https://www.instagram.com/amosbastian" isExternal>
-            <Icon boxSize={4} as={RiInstagramLine} />
+            <Icon boxSize={5} as={RiInstagramLine} />
           </ChakraLink>
-          <ChakraLink aria-label="GitHub" variant="link" href="https://linkedin.com/in/amosbastian" isExternal>
-            <Icon boxSize={4} as={RiLinkedinBoxFill} />
+          <ChakraLink aria-label="LinkedIn" variant="link" href="https://linkedin.com/in/amosbastian" isExternal>
+            <Icon boxSize={5} as={RiLinkedinBoxFill} />
           </ChakraLink>
         </HStack>
       </Flex>

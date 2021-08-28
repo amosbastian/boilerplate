@@ -1,3 +1,9 @@
 {
-  "meta-title": "About"
+  "meta-title": "About",
+  "heading": "heading",
+  "description": "description",
+  "team-heading": "team-heading",
+  "team-description": "team-description",
+  "member-1-title": "member-1-title",
+  "member-1-bio": "member-1-bio"
 }

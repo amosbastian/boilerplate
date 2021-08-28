@@ -1,8 +1,8 @@
 import type { BoxProps } from "@chakra-ui/react";
 import { Box, Skeleton } from "@chakra-ui/react";
 import { motion, useAnimation } from "framer-motion";
-import type { ImageProps as NextImageProps } from "next/image";
 import NextImage from "next/image";
+import type { ImageProps as NextImageProps } from "next/image";
 import * as React from "react";
 
 const animationVariants = {
@@ -11,11 +11,12 @@ const animationVariants = {
 };
 
 export interface ImageProps extends Omit<BoxProps, "as"> {
-  alt: NextImageProps["alt"];
+  alt?: NextImageProps["alt"];
+  placeholder?: NextImageProps["placeholder"];
   src: NextImageProps["src"];
 }
 
-export function Image({ alt, children, src, ...rest }: ImageProps) {
+export function Image({ alt, children, placeholder, src, ...rest }: ImageProps) {
   const [loaded, setLoaded] = React.useState(false);
   const animationControls = useAnimation();
 
@@ -34,7 +35,14 @@ export function Image({ alt, children, src, ...rest }: ImageProps) {
         variants={animationVariants}
         transition={{ ease: "easeOut", duration: 0.2 }}
       >
-        <NextImage objectFit="cover" layout="fill" src={src} alt={alt} onLoadingComplete={() => setLoaded(true)} />
+        <NextImage
+          objectFit="cover"
+          layout="fill"
+          src={src}
+          alt={alt}
+          placeholder={placeholder}
+          onLoadingComplete={() => setLoaded(true)}
+        />
       </motion.div>
       {children}
     </Box>

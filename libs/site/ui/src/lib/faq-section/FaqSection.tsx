@@ -24,7 +24,7 @@ export function FaqSection({ defaultNs = "faq", faq, heading }: FaqSectionProps)
   return (
     <Box>
       <FAQPageJsonLd mainEntity={faq} />
-      <Heading textAlign="center" mb={{ base: 4, md: 6, lg: 8 }}>
+      <Heading textAlign="center" mb={{ base: 4, md: 6 }}>
         {heading}
       </Heading>
       <Accordion allowToggle allowMultiple>
@@ -32,7 +32,7 @@ export function FaqSection({ defaultNs = "faq", faq, heading }: FaqSectionProps)
           <AccordionItem key={question}>
             <Heading>
               <AccordionButton>
-                <Text variant="textSecondary" flex="1" textAlign="left">
+                <Text variant="secondary" flex="1" textAlign="left">
                   {t(question)}
                 </Text>
                 <AccordionIcon />

@@ -26,10 +26,10 @@ export default function Pricing() {
     <>
       <NextSeo title={t("meta-title")} />
       <Section variant="transparent">
-        <Heading textAlign="center" mb={{ base: 4, sm: 6, md: 8 }}>
+        <Heading textAlign="center" mb={{ base: 4, md: 6 }}>
           {t("heading")}
         </Heading>
-        <Text mb={16} variant="textSecondary" fontSize="lg" textAlign="center">
+        <Text mb={16} variant="secondary" fontSize="lg" textAlign="center">
           {t("subtitle")}
         </Text>
         <ProductCards />
