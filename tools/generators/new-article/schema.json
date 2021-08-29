@@ -13,16 +13,21 @@
       "x-prompt": "What's the title of your new article?",
       "pattern": "^[a-zA-Z].*$"
     },
-    "author": {
+    "authorName": {
       "type": "string",
       "description": "The name of the author",
       "x-prompt": "What's the name of the author?",
       "default": "Amos Bastian"
+    },
+    "authorImage": {
+      "type": "string",
+      "description": "An image of the author",
+      "default": "/author"
     },
     "description": {
       "type": "string",
       "description": "A description that summarises the article in a single line"
     }
   },
-  "required": ["title", "author"]
+  "required": ["title", "authorName"]
 }
