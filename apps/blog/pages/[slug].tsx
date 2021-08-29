@@ -6,7 +6,7 @@ import type { GetStaticPaths, GetStaticPropsContext, InferGetStaticPropsType } f
 import { MDXRemote } from "next-mdx-remote";
 import { join } from "path";
 
-const POSTS_PATH = join(process.cwd(), process.env.ARTICLE_MARKDOWN_PATH);
+const POSTS_PATH = join(process.cwd(), process.env.ARTICLES_MARKDOWN_PATH || "_articles");
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const paths = fs

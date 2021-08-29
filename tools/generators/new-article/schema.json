@@ -5,7 +5,7 @@
   "properties": {
     "title": {
       "type": "string",
-      "description": "The title of the blog post",
+      "description": "The title of the article",
       "$default": {
         "$source": "argv",
         "index": 0
@@ -19,9 +19,9 @@
       "x-prompt": "What's the name of the author?",
       "default": "Amos Bastian"
     },
-    "excerpt": {
+    "description": {
       "type": "string",
-      "description": "An excerpt that summarizes the blog post in a single line"
+      "description": "A description that summarises the article in a single line"
     }
   },
   "required": ["title", "author"]
