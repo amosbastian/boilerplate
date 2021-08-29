@@ -1,3 +1,4 @@
+import { Heading } from "@boilerplate/blog/ui";
 import { getParsedFileContentBySlug, renderMarkdown } from "@boilerplate/markdown";
 import { mdxComponents } from "@boilerplate/shared/mdx";
 import { Container, getLayout } from "@boilerplate/shared/ui";
@@ -36,8 +37,7 @@ export function Page({ frontMatter, html }: InferGetStaticPropsType<typeof getSt
   return (
     <Container maxW="container.md" py={10}>
       <article>
-        <h1>{frontMatter.title}</h1>
-        <div>by {frontMatter.author.name}</div>
+        <Heading frontMatter={frontMatter} />
         <MDXRemote {...html} components={mdxComponents} />
       </article>
     </Container>
