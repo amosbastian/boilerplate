@@ -194,6 +194,83 @@
         }
       }
     },
+    "blog-ui": {
+      "root": "libs/blog/ui",
+      "sourceRoot": "libs/blog/ui/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/blog/ui/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/blog/ui"],
+          "options": {
+            "jestConfig": "libs/blog/ui/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "storybook": {
+          "executor": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/react",
+            "port": 4400,
+            "config": {
+              "configFolder": "libs/blog/ui/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "executor": "@nrwl/storybook:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "uiFramework": "@storybook/react",
+            "outputPath": "dist/storybook/blog-ui",
+            "config": {
+              "configFolder": "libs/blog/ui/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        }
+      }
+    },
+    "blog-ui-e2e": {
+      "root": "apps/blog-ui-e2e",
+      "sourceRoot": "apps/blog-ui-e2e/src",
+      "projectType": "application",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/blog-ui-e2e/cypress.json",
+            "devServerTarget": "blog-ui:storybook"
+          },
+          "configurations": {
+            "ci": {
+              "devServerTarget": "blog-ui:storybook:ci"
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/blog-ui-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    },
     "generated-graphql": {
       "root": "libs/generated/graphql",
       "sourceRoot": "libs/generated/graphql/src",

@@ -46,6 +46,13 @@
     "blog-i18n": {
       "tags": []
     },
+    "blog-ui": {
+      "tags": []
+    },
+    "blog-ui-e2e": {
+      "tags": [],
+      "implicitDependencies": ["blog-ui"]
+    },
     "generated-graphql": {
       "tags": []
     },
