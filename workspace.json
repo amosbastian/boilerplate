@@ -529,8 +529,7 @@
           "options": {
             "buildTarget": "site:build",
             "dev": true,
-            "port": 3000,
-            "proxyConfig": "apps/site/proxy.conf.json"
+            "port": 3000
           },
           "configurations": {
             "production": {

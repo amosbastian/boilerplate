@@ -5,6 +5,7 @@ import { Container, getLayout } from "@boilerplate/shared/ui";
 import fs from "fs";
 import type { GetStaticPaths, GetStaticPropsContext, InferGetStaticPropsType } from "next";
 import { MDXRemote } from "next-mdx-remote";
+import { NextSeo } from "next-seo";
 import { join } from "path";
 
 const POSTS_PATH = join(process.cwd(), process.env.ARTICLES_MARKDOWN_PATH || "_articles");
@@ -36,6 +37,7 @@ export const getStaticProps = async ({ params }: GetStaticPropsContext) => {
 export function Page({ frontMatter, html }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <Container maxW="container.md" py={10}>
+      <NextSeo title={frontMatter.title} description={frontMatter.description} />
       <article>
         <Heading frontMatter={frontMatter} />
         <MDXRemote {...html} components={mdxComponents} />

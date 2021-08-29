@@ -14,7 +14,7 @@ export function Heading({ frontMatter }: HeadingProps) {
       </ChakraHeading>
       <Flex flexDirection={{ base: "column", md: "row" }} justifyContent="space-between" alignItems="baseline">
         <Flex mb={{ base: 2, md: 0 }} alignItems="center">
-          <Image h={6} w={6} src={frontMatter.author.image} alt="" borderRadius="50%" mr={2} />
+          <Image h={6} w={6} src={`/blog${frontMatter.author.image}`} alt="" borderRadius="50%" mr={2} />
           <Text lineHeight={1} isTruncated>
             {frontMatter.author.name} / {frontMatter.date}
           </Text>

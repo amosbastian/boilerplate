@@ -16,7 +16,7 @@ export interface ImageProps extends Omit<BoxProps, "as"> {
   src: NextImageProps["src"];
 }
 
-export function Image({ alt, children, placeholder, src, ...rest }: ImageProps) {
+export function Image({ alt = "", children, placeholder, src, ...rest }: ImageProps) {
   const [loaded, setLoaded] = React.useState(false);
   const animationControls = useAnimation();
 
