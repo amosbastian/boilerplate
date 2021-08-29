@@ -1,1 +1,1 @@
-export * from "./lib/layout/Layout";
+export * from "./lib/heading/Heading";
