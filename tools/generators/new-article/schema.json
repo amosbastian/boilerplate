@@ -25,8 +25,25 @@
       "default": "/author"
     },
     "description": {
+      "alias": "d",
       "type": "string",
+      "default": "Description",
       "description": "A description that summarises the article in a single line"
+    },
+    "category": {
+      "alias": "c",
+      "type": "string",
+      "description": "The category of the article",
+      "x-prompt": {
+        "message": "Which category does this article belong in?",
+        "type": "list",
+        "default": "blog-category-1",
+        "items": [
+          { "value": "blog-category-1", "label": "Category 1" },
+          { "value": "blog-category-2", "label": "Category 2" },
+          { "value": "blog-category-3", "label": "Category 3" }
+        ]
+      }
     }
   },
   "required": ["title", "authorName"]

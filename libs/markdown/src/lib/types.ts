@@ -5,8 +5,9 @@ export type FrontMatter = {
     name: string;
     image: string;
   };
+  category: string;
   date: string;
-  description?: string;
+  description: string;
   readingTime: IReadTimeResults;
   title: string;
 };
