@@ -1,3 +1,4 @@
+export * from "./lib/article-card/ArticleCard";
 export * from "./lib/image/Image";
 export * from "./lib/card-content/CardContent";
 export * from "./lib/card-footer/CardFooter";
