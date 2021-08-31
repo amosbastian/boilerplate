@@ -37,7 +37,7 @@
   "resources": "Resources",
   "selected-language-aria-label": "Selected language: {{language}}",
   "selected-theme-aria-label": "Selected theme: {{theme}}",
-  "sign-isn": "Sign in",
+  "sign-in": "Sign in",
   "submit": "Submit",
   "terms-and-conditions": "Terms & conditions"
 }

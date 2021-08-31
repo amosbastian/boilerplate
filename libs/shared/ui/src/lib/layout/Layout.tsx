@@ -13,7 +13,9 @@ export function Layout({ children }: LayoutProps) {
   return (
     <Box backgroundColor={backgroundColor}>
       <Header />
-      <Box as="main">{children}</Box>
+      <Box as="main" height="calc(100% - var(--chakra-sizes-16))">
+        {children}
+      </Box>
       <Footer />
     </Box>
   );

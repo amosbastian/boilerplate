@@ -25,9 +25,7 @@ function CustomApp({ Component, pageProps }: CustomAppProps) {
         <Chakra cookies={pageProps.cookies}>
           <ChakraProvider theme={theme} resetCSS>
             <Head />
-            <div className="app">
-              <main>{getLayout(<Component {...pageProps} />)}</main>
-            </div>
+            {getLayout(<Component {...pageProps} />)}
           </ChakraProvider>
         </Chakra>
       </Hydrate>
