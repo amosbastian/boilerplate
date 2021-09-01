@@ -1,3 +1,5 @@
+export * from "./lib/gradient-button/GradientButton";
+export * from "./lib/hero/Hero";
 export * from "./lib/cta-card/CtaCard";
 export * from "./lib/account-settings-form/AccountSettingsForm";
 export * from "./lib/avatar-menu/AvatarMenu";
