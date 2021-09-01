@@ -10,7 +10,7 @@ export const Section = ({ children, containerProps, variant, ...rest }: SectionP
   const styles = useMultiStyleConfig("Section", { variant });
 
   return (
-    <Box as="section" __css={styles.section} {...rest}>
+    <Box as="section" __css={{ ...styles.section, ...rest }}>
       <StylesProvider value={styles}>
         <Container {...containerProps}>{children}</Container>
       </StylesProvider>
