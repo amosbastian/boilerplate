@@ -1,3 +1,4 @@
+export * from "./lib/feature-card/FeatureCard";
 export * from "./lib/gradient-button/GradientButton";
 export * from "./lib/hero/Hero";
 export * from "./lib/cta-card/CtaCard";
