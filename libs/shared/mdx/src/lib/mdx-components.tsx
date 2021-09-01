@@ -1,6 +1,5 @@
-import { Link, LinkProps } from "@boilerplate/shared/ui";
+import { Image, Link, LinkProps } from "@boilerplate/shared/ui";
 import { Heading, HeadingProps, Text, TextProps, useColorModeValue } from "@chakra-ui/react";
-import Image from "next/image";
 import { YouTube } from "./you-tube/YouTube";
 
 const CustomLink = ({ children, href, ...rest }: LinkProps) => {
