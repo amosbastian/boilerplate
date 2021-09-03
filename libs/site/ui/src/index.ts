@@ -1,3 +1,4 @@
+export * from "./lib/testimonial-card/TestimonialCard";
 export * from "./lib/image-section/ImageSection";
 export * from "./lib/gradient-image/GradientImage";
 export * from "./lib/features/Features";
