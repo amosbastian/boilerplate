@@ -1,3 +1,4 @@
+export * from "./lib/gradient-image/GradientImage";
 export * from "./lib/features/Features";
 export * from "./lib/feature-card/FeatureCard";
 export * from "./lib/gradient-button/GradientButton";
