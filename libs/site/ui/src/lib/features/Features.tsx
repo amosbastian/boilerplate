@@ -44,7 +44,7 @@ export function Features(props: FeaturesProps) {
 
   return (
     <Section {...props}>
-      <Flex direction="column" alignItems="center" mb={{ base: 8, md: 16 }}>
+      <Flex direction="column" alignItems={{ base: "flex-start", md: "center" }} mb={{ base: 8, md: 16 }}>
         <Heading maxW={{ base: "100%", md: "42em" }} fontSize={{ base: "3xl", md: "5xl" }} mb={4}>
           {t("features-section-heading")}
         </Heading>
