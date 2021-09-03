@@ -1,8 +1,8 @@
 import type { BoxProps } from "@chakra-ui/react";
-import { Box, Skeleton } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import { motion, useAnimation } from "framer-motion";
-import NextImage from "next/image";
 import type { ImageProps as NextImageProps } from "next/image";
+import NextImage from "next/image";
 import * as React from "react";
 
 const animationVariants = {
@@ -27,8 +27,7 @@ export function Image({ alt = "", children, placeholder, src, ...rest }: ImagePr
   }, [animationControls, loaded]);
 
   return (
-    <Box position="relative" borderRadius="lg" overflow="hidden" {...rest}>
-      {!loaded && <Skeleton opacity={1} position="absolute" inset={0} borderRadius="lg" {...rest} />}
+    <Box position="relative" borderRadius="lg" bg="gray.200" overflow="hidden" {...rest}>
       <motion.div
         initial="hidden"
         animate={animationControls}
