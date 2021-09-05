@@ -3,6 +3,7 @@ module.exports = {
   defaultLocale: "en",
   pages: {
     "*": ["common"],
+    "/": ["index"],
     "/about": ["about"],
     "/contact": ["contact"],
     "/faq": ["faq"],

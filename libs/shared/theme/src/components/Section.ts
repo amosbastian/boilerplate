@@ -5,8 +5,7 @@ const parts = ["section", "card"];
 
 function baseStyleSection(props: Record<string, any>) {
   return {
-    pt: { base: 10, md: 20 },
-    pb: { base: 10, md: 20 },
+    py: { base: 10, md: 20 },
     overflow: "hidden",
     bg: mode("gray.50", "whiteAlpha.100")(props),
   };

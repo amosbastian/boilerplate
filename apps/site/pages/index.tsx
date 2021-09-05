@@ -1,11 +1,110 @@
-import { Container, getLayout } from "@boilerplate/shared/ui";
-import { Features, Hero } from "@boilerplate/site/ui";
+import { getLayout } from "@boilerplate/shared/ui";
+import { Features, Hero, ImageSection, Testimonials } from "@boilerplate/site/ui";
+import { Box, Heading } from "@chakra-ui/react";
+import type { GetServerSidePropsContext } from "next";
+import { getSession } from "next-auth/client";
+import { NextSeo } from "next-seo";
+import Trans from "next-translate/Trans";
+import useTranslation from "next-translate/useTranslation";
+
+export const getServerSideProps = async (context: GetServerSidePropsContext) => {
+  const session = await getSession(context);
+
+  if (session) {
+    return {
+      redirect: {
+        destination: "/home",
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: {},
+  };
+};
 
 export default function Index() {
+  const { t } = useTranslation("index");
+  const py = { base: 20, lg: 44 };
+
   return (
     <>
+      <NextSeo title={t("meta-title")} description={t("meta-description")} />
       <Hero />
-      <Features py={44} />
+      <Features py={py} />
+      <ImageSection
+        variant="transparent"
+        py={py}
+        heading={
+          <Heading fontSize={{ base: "3xl", md: "5xl" }} mb={{ base: 4, md: 10 }}>
+            {t("image-section-1-heading")}
+          </Heading>
+        }
+        subtitle={
+          <Heading as="h3" fontSize={{ base: "md", md: "xl" }} variant="secondary">
+            <Trans
+              i18nKey="index:image-section-1-subtitle"
+              components={[<Box key={0} mb={6} as="p" />, <Box key={1} as="p" />]}
+            />
+          </Heading>
+        }
+        imageProps={{
+          src: "http://placekitten.com/g/1100/600",
+          alt: "",
+          width: { base: "100%", md: 1100 },
+          height: { base: "320", md: 600 },
+        }}
+        imageLocation="right"
+      />
+      <ImageSection
+        py={py}
+        heading={
+          <Heading fontSize={{ base: "3xl", md: "5xl" }} mb={{ base: 4, md: 10 }}>
+            {t("image-section-2-heading")}
+          </Heading>
+        }
+        subtitle={
+          <Heading as="h3" fontSize={{ base: "md", md: "xl" }} variant="secondary">
+            <Trans
+              i18nKey="index:image-section-2-subtitle"
+              components={[<Box key={0} mb={6} as="p" />, <Box key={1} as="p" />]}
+            />
+          </Heading>
+        }
+        imageProps={{
+          src: "http://placekitten.com/g/1100/600",
+          alt: "",
+          width: { base: "100%", md: 1100 },
+          height: { base: "320", md: 600 },
+        }}
+        imageLocation="left"
+      />
+      <ImageSection
+        variant="transparent"
+        py={py}
+        heading={
+          <Heading fontSize={{ base: "3xl", md: "5xl" }} mb={4}>
+            {t("image-section-3-heading")}
+          </Heading>
+        }
+        subtitle={
+          <Heading as="h3" fontSize={{ base: "md", md: "xl" }} variant="secondary">
+            <Trans
+              i18nKey="index:image-section-3-subtitle"
+              components={[<Box key={0} mb={6} as="p" />, <Box key={1} as="p" />]}
+            />
+          </Heading>
+        }
+        imageProps={{
+          src: "http://placekitten.com/g/1100/600",
+          alt: "",
+          width: { base: "100%", md: 1100 },
+          height: { base: "320", md: 600 },
+        }}
+        imageLocation="center"
+      />
+      <Testimonials py={py} />
     </>
   );
 }

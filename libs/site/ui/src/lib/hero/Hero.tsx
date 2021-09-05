@@ -6,7 +6,7 @@ import { RiArrowRightLine } from "react-icons/ri";
 import { GradientButton } from "../gradient-button/GradientButton";
 
 export function Hero() {
-  const { t } = useTranslation("home");
+  const { t } = useTranslation("index");
 
   return (
     <Container>

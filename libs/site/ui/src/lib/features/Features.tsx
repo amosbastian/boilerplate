@@ -40,7 +40,7 @@ const FEATURES: FeatureCardProps[] = [
 export type FeaturesProps = SectionProps;
 
 export function Features(props: FeaturesProps) {
-  const { t } = useTranslation("home");
+  const { t } = useTranslation("index");
 
   return (
     <Section {...props}>

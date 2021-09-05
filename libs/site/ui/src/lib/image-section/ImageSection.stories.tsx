@@ -23,7 +23,7 @@ Right.args = {
   ),
   imageProps: {
     src: "https://via.placeholder.com/1100x600",
-    alt: "s",
+    alt: "",
     width: { base: "100%", md: 1100 },
     height: { base: "320", md: 600 },
   },

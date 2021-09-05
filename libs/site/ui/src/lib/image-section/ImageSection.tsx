@@ -1,17 +1,6 @@
 import { ImageProps, Section, SectionProps } from "@boilerplate/shared/ui";
-import { Grid, Flex, Heading, useColorModeValue } from "@chakra-ui/react";
-import Trans from "next-translate/Trans";
-import useTranslation from "next-translate/useTranslation";
-import Image from "next/image";
+import { Flex } from "@chakra-ui/react";
 import GradientImage from "../gradient-image/GradientImage";
-
-// const Subtitle = () => (
-//   <LandingPageSectionSubtitle>
-//     <Box>
-//       <Trans i18nKey="home:section-1-subtitle" components={[<Box mb={6} as="p" />, <Box as="p" />]} />
-//     </Box>
-//   </LandingPageSectionSubtitle>
-// );
 
 export interface ImageSectionProps extends SectionProps {
   heading: React.ReactNode;
@@ -21,8 +10,6 @@ export interface ImageSectionProps extends SectionProps {
 }
 
 export function ImageSection({ heading, imageLocation, imageProps, subtitle, ...rest }: ImageSectionProps) {
-  const { t } = useTranslation("home");
-
   return (
     <Section
       flexDirection={{ base: "column", md: "row" }}
@@ -60,6 +47,7 @@ export function ImageSection({ heading, imageLocation, imageProps, subtitle, ...
         justifyContent="center"
         alignItems={{ base: "flex-start", md: imageLocation === "center" ? "center" : "flex-start" }}
         maxW={{ lg: imageLocation !== "center" ? "380px" : "100%" }}
+        minW={{ base: "100%", lg: "380px" }}
       >
         {heading}
         {subtitle}
