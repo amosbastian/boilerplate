@@ -1,6 +1,6 @@
-import { Box, Heading, Text } from "@chakra-ui/react";
-import type { BoxProps } from "@chakra-ui/react";
 import { Card } from "@boilerplate/shared/ui";
+import type { BoxProps } from "@chakra-ui/react";
+import { Box, Heading, Text } from "@chakra-ui/react";
 
 export interface CtaCardProps extends BoxProps {
   heading: string;
@@ -8,7 +8,6 @@ export interface CtaCardProps extends BoxProps {
 }
 
 export function CtaCard({ children, heading, subtitle, ...rest }: CtaCardProps) {
-  console.log(rest);
   return (
     <Card
       display="flex"
@@ -17,6 +16,7 @@ export function CtaCard({ children, heading, subtitle, ...rest }: CtaCardProps) 
       alignItems={{ md: "center" }}
       px={{ base: 8, sm: 12, md: 12 }}
       py={{ base: 8, sm: 12, md: 16 }}
+      borderRadius="3xl"
       {...rest}
     >
       <Box>

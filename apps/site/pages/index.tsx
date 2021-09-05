@@ -1,6 +1,6 @@
-import { getLayout } from "@boilerplate/shared/ui";
-import { Features, Hero, ImageSection, Testimonials } from "@boilerplate/site/ui";
-import { Box, Heading } from "@chakra-ui/react";
+import { ButtonLink, getLayout, Section } from "@boilerplate/shared/ui";
+import { CtaCard, Features, Hero, ImageSection, Testimonials } from "@boilerplate/site/ui";
+import { Box, Heading, useColorModeValue } from "@chakra-ui/react";
 import type { GetServerSidePropsContext } from "next";
 import { getSession } from "next-auth/client";
 import { NextSeo } from "next-seo";
@@ -27,6 +27,7 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
 export default function Index() {
   const { t } = useTranslation("index");
   const py = { base: 20, lg: 44 };
+  const cardBackgroundColor = useColorModeValue("primary.100", "primary.500");
 
   return (
     <>
@@ -105,6 +106,13 @@ export default function Index() {
         imageLocation="center"
       />
       <Testimonials py={py} />
+      <Section variant="transparent" py={py}>
+        <CtaCard backgroundColor={cardBackgroundColor} heading={t("cta-heading")} subtitle={t("cta-subtitle")}>
+          <ButtonLink href="/signin" colorScheme="primary">
+            {t("cta-button-text")}
+          </ButtonLink>
+        </CtaCard>
+      </Section>
     </>
   );
 }
