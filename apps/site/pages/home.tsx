@@ -26,10 +26,10 @@ export default function Home() {
   const { t } = useTranslation("home");
 
   return (
-    <Container>
+    <>
       <NextSeo title={t("meta-title")} />
       <PageHeading heading={t("page-heading")} />
-    </Container>
+    </>
   );
 }
 
