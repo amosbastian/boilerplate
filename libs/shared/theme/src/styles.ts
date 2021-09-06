@@ -6,12 +6,12 @@ export const styles: Styles = {
       height: "100%",
     },
     body: {
-      height: "100%",
-      background: mode("gray.50", "gray.900")(props),
+      height: "-webkit-fill-available",
+      background: mode("white", "gray.900")(props),
       fontSize: "0.875rem",
     },
-    "body > div:first-child, div#__next, div#__next > div, div#__next > div": {
-      height: "100%",
+    "div#__next": {
+      height: "-webkit-fill-available",
     },
     a: {
       _hover: {

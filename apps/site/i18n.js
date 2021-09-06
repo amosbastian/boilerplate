@@ -4,6 +4,8 @@ module.exports = {
   pages: {
     "*": ["common"],
     "/": ["index"],
+    "/404": ["404"],
+    "/_error": ["error"],
     "/about": ["about"],
     "/contact": ["contact"],
     "/faq": ["faq"],
