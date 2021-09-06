@@ -3,10 +3,11 @@ import { Heading, Icon, Text, useColorModeValue } from "@chakra-ui/react";
 import useTranslation from "next-translate/useTranslation";
 import React from "react";
 import { RiArrowRightLine } from "react-icons/ri";
+import type { NextPageContext } from "next";
 
-const Custom404 = () => {
+function Error({ statusCode }) {
   const { t } = useTranslation("404");
-  const color404 = useColorModeValue("primary.500", "primary.200");
+  const statusColor = useColorModeValue("primary.500", "primary.200");
 
   return (
     <Section
@@ -20,8 +21,8 @@ const Custom404 = () => {
         height: "100%",
       }}
     >
-      <Text color={color404} mb={4} fontWeight="medium">
-        404
+      <Text color={statusColor} mb={4} fontWeight="medium">
+        {statusCode}
       </Text>
       <Heading textAlign="center" mb={4}>
         {t("heading")}
@@ -34,6 +35,11 @@ const Custom404 = () => {
       </ButtonLink>
     </Section>
   );
+}
+
+Error.getInitialProps = ({ res, err }: NextPageContext) => {
+  const statusCode = res ? res.statusCode : err ? err.statusCode : 404;
+  return { statusCode };
 };
 
-export default Custom404;
+export default Error;

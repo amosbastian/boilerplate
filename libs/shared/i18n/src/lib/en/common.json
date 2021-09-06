@@ -39,5 +39,6 @@
   "selected-theme-aria-label": "Selected theme: {{theme}}",
   "sign-in": "Sign in",
   "submit": "Submit",
-  "terms-and-conditions": "Terms & conditions"
+  "terms-and-conditions": "Terms & conditions",
+  "go-back-home": "Go back home"
 }
