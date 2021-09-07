@@ -1,7 +1,7 @@
 import type { Page } from "@boilerplate/shared/types";
 import { Footer } from "@boilerplate/shared/ui";
-import { Header } from "../header/Header";
 import { Box, useColorModeValue } from "@chakra-ui/react";
+import { Header } from "../header/Header";
 
 export interface LayoutProps {
   children: React.ReactNode;
@@ -11,9 +11,14 @@ export function Layout({ children }: LayoutProps) {
   const backgroundColor = useColorModeValue("gray.50", "gray.900");
 
   return (
-    <Box backgroundColor={backgroundColor}>
+    <Box
+      backgroundColor={backgroundColor}
+      minHeight="100%"
+      display="grid"
+      gridTemplateRows="max-content 1fr max-content"
+    >
       <Header />
-      <Box as="main" minHeight={{ base: "80vh", lg: "100vh" }}>
+      <Box as="main" minHeight="100%">
         {children}
       </Box>
       <Footer />
