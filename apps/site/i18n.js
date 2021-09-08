@@ -12,6 +12,7 @@ module.exports = {
     "/home": ["home"],
     "/pricing": ["pricing"],
     "/signin": ["signin"],
+    "/verify-request": ["verify"],
     "rgx:^/settings": ["settings"],
   },
   loadLocaleFrom: async (locale, namespace) => {
