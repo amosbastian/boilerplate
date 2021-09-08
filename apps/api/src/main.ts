@@ -1,14 +1,15 @@
-import * as express from "express";
-// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { createApolloServer, prisma } from "@boilerplate/api/utility";
+import * as cookieParser from "cookie-parser";
+import * as express from "express";
 
 const main = async () => {
   const apolloServer = await createApolloServer(prisma);
   await apolloServer.start();
 
   const app = express();
+  app.use(cookieParser());
 
-  apolloServer.applyMiddleware({ app });
+  apolloServer.applyMiddleware({ app, cors: { credentials: true, origin: "http://localhost:3000" } });
 
   const port = process.env.PORT || 3333;
 

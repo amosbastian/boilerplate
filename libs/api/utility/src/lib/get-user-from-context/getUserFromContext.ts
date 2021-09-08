@@ -1,25 +1,24 @@
 import { Context } from "@boilerplate/shared/types";
 import { User } from "@generated/type-graphql";
-import { verify } from "jsonwebtoken";
+import { decode } from "next-auth/jwt";
 
 export const getUserFromContext = async ({ prisma, req }: Pick<Context, "prisma" | "req">): Promise<User | null> => {
-  const authorizationHeader = req.headers.Authorization || req.headers.authorization;
-
-  if (!authorizationHeader) {
-    return null;
-  }
-
-  const token = (authorizationHeader as string).replace(/bearer/i, "").trim();
+  const token = req.cookies["next-auth.session-token"];
 
   if (!token || token === "null") {
     return null;
   }
 
-  if (!process.env.SECRET) return null;
+  if (!process.env.JWT_SECRET) return null;
 
-  const decodedToken: { id: string } = verify(token, process.env.SECRET) as { id: string };
+  const decodedToken = await decode({
+    token,
+    secret: process.env.JWT_SECRET,
+    signingKey: process.env.JWT_SIGNING_KEY,
+    encryptionKey: process.env.JWT_ENCRYPTION_KEY,
+  });
 
-  const user = await prisma.user.findUnique({ where: { id: decodedToken.id }, include: { roles: true } });
+  const user = await prisma.user.findUnique({ where: { id: decodedToken.sub }, include: { roles: true } });
 
   return user;
 };

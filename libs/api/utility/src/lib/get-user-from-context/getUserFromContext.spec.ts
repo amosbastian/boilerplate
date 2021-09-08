@@ -31,7 +31,7 @@ describe("getUserFromContext", () => {
   it("should return a user if authorization token set correctly", async () => {
     const createdUser = await createUser(ctx.prisma);
 
-    const encodedToken = sign({ id: createdUser.id }, process.env.SECRET as Secret);
+    const encodedToken = sign({ id: createdUser.id }, process.env.JWT_SECRET as Secret);
 
     const mockRequest = {
       headers: { authorization: `Bearer ${encodedToken}` },

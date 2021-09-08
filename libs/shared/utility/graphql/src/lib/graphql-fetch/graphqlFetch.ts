@@ -29,6 +29,7 @@ export const graphqlFetch = async <TData = any, TVariables = Record<string, any>
     headers: { "content-type": "application/json" },
     method: "POST",
     body: JSON.stringify({ operationName, query, variables }),
+    credentials: "include",
   });
 
   // extract the results, catch json parse errors
