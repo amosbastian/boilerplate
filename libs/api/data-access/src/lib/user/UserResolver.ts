@@ -36,4 +36,12 @@ export class UserResolver {
 
     return prisma.user.update({ ...args, where: { id: user.id } });
   }
+
+  @Authorized()
+  @Query(() => User, { nullable: true })
+  async me(@Ctx() { prisma, user }: Context): Promise<User | null> {
+    if (!user) return null;
+
+    return prisma.user.findUnique({ where: { id: user.id } });
+  }
 }
