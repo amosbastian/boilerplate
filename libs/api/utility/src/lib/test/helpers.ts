@@ -84,11 +84,12 @@ function prismaTestContext() {
     async afterEach() {
       if (prismaClient) {
         // Drop the schema after the tests have completed
-        for (const {
-          tablename,
-        } of await prismaClient.$queryRaw`SELECT tablename FROM pg_tables WHERE schemaname='public'`) {
+        const tableNames: [{ tablename: string }] =
+          await prismaClient.$queryRaw`SELECT tablename FROM pg_tables WHERE schemaname='public'`;
+
+        for (const { tablename } of tableNames) {
           if (tablename !== "_prisma_migrations") {
-            await prismaClient.$queryRaw(`TRUNCATE TABLE "public"."${tablename}" CASCADE;`);
+            await prismaClient.$queryRaw`TRUNCATE TABLE "public"."${tablename}" CASCADE;`;
           }
         }
 
