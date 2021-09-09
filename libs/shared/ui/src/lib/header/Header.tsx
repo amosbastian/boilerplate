@@ -17,12 +17,13 @@ import {
   StackDivider,
   useColorModeValue,
   useDisclosure,
-  VStack,
   VisuallyHidden,
+  VStack,
 } from "@chakra-ui/react";
 import { useScrollPosition } from "@n8tb1t/use-scroll-position";
 import useTranslation from "next-translate/useTranslation";
 import NextLink from "next/link";
+import { useRouter } from "next/router";
 import * as React from "react";
 import type { IconType } from "react-icons";
 import {
@@ -73,11 +74,21 @@ interface HeaderLinkProps {
   onClick?: () => void;
 }
 
-const HeaderLink = ({ children, href, onClick }: HeaderLinkProps) => (
-  <Link fontSize="sm" href={href} onClick={onClick} fontWeight="medium">
-    {children}
-  </Link>
-);
+const HeaderLink = ({ children, href, onClick }: HeaderLinkProps) => {
+  const { basePath } = useRouter();
+  const isBlog = basePath === "/blog";
+
+  return (
+    <Link
+      fontSize="sm"
+      href={isBlog ? `${process.env.NEXT_PUBLIC_SITE_URL}${href}` : href}
+      onClick={onClick}
+      fontWeight="medium"
+    >
+      {children}
+    </Link>
+  );
+};
 
 interface MobileNavListProps {
   onClick?: () => void;
@@ -87,6 +98,7 @@ interface MobileNavListProps {
 const MobileNavList = ({ onClick, headerNavItem }: MobileNavListProps) => {
   const { t } = useTranslation("common");
   const color = useColorModeValue("gray.500", "whiteAlpha.600");
+
   return (
     <Box as="section" px={6} _last={{ pb: 8 }}>
       {headerNavItem.links.length > 1 && (
@@ -108,6 +120,8 @@ const MobileNavList = ({ onClick, headerNavItem }: MobileNavListProps) => {
 
 const NavModal = ({ isOpen, onClose }: Pick<ModalProps, "isOpen" | "onClose">) => {
   const { t } = useTranslation("common");
+  const { basePath } = useRouter();
+  const isBlog = basePath === "/blog";
 
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
@@ -121,7 +135,7 @@ const NavModal = ({ isOpen, onClose }: Pick<ModalProps, "isOpen" | "onClose">) =
         </VStack>
         <Divider />
         <ModalFooter>
-          <NextLink href="/signin">
+          <NextLink href={isBlog ? `${process.env.NEXT_PUBLIC_SITE_URL}/signin` : "signin"} passHref>
             <Button as="a" colorScheme="primary" width="100%">
               {t("sign-in")}
             </Button>
@@ -139,6 +153,8 @@ export function Header() {
   const { t } = useTranslation("common");
   const [scrolled, setScrolled] = React.useState<boolean>(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const { basePath } = useRouter();
+  const isBlog = basePath === "/blog";
 
   useScrollPosition(({ currPos }) => {
     if (currPos.y < -HEADER_HEIGHT && !scrolled) {
@@ -149,7 +165,9 @@ export function Header() {
   });
 
   const bg = useColorModeValue("white", "gray.900");
-  const scrolledBg = useColorModeValue("whiteAlpha.900", "blackAlpha.900");
+  const borderColor = useColorModeValue("whiteAlpha.100", "whiteAlpha.100");
+  const boxShadow = useColorModeValue("sm", undefined);
+  const borderBottomWidth = useColorModeValue(0, 1);
 
   return (
     <Flex
@@ -159,13 +177,16 @@ export function Header() {
       position="sticky"
       top={0}
       w="100%"
-      bg={scrolled ? scrolledBg : bg}
-      boxShadow={scrolled ? "sm" : undefined}
+      bg={bg}
+      borderBottomStyle="solid"
+      borderBottomWidth={borderBottomWidth}
+      boxShadow={scrolled ? boxShadow : undefined}
+      borderBottomColor={scrolled ? borderColor : "transparent"}
       transition="background, box-shadow"
       transitionDuration="normal"
     >
       <Container display="flex" justifyContent="space-between" alignItems="center" h={16} w="100%">
-        <NextLink href="/">
+        <NextLink href="/" passHref>
           <a href="/">
             <VisuallyHidden>{t("home")}</VisuallyHidden>
             <Logo />
@@ -201,7 +222,7 @@ export function Header() {
           })}
         </HStack>
         <Box display={{ base: "none", lg: "flex" }}>
-          <NextLink href="/signin">
+          <NextLink href={isBlog ? `${process.env.NEXT_PUBLIC_SITE_URL}/signin` : "signin"} passHref>
             <Button colorScheme="primary">{t("sign-in")}</Button>
           </NextLink>
         </Box>

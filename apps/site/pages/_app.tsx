@@ -7,6 +7,7 @@ import "focus-visible/dist/focus-visible";
 import { AppProps } from "next/app";
 import React from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools";
 import { Hydrate } from "react-query/hydration";
 
 setGraphqlEndpoint(process.env.API_ENDPOINT ?? "http://localhost:3333/graphql");
@@ -26,6 +27,7 @@ function CustomApp({ Component, pageProps }: CustomAppProps) {
           <ChakraProvider theme={theme} resetCSS>
             <Head />
             {getLayout(<Component {...pageProps} />)}
+            <ReactQueryDevtools initialIsOpen={false} />
           </ChakraProvider>
         </Chakra>
       </Hydrate>
