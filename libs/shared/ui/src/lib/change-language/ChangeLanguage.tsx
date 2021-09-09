@@ -20,12 +20,19 @@ export interface ChangeLanguageProps {
 }
 
 export function ChangeLanguage({ withIcon = true, ...rest }: ChangeLanguageProps & SelectProps) {
-  const { pathname, push } = useRouter();
+  const { pathname, push, query } = useRouter();
   const { t, lang: currentLanguage } = useTranslation("common");
 
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setCookie(null, "NEXT_LOCALE", event.target.value, { maxAge: 30 * 24 * 60 * 60, path: "/" });
-    push(pathname, pathname, { locale: event.target.value });
+    push(
+      {
+        pathname,
+        query,
+      },
+      pathname,
+      { locale: event.target.value },
+    );
   };
 
   return (
