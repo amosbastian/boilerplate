@@ -19,25 +19,29 @@ export type Scalars = {
 
 export type AccountListRelationFilter = {
   every?: Maybe<AccountWhereInput>;
-  some?: Maybe<AccountWhereInput>;
   none?: Maybe<AccountWhereInput>;
+  some?: Maybe<AccountWhereInput>;
+};
+
+export type AccountOrderByRelationAggregateInput = {
+  _count?: Maybe<SortOrder>;
 };
 
 export type AccountWhereInput = {
   AND?: Maybe<Array<AccountWhereInput>>;
-  OR?: Maybe<Array<AccountWhereInput>>;
   NOT?: Maybe<Array<AccountWhereInput>>;
-  id?: Maybe<StringFilter>;
-  userId?: Maybe<StringFilter>;
-  providerType?: Maybe<StringFilter>;
-  providerId?: Maybe<StringFilter>;
-  providerAccountId?: Maybe<StringFilter>;
-  refreshToken?: Maybe<StringNullableFilter>;
+  OR?: Maybe<Array<AccountWhereInput>>;
   accessToken?: Maybe<StringNullableFilter>;
   accessTokenExpires?: Maybe<DateTimeNullableFilter>;
   createdAt?: Maybe<DateTimeFilter>;
+  id?: Maybe<StringFilter>;
+  providerAccountId?: Maybe<StringFilter>;
+  providerId?: Maybe<StringFilter>;
+  providerType?: Maybe<StringFilter>;
+  refreshToken?: Maybe<StringNullableFilter>;
   updatedAt?: Maybe<DateTimeFilter>;
   user?: Maybe<UserRelationFilter>;
+  userId?: Maybe<StringFilter>;
 };
 
 export type BoolFilter = {
@@ -47,49 +51,49 @@ export type BoolFilter = {
 
 export type DateTimeFilter = {
   equals?: Maybe<Scalars["DateTime"]>;
-  in?: Maybe<Array<Scalars["DateTime"]>>;
-  notIn?: Maybe<Array<Scalars["DateTime"]>>;
-  lt?: Maybe<Scalars["DateTime"]>;
-  lte?: Maybe<Scalars["DateTime"]>;
   gt?: Maybe<Scalars["DateTime"]>;
   gte?: Maybe<Scalars["DateTime"]>;
+  in?: Maybe<Array<Scalars["DateTime"]>>;
+  lt?: Maybe<Scalars["DateTime"]>;
+  lte?: Maybe<Scalars["DateTime"]>;
   not?: Maybe<NestedDateTimeFilter>;
+  notIn?: Maybe<Array<Scalars["DateTime"]>>;
 };
 
 export type DateTimeNullableFilter = {
   equals?: Maybe<Scalars["DateTime"]>;
-  in?: Maybe<Array<Scalars["DateTime"]>>;
-  notIn?: Maybe<Array<Scalars["DateTime"]>>;
-  lt?: Maybe<Scalars["DateTime"]>;
-  lte?: Maybe<Scalars["DateTime"]>;
   gt?: Maybe<Scalars["DateTime"]>;
   gte?: Maybe<Scalars["DateTime"]>;
+  in?: Maybe<Array<Scalars["DateTime"]>>;
+  lt?: Maybe<Scalars["DateTime"]>;
+  lte?: Maybe<Scalars["DateTime"]>;
   not?: Maybe<NestedDateTimeNullableFilter>;
+  notIn?: Maybe<Array<Scalars["DateTime"]>>;
 };
 
 export type EnumPriceTypeFilter = {
   equals?: Maybe<PriceType>;
   in?: Maybe<Array<PriceType>>;
-  notIn?: Maybe<Array<PriceType>>;
   not?: Maybe<NestedEnumPriceTypeFilter>;
+  notIn?: Maybe<Array<PriceType>>;
 };
 
 export type EnumSubscriptionStatusFilter = {
   equals?: Maybe<SubscriptionStatus>;
   in?: Maybe<Array<SubscriptionStatus>>;
-  notIn?: Maybe<Array<SubscriptionStatus>>;
   not?: Maybe<NestedEnumSubscriptionStatusFilter>;
+  notIn?: Maybe<Array<SubscriptionStatus>>;
 };
 
 export type IntFilter = {
   equals?: Maybe<Scalars["Int"]>;
-  in?: Maybe<Array<Scalars["Int"]>>;
-  notIn?: Maybe<Array<Scalars["Int"]>>;
-  lt?: Maybe<Scalars["Int"]>;
-  lte?: Maybe<Scalars["Int"]>;
   gt?: Maybe<Scalars["Int"]>;
   gte?: Maybe<Scalars["Int"]>;
+  in?: Maybe<Array<Scalars["Int"]>>;
+  lt?: Maybe<Scalars["Int"]>;
+  lte?: Maybe<Scalars["Int"]>;
   not?: Maybe<NestedIntFilter>;
+  notIn?: Maybe<Array<Scalars["Int"]>>;
 };
 
 export type JsonFilter = {
@@ -118,117 +122,122 @@ export type NestedBoolFilter = {
 
 export type NestedDateTimeFilter = {
   equals?: Maybe<Scalars["DateTime"]>;
-  in?: Maybe<Array<Scalars["DateTime"]>>;
-  notIn?: Maybe<Array<Scalars["DateTime"]>>;
-  lt?: Maybe<Scalars["DateTime"]>;
-  lte?: Maybe<Scalars["DateTime"]>;
   gt?: Maybe<Scalars["DateTime"]>;
   gte?: Maybe<Scalars["DateTime"]>;
+  in?: Maybe<Array<Scalars["DateTime"]>>;
+  lt?: Maybe<Scalars["DateTime"]>;
+  lte?: Maybe<Scalars["DateTime"]>;
   not?: Maybe<NestedDateTimeFilter>;
+  notIn?: Maybe<Array<Scalars["DateTime"]>>;
 };
 
 export type NestedDateTimeNullableFilter = {
   equals?: Maybe<Scalars["DateTime"]>;
-  in?: Maybe<Array<Scalars["DateTime"]>>;
-  notIn?: Maybe<Array<Scalars["DateTime"]>>;
-  lt?: Maybe<Scalars["DateTime"]>;
-  lte?: Maybe<Scalars["DateTime"]>;
   gt?: Maybe<Scalars["DateTime"]>;
   gte?: Maybe<Scalars["DateTime"]>;
+  in?: Maybe<Array<Scalars["DateTime"]>>;
+  lt?: Maybe<Scalars["DateTime"]>;
+  lte?: Maybe<Scalars["DateTime"]>;
   not?: Maybe<NestedDateTimeNullableFilter>;
+  notIn?: Maybe<Array<Scalars["DateTime"]>>;
 };
 
 export type NestedEnumPriceTypeFilter = {
   equals?: Maybe<PriceType>;
   in?: Maybe<Array<PriceType>>;
-  notIn?: Maybe<Array<PriceType>>;
   not?: Maybe<NestedEnumPriceTypeFilter>;
+  notIn?: Maybe<Array<PriceType>>;
 };
 
 export type NestedEnumSubscriptionStatusFilter = {
   equals?: Maybe<SubscriptionStatus>;
   in?: Maybe<Array<SubscriptionStatus>>;
-  notIn?: Maybe<Array<SubscriptionStatus>>;
   not?: Maybe<NestedEnumSubscriptionStatusFilter>;
+  notIn?: Maybe<Array<SubscriptionStatus>>;
 };
 
 export type NestedIntFilter = {
   equals?: Maybe<Scalars["Int"]>;
-  in?: Maybe<Array<Scalars["Int"]>>;
-  notIn?: Maybe<Array<Scalars["Int"]>>;
-  lt?: Maybe<Scalars["Int"]>;
-  lte?: Maybe<Scalars["Int"]>;
   gt?: Maybe<Scalars["Int"]>;
   gte?: Maybe<Scalars["Int"]>;
+  in?: Maybe<Array<Scalars["Int"]>>;
+  lt?: Maybe<Scalars["Int"]>;
+  lte?: Maybe<Scalars["Int"]>;
   not?: Maybe<NestedIntFilter>;
+  notIn?: Maybe<Array<Scalars["Int"]>>;
 };
 
 export type NestedStringFilter = {
+  contains?: Maybe<Scalars["String"]>;
+  endsWith?: Maybe<Scalars["String"]>;
   equals?: Maybe<Scalars["String"]>;
-  in?: Maybe<Array<Scalars["String"]>>;
-  notIn?: Maybe<Array<Scalars["String"]>>;
-  lt?: Maybe<Scalars["String"]>;
-  lte?: Maybe<Scalars["String"]>;
   gt?: Maybe<Scalars["String"]>;
   gte?: Maybe<Scalars["String"]>;
-  contains?: Maybe<Scalars["String"]>;
-  startsWith?: Maybe<Scalars["String"]>;
-  endsWith?: Maybe<Scalars["String"]>;
+  in?: Maybe<Array<Scalars["String"]>>;
+  lt?: Maybe<Scalars["String"]>;
+  lte?: Maybe<Scalars["String"]>;
   not?: Maybe<NestedStringFilter>;
+  notIn?: Maybe<Array<Scalars["String"]>>;
+  startsWith?: Maybe<Scalars["String"]>;
 };
 
 export type NestedStringNullableFilter = {
+  contains?: Maybe<Scalars["String"]>;
+  endsWith?: Maybe<Scalars["String"]>;
   equals?: Maybe<Scalars["String"]>;
-  in?: Maybe<Array<Scalars["String"]>>;
-  notIn?: Maybe<Array<Scalars["String"]>>;
-  lt?: Maybe<Scalars["String"]>;
-  lte?: Maybe<Scalars["String"]>;
   gt?: Maybe<Scalars["String"]>;
   gte?: Maybe<Scalars["String"]>;
-  contains?: Maybe<Scalars["String"]>;
-  startsWith?: Maybe<Scalars["String"]>;
-  endsWith?: Maybe<Scalars["String"]>;
+  in?: Maybe<Array<Scalars["String"]>>;
+  lt?: Maybe<Scalars["String"]>;
+  lte?: Maybe<Scalars["String"]>;
   not?: Maybe<NestedStringNullableFilter>;
+  notIn?: Maybe<Array<Scalars["String"]>>;
+  startsWith?: Maybe<Scalars["String"]>;
 };
 
 export type Price = {
   __typename?: "Price";
-  id: Scalars["String"];
   active: Scalars["Boolean"];
-  productId: Scalars["String"];
-  unitAmount: Scalars["Int"];
-  type: PriceType;
-  recurring: Scalars["JSON"];
-  metadata: Scalars["JSON"];
   currency: Scalars["String"];
+  id: Scalars["String"];
+  metadata: Scalars["JSON"];
+  productId: Scalars["String"];
+  recurring: Scalars["JSON"];
+  type: PriceType;
+  unitAmount: Scalars["Int"];
 };
 
 export type PriceListRelationFilter = {
   every?: Maybe<PriceWhereInput>;
-  some?: Maybe<PriceWhereInput>;
   none?: Maybe<PriceWhereInput>;
+  some?: Maybe<PriceWhereInput>;
 };
 
-export type PriceOrderByInput = {
-  id?: Maybe<SortOrder>;
+export type PriceOrderByRelationAggregateInput = {
+  _count?: Maybe<SortOrder>;
+};
+
+export type PriceOrderByWithRelationInput = {
   active?: Maybe<SortOrder>;
-  productId?: Maybe<SortOrder>;
-  unitAmount?: Maybe<SortOrder>;
-  type?: Maybe<SortOrder>;
-  recurring?: Maybe<SortOrder>;
-  metadata?: Maybe<SortOrder>;
   currency?: Maybe<SortOrder>;
+  id?: Maybe<SortOrder>;
+  metadata?: Maybe<SortOrder>;
+  product?: Maybe<ProductOrderByWithRelationInput>;
+  productId?: Maybe<SortOrder>;
+  recurring?: Maybe<SortOrder>;
+  type?: Maybe<SortOrder>;
+  unitAmount?: Maybe<SortOrder>;
 };
 
 export enum PriceScalarFieldEnum {
-  Id = "id",
   Active = "active",
-  ProductId = "productId",
-  UnitAmount = "unitAmount",
-  Type = "type",
-  Recurring = "recurring",
-  Metadata = "metadata",
   Currency = "currency",
+  Id = "id",
+  Metadata = "metadata",
+  ProductId = "productId",
+  Recurring = "recurring",
+  Type = "type",
+  UnitAmount = "unitAmount",
 }
 
 export enum PriceType {
@@ -238,17 +247,17 @@ export enum PriceType {
 
 export type PriceWhereInput = {
   AND?: Maybe<Array<PriceWhereInput>>;
-  OR?: Maybe<Array<PriceWhereInput>>;
   NOT?: Maybe<Array<PriceWhereInput>>;
-  id?: Maybe<StringFilter>;
+  OR?: Maybe<Array<PriceWhereInput>>;
   active?: Maybe<BoolFilter>;
+  currency?: Maybe<StringFilter>;
+  id?: Maybe<StringFilter>;
+  metadata?: Maybe<JsonFilter>;
   product?: Maybe<ProductRelationFilter>;
   productId?: Maybe<StringFilter>;
-  unitAmount?: Maybe<IntFilter>;
-  type?: Maybe<EnumPriceTypeFilter>;
   recurring?: Maybe<JsonFilter>;
-  metadata?: Maybe<JsonFilter>;
-  currency?: Maybe<StringFilter>;
+  type?: Maybe<EnumPriceTypeFilter>;
+  unitAmount?: Maybe<IntFilter>;
 };
 
 export type PriceWhereUniqueInput = {
@@ -257,29 +266,38 @@ export type PriceWhereUniqueInput = {
 
 export type Product = {
   __typename?: "Product";
-  id: Scalars["String"];
-  name: Scalars["String"];
+  _count?: Maybe<ProductCount>;
   active: Scalars["Boolean"];
+  id: Scalars["String"];
   image: Scalars["String"];
   metadata: Scalars["JSON"];
+  name: Scalars["String"];
   prices: Array<Price>;
 };
 
 export type ProductPricesArgs = {
-  where?: Maybe<PriceWhereInput>;
-  orderBy?: Maybe<Array<PriceOrderByInput>>;
   cursor?: Maybe<PriceWhereUniqueInput>;
-  take?: Maybe<Scalars["Int"]>;
-  skip?: Maybe<Scalars["Int"]>;
   distinct?: Maybe<Array<PriceScalarFieldEnum>>;
+  orderBy?: Maybe<Array<PriceOrderByWithRelationInput>>;
+  skip?: Maybe<Scalars["Int"]>;
+  take?: Maybe<Scalars["Int"]>;
+  where?: Maybe<PriceWhereInput>;
 };
 
-export type ProductOrderByInput = {
-  id?: Maybe<SortOrder>;
-  name?: Maybe<SortOrder>;
+export type ProductCount = {
+  __typename?: "ProductCount";
+  prices: Scalars["Int"];
+  subscriptions: Scalars["Int"];
+};
+
+export type ProductOrderByWithRelationInput = {
   active?: Maybe<SortOrder>;
+  id?: Maybe<SortOrder>;
   image?: Maybe<SortOrder>;
   metadata?: Maybe<SortOrder>;
+  name?: Maybe<SortOrder>;
+  prices?: Maybe<PriceOrderByRelationAggregateInput>;
+  subscriptions?: Maybe<SubscriptionOrderByRelationAggregateInput>;
 };
 
 export type ProductRelationFilter = {
@@ -288,24 +306,24 @@ export type ProductRelationFilter = {
 };
 
 export enum ProductScalarFieldEnum {
-  Id = "id",
-  Name = "name",
   Active = "active",
+  Id = "id",
   Image = "image",
   Metadata = "metadata",
+  Name = "name",
 }
 
 export type ProductWhereInput = {
   AND?: Maybe<Array<ProductWhereInput>>;
-  OR?: Maybe<Array<ProductWhereInput>>;
   NOT?: Maybe<Array<ProductWhereInput>>;
-  id?: Maybe<StringFilter>;
-  name?: Maybe<StringFilter>;
+  OR?: Maybe<Array<ProductWhereInput>>;
   active?: Maybe<BoolFilter>;
+  id?: Maybe<StringFilter>;
   image?: Maybe<StringFilter>;
   metadata?: Maybe<JsonFilter>;
-  subscriptions?: Maybe<SubscriptionListRelationFilter>;
+  name?: Maybe<StringFilter>;
   prices?: Maybe<PriceListRelationFilter>;
+  subscriptions?: Maybe<SubscriptionListRelationFilter>;
 };
 
 export type ProductWhereUniqueInput = {
@@ -314,41 +332,42 @@ export type ProductWhereUniqueInput = {
 
 export type Query = {
   __typename?: "Query";
+  findFirstUser?: Maybe<User>;
+  me?: Maybe<User>;
   products: Array<Product>;
   user?: Maybe<User>;
-  findFirstUser?: Maybe<User>;
   users: Array<User>;
 };
 
-export type QueryProductsArgs = {
-  where?: Maybe<ProductWhereInput>;
-  orderBy?: Maybe<Array<ProductOrderByInput>>;
-  cursor?: Maybe<ProductWhereUniqueInput>;
-  take?: Maybe<Scalars["Int"]>;
+export type QueryFindFirstUserArgs = {
+  cursor?: Maybe<UserWhereUniqueInput>;
+  distinct?: Maybe<Array<UserScalarFieldEnum>>;
+  orderBy?: Maybe<Array<UserOrderByWithRelationInput>>;
   skip?: Maybe<Scalars["Int"]>;
+  take?: Maybe<Scalars["Int"]>;
+  where?: Maybe<UserWhereInput>;
+};
+
+export type QueryProductsArgs = {
+  cursor?: Maybe<ProductWhereUniqueInput>;
   distinct?: Maybe<Array<ProductScalarFieldEnum>>;
+  orderBy?: Maybe<Array<ProductOrderByWithRelationInput>>;
+  skip?: Maybe<Scalars["Int"]>;
+  take?: Maybe<Scalars["Int"]>;
+  where?: Maybe<ProductWhereInput>;
 };
 
 export type QueryUserArgs = {
   where: UserWhereUniqueInput;
 };
 
-export type QueryFindFirstUserArgs = {
-  where?: Maybe<UserWhereInput>;
-  orderBy?: Maybe<Array<UserOrderByInput>>;
-  cursor?: Maybe<UserWhereUniqueInput>;
-  take?: Maybe<Scalars["Int"]>;
-  skip?: Maybe<Scalars["Int"]>;
-  distinct?: Maybe<Array<UserScalarFieldEnum>>;
-};
-
 export type QueryUsersArgs = {
-  where?: Maybe<UserWhereInput>;
-  orderBy?: Maybe<Array<UserOrderByInput>>;
   cursor?: Maybe<UserWhereUniqueInput>;
-  take?: Maybe<Scalars["Int"]>;
-  skip?: Maybe<Scalars["Int"]>;
   distinct?: Maybe<Array<UserScalarFieldEnum>>;
+  orderBy?: Maybe<Array<UserOrderByWithRelationInput>>;
+  skip?: Maybe<Scalars["Int"]>;
+  take?: Maybe<Scalars["Int"]>;
+  where?: Maybe<UserWhereInput>;
 };
 
 export enum QueryMode {
@@ -358,39 +377,47 @@ export enum QueryMode {
 
 export type RoleListRelationFilter = {
   every?: Maybe<RoleWhereInput>;
-  some?: Maybe<RoleWhereInput>;
   none?: Maybe<RoleWhereInput>;
+  some?: Maybe<RoleWhereInput>;
+};
+
+export type RoleOrderByRelationAggregateInput = {
+  _count?: Maybe<SortOrder>;
 };
 
 export type RoleWhereInput = {
   AND?: Maybe<Array<RoleWhereInput>>;
-  OR?: Maybe<Array<RoleWhereInput>>;
   NOT?: Maybe<Array<RoleWhereInput>>;
+  OR?: Maybe<Array<RoleWhereInput>>;
+  createdAt?: Maybe<DateTimeFilter>;
   id?: Maybe<IntFilter>;
   name?: Maybe<StringFilter>;
-  users?: Maybe<UserListRelationFilter>;
-  createdAt?: Maybe<DateTimeFilter>;
   updatedAt?: Maybe<DateTimeFilter>;
+  users?: Maybe<UserListRelationFilter>;
 };
 
 export type SessionListRelationFilter = {
   every?: Maybe<SessionWhereInput>;
-  some?: Maybe<SessionWhereInput>;
   none?: Maybe<SessionWhereInput>;
+  some?: Maybe<SessionWhereInput>;
+};
+
+export type SessionOrderByRelationAggregateInput = {
+  _count?: Maybe<SortOrder>;
 };
 
 export type SessionWhereInput = {
   AND?: Maybe<Array<SessionWhereInput>>;
-  OR?: Maybe<Array<SessionWhereInput>>;
   NOT?: Maybe<Array<SessionWhereInput>>;
-  id?: Maybe<StringFilter>;
-  userId?: Maybe<StringFilter>;
-  expires?: Maybe<DateTimeFilter>;
-  sessionToken?: Maybe<StringFilter>;
+  OR?: Maybe<Array<SessionWhereInput>>;
   accessToken?: Maybe<StringFilter>;
   createdAt?: Maybe<DateTimeFilter>;
+  expires?: Maybe<DateTimeFilter>;
+  id?: Maybe<StringFilter>;
+  sessionToken?: Maybe<StringFilter>;
   updatedAt?: Maybe<DateTimeFilter>;
   user?: Maybe<UserRelationFilter>;
+  userId?: Maybe<StringFilter>;
 };
 
 export enum SortOrder {
@@ -399,39 +426,66 @@ export enum SortOrder {
 }
 
 export type StringFilter = {
+  contains?: Maybe<Scalars["String"]>;
+  endsWith?: Maybe<Scalars["String"]>;
   equals?: Maybe<Scalars["String"]>;
-  in?: Maybe<Array<Scalars["String"]>>;
-  notIn?: Maybe<Array<Scalars["String"]>>;
-  lt?: Maybe<Scalars["String"]>;
-  lte?: Maybe<Scalars["String"]>;
   gt?: Maybe<Scalars["String"]>;
   gte?: Maybe<Scalars["String"]>;
-  contains?: Maybe<Scalars["String"]>;
-  startsWith?: Maybe<Scalars["String"]>;
-  endsWith?: Maybe<Scalars["String"]>;
+  in?: Maybe<Array<Scalars["String"]>>;
+  lt?: Maybe<Scalars["String"]>;
+  lte?: Maybe<Scalars["String"]>;
   mode?: Maybe<QueryMode>;
   not?: Maybe<NestedStringFilter>;
+  notIn?: Maybe<Array<Scalars["String"]>>;
+  startsWith?: Maybe<Scalars["String"]>;
 };
 
 export type StringNullableFilter = {
+  contains?: Maybe<Scalars["String"]>;
+  endsWith?: Maybe<Scalars["String"]>;
   equals?: Maybe<Scalars["String"]>;
-  in?: Maybe<Array<Scalars["String"]>>;
-  notIn?: Maybe<Array<Scalars["String"]>>;
-  lt?: Maybe<Scalars["String"]>;
-  lte?: Maybe<Scalars["String"]>;
   gt?: Maybe<Scalars["String"]>;
   gte?: Maybe<Scalars["String"]>;
-  contains?: Maybe<Scalars["String"]>;
-  startsWith?: Maybe<Scalars["String"]>;
-  endsWith?: Maybe<Scalars["String"]>;
+  in?: Maybe<Array<Scalars["String"]>>;
+  lt?: Maybe<Scalars["String"]>;
+  lte?: Maybe<Scalars["String"]>;
   mode?: Maybe<QueryMode>;
   not?: Maybe<NestedStringNullableFilter>;
+  notIn?: Maybe<Array<Scalars["String"]>>;
+  startsWith?: Maybe<Scalars["String"]>;
 };
 
 export type SubscriptionListRelationFilter = {
   every?: Maybe<SubscriptionWhereInput>;
-  some?: Maybe<SubscriptionWhereInput>;
   none?: Maybe<SubscriptionWhereInput>;
+  some?: Maybe<SubscriptionWhereInput>;
+};
+
+export type SubscriptionOrderByRelationAggregateInput = {
+  _count?: Maybe<SortOrder>;
+};
+
+export type SubscriptionOrderByWithRelationInput = {
+  amount?: Maybe<SortOrder>;
+  cancelAt?: Maybe<SortOrder>;
+  cancelAtPeriodEnd?: Maybe<SortOrder>;
+  cancelledAt?: Maybe<SortOrder>;
+  created?: Maybe<SortOrder>;
+  createdAt?: Maybe<SortOrder>;
+  currency?: Maybe<SortOrder>;
+  currentPeriodEnd?: Maybe<SortOrder>;
+  currentPeriodStart?: Maybe<SortOrder>;
+  endedAt?: Maybe<SortOrder>;
+  id?: Maybe<SortOrder>;
+  metadata?: Maybe<SortOrder>;
+  product?: Maybe<ProductOrderByWithRelationInput>;
+  productId?: Maybe<SortOrder>;
+  status?: Maybe<SortOrder>;
+  trialEnd?: Maybe<SortOrder>;
+  trialStart?: Maybe<SortOrder>;
+  updatedAt?: Maybe<SortOrder>;
+  user?: Maybe<UserOrderByWithRelationInput>;
+  userId?: Maybe<SortOrder>;
 };
 
 export type SubscriptionRelationFilter = {
@@ -441,66 +495,78 @@ export type SubscriptionRelationFilter = {
 
 export enum SubscriptionStatus {
   Active = "ACTIVE",
-  PastDue = "PAST_DUE",
-  Unpaid = "UNPAID",
   Cancelled = "CANCELLED",
   Incomplete = "INCOMPLETE",
   IncompleteExpired = "INCOMPLETE_EXPIRED",
+  PastDue = "PAST_DUE",
   Trialling = "TRIALLING",
+  Unpaid = "UNPAID",
 }
 
 export type SubscriptionWhereInput = {
   AND?: Maybe<Array<SubscriptionWhereInput>>;
-  OR?: Maybe<Array<SubscriptionWhereInput>>;
   NOT?: Maybe<Array<SubscriptionWhereInput>>;
+  OR?: Maybe<Array<SubscriptionWhereInput>>;
+  amount?: Maybe<IntFilter>;
+  cancelAt?: Maybe<DateTimeNullableFilter>;
+  cancelAtPeriodEnd?: Maybe<BoolFilter>;
+  cancelledAt?: Maybe<DateTimeNullableFilter>;
+  created?: Maybe<DateTimeFilter>;
+  createdAt?: Maybe<DateTimeFilter>;
+  currency?: Maybe<StringFilter>;
+  currentPeriodEnd?: Maybe<DateTimeFilter>;
+  currentPeriodStart?: Maybe<DateTimeFilter>;
+  endedAt?: Maybe<DateTimeNullableFilter>;
   id?: Maybe<StringFilter>;
-  user?: Maybe<UserRelationFilter>;
-  userId?: Maybe<StringFilter>;
+  metadata?: Maybe<JsonFilter>;
   product?: Maybe<ProductRelationFilter>;
   productId?: Maybe<StringFilter>;
   status?: Maybe<EnumSubscriptionStatusFilter>;
-  amount?: Maybe<IntFilter>;
-  created?: Maybe<DateTimeFilter>;
-  currency?: Maybe<StringFilter>;
-  cancelAtPeriodEnd?: Maybe<BoolFilter>;
-  currentPeriodEnd?: Maybe<DateTimeFilter>;
-  currentPeriodStart?: Maybe<DateTimeFilter>;
-  trialStart?: Maybe<DateTimeNullableFilter>;
   trialEnd?: Maybe<DateTimeNullableFilter>;
-  cancelAt?: Maybe<DateTimeNullableFilter>;
-  cancelledAt?: Maybe<DateTimeNullableFilter>;
-  endedAt?: Maybe<DateTimeNullableFilter>;
-  metadata?: Maybe<JsonFilter>;
-  createdAt?: Maybe<DateTimeFilter>;
+  trialStart?: Maybe<DateTimeNullableFilter>;
   updatedAt?: Maybe<DateTimeFilter>;
+  user?: Maybe<UserRelationFilter>;
+  userId?: Maybe<StringFilter>;
 };
 
 export type User = {
   __typename?: "User";
-  id: Scalars["String"];
-  stripeCustomerId?: Maybe<Scalars["String"]>;
-  name?: Maybe<Scalars["String"]>;
+  _count?: Maybe<UserCount>;
+  createdAt: Scalars["DateTime"];
   email?: Maybe<Scalars["String"]>;
   emailVerified?: Maybe<Scalars["DateTime"]>;
+  id: Scalars["String"];
   image?: Maybe<Scalars["String"]>;
-  createdAt: Scalars["DateTime"];
+  name?: Maybe<Scalars["String"]>;
+  stripeCustomerId?: Maybe<Scalars["String"]>;
   updatedAt: Scalars["DateTime"];
+};
+
+export type UserCount = {
+  __typename?: "UserCount";
+  accounts: Scalars["Int"];
+  roles: Scalars["Int"];
+  sessions: Scalars["Int"];
 };
 
 export type UserListRelationFilter = {
   every?: Maybe<UserWhereInput>;
-  some?: Maybe<UserWhereInput>;
   none?: Maybe<UserWhereInput>;
+  some?: Maybe<UserWhereInput>;
 };
 
-export type UserOrderByInput = {
-  id?: Maybe<SortOrder>;
-  stripeCustomerId?: Maybe<SortOrder>;
-  name?: Maybe<SortOrder>;
+export type UserOrderByWithRelationInput = {
+  accounts?: Maybe<AccountOrderByRelationAggregateInput>;
+  createdAt?: Maybe<SortOrder>;
   email?: Maybe<SortOrder>;
   emailVerified?: Maybe<SortOrder>;
+  id?: Maybe<SortOrder>;
   image?: Maybe<SortOrder>;
-  createdAt?: Maybe<SortOrder>;
+  name?: Maybe<SortOrder>;
+  roles?: Maybe<RoleOrderByRelationAggregateInput>;
+  sessions?: Maybe<SessionOrderByRelationAggregateInput>;
+  stripeCustomerId?: Maybe<SortOrder>;
+  subscription?: Maybe<SubscriptionOrderByWithRelationInput>;
   updatedAt?: Maybe<SortOrder>;
 };
 
@@ -510,13 +576,13 @@ export type UserRelationFilter = {
 };
 
 export enum UserScalarFieldEnum {
-  Id = "id",
-  StripeCustomerId = "stripeCustomerId",
-  Name = "name",
+  CreatedAt = "createdAt",
   Email = "email",
   EmailVerified = "emailVerified",
+  Id = "id",
   Image = "image",
-  CreatedAt = "createdAt",
+  Name = "name",
+  StripeCustomerId = "stripeCustomerId",
   UpdatedAt = "updatedAt",
 }
 
@@ -526,34 +592,26 @@ export type UserUpdateInput = {
 
 export type UserWhereInput = {
   AND?: Maybe<Array<UserWhereInput>>;
-  OR?: Maybe<Array<UserWhereInput>>;
   NOT?: Maybe<Array<UserWhereInput>>;
-  id?: Maybe<StringFilter>;
-  stripeCustomerId?: Maybe<StringNullableFilter>;
-  name?: Maybe<StringNullableFilter>;
+  OR?: Maybe<Array<UserWhereInput>>;
+  accounts?: Maybe<AccountListRelationFilter>;
+  createdAt?: Maybe<DateTimeFilter>;
   email?: Maybe<StringNullableFilter>;
   emailVerified?: Maybe<DateTimeNullableFilter>;
+  id?: Maybe<StringFilter>;
   image?: Maybe<StringNullableFilter>;
-  createdAt?: Maybe<DateTimeFilter>;
-  updatedAt?: Maybe<DateTimeFilter>;
-  subscription?: Maybe<SubscriptionRelationFilter>;
-  accounts?: Maybe<AccountListRelationFilter>;
-  sessions?: Maybe<SessionListRelationFilter>;
+  name?: Maybe<StringNullableFilter>;
   roles?: Maybe<RoleListRelationFilter>;
+  sessions?: Maybe<SessionListRelationFilter>;
+  stripeCustomerId?: Maybe<StringNullableFilter>;
+  subscription?: Maybe<SubscriptionRelationFilter>;
+  updatedAt?: Maybe<DateTimeFilter>;
 };
 
 export type UserWhereUniqueInput = {
+  email?: Maybe<Scalars["String"]>;
   id?: Maybe<Scalars["String"]>;
   stripeCustomerId?: Maybe<Scalars["String"]>;
-  email?: Maybe<Scalars["String"]>;
-};
-
-export type ProductCardProductFragmentFragment = {
-  __typename?: "Product";
-  id: string;
-  name: string;
-  metadata: any;
-  prices: Array<{ __typename?: "Price"; currency: string; recurring: any; unitAmount: number }>;
 };
 
 export type ProductsQueryVariables = Exact<{ [key: string]: never }>;
@@ -569,36 +627,13 @@ export type ProductsQuery = {
   }>;
 };
 
-export const ProductCardProductFragmentFragmentDoc = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "FragmentDefinition",
-      name: { kind: "Name", value: "ProductCardProductFragment" },
-      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "Product" } },
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          { kind: "Field", name: { kind: "Name", value: "id" } },
-          { kind: "Field", name: { kind: "Name", value: "name" } },
-          { kind: "Field", name: { kind: "Name", value: "metadata" } },
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "prices" },
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "currency" } },
-                { kind: "Field", name: { kind: "Name", value: "recurring" } },
-                { kind: "Field", name: { kind: "Name", value: "unitAmount" } },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<ProductCardProductFragmentFragment, unknown>;
+export type ProfileSettingsQueryVariables = Exact<{ [key: string]: never }>;
+
+export type ProfileSettingsQuery = {
+  __typename?: "Query";
+  me?: Maybe<{ __typename?: "User"; name?: Maybe<string>; email?: Maybe<string>; image?: Maybe<string> }>;
+};
+
 export const ProductsDocument = {
   kind: "Document",
   definitions: [
@@ -616,13 +651,52 @@ export const ProductsDocument = {
               kind: "SelectionSet",
               selections: [
                 { kind: "Field", name: { kind: "Name", value: "id" } },
-                { kind: "FragmentSpread", name: { kind: "Name", value: "ProductCardProductFragment" } },
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+                { kind: "Field", name: { kind: "Name", value: "metadata" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "prices" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "currency" } },
+                      { kind: "Field", name: { kind: "Name", value: "recurring" } },
+                      { kind: "Field", name: { kind: "Name", value: "unitAmount" } },
+                    ],
+                  },
+                },
               ],
             },
           },
         ],
       },
     },
-    ...ProductCardProductFragmentFragmentDoc.definitions,
   ],
 } as unknown as DocumentNode<ProductsQuery, ProductsQueryVariables>;
+export const ProfileSettingsDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "ProfileSettings" },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "me" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+                { kind: "Field", name: { kind: "Name", value: "email" } },
+                { kind: "Field", name: { kind: "Name", value: "image" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<ProfileSettingsQuery, ProfileSettingsQueryVariables>;

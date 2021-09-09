@@ -1,12 +1,6 @@
 import { Container } from "@boilerplate/shared/ui";
-import {
-  AccountSettingsForm,
-  getLayout,
-  PageHeading,
-  ProfileSettingsForm,
-  SettingsAside,
-  SettingsSection,
-} from "@boilerplate/site/ui";
+import { ProfileSettings } from "@boilerplate/site-feature";
+import { AccountSettingsForm, getLayout, PageHeading, SettingsAside, SettingsSection } from "@boilerplate/site/ui";
 import type { GetServerSidePropsContext } from "next";
 import { getSession } from "next-auth/client";
 import { NextSeo } from "next-seo";
@@ -39,7 +33,7 @@ export default function Settings() {
       <Container pb={{ base: 4, md: 10 }}>
         <SettingsAside position="relative" display={{ lg: "none" }} />
         <SettingsSection display={{ base: "none", lg: "grid" }}>
-          <ProfileSettingsForm />
+          <ProfileSettings />
           <AccountSettingsForm />
         </SettingsSection>
       </Container>
