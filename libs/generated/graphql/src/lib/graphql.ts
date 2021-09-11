@@ -614,6 +614,14 @@ export type UserWhereUniqueInput = {
   stripeCustomerId?: Maybe<Scalars["String"]>;
 };
 
+export type ProductCardProductFragmentFragment = {
+  __typename?: "Product";
+  id: string;
+  name: string;
+  metadata: any;
+  prices: Array<{ __typename?: "Price"; currency: string; recurring: any; unitAmount: number }>;
+};
+
 export type ProductsQueryVariables = Exact<{ [key: string]: never }>;
 
 export type ProductsQuery = {
@@ -627,6 +635,13 @@ export type ProductsQuery = {
   }>;
 };
 
+export type ProfileSettingsFormUserFragmentFragment = {
+  __typename?: "User";
+  name?: Maybe<string>;
+  email?: Maybe<string>;
+  image?: Maybe<string>;
+};
+
 export type ProfileSettingsQueryVariables = Exact<{ [key: string]: never }>;
 
 export type ProfileSettingsQuery = {
@@ -634,6 +649,69 @@ export type ProfileSettingsQuery = {
   me?: Maybe<{ __typename?: "User"; name?: Maybe<string>; email?: Maybe<string>; image?: Maybe<string> }>;
 };
 
+export type UpdateProfileSettingsMutationVariables = Exact<{
+  updateUserData: UserUpdateInput;
+}>;
+
+export type UpdateProfileSettingsMutation = {
+  __typename?: "Mutation";
+  updateUser?: Maybe<{
+    __typename?: "User";
+    id: string;
+    name?: Maybe<string>;
+    email?: Maybe<string>;
+    image?: Maybe<string>;
+  }>;
+};
+
+export const ProductCardProductFragmentFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ProductCardProductFragment" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "Product" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "name" } },
+          { kind: "Field", name: { kind: "Name", value: "metadata" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "prices" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "currency" } },
+                { kind: "Field", name: { kind: "Name", value: "recurring" } },
+                { kind: "Field", name: { kind: "Name", value: "unitAmount" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<ProductCardProductFragmentFragment, unknown>;
+export const ProfileSettingsFormUserFragmentFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "ProfileSettingsFormUserFragment" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "User" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "name" } },
+          { kind: "Field", name: { kind: "Name", value: "email" } },
+          { kind: "Field", name: { kind: "Name", value: "image" } },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<ProfileSettingsFormUserFragmentFragment, unknown>;
 export const ProductsDocument = {
   kind: "Document",
   definitions: [
@@ -651,26 +729,14 @@ export const ProductsDocument = {
               kind: "SelectionSet",
               selections: [
                 { kind: "Field", name: { kind: "Name", value: "id" } },
-                { kind: "Field", name: { kind: "Name", value: "name" } },
-                { kind: "Field", name: { kind: "Name", value: "metadata" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "prices" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [
-                      { kind: "Field", name: { kind: "Name", value: "currency" } },
-                      { kind: "Field", name: { kind: "Name", value: "recurring" } },
-                      { kind: "Field", name: { kind: "Name", value: "unitAmount" } },
-                    ],
-                  },
-                },
+                { kind: "FragmentSpread", name: { kind: "Name", value: "ProductCardProductFragment" } },
               ],
             },
           },
         ],
       },
     },
+    ...ProductCardProductFragmentFragmentDoc.definitions,
   ],
 } as unknown as DocumentNode<ProductsQuery, ProductsQueryVariables>;
 export const ProfileSettingsDocument = {
@@ -692,6 +758,50 @@ export const ProfileSettingsDocument = {
                 { kind: "Field", name: { kind: "Name", value: "name" } },
                 { kind: "Field", name: { kind: "Name", value: "email" } },
                 { kind: "Field", name: { kind: "Name", value: "image" } },
+                { kind: "FragmentSpread", name: { kind: "Name", value: "ProfileSettingsFormUserFragment" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    ...ProfileSettingsFormUserFragmentFragmentDoc.definitions,
+  ],
+} as unknown as DocumentNode<ProfileSettingsQuery, ProfileSettingsQueryVariables>;
+export const UpdateProfileSettingsDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "UpdateProfileSettings" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "updateUserData" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "UserUpdateInput" } } },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "updateUser" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "data" },
+                value: { kind: "Variable", name: { kind: "Name", value: "updateUserData" } },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+                { kind: "Field", name: { kind: "Name", value: "email" } },
+                { kind: "Field", name: { kind: "Name", value: "image" } },
               ],
             },
           },
@@ -699,4 +809,4 @@ export const ProfileSettingsDocument = {
       },
     },
   ],
-} as unknown as DocumentNode<ProfileSettingsQuery, ProfileSettingsQueryVariables>;
+} as unknown as DocumentNode<UpdateProfileSettingsMutation, UpdateProfileSettingsMutationVariables>;

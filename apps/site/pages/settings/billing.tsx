@@ -30,7 +30,7 @@ export default function Billing() {
     <>
       <NextSeo title={t("meta-title")} />
       <PageHeading heading={t("page-heading")} />
-      <Container>
+      <Container pb={{ base: 4, md: 10 }}>
         <SettingsSection>
           <PlanForm />
         </SettingsSection>

@@ -1,11 +1,19 @@
+import { DocumentType, gql } from "@boilerplate/generated/graphql";
 import { Card, CardContent, CardFooter, CardHeader } from "@boilerplate/shared/ui";
 import type { GridProps } from "@chakra-ui/react";
 import { Avatar, Button, Flex, FormControl, FormErrorMessage, FormLabel, Grid, Input } from "@chakra-ui/react";
-import { useSession } from "next-auth/client";
 import useTranslation from "next-translate/useTranslation";
 import * as React from "react";
 import { useForm } from "react-hook-form";
 import { FileUpload } from "../file-upload/FileUpload";
+
+const ProfileSettingsFormUserFragment = gql(/* GraphQL */ `
+  fragment ProfileSettingsFormUserFragment on User {
+    name
+    email
+    image
+  }
+`);
 
 interface ProfileSettingsFormData {
   name?: string | null;
@@ -13,11 +21,12 @@ interface ProfileSettingsFormData {
   image?: FileList;
 }
 
-export type ProfileSettingsFormProps = GridProps;
+export interface ProfileSettingsFormProps extends GridProps {
+  user: DocumentType<typeof ProfileSettingsFormUserFragment>;
+}
 
-export function ProfileSettingsForm(props: ProfileSettingsFormProps) {
+export function ProfileSettingsForm({ user, ...rest }: ProfileSettingsFormProps) {
   const { t } = useTranslation("settings");
-  const [session] = useSession();
   const [image, setImage] = React.useState<string | undefined | null>();
 
   const {
@@ -30,21 +39,21 @@ export function ProfileSettingsForm(props: ProfileSettingsFormProps) {
   } = useForm<ProfileSettingsFormData>({
     defaultValues: React.useMemo(() => {
       return {
-        name: session?.user?.name,
-        email: session?.user?.email,
+        name: user.name,
+        email: user.email,
       };
-    }, [session?.user]),
+    }, [user]),
   });
 
   const watchedImage = watch("image");
 
   React.useEffect(() => {
     reset({
-      name: session?.user?.name,
-      email: session?.user?.email,
+      name: user.name,
+      email: user.email,
     });
-    setImage(session?.user?.image);
-  }, [session?.user, reset]);
+    setImage(user?.image);
+  }, [user, reset]);
 
   React.useEffect(() => {
     if (watchedImage && watchedImage.length > 0) {
@@ -87,7 +96,7 @@ export function ProfileSettingsForm(props: ProfileSettingsFormProps) {
     <Card as="form" onSubmit={handleSubmit(onSubmit)}>
       <CardHeader title={t("profile-settings-title")} subtitle={t("profile-settings-subtitle")} />
       <CardContent>
-        <Grid gridTemplateColumns={{ base: "1fr", md: "1fr 1fr" }} gridColumnGap={6} gridRowGap={8} {...props}>
+        <Grid gridTemplateColumns={{ base: "1fr", md: "1fr 1fr" }} gridColumnGap={6} gridRowGap={8} {...rest}>
           <FormControl isInvalid={Boolean(errors.name)}>
             <FormLabel htmlFor="name" fontSize="sm">
               {t("name-label")}

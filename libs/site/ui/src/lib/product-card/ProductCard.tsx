@@ -24,7 +24,7 @@ const featuresMap: Record<string, { name: string }[]> = {
   premium: [{ name: "premium-feature-1" }, { name: "premium-feature-2" }, { name: "premium-feature-3" }],
 };
 
-export const ProductCardProductFragment = gql(/* GraphQL */ `
+const ProductCardProductFragment = gql(/* GraphQL */ `
   fragment ProductCardProductFragment on Product {
     id
     name

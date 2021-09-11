@@ -9,7 +9,13 @@ const main = async () => {
   const app = express();
   app.use(cookieParser());
 
-  apolloServer.applyMiddleware({ app, cors: { credentials: true, origin: "http://localhost:3000" } });
+  apolloServer.applyMiddleware({
+    app,
+    cors: {
+      credentials: true,
+      origin: "http://localhost:3000",
+    },
+  });
 
   const port = process.env.PORT || 3333;
 
