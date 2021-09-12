@@ -1,7 +1,7 @@
-import NextAuth from "next-auth";
-import Providers from "next-auth/providers";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { PrismaClient } from "@prisma/client";
+import NextAuth from "next-auth";
+import Providers from "next-auth/providers";
 
 const prisma = new PrismaClient();
 
@@ -15,8 +15,8 @@ export default NextAuth({
       from: process.env.EMAIL_FROM,
     }),
     Providers.Twitter({
-      clientId: process.env.TWITTER_ID,
-      clientSecret: process.env.TWITTER_SECRET,
+      clientId: process.env.TWITTER_CLIENT_ID,
+      clientSecret: process.env.TWITTER_CLIENT_SECRET,
     }),
     Providers.Reddit({
       clientId: process.env.REDDIT_CLIENT_ID,
@@ -35,6 +35,10 @@ export default NextAuth({
           email: null,
         };
       },
+    }),
+    Providers.Google({
+      clientId: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     }),
   ],
   // Database optional. MySQL, Maria DB, Postgres and MongoDB are supported.
