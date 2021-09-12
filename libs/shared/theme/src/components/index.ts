@@ -1,4 +1,6 @@
+import { Alert } from "./Alert";
 import { Badge } from "./Badge";
+import { Button } from "./Button";
 import { Card } from "./Card";
 import { Heading } from "./Heading";
 import { Input } from "./Input";
@@ -8,7 +10,9 @@ import { Section } from "./Section";
 import { Text } from "./Text";
 
 export const components = {
+  Alert,
   Badge,
+  Button,
   Card,
   Heading,
   Input,
