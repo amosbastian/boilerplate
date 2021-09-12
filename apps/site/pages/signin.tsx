@@ -35,7 +35,7 @@ export default function Signin({ providers }: InferGetServerSidePropsType<typeof
   const nonEmailProviders = providers ? Object.values(providers).filter((provider) => provider.id !== "email") : [];
 
   return (
-    <Center height="100vh" width="100vw" flexDirection="column" px={4} justifyContent="center">
+    <Center height="-webkit-fill-available" flexDirection="column" px={4} justifyContent="center">
       <NextSeo title={t("meta-title")} description={t("meta-description")} />
       <Logo />
       <Heading size="lg" mt={4}>
