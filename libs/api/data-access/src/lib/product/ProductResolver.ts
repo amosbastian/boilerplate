@@ -1,6 +1,6 @@
 import { Context } from "@boilerplate/shared/types";
-import { FindManyProductArgs, Price, Product, ProductPricesArgs } from "@generated/type-graphql";
-import { Args, Ctx, FieldResolver, Query, Resolver, Root } from "type-graphql";
+import { FindManyProductArgs, Price, Product, ProductPricesArgs, UpsertProductArgs } from "@generated/type-graphql";
+import { Args, Authorized, Ctx, FieldResolver, Mutation, Query, Resolver, Root } from "type-graphql";
 
 @Resolver(() => Product)
 export class ProductResolver {
@@ -22,5 +22,11 @@ export class ProductResolver {
         },
       })
       .prices(args);
+  }
+
+  @Authorized("Admin")
+  @Mutation(() => Product, { nullable: true })
+  async upsertProduct(@Ctx() { prisma }: Context, @Args() args: UpsertProductArgs): Promise<Product> {
+    return prisma.product.upsert(args);
   }
 }
