@@ -1,11 +1,12 @@
 import { getLayout, Section } from "@boilerplate/shared/ui";
-import { ProductCards } from "@boilerplate/site-feature";
+import { prefetchGraphqlQuery } from "@boilerplate/shared/utility/graphql";
+import { ProductCards, ProductsQuery } from "@boilerplate/site-feature";
 import { CtaCard, FaqSection } from "@boilerplate/site/ui";
 import { Button, Heading, Link as ChakraLink, Text, useColorModeValue } from "@chakra-ui/react";
 import { NextSeo } from "next-seo";
 import type { Question } from "next-seo/lib/jsonld/faqPage";
 import useTranslation from "next-translate/useTranslation";
-// import type { GetStaticPropsContext } from "next";
+import { dehydrate } from "react-query";
 
 const FREQUENTLY_ASKED_QUESTIONS: Question[] = [
   { questionName: "pricing:question-1", acceptedAnswerText: "pricing:answer-1" },
@@ -14,9 +15,15 @@ const FREQUENTLY_ASKED_QUESTIONS: Question[] = [
   { questionName: "pricing:question-4", acceptedAnswerText: "pricing:answer-4" },
 ];
 
-// export const getStaticProps = async ({ params }: GetStaticPropsContext) => {
-//   // TODO: DO SOME PREFETCH FOR HYDRATION
-// };
+export const getStaticProps = async () => {
+  const queryClient = await prefetchGraphqlQuery(ProductsQuery);
+
+  return {
+    props: {
+      dehydratedState: dehydrate(queryClient),
+    },
+  };
+};
 
 export default function Pricing() {
   const { t } = useTranslation("pricing");

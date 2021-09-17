@@ -1,7 +1,8 @@
 overwrite: true
 schema: "http://localhost:3333/graphql"
 documents:
-  - "libs/site/feature/**/*.tsx"
+  - "libs/site/**/*.tsx"
+  - "libs/stripe/**/*.ts"
 generates:
   libs/generated/graphql/src/lib/:
     preset: gql-tag-operations-preset

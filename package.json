@@ -61,7 +61,7 @@
     "next-mdx-remote": "^3.0.4",
     "next-remote-watch": "^1.0.0",
     "next-seo": "^4.26.0",
-    "next-translate": "^1.0.7",
+    "next-translate": "1.1.0-canary.4",
     "nookies": "^2.5.2",
     "pg": "^8.7.1",
     "react": "17.0.2",
