@@ -1,3 +1,16 @@
 {
-  "meta-title": "meta-title"
+  "account-settings-subtitle": "account-settings-subtitle",
+  "account-settings-title": "Account",
+  "general": "General",
+  "image-label": "Profile picture",
+  "language-label": "Language",
+  "meta-title": "Settings",
+  "name-label": "Name",
+  "page-heading": "Settings",
+  "plan-and-billing": "Plan & Billing",
+  "plan-settings-subtitle": "plan-settings-subtitle",
+  "plan-settings-title": "Plan",
+  "profile-settings-subtitle": "profile-settings-subtitle",
+  "profile-settings-title": "Profile",
+  "theme-label": "Theme"
 }
