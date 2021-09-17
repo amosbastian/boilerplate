@@ -3,9 +3,9 @@ import type { GridProps } from "@chakra-ui/react";
 import { Button } from "@chakra-ui/react";
 import useTranslation from "next-translate/useTranslation";
 
-export type PlanFormProps = GridProps;
+export type PlanSettingsFormProps = GridProps;
 
-export function PlanForm(props: PlanFormProps) {
+export function PlanSettingsForm(props: PlanSettingsFormProps) {
   const { t } = useTranslation("settings");
 
   return (
@@ -22,4 +22,4 @@ export function PlanForm(props: PlanFormProps) {
   );
 }
 
-export default PlanForm;
+export default PlanSettingsForm;
