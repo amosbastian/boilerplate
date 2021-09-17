@@ -5,4 +5,5 @@ export * from "./lib/mutation-invalidation/mutationInvalidation";
 export * from "./lib/use-graphql-fetch/useGraphqlFetch";
 export * from "./lib/use-graphql-infinite-query/useGraphqlInfiniteQuery";
 export * from "./lib/use-graphql-mutation/useGraphqlMutation";
+export * from "./lib/prefetch-graphql-query/prefetchGraphqlQuery";
 export * from "./lib/use-graphql-query/useGraphqlQuery";
