@@ -1,5 +1,9 @@
 import "reflect-metadata";
 import { PrismaClient } from "@prisma/client";
+import {
+  ApolloServerPluginLandingPageDisabled,
+  ApolloServerPluginLandingPageGraphQLPlayground,
+} from "apollo-server-core";
 import { ApolloServer, ApolloServerExpressConfig } from "apollo-server-express";
 import "dotenv/config";
 import { createSchema } from "../create-schema/createSchema";
@@ -17,6 +21,11 @@ export const createApolloServer = async (
       const user = await getUserFromContext({ req, prisma });
       return { req, res, prisma, user };
     },
+    plugins: [
+      process.env.NODE_ENV === "production"
+        ? ApolloServerPluginLandingPageDisabled()
+        : ApolloServerPluginLandingPageGraphQLPlayground(),
+    ],
     ...config,
   });
 
