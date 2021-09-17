@@ -11,14 +11,18 @@ export const getUserFromContext = async ({ prisma, req }: Pick<Context, "prisma"
 
   if (!process.env.JWT_SECRET) return null;
 
-  const decodedToken = await decode({
-    token,
-    secret: process.env.JWT_SECRET,
-    signingKey: process.env.JWT_SIGNING_KEY,
-    encryptionKey: process.env.JWT_ENCRYPTION_KEY,
-  });
+  try {
+    const decodedToken = await decode({
+      token,
+      secret: process.env.JWT_SECRET,
+      signingKey: process.env.JWT_SIGNING_KEY,
+      encryptionKey: process.env.JWT_ENCRYPTION_KEY,
+    });
 
-  const user = await prisma.user.findUnique({ where: { id: decodedToken.sub }, include: { roles: true } });
+    const user = await prisma.user.findUnique({ where: { id: decodedToken.sub }, include: { roles: true } });
 
-  return user;
+    return user;
+  } catch (error) {
+    return null;
+  }
 };
