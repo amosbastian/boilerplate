@@ -4,7 +4,7 @@ import { ProductCard } from "@boilerplate/site/ui";
 import { Grid } from "@chakra-ui/react";
 import type { GridProps } from "@chakra-ui/react";
 
-const ProductsQuery = gql(/* GraphQL */ `
+export const ProductsQuery = gql(/* GraphQL */ `
   query Products {
     products {
       id

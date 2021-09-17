@@ -17,6 +17,47 @@ export type Scalars = {
   JSON: any;
 };
 
+export type AccountCreateManyUserInput = {
+  accessToken?: Maybe<Scalars["String"]>;
+  accessTokenExpires?: Maybe<Scalars["DateTime"]>;
+  createdAt?: Maybe<Scalars["DateTime"]>;
+  id?: Maybe<Scalars["String"]>;
+  providerAccountId: Scalars["String"];
+  providerId: Scalars["String"];
+  providerType: Scalars["String"];
+  refreshToken?: Maybe<Scalars["String"]>;
+  updatedAt?: Maybe<Scalars["DateTime"]>;
+};
+
+export type AccountCreateManyUserInputEnvelope = {
+  data: Array<AccountCreateManyUserInput>;
+  skipDuplicates?: Maybe<Scalars["Boolean"]>;
+};
+
+export type AccountCreateNestedManyWithoutUserInput = {
+  connect?: Maybe<Array<AccountWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<AccountCreateOrConnectWithoutUserInput>>;
+  create?: Maybe<Array<AccountCreateWithoutUserInput>>;
+  createMany?: Maybe<AccountCreateManyUserInputEnvelope>;
+};
+
+export type AccountCreateOrConnectWithoutUserInput = {
+  create: AccountCreateWithoutUserInput;
+  where: AccountWhereUniqueInput;
+};
+
+export type AccountCreateWithoutUserInput = {
+  accessToken?: Maybe<Scalars["String"]>;
+  accessTokenExpires?: Maybe<Scalars["DateTime"]>;
+  createdAt?: Maybe<Scalars["DateTime"]>;
+  id?: Maybe<Scalars["String"]>;
+  providerAccountId: Scalars["String"];
+  providerId: Scalars["String"];
+  providerType: Scalars["String"];
+  refreshToken?: Maybe<Scalars["String"]>;
+  updatedAt?: Maybe<Scalars["DateTime"]>;
+};
+
 export type AccountListRelationFilter = {
   every?: Maybe<AccountWhereInput>;
   none?: Maybe<AccountWhereInput>;
@@ -25,6 +66,81 @@ export type AccountListRelationFilter = {
 
 export type AccountOrderByRelationAggregateInput = {
   _count?: Maybe<SortOrder>;
+};
+
+export type AccountProviderIdProviderAccountIdCompoundUniqueInput = {
+  providerAccountId: Scalars["String"];
+  providerId: Scalars["String"];
+};
+
+export type AccountScalarWhereInput = {
+  AND?: Maybe<Array<AccountScalarWhereInput>>;
+  NOT?: Maybe<Array<AccountScalarWhereInput>>;
+  OR?: Maybe<Array<AccountScalarWhereInput>>;
+  accessToken?: Maybe<StringNullableFilter>;
+  accessTokenExpires?: Maybe<DateTimeNullableFilter>;
+  createdAt?: Maybe<DateTimeFilter>;
+  id?: Maybe<StringFilter>;
+  providerAccountId?: Maybe<StringFilter>;
+  providerId?: Maybe<StringFilter>;
+  providerType?: Maybe<StringFilter>;
+  refreshToken?: Maybe<StringNullableFilter>;
+  updatedAt?: Maybe<DateTimeFilter>;
+  userId?: Maybe<StringFilter>;
+};
+
+export type AccountUpdateManyMutationInput = {
+  accessToken?: Maybe<NullableStringFieldUpdateOperationsInput>;
+  accessTokenExpires?: Maybe<NullableDateTimeFieldUpdateOperationsInput>;
+  createdAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
+  id?: Maybe<StringFieldUpdateOperationsInput>;
+  providerAccountId?: Maybe<StringFieldUpdateOperationsInput>;
+  providerId?: Maybe<StringFieldUpdateOperationsInput>;
+  providerType?: Maybe<StringFieldUpdateOperationsInput>;
+  refreshToken?: Maybe<NullableStringFieldUpdateOperationsInput>;
+  updatedAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
+};
+
+export type AccountUpdateManyWithWhereWithoutUserInput = {
+  data: AccountUpdateManyMutationInput;
+  where: AccountScalarWhereInput;
+};
+
+export type AccountUpdateManyWithoutUserInput = {
+  connect?: Maybe<Array<AccountWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<AccountCreateOrConnectWithoutUserInput>>;
+  create?: Maybe<Array<AccountCreateWithoutUserInput>>;
+  createMany?: Maybe<AccountCreateManyUserInputEnvelope>;
+  delete?: Maybe<Array<AccountWhereUniqueInput>>;
+  deleteMany?: Maybe<Array<AccountScalarWhereInput>>;
+  disconnect?: Maybe<Array<AccountWhereUniqueInput>>;
+  set?: Maybe<Array<AccountWhereUniqueInput>>;
+  update?: Maybe<Array<AccountUpdateWithWhereUniqueWithoutUserInput>>;
+  updateMany?: Maybe<Array<AccountUpdateManyWithWhereWithoutUserInput>>;
+  upsert?: Maybe<Array<AccountUpsertWithWhereUniqueWithoutUserInput>>;
+};
+
+export type AccountUpdateWithWhereUniqueWithoutUserInput = {
+  data: AccountUpdateWithoutUserInput;
+  where: AccountWhereUniqueInput;
+};
+
+export type AccountUpdateWithoutUserInput = {
+  accessToken?: Maybe<NullableStringFieldUpdateOperationsInput>;
+  accessTokenExpires?: Maybe<NullableDateTimeFieldUpdateOperationsInput>;
+  createdAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
+  id?: Maybe<StringFieldUpdateOperationsInput>;
+  providerAccountId?: Maybe<StringFieldUpdateOperationsInput>;
+  providerId?: Maybe<StringFieldUpdateOperationsInput>;
+  providerType?: Maybe<StringFieldUpdateOperationsInput>;
+  refreshToken?: Maybe<NullableStringFieldUpdateOperationsInput>;
+  updatedAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
+};
+
+export type AccountUpsertWithWhereUniqueWithoutUserInput = {
+  create: AccountCreateWithoutUserInput;
+  update: AccountUpdateWithoutUserInput;
+  where: AccountWhereUniqueInput;
 };
 
 export type AccountWhereInput = {
@@ -44,9 +160,22 @@ export type AccountWhereInput = {
   userId?: Maybe<StringFilter>;
 };
 
+export type AccountWhereUniqueInput = {
+  id?: Maybe<Scalars["String"]>;
+  providerId_providerAccountId?: Maybe<AccountProviderIdProviderAccountIdCompoundUniqueInput>;
+};
+
+export type BoolFieldUpdateOperationsInput = {
+  set?: Maybe<Scalars["Boolean"]>;
+};
+
 export type BoolFilter = {
   equals?: Maybe<Scalars["Boolean"]>;
   not?: Maybe<NestedBoolFilter>;
+};
+
+export type DateTimeFieldUpdateOperationsInput = {
+  set?: Maybe<Scalars["DateTime"]>;
 };
 
 export type DateTimeFilter = {
@@ -71,6 +200,10 @@ export type DateTimeNullableFilter = {
   notIn?: Maybe<Array<Scalars["DateTime"]>>;
 };
 
+export type EnumPriceTypeFieldUpdateOperationsInput = {
+  set?: Maybe<PriceType>;
+};
+
 export type EnumPriceTypeFilter = {
   equals?: Maybe<PriceType>;
   in?: Maybe<Array<PriceType>>;
@@ -78,11 +211,23 @@ export type EnumPriceTypeFilter = {
   notIn?: Maybe<Array<PriceType>>;
 };
 
+export type EnumSubscriptionStatusFieldUpdateOperationsInput = {
+  set?: Maybe<SubscriptionStatus>;
+};
+
 export type EnumSubscriptionStatusFilter = {
   equals?: Maybe<SubscriptionStatus>;
   in?: Maybe<Array<SubscriptionStatus>>;
   not?: Maybe<NestedEnumSubscriptionStatusFilter>;
   notIn?: Maybe<Array<SubscriptionStatus>>;
+};
+
+export type IntFieldUpdateOperationsInput = {
+  decrement?: Maybe<Scalars["Int"]>;
+  divide?: Maybe<Scalars["Int"]>;
+  increment?: Maybe<Scalars["Int"]>;
+  multiply?: Maybe<Scalars["Int"]>;
+  set?: Maybe<Scalars["Int"]>;
 };
 
 export type IntFilter = {
@@ -105,6 +250,8 @@ export type Mutation = {
   __typename?: "Mutation";
   deleteUser?: Maybe<User>;
   updateUser?: Maybe<User>;
+  upsertPrice?: Maybe<Price>;
+  upsertProduct?: Maybe<Product>;
 };
 
 export type MutationDeleteUserArgs = {
@@ -113,6 +260,18 @@ export type MutationDeleteUserArgs = {
 
 export type MutationUpdateUserArgs = {
   data: UserUpdateInput;
+};
+
+export type MutationUpsertPriceArgs = {
+  create: PriceCreateInput;
+  update: PriceUpdateInput;
+  where: PriceWhereUniqueInput;
+};
+
+export type MutationUpsertProductArgs = {
+  create: ProductCreateInput;
+  update: ProductUpdateInput;
+  where: ProductWhereUniqueInput;
 };
 
 export type NestedBoolFilter = {
@@ -195,6 +354,14 @@ export type NestedStringNullableFilter = {
   startsWith?: Maybe<Scalars["String"]>;
 };
 
+export type NullableDateTimeFieldUpdateOperationsInput = {
+  set?: Maybe<Scalars["DateTime"]>;
+};
+
+export type NullableStringFieldUpdateOperationsInput = {
+  set?: Maybe<Scalars["String"]>;
+};
+
 export type Price = {
   __typename?: "Price";
   active: Scalars["Boolean"];
@@ -202,6 +369,54 @@ export type Price = {
   id: Scalars["String"];
   metadata: Scalars["JSON"];
   productId: Scalars["String"];
+  recurring: Scalars["JSON"];
+  type: PriceType;
+  unitAmount: Scalars["Int"];
+};
+
+export type PriceCreateInput = {
+  active: Scalars["Boolean"];
+  currency: Scalars["String"];
+  id: Scalars["String"];
+  metadata: Scalars["JSON"];
+  product: ProductCreateNestedOneWithoutPricesInput;
+  recurring: Scalars["JSON"];
+  type: PriceType;
+  unitAmount: Scalars["Int"];
+};
+
+export type PriceCreateManyProductInput = {
+  active: Scalars["Boolean"];
+  currency: Scalars["String"];
+  id: Scalars["String"];
+  metadata: Scalars["JSON"];
+  recurring: Scalars["JSON"];
+  type: PriceType;
+  unitAmount: Scalars["Int"];
+};
+
+export type PriceCreateManyProductInputEnvelope = {
+  data: Array<PriceCreateManyProductInput>;
+  skipDuplicates?: Maybe<Scalars["Boolean"]>;
+};
+
+export type PriceCreateNestedManyWithoutProductInput = {
+  connect?: Maybe<Array<PriceWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<PriceCreateOrConnectWithoutProductInput>>;
+  create?: Maybe<Array<PriceCreateWithoutProductInput>>;
+  createMany?: Maybe<PriceCreateManyProductInputEnvelope>;
+};
+
+export type PriceCreateOrConnectWithoutProductInput = {
+  create: PriceCreateWithoutProductInput;
+  where: PriceWhereUniqueInput;
+};
+
+export type PriceCreateWithoutProductInput = {
+  active: Scalars["Boolean"];
+  currency: Scalars["String"];
+  id: Scalars["String"];
+  metadata: Scalars["JSON"];
   recurring: Scalars["JSON"];
   type: PriceType;
   unitAmount: Scalars["Int"];
@@ -240,10 +455,85 @@ export enum PriceScalarFieldEnum {
   UnitAmount = "unitAmount",
 }
 
+export type PriceScalarWhereInput = {
+  AND?: Maybe<Array<PriceScalarWhereInput>>;
+  NOT?: Maybe<Array<PriceScalarWhereInput>>;
+  OR?: Maybe<Array<PriceScalarWhereInput>>;
+  active?: Maybe<BoolFilter>;
+  currency?: Maybe<StringFilter>;
+  id?: Maybe<StringFilter>;
+  metadata?: Maybe<JsonFilter>;
+  productId?: Maybe<StringFilter>;
+  recurring?: Maybe<JsonFilter>;
+  type?: Maybe<EnumPriceTypeFilter>;
+  unitAmount?: Maybe<IntFilter>;
+};
+
 export enum PriceType {
   OneTime = "ONE_TIME",
   Recurring = "RECURRING",
 }
+
+export type PriceUpdateInput = {
+  active?: Maybe<BoolFieldUpdateOperationsInput>;
+  currency?: Maybe<StringFieldUpdateOperationsInput>;
+  id?: Maybe<StringFieldUpdateOperationsInput>;
+  metadata?: Maybe<Scalars["JSON"]>;
+  product?: Maybe<ProductUpdateOneRequiredWithoutPricesInput>;
+  recurring?: Maybe<Scalars["JSON"]>;
+  type?: Maybe<EnumPriceTypeFieldUpdateOperationsInput>;
+  unitAmount?: Maybe<IntFieldUpdateOperationsInput>;
+};
+
+export type PriceUpdateManyMutationInput = {
+  active?: Maybe<BoolFieldUpdateOperationsInput>;
+  currency?: Maybe<StringFieldUpdateOperationsInput>;
+  id?: Maybe<StringFieldUpdateOperationsInput>;
+  metadata?: Maybe<Scalars["JSON"]>;
+  recurring?: Maybe<Scalars["JSON"]>;
+  type?: Maybe<EnumPriceTypeFieldUpdateOperationsInput>;
+  unitAmount?: Maybe<IntFieldUpdateOperationsInput>;
+};
+
+export type PriceUpdateManyWithWhereWithoutProductInput = {
+  data: PriceUpdateManyMutationInput;
+  where: PriceScalarWhereInput;
+};
+
+export type PriceUpdateManyWithoutProductInput = {
+  connect?: Maybe<Array<PriceWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<PriceCreateOrConnectWithoutProductInput>>;
+  create?: Maybe<Array<PriceCreateWithoutProductInput>>;
+  createMany?: Maybe<PriceCreateManyProductInputEnvelope>;
+  delete?: Maybe<Array<PriceWhereUniqueInput>>;
+  deleteMany?: Maybe<Array<PriceScalarWhereInput>>;
+  disconnect?: Maybe<Array<PriceWhereUniqueInput>>;
+  set?: Maybe<Array<PriceWhereUniqueInput>>;
+  update?: Maybe<Array<PriceUpdateWithWhereUniqueWithoutProductInput>>;
+  updateMany?: Maybe<Array<PriceUpdateManyWithWhereWithoutProductInput>>;
+  upsert?: Maybe<Array<PriceUpsertWithWhereUniqueWithoutProductInput>>;
+};
+
+export type PriceUpdateWithWhereUniqueWithoutProductInput = {
+  data: PriceUpdateWithoutProductInput;
+  where: PriceWhereUniqueInput;
+};
+
+export type PriceUpdateWithoutProductInput = {
+  active?: Maybe<BoolFieldUpdateOperationsInput>;
+  currency?: Maybe<StringFieldUpdateOperationsInput>;
+  id?: Maybe<StringFieldUpdateOperationsInput>;
+  metadata?: Maybe<Scalars["JSON"]>;
+  recurring?: Maybe<Scalars["JSON"]>;
+  type?: Maybe<EnumPriceTypeFieldUpdateOperationsInput>;
+  unitAmount?: Maybe<IntFieldUpdateOperationsInput>;
+};
+
+export type PriceUpsertWithWhereUniqueWithoutProductInput = {
+  create: PriceCreateWithoutProductInput;
+  update: PriceUpdateWithoutProductInput;
+  where: PriceWhereUniqueInput;
+};
 
 export type PriceWhereInput = {
   AND?: Maybe<Array<PriceWhereInput>>;
@@ -290,6 +580,36 @@ export type ProductCount = {
   subscriptions: Scalars["Int"];
 };
 
+export type ProductCreateInput = {
+  active: Scalars["Boolean"];
+  id: Scalars["String"];
+  image: Scalars["String"];
+  metadata: Scalars["JSON"];
+  name: Scalars["String"];
+  prices?: Maybe<PriceCreateNestedManyWithoutProductInput>;
+  subscriptions?: Maybe<SubscriptionCreateNestedManyWithoutProductInput>;
+};
+
+export type ProductCreateNestedOneWithoutPricesInput = {
+  connect?: Maybe<ProductWhereUniqueInput>;
+  connectOrCreate?: Maybe<ProductCreateOrConnectWithoutPricesInput>;
+  create?: Maybe<ProductCreateWithoutPricesInput>;
+};
+
+export type ProductCreateOrConnectWithoutPricesInput = {
+  create: ProductCreateWithoutPricesInput;
+  where: ProductWhereUniqueInput;
+};
+
+export type ProductCreateWithoutPricesInput = {
+  active: Scalars["Boolean"];
+  id: Scalars["String"];
+  image: Scalars["String"];
+  metadata: Scalars["JSON"];
+  name: Scalars["String"];
+  subscriptions?: Maybe<SubscriptionCreateNestedManyWithoutProductInput>;
+};
+
 export type ProductOrderByWithRelationInput = {
   active?: Maybe<SortOrder>;
   id?: Maybe<SortOrder>;
@@ -312,6 +632,38 @@ export enum ProductScalarFieldEnum {
   Metadata = "metadata",
   Name = "name",
 }
+
+export type ProductUpdateInput = {
+  active?: Maybe<BoolFieldUpdateOperationsInput>;
+  id?: Maybe<StringFieldUpdateOperationsInput>;
+  image?: Maybe<StringFieldUpdateOperationsInput>;
+  metadata?: Maybe<Scalars["JSON"]>;
+  name?: Maybe<StringFieldUpdateOperationsInput>;
+  prices?: Maybe<PriceUpdateManyWithoutProductInput>;
+  subscriptions?: Maybe<SubscriptionUpdateManyWithoutProductInput>;
+};
+
+export type ProductUpdateOneRequiredWithoutPricesInput = {
+  connect?: Maybe<ProductWhereUniqueInput>;
+  connectOrCreate?: Maybe<ProductCreateOrConnectWithoutPricesInput>;
+  create?: Maybe<ProductCreateWithoutPricesInput>;
+  update?: Maybe<ProductUpdateWithoutPricesInput>;
+  upsert?: Maybe<ProductUpsertWithoutPricesInput>;
+};
+
+export type ProductUpdateWithoutPricesInput = {
+  active?: Maybe<BoolFieldUpdateOperationsInput>;
+  id?: Maybe<StringFieldUpdateOperationsInput>;
+  image?: Maybe<StringFieldUpdateOperationsInput>;
+  metadata?: Maybe<Scalars["JSON"]>;
+  name?: Maybe<StringFieldUpdateOperationsInput>;
+  subscriptions?: Maybe<SubscriptionUpdateManyWithoutProductInput>;
+};
+
+export type ProductUpsertWithoutPricesInput = {
+  create: ProductCreateWithoutPricesInput;
+  update: ProductUpdateWithoutPricesInput;
+};
 
 export type ProductWhereInput = {
   AND?: Maybe<Array<ProductWhereInput>>;
@@ -375,6 +727,23 @@ export enum QueryMode {
   Insensitive = "insensitive",
 }
 
+export type RoleCreateNestedManyWithoutUsersInput = {
+  connect?: Maybe<Array<RoleWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<RoleCreateOrConnectWithoutUsersInput>>;
+  create?: Maybe<Array<RoleCreateWithoutUsersInput>>;
+};
+
+export type RoleCreateOrConnectWithoutUsersInput = {
+  create: RoleCreateWithoutUsersInput;
+  where: RoleWhereUniqueInput;
+};
+
+export type RoleCreateWithoutUsersInput = {
+  createdAt?: Maybe<Scalars["DateTime"]>;
+  name: Scalars["String"];
+  updatedAt?: Maybe<Scalars["DateTime"]>;
+};
+
 export type RoleListRelationFilter = {
   every?: Maybe<RoleWhereInput>;
   none?: Maybe<RoleWhereInput>;
@@ -383,6 +752,57 @@ export type RoleListRelationFilter = {
 
 export type RoleOrderByRelationAggregateInput = {
   _count?: Maybe<SortOrder>;
+};
+
+export type RoleScalarWhereInput = {
+  AND?: Maybe<Array<RoleScalarWhereInput>>;
+  NOT?: Maybe<Array<RoleScalarWhereInput>>;
+  OR?: Maybe<Array<RoleScalarWhereInput>>;
+  createdAt?: Maybe<DateTimeFilter>;
+  id?: Maybe<IntFilter>;
+  name?: Maybe<StringFilter>;
+  updatedAt?: Maybe<DateTimeFilter>;
+};
+
+export type RoleUpdateManyMutationInput = {
+  createdAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
+  name?: Maybe<StringFieldUpdateOperationsInput>;
+  updatedAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
+};
+
+export type RoleUpdateManyWithWhereWithoutUsersInput = {
+  data: RoleUpdateManyMutationInput;
+  where: RoleScalarWhereInput;
+};
+
+export type RoleUpdateManyWithoutUsersInput = {
+  connect?: Maybe<Array<RoleWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<RoleCreateOrConnectWithoutUsersInput>>;
+  create?: Maybe<Array<RoleCreateWithoutUsersInput>>;
+  delete?: Maybe<Array<RoleWhereUniqueInput>>;
+  deleteMany?: Maybe<Array<RoleScalarWhereInput>>;
+  disconnect?: Maybe<Array<RoleWhereUniqueInput>>;
+  set?: Maybe<Array<RoleWhereUniqueInput>>;
+  update?: Maybe<Array<RoleUpdateWithWhereUniqueWithoutUsersInput>>;
+  updateMany?: Maybe<Array<RoleUpdateManyWithWhereWithoutUsersInput>>;
+  upsert?: Maybe<Array<RoleUpsertWithWhereUniqueWithoutUsersInput>>;
+};
+
+export type RoleUpdateWithWhereUniqueWithoutUsersInput = {
+  data: RoleUpdateWithoutUsersInput;
+  where: RoleWhereUniqueInput;
+};
+
+export type RoleUpdateWithoutUsersInput = {
+  createdAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
+  name?: Maybe<StringFieldUpdateOperationsInput>;
+  updatedAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
+};
+
+export type RoleUpsertWithWhereUniqueWithoutUsersInput = {
+  create: RoleCreateWithoutUsersInput;
+  update: RoleUpdateWithoutUsersInput;
+  where: RoleWhereUniqueInput;
 };
 
 export type RoleWhereInput = {
@@ -396,6 +816,46 @@ export type RoleWhereInput = {
   users?: Maybe<UserListRelationFilter>;
 };
 
+export type RoleWhereUniqueInput = {
+  id?: Maybe<Scalars["Int"]>;
+  name?: Maybe<Scalars["String"]>;
+};
+
+export type SessionCreateManyUserInput = {
+  accessToken: Scalars["String"];
+  createdAt?: Maybe<Scalars["DateTime"]>;
+  expires: Scalars["DateTime"];
+  id?: Maybe<Scalars["String"]>;
+  sessionToken: Scalars["String"];
+  updatedAt?: Maybe<Scalars["DateTime"]>;
+};
+
+export type SessionCreateManyUserInputEnvelope = {
+  data: Array<SessionCreateManyUserInput>;
+  skipDuplicates?: Maybe<Scalars["Boolean"]>;
+};
+
+export type SessionCreateNestedManyWithoutUserInput = {
+  connect?: Maybe<Array<SessionWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<SessionCreateOrConnectWithoutUserInput>>;
+  create?: Maybe<Array<SessionCreateWithoutUserInput>>;
+  createMany?: Maybe<SessionCreateManyUserInputEnvelope>;
+};
+
+export type SessionCreateOrConnectWithoutUserInput = {
+  create: SessionCreateWithoutUserInput;
+  where: SessionWhereUniqueInput;
+};
+
+export type SessionCreateWithoutUserInput = {
+  accessToken: Scalars["String"];
+  createdAt?: Maybe<Scalars["DateTime"]>;
+  expires: Scalars["DateTime"];
+  id?: Maybe<Scalars["String"]>;
+  sessionToken: Scalars["String"];
+  updatedAt?: Maybe<Scalars["DateTime"]>;
+};
+
 export type SessionListRelationFilter = {
   every?: Maybe<SessionWhereInput>;
   none?: Maybe<SessionWhereInput>;
@@ -404,6 +864,67 @@ export type SessionListRelationFilter = {
 
 export type SessionOrderByRelationAggregateInput = {
   _count?: Maybe<SortOrder>;
+};
+
+export type SessionScalarWhereInput = {
+  AND?: Maybe<Array<SessionScalarWhereInput>>;
+  NOT?: Maybe<Array<SessionScalarWhereInput>>;
+  OR?: Maybe<Array<SessionScalarWhereInput>>;
+  accessToken?: Maybe<StringFilter>;
+  createdAt?: Maybe<DateTimeFilter>;
+  expires?: Maybe<DateTimeFilter>;
+  id?: Maybe<StringFilter>;
+  sessionToken?: Maybe<StringFilter>;
+  updatedAt?: Maybe<DateTimeFilter>;
+  userId?: Maybe<StringFilter>;
+};
+
+export type SessionUpdateManyMutationInput = {
+  accessToken?: Maybe<StringFieldUpdateOperationsInput>;
+  createdAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
+  expires?: Maybe<DateTimeFieldUpdateOperationsInput>;
+  id?: Maybe<StringFieldUpdateOperationsInput>;
+  sessionToken?: Maybe<StringFieldUpdateOperationsInput>;
+  updatedAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
+};
+
+export type SessionUpdateManyWithWhereWithoutUserInput = {
+  data: SessionUpdateManyMutationInput;
+  where: SessionScalarWhereInput;
+};
+
+export type SessionUpdateManyWithoutUserInput = {
+  connect?: Maybe<Array<SessionWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<SessionCreateOrConnectWithoutUserInput>>;
+  create?: Maybe<Array<SessionCreateWithoutUserInput>>;
+  createMany?: Maybe<SessionCreateManyUserInputEnvelope>;
+  delete?: Maybe<Array<SessionWhereUniqueInput>>;
+  deleteMany?: Maybe<Array<SessionScalarWhereInput>>;
+  disconnect?: Maybe<Array<SessionWhereUniqueInput>>;
+  set?: Maybe<Array<SessionWhereUniqueInput>>;
+  update?: Maybe<Array<SessionUpdateWithWhereUniqueWithoutUserInput>>;
+  updateMany?: Maybe<Array<SessionUpdateManyWithWhereWithoutUserInput>>;
+  upsert?: Maybe<Array<SessionUpsertWithWhereUniqueWithoutUserInput>>;
+};
+
+export type SessionUpdateWithWhereUniqueWithoutUserInput = {
+  data: SessionUpdateWithoutUserInput;
+  where: SessionWhereUniqueInput;
+};
+
+export type SessionUpdateWithoutUserInput = {
+  accessToken?: Maybe<StringFieldUpdateOperationsInput>;
+  createdAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
+  expires?: Maybe<DateTimeFieldUpdateOperationsInput>;
+  id?: Maybe<StringFieldUpdateOperationsInput>;
+  sessionToken?: Maybe<StringFieldUpdateOperationsInput>;
+  updatedAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
+};
+
+export type SessionUpsertWithWhereUniqueWithoutUserInput = {
+  create: SessionCreateWithoutUserInput;
+  update: SessionUpdateWithoutUserInput;
+  where: SessionWhereUniqueInput;
 };
 
 export type SessionWhereInput = {
@@ -420,10 +941,20 @@ export type SessionWhereInput = {
   userId?: Maybe<StringFilter>;
 };
 
+export type SessionWhereUniqueInput = {
+  accessToken?: Maybe<Scalars["String"]>;
+  id?: Maybe<Scalars["String"]>;
+  sessionToken?: Maybe<Scalars["String"]>;
+};
+
 export enum SortOrder {
   Asc = "asc",
   Desc = "desc",
 }
+
+export type StringFieldUpdateOperationsInput = {
+  set?: Maybe<Scalars["String"]>;
+};
 
 export type StringFilter = {
   contains?: Maybe<Scalars["String"]>;
@@ -453,6 +984,85 @@ export type StringNullableFilter = {
   not?: Maybe<NestedStringNullableFilter>;
   notIn?: Maybe<Array<Scalars["String"]>>;
   startsWith?: Maybe<Scalars["String"]>;
+};
+
+export type Subscription = {
+  __typename?: "Subscription";
+  amount: Scalars["Int"];
+  cancelAt?: Maybe<Scalars["DateTime"]>;
+  cancelAtPeriodEnd: Scalars["Boolean"];
+  cancelledAt?: Maybe<Scalars["DateTime"]>;
+  created: Scalars["DateTime"];
+  createdAt: Scalars["DateTime"];
+  currency: Scalars["String"];
+  currentPeriodEnd: Scalars["DateTime"];
+  currentPeriodStart: Scalars["DateTime"];
+  endedAt?: Maybe<Scalars["DateTime"]>;
+  id: Scalars["String"];
+  metadata: Scalars["JSON"];
+  productId: Scalars["String"];
+  status: SubscriptionStatus;
+  trialEnd?: Maybe<Scalars["DateTime"]>;
+  trialStart?: Maybe<Scalars["DateTime"]>;
+  updatedAt: Scalars["DateTime"];
+  userId: Scalars["String"];
+};
+
+export type SubscriptionCreateManyProductInput = {
+  amount: Scalars["Int"];
+  cancelAt?: Maybe<Scalars["DateTime"]>;
+  cancelAtPeriodEnd: Scalars["Boolean"];
+  cancelledAt?: Maybe<Scalars["DateTime"]>;
+  created: Scalars["DateTime"];
+  createdAt?: Maybe<Scalars["DateTime"]>;
+  currency: Scalars["String"];
+  currentPeriodEnd: Scalars["DateTime"];
+  currentPeriodStart: Scalars["DateTime"];
+  endedAt?: Maybe<Scalars["DateTime"]>;
+  id: Scalars["String"];
+  metadata: Scalars["JSON"];
+  status: SubscriptionStatus;
+  trialEnd?: Maybe<Scalars["DateTime"]>;
+  trialStart?: Maybe<Scalars["DateTime"]>;
+  updatedAt?: Maybe<Scalars["DateTime"]>;
+  userId: Scalars["String"];
+};
+
+export type SubscriptionCreateManyProductInputEnvelope = {
+  data: Array<SubscriptionCreateManyProductInput>;
+  skipDuplicates?: Maybe<Scalars["Boolean"]>;
+};
+
+export type SubscriptionCreateNestedManyWithoutProductInput = {
+  connect?: Maybe<Array<SubscriptionWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<SubscriptionCreateOrConnectWithoutProductInput>>;
+  create?: Maybe<Array<SubscriptionCreateWithoutProductInput>>;
+  createMany?: Maybe<SubscriptionCreateManyProductInputEnvelope>;
+};
+
+export type SubscriptionCreateOrConnectWithoutProductInput = {
+  create: SubscriptionCreateWithoutProductInput;
+  where: SubscriptionWhereUniqueInput;
+};
+
+export type SubscriptionCreateWithoutProductInput = {
+  amount: Scalars["Int"];
+  cancelAt?: Maybe<Scalars["DateTime"]>;
+  cancelAtPeriodEnd: Scalars["Boolean"];
+  cancelledAt?: Maybe<Scalars["DateTime"]>;
+  created: Scalars["DateTime"];
+  createdAt?: Maybe<Scalars["DateTime"]>;
+  currency: Scalars["String"];
+  currentPeriodEnd: Scalars["DateTime"];
+  currentPeriodStart: Scalars["DateTime"];
+  endedAt?: Maybe<Scalars["DateTime"]>;
+  id: Scalars["String"];
+  metadata: Scalars["JSON"];
+  status: SubscriptionStatus;
+  trialEnd?: Maybe<Scalars["DateTime"]>;
+  trialStart?: Maybe<Scalars["DateTime"]>;
+  updatedAt?: Maybe<Scalars["DateTime"]>;
+  user: UserCreateNestedOneWithoutSubscriptionInput;
 };
 
 export type SubscriptionListRelationFilter = {
@@ -493,6 +1103,30 @@ export type SubscriptionRelationFilter = {
   isNot?: Maybe<SubscriptionWhereInput>;
 };
 
+export type SubscriptionScalarWhereInput = {
+  AND?: Maybe<Array<SubscriptionScalarWhereInput>>;
+  NOT?: Maybe<Array<SubscriptionScalarWhereInput>>;
+  OR?: Maybe<Array<SubscriptionScalarWhereInput>>;
+  amount?: Maybe<IntFilter>;
+  cancelAt?: Maybe<DateTimeNullableFilter>;
+  cancelAtPeriodEnd?: Maybe<BoolFilter>;
+  cancelledAt?: Maybe<DateTimeNullableFilter>;
+  created?: Maybe<DateTimeFilter>;
+  createdAt?: Maybe<DateTimeFilter>;
+  currency?: Maybe<StringFilter>;
+  currentPeriodEnd?: Maybe<DateTimeFilter>;
+  currentPeriodStart?: Maybe<DateTimeFilter>;
+  endedAt?: Maybe<DateTimeNullableFilter>;
+  id?: Maybe<StringFilter>;
+  metadata?: Maybe<JsonFilter>;
+  productId?: Maybe<StringFilter>;
+  status?: Maybe<EnumSubscriptionStatusFilter>;
+  trialEnd?: Maybe<DateTimeNullableFilter>;
+  trialStart?: Maybe<DateTimeNullableFilter>;
+  updatedAt?: Maybe<DateTimeFilter>;
+  userId?: Maybe<StringFilter>;
+};
+
 export enum SubscriptionStatus {
   Active = "ACTIVE",
   Cancelled = "CANCELLED",
@@ -502,6 +1136,75 @@ export enum SubscriptionStatus {
   Trialling = "TRIALLING",
   Unpaid = "UNPAID",
 }
+
+export type SubscriptionUpdateManyMutationInput = {
+  amount?: Maybe<IntFieldUpdateOperationsInput>;
+  cancelAt?: Maybe<NullableDateTimeFieldUpdateOperationsInput>;
+  cancelAtPeriodEnd?: Maybe<BoolFieldUpdateOperationsInput>;
+  cancelledAt?: Maybe<NullableDateTimeFieldUpdateOperationsInput>;
+  created?: Maybe<DateTimeFieldUpdateOperationsInput>;
+  createdAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
+  currency?: Maybe<StringFieldUpdateOperationsInput>;
+  currentPeriodEnd?: Maybe<DateTimeFieldUpdateOperationsInput>;
+  currentPeriodStart?: Maybe<DateTimeFieldUpdateOperationsInput>;
+  endedAt?: Maybe<NullableDateTimeFieldUpdateOperationsInput>;
+  id?: Maybe<StringFieldUpdateOperationsInput>;
+  metadata?: Maybe<Scalars["JSON"]>;
+  status?: Maybe<EnumSubscriptionStatusFieldUpdateOperationsInput>;
+  trialEnd?: Maybe<NullableDateTimeFieldUpdateOperationsInput>;
+  trialStart?: Maybe<NullableDateTimeFieldUpdateOperationsInput>;
+  updatedAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
+};
+
+export type SubscriptionUpdateManyWithWhereWithoutProductInput = {
+  data: SubscriptionUpdateManyMutationInput;
+  where: SubscriptionScalarWhereInput;
+};
+
+export type SubscriptionUpdateManyWithoutProductInput = {
+  connect?: Maybe<Array<SubscriptionWhereUniqueInput>>;
+  connectOrCreate?: Maybe<Array<SubscriptionCreateOrConnectWithoutProductInput>>;
+  create?: Maybe<Array<SubscriptionCreateWithoutProductInput>>;
+  createMany?: Maybe<SubscriptionCreateManyProductInputEnvelope>;
+  delete?: Maybe<Array<SubscriptionWhereUniqueInput>>;
+  deleteMany?: Maybe<Array<SubscriptionScalarWhereInput>>;
+  disconnect?: Maybe<Array<SubscriptionWhereUniqueInput>>;
+  set?: Maybe<Array<SubscriptionWhereUniqueInput>>;
+  update?: Maybe<Array<SubscriptionUpdateWithWhereUniqueWithoutProductInput>>;
+  updateMany?: Maybe<Array<SubscriptionUpdateManyWithWhereWithoutProductInput>>;
+  upsert?: Maybe<Array<SubscriptionUpsertWithWhereUniqueWithoutProductInput>>;
+};
+
+export type SubscriptionUpdateWithWhereUniqueWithoutProductInput = {
+  data: SubscriptionUpdateWithoutProductInput;
+  where: SubscriptionWhereUniqueInput;
+};
+
+export type SubscriptionUpdateWithoutProductInput = {
+  amount?: Maybe<IntFieldUpdateOperationsInput>;
+  cancelAt?: Maybe<NullableDateTimeFieldUpdateOperationsInput>;
+  cancelAtPeriodEnd?: Maybe<BoolFieldUpdateOperationsInput>;
+  cancelledAt?: Maybe<NullableDateTimeFieldUpdateOperationsInput>;
+  created?: Maybe<DateTimeFieldUpdateOperationsInput>;
+  createdAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
+  currency?: Maybe<StringFieldUpdateOperationsInput>;
+  currentPeriodEnd?: Maybe<DateTimeFieldUpdateOperationsInput>;
+  currentPeriodStart?: Maybe<DateTimeFieldUpdateOperationsInput>;
+  endedAt?: Maybe<NullableDateTimeFieldUpdateOperationsInput>;
+  id?: Maybe<StringFieldUpdateOperationsInput>;
+  metadata?: Maybe<Scalars["JSON"]>;
+  status?: Maybe<EnumSubscriptionStatusFieldUpdateOperationsInput>;
+  trialEnd?: Maybe<NullableDateTimeFieldUpdateOperationsInput>;
+  trialStart?: Maybe<NullableDateTimeFieldUpdateOperationsInput>;
+  updatedAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
+  user?: Maybe<UserUpdateOneRequiredWithoutSubscriptionInput>;
+};
+
+export type SubscriptionUpsertWithWhereUniqueWithoutProductInput = {
+  create: SubscriptionCreateWithoutProductInput;
+  update: SubscriptionUpdateWithoutProductInput;
+  where: SubscriptionWhereUniqueInput;
+};
 
 export type SubscriptionWhereInput = {
   AND?: Maybe<Array<SubscriptionWhereInput>>;
@@ -529,6 +1232,10 @@ export type SubscriptionWhereInput = {
   userId?: Maybe<StringFilter>;
 };
 
+export type SubscriptionWhereUniqueInput = {
+  id?: Maybe<Scalars["String"]>;
+};
+
 export type User = {
   __typename?: "User";
   _count?: Maybe<UserCount>;
@@ -539,6 +1246,7 @@ export type User = {
   image?: Maybe<Scalars["String"]>;
   name?: Maybe<Scalars["String"]>;
   stripeCustomerId?: Maybe<Scalars["String"]>;
+  subscription?: Maybe<Subscription>;
   updatedAt: Scalars["DateTime"];
 };
 
@@ -547,6 +1255,31 @@ export type UserCount = {
   accounts: Scalars["Int"];
   roles: Scalars["Int"];
   sessions: Scalars["Int"];
+};
+
+export type UserCreateNestedOneWithoutSubscriptionInput = {
+  connect?: Maybe<UserWhereUniqueInput>;
+  connectOrCreate?: Maybe<UserCreateOrConnectWithoutSubscriptionInput>;
+  create?: Maybe<UserCreateWithoutSubscriptionInput>;
+};
+
+export type UserCreateOrConnectWithoutSubscriptionInput = {
+  create: UserCreateWithoutSubscriptionInput;
+  where: UserWhereUniqueInput;
+};
+
+export type UserCreateWithoutSubscriptionInput = {
+  accounts?: Maybe<AccountCreateNestedManyWithoutUserInput>;
+  createdAt?: Maybe<Scalars["DateTime"]>;
+  email?: Maybe<Scalars["String"]>;
+  emailVerified?: Maybe<Scalars["DateTime"]>;
+  id?: Maybe<Scalars["String"]>;
+  image?: Maybe<Scalars["String"]>;
+  name?: Maybe<Scalars["String"]>;
+  roles?: Maybe<RoleCreateNestedManyWithoutUsersInput>;
+  sessions?: Maybe<SessionCreateNestedManyWithoutUserInput>;
+  stripeCustomerId?: Maybe<Scalars["String"]>;
+  updatedAt?: Maybe<Scalars["DateTime"]>;
 };
 
 export type UserListRelationFilter = {
@@ -590,6 +1323,33 @@ export type UserUpdateInput = {
   name: Scalars["String"];
 };
 
+export type UserUpdateOneRequiredWithoutSubscriptionInput = {
+  connect?: Maybe<UserWhereUniqueInput>;
+  connectOrCreate?: Maybe<UserCreateOrConnectWithoutSubscriptionInput>;
+  create?: Maybe<UserCreateWithoutSubscriptionInput>;
+  update?: Maybe<UserUpdateWithoutSubscriptionInput>;
+  upsert?: Maybe<UserUpsertWithoutSubscriptionInput>;
+};
+
+export type UserUpdateWithoutSubscriptionInput = {
+  accounts?: Maybe<AccountUpdateManyWithoutUserInput>;
+  createdAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
+  email?: Maybe<NullableStringFieldUpdateOperationsInput>;
+  emailVerified?: Maybe<NullableDateTimeFieldUpdateOperationsInput>;
+  id?: Maybe<StringFieldUpdateOperationsInput>;
+  image?: Maybe<NullableStringFieldUpdateOperationsInput>;
+  name?: Maybe<NullableStringFieldUpdateOperationsInput>;
+  roles?: Maybe<RoleUpdateManyWithoutUsersInput>;
+  sessions?: Maybe<SessionUpdateManyWithoutUserInput>;
+  stripeCustomerId?: Maybe<NullableStringFieldUpdateOperationsInput>;
+  updatedAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
+};
+
+export type UserUpsertWithoutSubscriptionInput = {
+  create: UserCreateWithoutSubscriptionInput;
+  update: UserUpdateWithoutSubscriptionInput;
+};
+
 export type UserWhereInput = {
   AND?: Maybe<Array<UserWhereInput>>;
   NOT?: Maybe<Array<UserWhereInput>>;
@@ -614,14 +1374,6 @@ export type UserWhereUniqueInput = {
   stripeCustomerId?: Maybe<Scalars["String"]>;
 };
 
-export type ProductCardProductFragmentFragment = {
-  __typename?: "Product";
-  id: string;
-  name: string;
-  metadata: any;
-  prices: Array<{ __typename?: "Price"; currency: string; recurring: any; unitAmount: number }>;
-};
-
 export type ProductsQueryVariables = Exact<{ [key: string]: never }>;
 
 export type ProductsQuery = {
@@ -633,13 +1385,6 @@ export type ProductsQuery = {
     metadata: any;
     prices: Array<{ __typename?: "Price"; currency: string; recurring: any; unitAmount: number }>;
   }>;
-};
-
-export type ProfileSettingsFormUserFragmentFragment = {
-  __typename?: "User";
-  name?: Maybe<string>;
-  email?: Maybe<string>;
-  image?: Maybe<string>;
 };
 
 export type ProfileSettingsQueryVariables = Exact<{ [key: string]: never }>;
@@ -661,6 +1406,56 @@ export type UpdateProfileSettingsMutation = {
     name?: Maybe<string>;
     email?: Maybe<string>;
     image?: Maybe<string>;
+  }>;
+};
+
+export type ProductCardProductFragmentFragment = {
+  __typename?: "Product";
+  id: string;
+  name: string;
+  metadata: any;
+  prices: Array<{ __typename?: "Price"; currency: string; recurring: any; unitAmount: number }>;
+};
+
+export type ProfileSettingsFormUserFragmentFragment = {
+  __typename?: "User";
+  name?: Maybe<string>;
+  email?: Maybe<string>;
+  image?: Maybe<string>;
+};
+
+export type UpsertPriceMutationVariables = Exact<{
+  where: PriceWhereUniqueInput;
+  create: PriceCreateInput;
+  update: PriceUpdateInput;
+}>;
+
+export type UpsertPriceMutation = {
+  __typename?: "Mutation";
+  upsertPrice?: Maybe<{ __typename?: "Price"; id: string }>;
+};
+
+export type UpsertProductMutationVariables = Exact<{
+  where: ProductWhereUniqueInput;
+  create: ProductCreateInput;
+  update: ProductUpdateInput;
+}>;
+
+export type UpsertProductMutation = {
+  __typename?: "Mutation";
+  upsertProduct?: Maybe<{ __typename?: "Product"; id: string }>;
+};
+
+export type UpdateUserSubscriptionMutationVariables = Exact<{
+  data: UserUpdateInput;
+}>;
+
+export type UpdateUserSubscriptionMutation = {
+  __typename?: "Mutation";
+  updateUser?: Maybe<{
+    __typename?: "User";
+    id: string;
+    subscription?: Maybe<{ __typename?: "Subscription"; id: string }>;
   }>;
 };
 
@@ -810,3 +1605,176 @@ export const UpdateProfileSettingsDocument = {
     },
   ],
 } as unknown as DocumentNode<UpdateProfileSettingsMutation, UpdateProfileSettingsMutationVariables>;
+export const UpsertPriceDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "UpsertPrice" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "where" } },
+          type: {
+            kind: "NonNullType",
+            type: { kind: "NamedType", name: { kind: "Name", value: "PriceWhereUniqueInput" } },
+          },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "create" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "PriceCreateInput" } } },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "update" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "PriceUpdateInput" } } },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "upsertPrice" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "where" },
+                value: { kind: "Variable", name: { kind: "Name", value: "where" } },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "create" },
+                value: { kind: "Variable", name: { kind: "Name", value: "create" } },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "update" },
+                value: { kind: "Variable", name: { kind: "Name", value: "update" } },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "Field", name: { kind: "Name", value: "id" } }],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<UpsertPriceMutation, UpsertPriceMutationVariables>;
+export const UpsertProductDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "UpsertProduct" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "where" } },
+          type: {
+            kind: "NonNullType",
+            type: { kind: "NamedType", name: { kind: "Name", value: "ProductWhereUniqueInput" } },
+          },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "create" } },
+          type: {
+            kind: "NonNullType",
+            type: { kind: "NamedType", name: { kind: "Name", value: "ProductCreateInput" } },
+          },
+        },
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "update" } },
+          type: {
+            kind: "NonNullType",
+            type: { kind: "NamedType", name: { kind: "Name", value: "ProductUpdateInput" } },
+          },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "upsertProduct" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "where" },
+                value: { kind: "Variable", name: { kind: "Name", value: "where" } },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "create" },
+                value: { kind: "Variable", name: { kind: "Name", value: "create" } },
+              },
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "update" },
+                value: { kind: "Variable", name: { kind: "Name", value: "update" } },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [{ kind: "Field", name: { kind: "Name", value: "id" } }],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<UpsertProductMutation, UpsertProductMutationVariables>;
+export const UpdateUserSubscriptionDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "UpdateUserSubscription" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "data" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "UserUpdateInput" } } },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "updateUser" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "data" },
+                value: { kind: "Variable", name: { kind: "Name", value: "data" } },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "subscription" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [{ kind: "Field", name: { kind: "Name", value: "id" } }],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<UpdateUserSubscriptionMutation, UpdateUserSubscriptionMutationVariables>;
