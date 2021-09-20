@@ -1,8 +1,5 @@
-// import { join } from "path";
 import { PrismaClient } from "@prisma/client";
-// import { ApolloServer } from "apollo-server-express";
 import { createTestClient, TestQuery, TestSetOptions } from "apollo-server-integration-testing";
-import { execSync } from "child_process";
 import { createApolloServer } from "../create-apollo-server/createApolloServer";
 import { prisma } from "../prisma";
 
@@ -13,6 +10,7 @@ type TestContext = {
     setOptions: TestSetOptions;
   };
   prisma: PrismaClient;
+  s;
 };
 
 export function createTestContext(): TestContext {
@@ -72,7 +70,7 @@ function prismaTestContext() {
     async beforeAll() {
       // Run the migrations to ensure our schema has the required structure
       // execSync(`${prismaBinary} db push`);
-      execSync("npx prisma db push");
+      // execSync("npx prisma db push");
     },
 
     async beforeEach() {
@@ -83,16 +81,16 @@ function prismaTestContext() {
 
     async afterEach() {
       if (prismaClient) {
-        // Drop the schema after the tests have completed
-        const tableNames: [{ tablename: string }] =
-          await prismaClient.$queryRaw`SELECT tablename FROM pg_tables WHERE schemaname='public'`;
-
-        for (const { tablename } of tableNames) {
+        const tables = await prismaClient.$queryRawUnsafe(`SELECT tablename FROM pg_tables WHERE schemaname='public';`);
+        for (const { tablename } of tables as any) {
           if (tablename !== "_prisma_migrations") {
-            await prismaClient.$queryRaw`TRUNCATE TABLE "public"."${tablename}" CASCADE;`;
+            try {
+              await prismaClient.$queryRawUnsafe(`TRUNCATE TABLE "public"."${tablename}" CASCADE;`);
+            } catch (error) {
+              console.log({ error });
+            }
           }
         }
-
         // Release the Prisma Client connection
         await prismaClient.$disconnect();
       }
