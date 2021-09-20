@@ -1,6 +1,13 @@
 import { Context } from "@boilerplate/shared/types";
-import { DeleteUserArgs, FindFirstUserArgs, FindManyUserArgs, FindUniqueUserArgs, User } from "@generated/type-graphql";
-import { Args, Authorized, Ctx, Mutation, Query, Resolver } from "type-graphql";
+import {
+  DeleteUserArgs,
+  FindFirstUserArgs,
+  FindManyUserArgs,
+  FindUniqueUserArgs,
+  Subscription,
+  User,
+} from "@generated/type-graphql";
+import { Args, Authorized, Ctx, FieldResolver, Mutation, Query, Resolver, Root } from "type-graphql";
 import { UpdateUserArgs } from "./UpdateUserArgs";
 
 @Resolver(() => User)
@@ -43,5 +50,16 @@ export class UserResolver {
     if (!user) return null;
 
     return prisma.user.findUnique({ where: { id: user.id } });
+  }
+
+  @FieldResolver(() => Subscription, { nullable: true })
+  async subscription(@Root() user: User, @Ctx() { prisma }: Context): Promise<Subscription | null> {
+    return prisma.user
+      .findUnique({
+        where: {
+          id: user.id,
+        },
+      })
+      .subscription({});
   }
 }
