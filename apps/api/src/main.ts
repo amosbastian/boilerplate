@@ -1,6 +1,7 @@
 import { createApolloServer, prisma } from "@boilerplate/api/utility";
 import * as cookieParser from "cookie-parser";
 import * as express from "express";
+import { addStripeWebhook } from "./app/stripe";
 
 const main = async () => {
   const apolloServer = await createApolloServer(prisma);
@@ -8,6 +9,16 @@ const main = async () => {
 
   const app = express();
   app.use(cookieParser());
+
+  app.use((req, res, next) => {
+    if (req.originalUrl === "/api/stripe") {
+      next();
+    } else {
+      express.json()(req, res, next);
+    }
+  });
+
+  addStripeWebhook(app);
 
   apolloServer.applyMiddleware({
     app,

@@ -84,25 +84,26 @@ enum PriceType {
 }
 
 model Price {
-  id         String    @id
-  active     Boolean
-  product    Product   @relation(fields: [productId], references: [id])
-  productId  String
-  unitAmount Int       @map(name: "unit_amount")
-  type       PriceType
-  recurring  Json
-  metadata   Json
-  currency   String    @db.VarChar(3)
+  id            String         @id
+  active        Boolean
+  product       Product        @relation(fields: [productId], references: [id])
+  productId     String
+  unitAmount    Int            @map(name: "unit_amount")
+  type          PriceType
+  recurring     Json
+  metadata      Json
+  currency      String         @db.VarChar(3)
+  subscriptions Subscription[]
 }
 
 model Product {
-  id            String         @id
-  name          String
-  active        Boolean
-  image         String
-  metadata      Json
-  subscriptions Subscription[]
-  prices        Price[]
+  id          String  @id
+  name        String
+  active      Boolean
+  image       String?
+  metadata    Json
+  description String?
+  prices      Price[]
 }
 
 enum SubscriptionStatus {
@@ -119,12 +120,9 @@ model Subscription {
   id                 String             @id
   user               User               @relation(fields: [userId], references: [id])
   userId             String
-  product            Product            @relation(fields: [productId], references: [id])
-  productId          String
+  price              Price              @relation(fields: [priceId], references: [id])
+  priceId            String
   status             SubscriptionStatus
-  amount             Int
-  created            DateTime           @db.Timestamptz
-  currency           String             @db.VarChar(3)
   cancelAtPeriodEnd  Boolean            @map(name: "cancel_at_period_end")
   currentPeriodEnd   DateTime           @map(name: "current_period_end") @db.Timestamptz
   currentPeriodStart DateTime           @map(name: "current_period_start") @db.Timestamptz

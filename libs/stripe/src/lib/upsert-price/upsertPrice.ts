@@ -2,11 +2,14 @@ import { prisma } from "@boilerplate/api/utility";
 import { PriceType } from "@boilerplate/generated/graphql";
 import Stripe from "stripe";
 
-export const upsertPrice = async (
-  price: Pick<Stripe.Price, "id" | "product" | "active" | "currency" | "type" | "unit_amount" | "metadata"> & {
-    recurring: Pick<Stripe.Price.Recurring, "interval" | "interval_count">;
-  },
-) => {
+export type UpsertPriceInput = Pick<
+  Stripe.Price,
+  "id" | "product" | "active" | "currency" | "type" | "unit_amount" | "metadata"
+> & {
+  recurring: Pick<Stripe.Price.Recurring, "interval" | "interval_count">;
+};
+
+export const upsertPrice = async (price: UpsertPriceInput) => {
   const input = {
     id: price.id,
     product: {
