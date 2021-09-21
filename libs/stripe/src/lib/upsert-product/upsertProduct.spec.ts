@@ -2,8 +2,6 @@ import { upsertProduct } from "./upsertProduct";
 import { createTestContext, createProduct } from "@boilerplate/api/utility";
 import * as faker from "faker";
 
-jest.mock("@boilerplate/shared/utility/graphql");
-
 const ctx = createTestContext();
 
 describe("upsertProduct", () => {
@@ -38,7 +36,6 @@ describe("upsertProduct", () => {
 
     const upsertedProduct = await ctx.prisma.product.findUnique({ where: { id: product.id } });
 
-    console.log(product, upsertedProduct);
     expect(upsertedProduct).toBeDefined();
     expect(upsertedProduct?.active).not.toEqual(product.active);
   });
