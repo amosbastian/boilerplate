@@ -104,6 +104,9 @@
       "tags": [],
       "implicitDependencies": ["site-ui"]
     },
+    "site-utility": {
+      "tags": []
+    },
     "stripe": {
       "tags": []
     }

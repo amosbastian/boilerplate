@@ -23,7 +23,5 @@ export const createPrice = async (
     defaultProps.product = { connect: { id: product.id } };
   }
 
-  console.log({ ...defaultProps, ...props });
-
   return prisma.price.create({ data: { ...defaultProps, ...props } as PriceCreateInput });
 };

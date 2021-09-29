@@ -10,7 +10,6 @@ type TestContext = {
     setOptions: TestSetOptions;
   };
   prisma: PrismaClient;
-  s;
 };
 
 export function createTestContext(): TestContext {

@@ -722,6 +722,28 @@
         }
       }
     },
+    "site-utility": {
+      "root": "libs/site/utility",
+      "sourceRoot": "libs/site/utility/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["libs/site/utility/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/site/utility"],
+          "options": {
+            "jestConfig": "libs/site/utility/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "stripe": {
       "root": "libs/stripe",
       "sourceRoot": "libs/stripe/src",

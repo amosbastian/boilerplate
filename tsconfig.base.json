@@ -32,6 +32,7 @@
       "@boilerplate/site-feature": ["libs/site/feature/src/index.ts"],
       "@boilerplate/site/i18n": ["libs/site/i18n/src/index.ts"],
       "@boilerplate/site/ui": ["libs/site/ui/src/index.ts"],
+      "@boilerplate/site/utility": ["libs/site/utility/src/index.ts"],
       "@boilerplate/stripe": ["libs/stripe/src/index.ts"]
     }
   },
