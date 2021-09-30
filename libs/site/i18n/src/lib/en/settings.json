@@ -4,13 +4,15 @@
   "general": "General",
   "image-label": "Profile picture",
   "language-label": "Language",
+  "manage-plan": "Manage plan",
   "meta-title": "Settings",
   "name-label": "Name",
   "page-heading": "Settings",
   "plan-and-billing": "Plan & Billing",
-  "plan-settings-subtitle": "plan-settings-subtitle",
+  "plan-settings-subtitle": "You are currently on the {{subscriptionName}} plan",
   "plan-settings-title": "Plan",
   "profile-settings-subtitle": "profile-settings-subtitle",
   "profile-settings-title": "Profile",
-  "theme-label": "Theme"
+  "theme-label": "Theme",
+  "upgrade-plan": "Upgrade plan"
 }

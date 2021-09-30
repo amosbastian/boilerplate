@@ -156,6 +156,7 @@
     }
   },
   "prisma": {
-    "schema": "apps/api/src/prisma/schema.prisma"
+    "schema": "apps/api/src/prisma/schema.prisma",
+    "seed": "ts-node apps/api/src/prisma/seed.ts"
   }
 }
