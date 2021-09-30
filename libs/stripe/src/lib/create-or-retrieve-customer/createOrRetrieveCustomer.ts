@@ -2,7 +2,7 @@ import { prisma } from "@boilerplate/api/utility";
 import Stripe from "stripe";
 import { stripe } from "../stripe/stripe";
 
-export const createOrRetrieveCustomer = async ({ email, userId }: { email?: string; userId: string }) => {
+export const createOrRetrieveCustomer = async ({ userId }: { userId: string }) => {
   const user = await prisma.user.findUnique({ where: { id: userId } });
 
   if (!user) {
@@ -19,8 +19,8 @@ export const createOrRetrieveCustomer = async ({ email, userId }: { email?: stri
     },
   };
 
-  if (email) {
-    customerData.email = email;
+  if (user.email) {
+    customerData.email = user.email;
   }
 
   const customer = await stripe.customers.create(customerData);
