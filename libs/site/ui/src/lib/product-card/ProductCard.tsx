@@ -2,16 +2,13 @@ import { DocumentType, gql } from "@boilerplate/generated/graphql";
 import { useProvidedStyles } from "@boilerplate/shared/theme";
 import type { CardProps } from "@boilerplate/shared/ui";
 import { Card } from "@boilerplate/shared/ui";
+import { currencyToSymbol } from "@boilerplate/site/utility";
 import { Box, Button, Heading, List, ListIcon, ListItem, Text, useColorModeValue } from "@chakra-ui/react";
+import { useSession } from "next-auth/client";
 import Trans from "next-translate/Trans";
 import useTranslation from "next-translate/useTranslation";
+import { useRouter } from "next/router";
 import { RiCheckFill } from "react-icons/ri";
-
-const currencyMap: Record<string, string> = {
-  EUR: "€",
-  GBP: "£",
-  USD: "$",
-};
 
 const featuresMap: Record<string, { name: string }[]> = {
   free: [{ name: "free-feature-1" }, { name: "free-feature-2" }, { name: "free-feature-3" }],
@@ -50,6 +47,16 @@ export function ProductCard({ plan, recommended = false, ...rest }: ProductCardP
   const planPrice = plan.prices.find((price) => price.recurring.interval === "month");
 
   const borderWidth = useColorModeValue(1, 0);
+  const session = useSession();
+  const router = useRouter();
+
+  const handleCheckout = () => {
+    if (!session) {
+      return router.push("/signin");
+    }
+
+    return router.push("/settings/billing");
+  };
 
   return (
     <Card
@@ -79,7 +86,7 @@ export function ProductCard({ plan, recommended = false, ...rest }: ProductCardP
               <Text key="1" ml={1} pb={1} fontWeight="bold" />,
             ]}
             values={{
-              currencySymbol: currencyMap[planPrice?.currency ?? "GBP"],
+              currencySymbol: currencyToSymbol(planPrice?.currency ?? "gbp"),
               price: (planPrice?.unitAmount ?? 0) / 100,
             }}
           />
@@ -93,7 +100,7 @@ export function ProductCard({ plan, recommended = false, ...rest }: ProductCardP
           ))}
         </List>
       </Box>
-      <Button colorScheme={recommended ? "primary" : "gray"} isFullWidth>
+      <Button colorScheme={recommended ? "primary" : "gray"} isFullWidth onClick={handleCheckout}>
         {t(`${planName}-cta-button-text`)}
       </Button>
     </Card>

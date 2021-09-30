@@ -37,6 +37,7 @@ export function ProductCards(props: ProductCardsProps) {
       />
       {data?.products.map((plan, index) => (
         <ProductCard
+          key={plan.id}
           plan={plan}
           recommended={index === 0}
           position="relative"
