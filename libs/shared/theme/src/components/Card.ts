@@ -23,6 +23,7 @@ const baseStyle = (props: Dict) => ({
     borderBottomColor: mode("gray.100", "whiteAlpha.100")(props),
     borderBottomWidth: "1px",
     borderBottomStyle: "solid",
+    position: "relative",
   },
   content: {
     px: 6,

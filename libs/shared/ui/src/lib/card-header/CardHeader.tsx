@@ -2,11 +2,12 @@ import type { BoxProps } from "@chakra-ui/react";
 import { Box, Heading, Text, useMultiStyleConfig } from "@chakra-ui/react";
 
 export interface CardHeaderProps extends BoxProps {
-  title: string;
+  action?: React.ReactNode;
   subtitle?: string;
+  title: string;
 }
 
-export function CardHeader({ title, subtitle, ...rest }: CardHeaderProps) {
+export function CardHeader({ action, subtitle, title, ...rest }: CardHeaderProps) {
   const styles = useMultiStyleConfig("Card", {});
 
   return (
@@ -17,6 +18,11 @@ export function CardHeader({ title, subtitle, ...rest }: CardHeaderProps) {
         </Heading>
         {subtitle && <Text variant="secondary">{subtitle}</Text>}
       </Box>
+      {action && (
+        <Box position="absolute" top={4} right={6}>
+          {action}
+        </Box>
+      )}
     </Box>
   );
 }
