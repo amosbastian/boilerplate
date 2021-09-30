@@ -13,7 +13,7 @@ export * from "./lib/image-section/ImageSection";
 export * from "./lib/layout/Layout";
 export * from "./lib/link-aside/LinkAside";
 export * from "./lib/page-heading/PageHeading";
-export * from "./lib/plan-form/PlanForm";
+export * from "./lib/plan-settings-form/PlanSettingsForm";
 export * from "./lib/product-card/ProductCard";
 export * from "./lib/profile-settings-form/ProfileSettingsForm";
 export * from "./lib/settings-aside/SettingsAside";
