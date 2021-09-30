@@ -11,6 +11,7 @@ export async function fetcher({
     method,
     headers: new Headers({ "Content-Type": "application/json" }),
     ...(body && { body: JSON.stringify(body) }),
+    credentials: "include",
   });
 
   if (!response.ok) {
