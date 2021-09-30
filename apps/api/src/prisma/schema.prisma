@@ -81,8 +81,8 @@ model VerificationRequest {
 // Stripe
 
 enum PriceType {
-  ONE_TIME   @map(name: "one_time")
-  RECURRING  @map(name: "recurring")
+  ONE_TIME
+  RECURRING
 }
 
 model Price {
@@ -90,7 +90,7 @@ model Price {
   active        Boolean
   product       Product        @relation(fields: [productId], references: [id])
   productId     String
-  unitAmount    Int            @map(name: "unit_amount")
+  unitAmount    Int
   type          PriceType
   recurring     Json
   metadata      Json
@@ -109,13 +109,13 @@ model Product {
 }
 
 enum SubscriptionStatus {
-  ACTIVE              @map(name: "active")
-  PAST_DUE            @map(name: "past_due")
-  UNPAID              @map(name: "unpaid")
-  CANCELLED           @map(name: "canceled")
-  INCOMPLETE          @map(name: "incomplete")
-  INCOMPLETE_EXPIRED  @map(name: "incomplete_expired")
-  TRIALLING           @map(name: "trialing")
+  ACTIVE
+  PAST_DUE
+  UNPAID
+  CANCELLED
+  INCOMPLETE
+  INCOMPLETE_EXPIRED
+  TRIALLING
 }
 
 model Subscription {
@@ -125,14 +125,14 @@ model Subscription {
   price              Price              @relation(fields: [priceId], references: [id])
   priceId            String
   status             SubscriptionStatus
-  cancelAtPeriodEnd  Boolean            @map(name: "cancel_at_period_end")
-  currentPeriodEnd   DateTime           @map(name: "current_period_end") @db.Timestamptz
-  currentPeriodStart DateTime           @map(name: "current_period_start") @db.Timestamptz
-  trialStart         DateTime?          @map(name: "trial_start") @db.Timestamptz
-  trialEnd           DateTime?          @map(name: "trial_end") @db.Timestamptz
-  cancelAt           DateTime?          @map(name: "cancel_at") @db.Timestamptz
-  cancelledAt        DateTime?          @map(name: "canceled_at") @db.Timestamptz
-  endedAt            DateTime?          @map(name: "ended_at") @db.Timestamptz
+  cancelAtPeriodEnd  Boolean
+  currentPeriodEnd   DateTime           @db.Timestamptz
+  currentPeriodStart DateTime           @db.Timestamptz
+  trialStart         DateTime?          @db.Timestamptz
+  trialEnd           DateTime?          @db.Timestamptz
+  cancelAt           DateTime?          @db.Timestamptz
+  cancelledAt        DateTime?          @db.Timestamptz
+  endedAt            DateTime?          @db.Timestamptz
   metadata           Json
   createdAt          DateTime           @default(now())
   updatedAt          DateTime           @updatedAt

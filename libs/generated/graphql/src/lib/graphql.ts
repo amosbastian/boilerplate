@@ -246,6 +246,11 @@ export type JsonFilter = {
   not?: Maybe<Scalars["JSON"]>;
 };
 
+export type JsonNullableFilter = {
+  equals?: Maybe<Scalars["JSON"]>;
+  not?: Maybe<Scalars["JSON"]>;
+};
+
 export type Mutation = {
   __typename?: "Mutation";
   deleteUser?: Maybe<User>;
@@ -364,14 +369,21 @@ export type NullableStringFieldUpdateOperationsInput = {
 
 export type Price = {
   __typename?: "Price";
+  _count?: Maybe<PriceCount>;
   active: Scalars["Boolean"];
   currency: Scalars["String"];
   id: Scalars["String"];
   metadata: Scalars["JSON"];
+  product?: Maybe<Product>;
   productId: Scalars["String"];
   recurring: Scalars["JSON"];
   type: PriceType;
   unitAmount: Scalars["Int"];
+};
+
+export type PriceCount = {
+  __typename?: "PriceCount";
+  subscriptions: Scalars["Int"];
 };
 
 export type PriceCreateInput = {
@@ -381,6 +393,7 @@ export type PriceCreateInput = {
   metadata: Scalars["JSON"];
   product: ProductCreateNestedOneWithoutPricesInput;
   recurring: Scalars["JSON"];
+  subscriptions?: Maybe<SubscriptionCreateNestedManyWithoutPriceInput>;
   type: PriceType;
   unitAmount: Scalars["Int"];
 };
@@ -418,6 +431,7 @@ export type PriceCreateWithoutProductInput = {
   id: Scalars["String"];
   metadata: Scalars["JSON"];
   recurring: Scalars["JSON"];
+  subscriptions?: Maybe<SubscriptionCreateNestedManyWithoutPriceInput>;
   type: PriceType;
   unitAmount: Scalars["Int"];
 };
@@ -440,8 +454,14 @@ export type PriceOrderByWithRelationInput = {
   product?: Maybe<ProductOrderByWithRelationInput>;
   productId?: Maybe<SortOrder>;
   recurring?: Maybe<SortOrder>;
+  subscriptions?: Maybe<SubscriptionOrderByRelationAggregateInput>;
   type?: Maybe<SortOrder>;
   unitAmount?: Maybe<SortOrder>;
+};
+
+export type PriceRelationFilter = {
+  is?: Maybe<PriceWhereInput>;
+  isNot?: Maybe<PriceWhereInput>;
 };
 
 export enum PriceScalarFieldEnum {
@@ -481,6 +501,7 @@ export type PriceUpdateInput = {
   metadata?: Maybe<Scalars["JSON"]>;
   product?: Maybe<ProductUpdateOneRequiredWithoutPricesInput>;
   recurring?: Maybe<Scalars["JSON"]>;
+  subscriptions?: Maybe<SubscriptionUpdateManyWithoutPriceInput>;
   type?: Maybe<EnumPriceTypeFieldUpdateOperationsInput>;
   unitAmount?: Maybe<IntFieldUpdateOperationsInput>;
 };
@@ -525,6 +546,7 @@ export type PriceUpdateWithoutProductInput = {
   id?: Maybe<StringFieldUpdateOperationsInput>;
   metadata?: Maybe<Scalars["JSON"]>;
   recurring?: Maybe<Scalars["JSON"]>;
+  subscriptions?: Maybe<SubscriptionUpdateManyWithoutPriceInput>;
   type?: Maybe<EnumPriceTypeFieldUpdateOperationsInput>;
   unitAmount?: Maybe<IntFieldUpdateOperationsInput>;
 };
@@ -546,6 +568,7 @@ export type PriceWhereInput = {
   product?: Maybe<ProductRelationFilter>;
   productId?: Maybe<StringFilter>;
   recurring?: Maybe<JsonFilter>;
+  subscriptions?: Maybe<SubscriptionListRelationFilter>;
   type?: Maybe<EnumPriceTypeFilter>;
   unitAmount?: Maybe<IntFilter>;
 };
@@ -558,8 +581,9 @@ export type Product = {
   __typename?: "Product";
   _count?: Maybe<ProductCount>;
   active: Scalars["Boolean"];
+  description?: Maybe<Scalars["String"]>;
   id: Scalars["String"];
-  image: Scalars["String"];
+  image?: Maybe<Scalars["String"]>;
   metadata: Scalars["JSON"];
   name: Scalars["String"];
   prices: Array<Price>;
@@ -577,17 +601,16 @@ export type ProductPricesArgs = {
 export type ProductCount = {
   __typename?: "ProductCount";
   prices: Scalars["Int"];
-  subscriptions: Scalars["Int"];
 };
 
 export type ProductCreateInput = {
   active: Scalars["Boolean"];
+  description?: Maybe<Scalars["String"]>;
   id: Scalars["String"];
-  image: Scalars["String"];
+  image?: Maybe<Scalars["String"]>;
   metadata: Scalars["JSON"];
   name: Scalars["String"];
   prices?: Maybe<PriceCreateNestedManyWithoutProductInput>;
-  subscriptions?: Maybe<SubscriptionCreateNestedManyWithoutProductInput>;
 };
 
 export type ProductCreateNestedOneWithoutPricesInput = {
@@ -603,21 +626,21 @@ export type ProductCreateOrConnectWithoutPricesInput = {
 
 export type ProductCreateWithoutPricesInput = {
   active: Scalars["Boolean"];
+  description?: Maybe<Scalars["String"]>;
   id: Scalars["String"];
-  image: Scalars["String"];
+  image?: Maybe<Scalars["String"]>;
   metadata: Scalars["JSON"];
   name: Scalars["String"];
-  subscriptions?: Maybe<SubscriptionCreateNestedManyWithoutProductInput>;
 };
 
 export type ProductOrderByWithRelationInput = {
   active?: Maybe<SortOrder>;
+  description?: Maybe<SortOrder>;
   id?: Maybe<SortOrder>;
   image?: Maybe<SortOrder>;
   metadata?: Maybe<SortOrder>;
   name?: Maybe<SortOrder>;
   prices?: Maybe<PriceOrderByRelationAggregateInput>;
-  subscriptions?: Maybe<SubscriptionOrderByRelationAggregateInput>;
 };
 
 export type ProductRelationFilter = {
@@ -627,6 +650,7 @@ export type ProductRelationFilter = {
 
 export enum ProductScalarFieldEnum {
   Active = "active",
+  Description = "description",
   Id = "id",
   Image = "image",
   Metadata = "metadata",
@@ -635,12 +659,12 @@ export enum ProductScalarFieldEnum {
 
 export type ProductUpdateInput = {
   active?: Maybe<BoolFieldUpdateOperationsInput>;
+  description?: Maybe<NullableStringFieldUpdateOperationsInput>;
   id?: Maybe<StringFieldUpdateOperationsInput>;
-  image?: Maybe<StringFieldUpdateOperationsInput>;
+  image?: Maybe<NullableStringFieldUpdateOperationsInput>;
   metadata?: Maybe<Scalars["JSON"]>;
   name?: Maybe<StringFieldUpdateOperationsInput>;
   prices?: Maybe<PriceUpdateManyWithoutProductInput>;
-  subscriptions?: Maybe<SubscriptionUpdateManyWithoutProductInput>;
 };
 
 export type ProductUpdateOneRequiredWithoutPricesInput = {
@@ -653,11 +677,11 @@ export type ProductUpdateOneRequiredWithoutPricesInput = {
 
 export type ProductUpdateWithoutPricesInput = {
   active?: Maybe<BoolFieldUpdateOperationsInput>;
+  description?: Maybe<NullableStringFieldUpdateOperationsInput>;
   id?: Maybe<StringFieldUpdateOperationsInput>;
-  image?: Maybe<StringFieldUpdateOperationsInput>;
+  image?: Maybe<NullableStringFieldUpdateOperationsInput>;
   metadata?: Maybe<Scalars["JSON"]>;
   name?: Maybe<StringFieldUpdateOperationsInput>;
-  subscriptions?: Maybe<SubscriptionUpdateManyWithoutProductInput>;
 };
 
 export type ProductUpsertWithoutPricesInput = {
@@ -670,12 +694,12 @@ export type ProductWhereInput = {
   NOT?: Maybe<Array<ProductWhereInput>>;
   OR?: Maybe<Array<ProductWhereInput>>;
   active?: Maybe<BoolFilter>;
+  description?: Maybe<StringNullableFilter>;
   id?: Maybe<StringFilter>;
-  image?: Maybe<StringFilter>;
+  image?: Maybe<StringNullableFilter>;
   metadata?: Maybe<JsonFilter>;
   name?: Maybe<StringFilter>;
   prices?: Maybe<PriceListRelationFilter>;
-  subscriptions?: Maybe<SubscriptionListRelationFilter>;
 };
 
 export type ProductWhereUniqueInput = {
@@ -988,19 +1012,17 @@ export type StringNullableFilter = {
 
 export type Subscription = {
   __typename?: "Subscription";
-  amount: Scalars["Int"];
   cancelAt?: Maybe<Scalars["DateTime"]>;
   cancelAtPeriodEnd: Scalars["Boolean"];
   cancelledAt?: Maybe<Scalars["DateTime"]>;
-  created: Scalars["DateTime"];
   createdAt: Scalars["DateTime"];
-  currency: Scalars["String"];
   currentPeriodEnd: Scalars["DateTime"];
   currentPeriodStart: Scalars["DateTime"];
   endedAt?: Maybe<Scalars["DateTime"]>;
   id: Scalars["String"];
   metadata: Scalars["JSON"];
-  productId: Scalars["String"];
+  price?: Maybe<Price>;
+  priceId: Scalars["String"];
   status: SubscriptionStatus;
   trialEnd?: Maybe<Scalars["DateTime"]>;
   trialStart?: Maybe<Scalars["DateTime"]>;
@@ -1008,14 +1030,11 @@ export type Subscription = {
   userId: Scalars["String"];
 };
 
-export type SubscriptionCreateManyProductInput = {
-  amount: Scalars["Int"];
+export type SubscriptionCreateManyPriceInput = {
   cancelAt?: Maybe<Scalars["DateTime"]>;
   cancelAtPeriodEnd: Scalars["Boolean"];
   cancelledAt?: Maybe<Scalars["DateTime"]>;
-  created: Scalars["DateTime"];
   createdAt?: Maybe<Scalars["DateTime"]>;
-  currency: Scalars["String"];
   currentPeriodEnd: Scalars["DateTime"];
   currentPeriodStart: Scalars["DateTime"];
   endedAt?: Maybe<Scalars["DateTime"]>;
@@ -1028,31 +1047,28 @@ export type SubscriptionCreateManyProductInput = {
   userId: Scalars["String"];
 };
 
-export type SubscriptionCreateManyProductInputEnvelope = {
-  data: Array<SubscriptionCreateManyProductInput>;
+export type SubscriptionCreateManyPriceInputEnvelope = {
+  data: Array<SubscriptionCreateManyPriceInput>;
   skipDuplicates?: Maybe<Scalars["Boolean"]>;
 };
 
-export type SubscriptionCreateNestedManyWithoutProductInput = {
+export type SubscriptionCreateNestedManyWithoutPriceInput = {
   connect?: Maybe<Array<SubscriptionWhereUniqueInput>>;
-  connectOrCreate?: Maybe<Array<SubscriptionCreateOrConnectWithoutProductInput>>;
-  create?: Maybe<Array<SubscriptionCreateWithoutProductInput>>;
-  createMany?: Maybe<SubscriptionCreateManyProductInputEnvelope>;
+  connectOrCreate?: Maybe<Array<SubscriptionCreateOrConnectWithoutPriceInput>>;
+  create?: Maybe<Array<SubscriptionCreateWithoutPriceInput>>;
+  createMany?: Maybe<SubscriptionCreateManyPriceInputEnvelope>;
 };
 
-export type SubscriptionCreateOrConnectWithoutProductInput = {
-  create: SubscriptionCreateWithoutProductInput;
+export type SubscriptionCreateOrConnectWithoutPriceInput = {
+  create: SubscriptionCreateWithoutPriceInput;
   where: SubscriptionWhereUniqueInput;
 };
 
-export type SubscriptionCreateWithoutProductInput = {
-  amount: Scalars["Int"];
+export type SubscriptionCreateWithoutPriceInput = {
   cancelAt?: Maybe<Scalars["DateTime"]>;
   cancelAtPeriodEnd: Scalars["Boolean"];
   cancelledAt?: Maybe<Scalars["DateTime"]>;
-  created: Scalars["DateTime"];
   createdAt?: Maybe<Scalars["DateTime"]>;
-  currency: Scalars["String"];
   currentPeriodEnd: Scalars["DateTime"];
   currentPeriodStart: Scalars["DateTime"];
   endedAt?: Maybe<Scalars["DateTime"]>;
@@ -1076,20 +1092,17 @@ export type SubscriptionOrderByRelationAggregateInput = {
 };
 
 export type SubscriptionOrderByWithRelationInput = {
-  amount?: Maybe<SortOrder>;
   cancelAt?: Maybe<SortOrder>;
   cancelAtPeriodEnd?: Maybe<SortOrder>;
   cancelledAt?: Maybe<SortOrder>;
-  created?: Maybe<SortOrder>;
   createdAt?: Maybe<SortOrder>;
-  currency?: Maybe<SortOrder>;
   currentPeriodEnd?: Maybe<SortOrder>;
   currentPeriodStart?: Maybe<SortOrder>;
   endedAt?: Maybe<SortOrder>;
   id?: Maybe<SortOrder>;
   metadata?: Maybe<SortOrder>;
-  product?: Maybe<ProductOrderByWithRelationInput>;
-  productId?: Maybe<SortOrder>;
+  price?: Maybe<PriceOrderByWithRelationInput>;
+  priceId?: Maybe<SortOrder>;
   status?: Maybe<SortOrder>;
   trialEnd?: Maybe<SortOrder>;
   trialStart?: Maybe<SortOrder>;
@@ -1107,19 +1120,16 @@ export type SubscriptionScalarWhereInput = {
   AND?: Maybe<Array<SubscriptionScalarWhereInput>>;
   NOT?: Maybe<Array<SubscriptionScalarWhereInput>>;
   OR?: Maybe<Array<SubscriptionScalarWhereInput>>;
-  amount?: Maybe<IntFilter>;
   cancelAt?: Maybe<DateTimeNullableFilter>;
   cancelAtPeriodEnd?: Maybe<BoolFilter>;
   cancelledAt?: Maybe<DateTimeNullableFilter>;
-  created?: Maybe<DateTimeFilter>;
   createdAt?: Maybe<DateTimeFilter>;
-  currency?: Maybe<StringFilter>;
   currentPeriodEnd?: Maybe<DateTimeFilter>;
   currentPeriodStart?: Maybe<DateTimeFilter>;
   endedAt?: Maybe<DateTimeNullableFilter>;
   id?: Maybe<StringFilter>;
   metadata?: Maybe<JsonFilter>;
-  productId?: Maybe<StringFilter>;
+  priceId?: Maybe<StringFilter>;
   status?: Maybe<EnumSubscriptionStatusFilter>;
   trialEnd?: Maybe<DateTimeNullableFilter>;
   trialStart?: Maybe<DateTimeNullableFilter>;
@@ -1138,13 +1148,10 @@ export enum SubscriptionStatus {
 }
 
 export type SubscriptionUpdateManyMutationInput = {
-  amount?: Maybe<IntFieldUpdateOperationsInput>;
   cancelAt?: Maybe<NullableDateTimeFieldUpdateOperationsInput>;
   cancelAtPeriodEnd?: Maybe<BoolFieldUpdateOperationsInput>;
   cancelledAt?: Maybe<NullableDateTimeFieldUpdateOperationsInput>;
-  created?: Maybe<DateTimeFieldUpdateOperationsInput>;
   createdAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
-  currency?: Maybe<StringFieldUpdateOperationsInput>;
   currentPeriodEnd?: Maybe<DateTimeFieldUpdateOperationsInput>;
   currentPeriodStart?: Maybe<DateTimeFieldUpdateOperationsInput>;
   endedAt?: Maybe<NullableDateTimeFieldUpdateOperationsInput>;
@@ -1156,38 +1163,35 @@ export type SubscriptionUpdateManyMutationInput = {
   updatedAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
 };
 
-export type SubscriptionUpdateManyWithWhereWithoutProductInput = {
+export type SubscriptionUpdateManyWithWhereWithoutPriceInput = {
   data: SubscriptionUpdateManyMutationInput;
   where: SubscriptionScalarWhereInput;
 };
 
-export type SubscriptionUpdateManyWithoutProductInput = {
+export type SubscriptionUpdateManyWithoutPriceInput = {
   connect?: Maybe<Array<SubscriptionWhereUniqueInput>>;
-  connectOrCreate?: Maybe<Array<SubscriptionCreateOrConnectWithoutProductInput>>;
-  create?: Maybe<Array<SubscriptionCreateWithoutProductInput>>;
-  createMany?: Maybe<SubscriptionCreateManyProductInputEnvelope>;
+  connectOrCreate?: Maybe<Array<SubscriptionCreateOrConnectWithoutPriceInput>>;
+  create?: Maybe<Array<SubscriptionCreateWithoutPriceInput>>;
+  createMany?: Maybe<SubscriptionCreateManyPriceInputEnvelope>;
   delete?: Maybe<Array<SubscriptionWhereUniqueInput>>;
   deleteMany?: Maybe<Array<SubscriptionScalarWhereInput>>;
   disconnect?: Maybe<Array<SubscriptionWhereUniqueInput>>;
   set?: Maybe<Array<SubscriptionWhereUniqueInput>>;
-  update?: Maybe<Array<SubscriptionUpdateWithWhereUniqueWithoutProductInput>>;
-  updateMany?: Maybe<Array<SubscriptionUpdateManyWithWhereWithoutProductInput>>;
-  upsert?: Maybe<Array<SubscriptionUpsertWithWhereUniqueWithoutProductInput>>;
+  update?: Maybe<Array<SubscriptionUpdateWithWhereUniqueWithoutPriceInput>>;
+  updateMany?: Maybe<Array<SubscriptionUpdateManyWithWhereWithoutPriceInput>>;
+  upsert?: Maybe<Array<SubscriptionUpsertWithWhereUniqueWithoutPriceInput>>;
 };
 
-export type SubscriptionUpdateWithWhereUniqueWithoutProductInput = {
-  data: SubscriptionUpdateWithoutProductInput;
+export type SubscriptionUpdateWithWhereUniqueWithoutPriceInput = {
+  data: SubscriptionUpdateWithoutPriceInput;
   where: SubscriptionWhereUniqueInput;
 };
 
-export type SubscriptionUpdateWithoutProductInput = {
-  amount?: Maybe<IntFieldUpdateOperationsInput>;
+export type SubscriptionUpdateWithoutPriceInput = {
   cancelAt?: Maybe<NullableDateTimeFieldUpdateOperationsInput>;
   cancelAtPeriodEnd?: Maybe<BoolFieldUpdateOperationsInput>;
   cancelledAt?: Maybe<NullableDateTimeFieldUpdateOperationsInput>;
-  created?: Maybe<DateTimeFieldUpdateOperationsInput>;
   createdAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
-  currency?: Maybe<StringFieldUpdateOperationsInput>;
   currentPeriodEnd?: Maybe<DateTimeFieldUpdateOperationsInput>;
   currentPeriodStart?: Maybe<DateTimeFieldUpdateOperationsInput>;
   endedAt?: Maybe<NullableDateTimeFieldUpdateOperationsInput>;
@@ -1200,9 +1204,9 @@ export type SubscriptionUpdateWithoutProductInput = {
   user?: Maybe<UserUpdateOneRequiredWithoutSubscriptionInput>;
 };
 
-export type SubscriptionUpsertWithWhereUniqueWithoutProductInput = {
-  create: SubscriptionCreateWithoutProductInput;
-  update: SubscriptionUpdateWithoutProductInput;
+export type SubscriptionUpsertWithWhereUniqueWithoutPriceInput = {
+  create: SubscriptionCreateWithoutPriceInput;
+  update: SubscriptionUpdateWithoutPriceInput;
   where: SubscriptionWhereUniqueInput;
 };
 
@@ -1210,20 +1214,17 @@ export type SubscriptionWhereInput = {
   AND?: Maybe<Array<SubscriptionWhereInput>>;
   NOT?: Maybe<Array<SubscriptionWhereInput>>;
   OR?: Maybe<Array<SubscriptionWhereInput>>;
-  amount?: Maybe<IntFilter>;
   cancelAt?: Maybe<DateTimeNullableFilter>;
   cancelAtPeriodEnd?: Maybe<BoolFilter>;
   cancelledAt?: Maybe<DateTimeNullableFilter>;
-  created?: Maybe<DateTimeFilter>;
   createdAt?: Maybe<DateTimeFilter>;
-  currency?: Maybe<StringFilter>;
   currentPeriodEnd?: Maybe<DateTimeFilter>;
   currentPeriodStart?: Maybe<DateTimeFilter>;
   endedAt?: Maybe<DateTimeNullableFilter>;
   id?: Maybe<StringFilter>;
   metadata?: Maybe<JsonFilter>;
-  product?: Maybe<ProductRelationFilter>;
-  productId?: Maybe<StringFilter>;
+  price?: Maybe<PriceRelationFilter>;
+  priceId?: Maybe<StringFilter>;
   status?: Maybe<EnumSubscriptionStatusFilter>;
   trialEnd?: Maybe<DateTimeNullableFilter>;
   trialStart?: Maybe<DateTimeNullableFilter>;
@@ -1239,12 +1240,14 @@ export type SubscriptionWhereUniqueInput = {
 export type User = {
   __typename?: "User";
   _count?: Maybe<UserCount>;
+  billingAddress?: Maybe<Scalars["JSON"]>;
   createdAt: Scalars["DateTime"];
   email?: Maybe<Scalars["String"]>;
   emailVerified?: Maybe<Scalars["DateTime"]>;
   id: Scalars["String"];
   image?: Maybe<Scalars["String"]>;
   name?: Maybe<Scalars["String"]>;
+  paymentMethod?: Maybe<Scalars["JSON"]>;
   stripeCustomerId?: Maybe<Scalars["String"]>;
   subscription?: Maybe<Subscription>;
   updatedAt: Scalars["DateTime"];
@@ -1270,12 +1273,14 @@ export type UserCreateOrConnectWithoutSubscriptionInput = {
 
 export type UserCreateWithoutSubscriptionInput = {
   accounts?: Maybe<AccountCreateNestedManyWithoutUserInput>;
+  billingAddress?: Maybe<Scalars["JSON"]>;
   createdAt?: Maybe<Scalars["DateTime"]>;
   email?: Maybe<Scalars["String"]>;
   emailVerified?: Maybe<Scalars["DateTime"]>;
   id?: Maybe<Scalars["String"]>;
   image?: Maybe<Scalars["String"]>;
   name?: Maybe<Scalars["String"]>;
+  paymentMethod?: Maybe<Scalars["JSON"]>;
   roles?: Maybe<RoleCreateNestedManyWithoutUsersInput>;
   sessions?: Maybe<SessionCreateNestedManyWithoutUserInput>;
   stripeCustomerId?: Maybe<Scalars["String"]>;
@@ -1290,12 +1295,14 @@ export type UserListRelationFilter = {
 
 export type UserOrderByWithRelationInput = {
   accounts?: Maybe<AccountOrderByRelationAggregateInput>;
+  billingAddress?: Maybe<SortOrder>;
   createdAt?: Maybe<SortOrder>;
   email?: Maybe<SortOrder>;
   emailVerified?: Maybe<SortOrder>;
   id?: Maybe<SortOrder>;
   image?: Maybe<SortOrder>;
   name?: Maybe<SortOrder>;
+  paymentMethod?: Maybe<SortOrder>;
   roles?: Maybe<RoleOrderByRelationAggregateInput>;
   sessions?: Maybe<SessionOrderByRelationAggregateInput>;
   stripeCustomerId?: Maybe<SortOrder>;
@@ -1309,12 +1316,14 @@ export type UserRelationFilter = {
 };
 
 export enum UserScalarFieldEnum {
+  BillingAddress = "billingAddress",
   CreatedAt = "createdAt",
   Email = "email",
   EmailVerified = "emailVerified",
   Id = "id",
   Image = "image",
   Name = "name",
+  PaymentMethod = "paymentMethod",
   StripeCustomerId = "stripeCustomerId",
   UpdatedAt = "updatedAt",
 }
@@ -1333,12 +1342,14 @@ export type UserUpdateOneRequiredWithoutSubscriptionInput = {
 
 export type UserUpdateWithoutSubscriptionInput = {
   accounts?: Maybe<AccountUpdateManyWithoutUserInput>;
+  billingAddress?: Maybe<Scalars["JSON"]>;
   createdAt?: Maybe<DateTimeFieldUpdateOperationsInput>;
   email?: Maybe<NullableStringFieldUpdateOperationsInput>;
   emailVerified?: Maybe<NullableDateTimeFieldUpdateOperationsInput>;
   id?: Maybe<StringFieldUpdateOperationsInput>;
   image?: Maybe<NullableStringFieldUpdateOperationsInput>;
   name?: Maybe<NullableStringFieldUpdateOperationsInput>;
+  paymentMethod?: Maybe<Scalars["JSON"]>;
   roles?: Maybe<RoleUpdateManyWithoutUsersInput>;
   sessions?: Maybe<SessionUpdateManyWithoutUserInput>;
   stripeCustomerId?: Maybe<NullableStringFieldUpdateOperationsInput>;
@@ -1355,12 +1366,14 @@ export type UserWhereInput = {
   NOT?: Maybe<Array<UserWhereInput>>;
   OR?: Maybe<Array<UserWhereInput>>;
   accounts?: Maybe<AccountListRelationFilter>;
+  billingAddress?: Maybe<JsonNullableFilter>;
   createdAt?: Maybe<DateTimeFilter>;
   email?: Maybe<StringNullableFilter>;
   emailVerified?: Maybe<DateTimeNullableFilter>;
   id?: Maybe<StringFilter>;
   image?: Maybe<StringNullableFilter>;
   name?: Maybe<StringNullableFilter>;
+  paymentMethod?: Maybe<JsonNullableFilter>;
   roles?: Maybe<RoleListRelationFilter>;
   sessions?: Maybe<SessionListRelationFilter>;
   stripeCustomerId?: Maybe<StringNullableFilter>;
@@ -1372,6 +1385,39 @@ export type UserWhereUniqueInput = {
   email?: Maybe<Scalars["String"]>;
   id?: Maybe<Scalars["String"]>;
   stripeCustomerId?: Maybe<Scalars["String"]>;
+};
+
+export type PlanSettingsQueryVariables = Exact<{ [key: string]: never }>;
+
+export type PlanSettingsQuery = {
+  __typename?: "Query";
+  me?: Maybe<{
+    __typename?: "User";
+    name?: Maybe<string>;
+    email?: Maybe<string>;
+    image?: Maybe<string>;
+    id: string;
+    subscription?: Maybe<{
+      __typename?: "Subscription";
+      id: string;
+      status: SubscriptionStatus;
+      price?: Maybe<{
+        __typename?: "Price";
+        id: string;
+        currency: string;
+        unitAmount: number;
+        recurring: any;
+        product?: Maybe<{ __typename?: "Product"; name: string }>;
+      }>;
+    }>;
+  }>;
+  products: Array<{
+    __typename?: "Product";
+    id: string;
+    name: string;
+    metadata: any;
+    prices: Array<{ __typename?: "Price"; id: string; currency: string; recurring: any; unitAmount: number }>;
+  }>;
 };
 
 export type ProductsQueryVariables = Exact<{ [key: string]: never }>;
@@ -1409,6 +1455,33 @@ export type UpdateProfileSettingsMutation = {
   }>;
 };
 
+export type PlanSettingsFormProductFragmentFragment = {
+  __typename?: "Product";
+  id: string;
+  name: string;
+  metadata: any;
+  prices: Array<{ __typename?: "Price"; id: string; currency: string; recurring: any; unitAmount: number }>;
+};
+
+export type PlanSettingsFormUserFragmentFragment = {
+  __typename?: "User";
+  id: string;
+  email?: Maybe<string>;
+  subscription?: Maybe<{
+    __typename?: "Subscription";
+    id: string;
+    status: SubscriptionStatus;
+    price?: Maybe<{
+      __typename?: "Price";
+      id: string;
+      currency: string;
+      unitAmount: number;
+      recurring: any;
+      product?: Maybe<{ __typename?: "Product"; name: string }>;
+    }>;
+  }>;
+};
+
 export type ProductCardProductFragmentFragment = {
   __typename?: "Product";
   id: string;
@@ -1424,41 +1497,86 @@ export type ProfileSettingsFormUserFragmentFragment = {
   image?: Maybe<string>;
 };
 
-export type UpsertPriceMutationVariables = Exact<{
-  where: PriceWhereUniqueInput;
-  create: PriceCreateInput;
-  update: PriceUpdateInput;
-}>;
-
-export type UpsertPriceMutation = {
-  __typename?: "Mutation";
-  upsertPrice?: Maybe<{ __typename?: "Price"; id: string }>;
-};
-
-export type UpsertProductMutationVariables = Exact<{
-  where: ProductWhereUniqueInput;
-  create: ProductCreateInput;
-  update: ProductUpdateInput;
-}>;
-
-export type UpsertProductMutation = {
-  __typename?: "Mutation";
-  upsertProduct?: Maybe<{ __typename?: "Product"; id: string }>;
-};
-
-export type UpdateUserSubscriptionMutationVariables = Exact<{
-  data: UserUpdateInput;
-}>;
-
-export type UpdateUserSubscriptionMutation = {
-  __typename?: "Mutation";
-  updateUser?: Maybe<{
-    __typename?: "User";
-    id: string;
-    subscription?: Maybe<{ __typename?: "Subscription"; id: string }>;
-  }>;
-};
-
+export const PlanSettingsFormProductFragmentFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "PlanSettingsFormProductFragment" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "Product" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "name" } },
+          { kind: "Field", name: { kind: "Name", value: "metadata" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "prices" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "currency" } },
+                { kind: "Field", name: { kind: "Name", value: "recurring" } },
+                { kind: "Field", name: { kind: "Name", value: "unitAmount" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<PlanSettingsFormProductFragmentFragment, unknown>;
+export const PlanSettingsFormUserFragmentFragmentDoc = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "FragmentDefinition",
+      name: { kind: "Name", value: "PlanSettingsFormUserFragment" },
+      typeCondition: { kind: "NamedType", name: { kind: "Name", value: "User" } },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          { kind: "Field", name: { kind: "Name", value: "id" } },
+          { kind: "Field", name: { kind: "Name", value: "email" } },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "subscription" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "status" } },
+                {
+                  kind: "Field",
+                  name: { kind: "Name", value: "price" },
+                  selectionSet: {
+                    kind: "SelectionSet",
+                    selections: [
+                      { kind: "Field", name: { kind: "Name", value: "id" } },
+                      { kind: "Field", name: { kind: "Name", value: "currency" } },
+                      { kind: "Field", name: { kind: "Name", value: "unitAmount" } },
+                      { kind: "Field", name: { kind: "Name", value: "recurring" } },
+                      {
+                        kind: "Field",
+                        name: { kind: "Name", value: "product" },
+                        selectionSet: {
+                          kind: "SelectionSet",
+                          selections: [{ kind: "Field", name: { kind: "Name", value: "name" } }],
+                        },
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<PlanSettingsFormUserFragmentFragment, unknown>;
 export const ProductCardProductFragmentFragmentDoc = {
   kind: "Document",
   definitions: [
@@ -1507,6 +1625,47 @@ export const ProfileSettingsFormUserFragmentFragmentDoc = {
     },
   ],
 } as unknown as DocumentNode<ProfileSettingsFormUserFragmentFragment, unknown>;
+export const PlanSettingsDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "PlanSettings" },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "me" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+                { kind: "Field", name: { kind: "Name", value: "email" } },
+                { kind: "Field", name: { kind: "Name", value: "image" } },
+                { kind: "FragmentSpread", name: { kind: "Name", value: "PlanSettingsFormUserFragment" } },
+              ],
+            },
+          },
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "products" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "FragmentSpread", name: { kind: "Name", value: "PlanSettingsFormProductFragment" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+    ...PlanSettingsFormUserFragmentFragmentDoc.definitions,
+    ...PlanSettingsFormProductFragmentFragmentDoc.definitions,
+  ],
+} as unknown as DocumentNode<PlanSettingsQuery, PlanSettingsQueryVariables>;
 export const ProductsDocument = {
   kind: "Document",
   definitions: [
@@ -1605,176 +1764,3 @@ export const UpdateProfileSettingsDocument = {
     },
   ],
 } as unknown as DocumentNode<UpdateProfileSettingsMutation, UpdateProfileSettingsMutationVariables>;
-export const UpsertPriceDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "mutation",
-      name: { kind: "Name", value: "UpsertPrice" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: { kind: "Variable", name: { kind: "Name", value: "where" } },
-          type: {
-            kind: "NonNullType",
-            type: { kind: "NamedType", name: { kind: "Name", value: "PriceWhereUniqueInput" } },
-          },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: { kind: "Variable", name: { kind: "Name", value: "create" } },
-          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "PriceCreateInput" } } },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: { kind: "Variable", name: { kind: "Name", value: "update" } },
-          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "PriceUpdateInput" } } },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "upsertPrice" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "where" },
-                value: { kind: "Variable", name: { kind: "Name", value: "where" } },
-              },
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "create" },
-                value: { kind: "Variable", name: { kind: "Name", value: "create" } },
-              },
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "update" },
-                value: { kind: "Variable", name: { kind: "Name", value: "update" } },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [{ kind: "Field", name: { kind: "Name", value: "id" } }],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<UpsertPriceMutation, UpsertPriceMutationVariables>;
-export const UpsertProductDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "mutation",
-      name: { kind: "Name", value: "UpsertProduct" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: { kind: "Variable", name: { kind: "Name", value: "where" } },
-          type: {
-            kind: "NonNullType",
-            type: { kind: "NamedType", name: { kind: "Name", value: "ProductWhereUniqueInput" } },
-          },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: { kind: "Variable", name: { kind: "Name", value: "create" } },
-          type: {
-            kind: "NonNullType",
-            type: { kind: "NamedType", name: { kind: "Name", value: "ProductCreateInput" } },
-          },
-        },
-        {
-          kind: "VariableDefinition",
-          variable: { kind: "Variable", name: { kind: "Name", value: "update" } },
-          type: {
-            kind: "NonNullType",
-            type: { kind: "NamedType", name: { kind: "Name", value: "ProductUpdateInput" } },
-          },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "upsertProduct" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "where" },
-                value: { kind: "Variable", name: { kind: "Name", value: "where" } },
-              },
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "create" },
-                value: { kind: "Variable", name: { kind: "Name", value: "create" } },
-              },
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "update" },
-                value: { kind: "Variable", name: { kind: "Name", value: "update" } },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [{ kind: "Field", name: { kind: "Name", value: "id" } }],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<UpsertProductMutation, UpsertProductMutationVariables>;
-export const UpdateUserSubscriptionDocument = {
-  kind: "Document",
-  definitions: [
-    {
-      kind: "OperationDefinition",
-      operation: "mutation",
-      name: { kind: "Name", value: "UpdateUserSubscription" },
-      variableDefinitions: [
-        {
-          kind: "VariableDefinition",
-          variable: { kind: "Variable", name: { kind: "Name", value: "data" } },
-          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "UserUpdateInput" } } },
-        },
-      ],
-      selectionSet: {
-        kind: "SelectionSet",
-        selections: [
-          {
-            kind: "Field",
-            name: { kind: "Name", value: "updateUser" },
-            arguments: [
-              {
-                kind: "Argument",
-                name: { kind: "Name", value: "data" },
-                value: { kind: "Variable", name: { kind: "Name", value: "data" } },
-              },
-            ],
-            selectionSet: {
-              kind: "SelectionSet",
-              selections: [
-                { kind: "Field", name: { kind: "Name", value: "id" } },
-                {
-                  kind: "Field",
-                  name: { kind: "Name", value: "subscription" },
-                  selectionSet: {
-                    kind: "SelectionSet",
-                    selections: [{ kind: "Field", name: { kind: "Name", value: "id" } }],
-                  },
-                },
-              ],
-            },
-          },
-        ],
-      },
-    },
-  ],
-} as unknown as DocumentNode<UpdateUserSubscriptionMutation, UpdateUserSubscriptionMutationVariables>;

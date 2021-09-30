@@ -1,5 +1,6 @@
 import { Container } from "@boilerplate/shared/ui";
-import { getLayout, PageHeading, PlanForm, SettingsSection } from "@boilerplate/site/ui";
+import { PlanSettings } from "@boilerplate/site-feature";
+import { getLayout, PageHeading, SettingsSection } from "@boilerplate/site/ui";
 import type { GetServerSidePropsContext } from "next";
 import { getSession } from "next-auth/client";
 import { NextSeo } from "next-seo";
@@ -32,7 +33,7 @@ export default function Billing() {
       <PageHeading heading={t("page-heading")} />
       <Container pb={{ base: 4, md: 10 }}>
         <SettingsSection>
-          <PlanForm />
+          <PlanSettings />
         </SettingsSection>
       </Container>
     </>
