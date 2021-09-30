@@ -26,7 +26,7 @@ export const graphqlFetch = async <TData = any, TVariables = Record<string, any>
   const query = print(operation);
 
   const res = await fetch(getGraphqlEndpoint(), {
-    headers: { "content-type": "application/json" },
+    headers: { "Content-Type": "application/json" },
     method: "POST",
     body: JSON.stringify({ operationName, query, variables }),
     credentials: "include",
