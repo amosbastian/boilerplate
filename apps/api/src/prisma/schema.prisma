@@ -55,6 +55,8 @@ model User {
   accounts         Account[]
   sessions         Session[]
   roles            Role[]
+  billingAddress   Json?
+  paymentMethod    Json?
 }
 
 model Role {
