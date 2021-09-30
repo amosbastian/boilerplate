@@ -1,17 +1,19 @@
 import { createApolloServer, prisma } from "@boilerplate/api/utility";
 import * as cookieParser from "cookie-parser";
+import * as cors from "cors";
 import * as express from "express";
-import { addStripeWebhook } from "./app/stripe";
+import { addCreateCheckoutSession, addCreatePortalLink, addStripeWebhook } from "./app/stripe";
 
 const main = async () => {
   const apolloServer = await createApolloServer(prisma);
   await apolloServer.start();
 
   const app = express();
+
   app.use(cookieParser());
 
   app.use((req, res, next) => {
-    if (req.originalUrl === "/api/stripe") {
+    if (req.originalUrl === "/api/stripe/webhook") {
       next();
     } else {
       express.json()(req, res, next);
@@ -19,6 +21,9 @@ const main = async () => {
   });
 
   addStripeWebhook(app);
+  app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
+  addCreateCheckoutSession(app);
+  addCreatePortalLink(app);
 
   apolloServer.applyMiddleware({
     app,
