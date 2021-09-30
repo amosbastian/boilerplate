@@ -21,7 +21,7 @@ const relevantEvents = new Set([
 ]);
 
 export function addStripeWebhook(app: Express) {
-  app.post("/api/stripe", express.raw({ type: "application/json" }), async (request, response) => {
+  app.post("/api/stripe/webhook", express.raw({ type: "application/json" }), async (request, response) => {
     const signature = request.headers["stripe-signature"];
     const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET_LIVE ?? process.env.STRIPE_WEBHOOK_SECRET;
 
@@ -32,8 +32,6 @@ export function addStripeWebhook(app: Express) {
     } catch (error: any) {
       return response.status(400).send(`Webhook Error: ${error.message}`);
     }
-
-    console.log(event.type);
 
     if (relevantEvents.has(event.type)) {
       try {
@@ -56,6 +54,7 @@ export function addStripeWebhook(app: Express) {
             );
             break;
           case "checkout.session.completed":
+            console.log(event.data.object);
             if ((event.data.object as Stripe.Checkout.Session).mode === "subscription") {
               await manageSubscriptionStatusChange(
                 (event.data.object as Stripe.Checkout.Session).subscription as string,
