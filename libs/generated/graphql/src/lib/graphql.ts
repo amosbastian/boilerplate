@@ -1455,6 +1455,13 @@ export type UpdateProfileSettingsMutation = {
   }>;
 };
 
+export type UserWelcomeQueryVariables = Exact<{ [key: string]: never }>;
+
+export type UserWelcomeQuery = {
+  __typename?: "Query";
+  me?: Maybe<{ __typename?: "User"; name?: Maybe<string>; email?: Maybe<string> }>;
+};
+
 export type PlanSettingsFormProductFragmentFragment = {
   __typename?: "Product";
   id: string;
@@ -1764,3 +1771,29 @@ export const UpdateProfileSettingsDocument = {
     },
   ],
 } as unknown as DocumentNode<UpdateProfileSettingsMutation, UpdateProfileSettingsMutationVariables>;
+export const UserWelcomeDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "query",
+      name: { kind: "Name", value: "UserWelcome" },
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "me" },
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+                { kind: "Field", name: { kind: "Name", value: "email" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<UserWelcomeQuery, UserWelcomeQueryVariables>;
