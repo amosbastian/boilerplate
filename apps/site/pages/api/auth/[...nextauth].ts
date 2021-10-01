@@ -1,7 +1,9 @@
+import { html, text } from "@boilerplate/site/utility";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { PrismaClient } from "@prisma/client";
 import NextAuth from "next-auth";
 import Providers from "next-auth/providers";
+import * as nodemailer from "nodemailer";
 
 const prisma = new PrismaClient();
 
@@ -13,6 +15,29 @@ export default NextAuth({
     Providers.Email({
       server: process.env.EMAIL_SERVER,
       from: process.env.EMAIL_FROM,
+      sendVerificationRequest: async ({ identifier: email, url, baseUrl, provider }) => {
+        return new Promise((resolve, reject) => {
+          const { server, from } = provider;
+          const site = baseUrl.replace(/^https?:\/\//, "");
+
+          nodemailer.createTransport(server).sendMail(
+            {
+              to: email,
+              from,
+              subject: `Sign in to ${site}`,
+              text: text({ url, site }),
+              html: html({ url }),
+            },
+            (error) => {
+              if (error) {
+                // logger.error("SEND_VERIFICATION_EMAIL_ERROR", email, error);
+                return reject(new Error("SEND_VERIFICATION_EMAIL_ERROR"));
+              }
+              return resolve();
+            },
+          );
+        });
+      },
     }),
     Providers.Twitter({
       clientId: process.env.TWITTER_CLIENT_ID,

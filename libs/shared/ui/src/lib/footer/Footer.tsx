@@ -156,7 +156,7 @@ export function Footer(props: FooterProps) {
           <ChangeLanguage maxW="max-content" />
         </Grid>
         <HStack spacing={4}>
-          <ChakraLink aria-label="GitHub" variant="link" href="https://github.com/amosbastian/frontend" isExternal>
+          <ChakraLink aria-label="GitHub" variant="link" href="https://github.com/amosbastian/boilerplate" isExternal>
             <Icon boxSize={5} as={RiGithubFill} />
           </ChakraLink>
           <ChakraLink aria-label="Twitter" variant="link" href="https://twitter.com/amosbastian" isExternal>

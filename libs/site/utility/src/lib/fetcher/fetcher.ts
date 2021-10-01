@@ -15,7 +15,6 @@ export async function fetcher({
   });
 
   if (!response.ok) {
-    console.log(response);
     const error = new Error("An error occurred while performing this request.");
 
     throw error;
