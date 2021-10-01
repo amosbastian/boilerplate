@@ -3,7 +3,10 @@
   "free": "Free",
   "premium": "Premium",
   "price-per-month": "<0>{{currencySymbol}}{{price}}</0><1> / month</1>",
+  "price-per-year": "",
   "settings": "Settings",
   "sign-out": "Sign out",
-  "save": "Save"
+  "save": "Save",
+  "switch-monthly-billing": "",
+  "switch-yearly-billing": ""
 }

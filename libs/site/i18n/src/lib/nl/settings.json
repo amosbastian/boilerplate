@@ -4,6 +4,7 @@
   "general": "General",
   "image-label": "Profile picture",
   "language-label": "Language",
+  "manage-plan": "",
   "meta-title": "Settings",
   "name-label": "Name",
   "page-heading": "Settings",
@@ -12,5 +13,6 @@
   "plan-settings-title": "Plan",
   "profile-settings-subtitle": "profile-settings-subtitle",
   "profile-settings-title": "Profile",
-  "theme-label": "Theme"
+  "theme-label": "Theme",
+  "upgrade-plan": ""
 }
