@@ -1,5 +1,6 @@
 {
   "callback-error": "Try signing with a different account.",
+  "default-error": "",
   "emailcreateaccount-error": "Try signing with a different account.",
   "emailsignin-error": "Please check your email address.",
   "heading": "Sign in to Boilerplate",

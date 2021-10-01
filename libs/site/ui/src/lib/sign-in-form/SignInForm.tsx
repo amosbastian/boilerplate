@@ -59,7 +59,7 @@ export function SignInForm({ providers = [] }: SignInFormProps) {
 
   return (
     <Card mt={4} px={10} py={8} flexDirection="column" width="100%" maxWidth={{ base: "100%", md: "md" }}>
-      {error === "OAuthAccountNotLinked" && (
+      {error && error === typeof "string" && (
         <Alert status="error" mb={4}>
           <AlertIcon as={RiErrorWarningFill} />
           <Box flex="1">
