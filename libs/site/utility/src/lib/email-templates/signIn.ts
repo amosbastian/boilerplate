@@ -219,7 +219,7 @@ export const html = ({ url }: { url: string }) => {
                               color: #ffffff;
                             "
                           >
-                            <h3>Click the button below to sign in to Boilerplate.</h3>
+                            <h3>Click the button below to sign in to ${process.env.NEXT_PUBLIC_BRAND_NAME}.</h3>
                           </div>
                         </td>
                       </tr>
@@ -392,7 +392,7 @@ export const html = ({ url }: { url: string }) => {
                                 >
                                   <tr>
                                     <td style="font-size: 0; height: 24px; vertical-align: middle; width: 24px">
-                                      <a href="https://github.com/amosbastian/boilerplate" target="_blank">
+                                      <a href="${process.env.NEXT_PUBLIC_GITHUB_URL}" target="_blank">
                                         <img
                                           height="24"
                                           src="https://www.mailjet.com/images/theme/v1/icons/ico-social/github.png"
@@ -427,7 +427,7 @@ export const html = ({ url }: { url: string }) => {
                                   <tr>
                                     <td style="font-size: 0; height: 24px; vertical-align: middle; width: 24px">
                                       <a
-                                        href="https://twitter.com/intent/tweet?url=https://twitter.com/amosbastian"
+                                        href="${process.env.NEXT_PUBLIC_TWITTER_URL}"
                                         target="_blank"
                                       >
                                         <img
@@ -463,7 +463,7 @@ export const html = ({ url }: { url: string }) => {
                                 >
                                   <tr>
                                     <td style="font-size: 0; height: 24px; vertical-align: middle; width: 24px">
-                                      <a href="https://www.instagram.com/amosbastian" target="_blank">
+                                      <a href="${process.env.NEXT_PUBLIC_INSTAGRAM_URL}" target="_blank">
                                         <img
                                           height="24"
                                           src="https://www.mailjet.com/images/theme/v1/icons/ico-social/instagram.png"
@@ -498,7 +498,7 @@ export const html = ({ url }: { url: string }) => {
                                   <tr>
                                     <td style="font-size: 0; height: 24px; vertical-align: middle; width: 24px">
                                       <a
-                                        href="https://www.linkedin.com/shareArticle?mini=true&url=https://linkedin.com/in/amosbastian&title=&summary=&source="
+                                        href="${process.env.NEXT_PUBLIC_LINKED_IN_URL}"
                                         target="_blank"
                                       >
                                         <img
