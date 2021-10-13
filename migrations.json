@@ -2,19 +2,11 @@
   "migrations": [
     {
       "cli": "nx",
-      "version": "12.9.0-beta.0",
-      "description": "Add outputs for caching",
-      "factory": "./src/migrations/update-12-9-0/add-outputs",
-      "package": "@nrwl/linter",
-      "name": "add-outputs"
-    },
-    {
-      "cli": "nx",
-      "version": "12.9.0-beta.0",
-      "description": "Remove ESLint parserOptions.project config if no rules requiring type-checking are in use",
-      "factory": "./src/migrations/update-12-4-0/remove-eslint-project-config-if-no-type-checking-rules",
-      "package": "@nrwl/linter",
-      "name": "remove-eslint-project-config-if-no-type-checking-rules-again"
+      "version": "12.10.0-beta.1",
+      "description": "Updates .eslintrc.json file to use the correct pages directory for '@next/next/no-html-link-for-pages'.",
+      "factory": "./src/migrations/update-12-10-0/fix-page-dir-for-eslint",
+      "package": "@nrwl/next",
+      "name": "fix-page-dir-for-eslint"
     }
   ]
 }
