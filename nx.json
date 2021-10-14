@@ -36,8 +36,12 @@
     "api-utility": {
       "tags": []
     },
-    "blog": {
+    "articles": {
       "tags": []
+    },
+    "blog": {
+      "tags": [],
+      "implicitDependencies": ["articles"]
     },
     "blog-e2e": {
       "tags": [],

@@ -96,6 +96,12 @@
         }
       }
     },
+    "articles": {
+      "root": "_articles",
+      "sourceRoot": "_articles",
+      "projectType": "application",
+      "targets": {}
+    },
     "blog": {
       "root": "apps/blog",
       "sourceRoot": "apps/blog",
