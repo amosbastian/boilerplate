@@ -1235,6 +1235,7 @@ export type SubscriptionWhereInput = {
 
 export type SubscriptionWhereUniqueInput = {
   id?: Maybe<Scalars["String"]>;
+  userId?: Maybe<Scalars["String"]>;
 };
 
 export type User = {
@@ -1391,26 +1392,35 @@ export type PlanSettingsQueryVariables = Exact<{ [key: string]: never }>;
 
 export type PlanSettingsQuery = {
   __typename?: "Query";
-  me?: Maybe<{
-    __typename?: "User";
-    name?: Maybe<string>;
-    email?: Maybe<string>;
-    image?: Maybe<string>;
-    id: string;
-    subscription?: Maybe<{
-      __typename?: "Subscription";
-      id: string;
-      status: SubscriptionStatus;
-      price?: Maybe<{
-        __typename?: "Price";
+  me?:
+    | {
+        __typename?: "User";
+        name?: string | null | undefined;
+        email?: string | null | undefined;
+        image?: string | null | undefined;
         id: string;
-        currency: string;
-        unitAmount: number;
-        recurring: any;
-        product?: Maybe<{ __typename?: "Product"; name: string }>;
-      }>;
-    }>;
-  }>;
+        subscription?:
+          | {
+              __typename?: "Subscription";
+              id: string;
+              status: SubscriptionStatus;
+              price?:
+                | {
+                    __typename?: "Price";
+                    id: string;
+                    currency: string;
+                    unitAmount: number;
+                    recurring: any;
+                    product?: { __typename?: "Product"; name: string } | null | undefined;
+                  }
+                | null
+                | undefined;
+            }
+          | null
+          | undefined;
+      }
+    | null
+    | undefined;
   products: Array<{
     __typename?: "Product";
     id: string;
@@ -1437,7 +1447,15 @@ export type ProfileSettingsQueryVariables = Exact<{ [key: string]: never }>;
 
 export type ProfileSettingsQuery = {
   __typename?: "Query";
-  me?: Maybe<{ __typename?: "User"; name?: Maybe<string>; email?: Maybe<string>; image?: Maybe<string> }>;
+  me?:
+    | {
+        __typename?: "User";
+        name?: string | null | undefined;
+        email?: string | null | undefined;
+        image?: string | null | undefined;
+      }
+    | null
+    | undefined;
 };
 
 export type UpdateProfileSettingsMutationVariables = Exact<{
@@ -1446,20 +1464,32 @@ export type UpdateProfileSettingsMutationVariables = Exact<{
 
 export type UpdateProfileSettingsMutation = {
   __typename?: "Mutation";
-  updateUser?: Maybe<{
-    __typename?: "User";
-    id: string;
-    name?: Maybe<string>;
-    email?: Maybe<string>;
-    image?: Maybe<string>;
-  }>;
+  updateUser?:
+    | {
+        __typename?: "User";
+        id: string;
+        name?: string | null | undefined;
+        email?: string | null | undefined;
+        image?: string | null | undefined;
+      }
+    | null
+    | undefined;
+};
+
+export type UpdateUserProfileMutationVariables = Exact<{
+  data: UserUpdateInput;
+}>;
+
+export type UpdateUserProfileMutation = {
+  __typename?: "Mutation";
+  updateUser?: { __typename?: "User"; id: string; name?: string | null | undefined } | null | undefined;
 };
 
 export type UserWelcomeQueryVariables = Exact<{ [key: string]: never }>;
 
 export type UserWelcomeQuery = {
   __typename?: "Query";
-  me?: Maybe<{ __typename?: "User"; name?: Maybe<string>; email?: Maybe<string> }>;
+  me?: { __typename?: "User"; name?: string | null | undefined; email?: string | null | undefined } | null | undefined;
 };
 
 export type PlanSettingsFormProductFragmentFragment = {
@@ -1473,20 +1503,26 @@ export type PlanSettingsFormProductFragmentFragment = {
 export type PlanSettingsFormUserFragmentFragment = {
   __typename?: "User";
   id: string;
-  email?: Maybe<string>;
-  subscription?: Maybe<{
-    __typename?: "Subscription";
-    id: string;
-    status: SubscriptionStatus;
-    price?: Maybe<{
-      __typename?: "Price";
-      id: string;
-      currency: string;
-      unitAmount: number;
-      recurring: any;
-      product?: Maybe<{ __typename?: "Product"; name: string }>;
-    }>;
-  }>;
+  email?: string | null | undefined;
+  subscription?:
+    | {
+        __typename?: "Subscription";
+        id: string;
+        status: SubscriptionStatus;
+        price?:
+          | {
+              __typename?: "Price";
+              id: string;
+              currency: string;
+              unitAmount: number;
+              recurring: any;
+              product?: { __typename?: "Product"; name: string } | null | undefined;
+            }
+          | null
+          | undefined;
+      }
+    | null
+    | undefined;
 };
 
 export type ProductCardProductFragmentFragment = {
@@ -1499,9 +1535,9 @@ export type ProductCardProductFragmentFragment = {
 
 export type ProfileSettingsFormUserFragmentFragment = {
   __typename?: "User";
-  name?: Maybe<string>;
-  email?: Maybe<string>;
-  image?: Maybe<string>;
+  name?: string | null | undefined;
+  email?: string | null | undefined;
+  image?: string | null | undefined;
 };
 
 export const PlanSettingsFormProductFragmentFragmentDoc = {
@@ -1771,6 +1807,46 @@ export const UpdateProfileSettingsDocument = {
     },
   ],
 } as unknown as DocumentNode<UpdateProfileSettingsMutation, UpdateProfileSettingsMutationVariables>;
+export const UpdateUserProfileDocument = {
+  kind: "Document",
+  definitions: [
+    {
+      kind: "OperationDefinition",
+      operation: "mutation",
+      name: { kind: "Name", value: "UpdateUserProfile" },
+      variableDefinitions: [
+        {
+          kind: "VariableDefinition",
+          variable: { kind: "Variable", name: { kind: "Name", value: "data" } },
+          type: { kind: "NonNullType", type: { kind: "NamedType", name: { kind: "Name", value: "UserUpdateInput" } } },
+        },
+      ],
+      selectionSet: {
+        kind: "SelectionSet",
+        selections: [
+          {
+            kind: "Field",
+            name: { kind: "Name", value: "updateUser" },
+            arguments: [
+              {
+                kind: "Argument",
+                name: { kind: "Name", value: "data" },
+                value: { kind: "Variable", name: { kind: "Name", value: "data" } },
+              },
+            ],
+            selectionSet: {
+              kind: "SelectionSet",
+              selections: [
+                { kind: "Field", name: { kind: "Name", value: "id" } },
+                { kind: "Field", name: { kind: "Name", value: "name" } },
+              ],
+            },
+          },
+        ],
+      },
+    },
+  ],
+} as unknown as DocumentNode<UpdateUserProfileMutation, UpdateUserProfileMutationVariables>;
 export const UserWelcomeDocument = {
   kind: "Document",
   definitions: [

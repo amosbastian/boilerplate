@@ -1,7 +1,9 @@
 import { gql } from "@boilerplate/generated/graphql";
 import { CardLoading } from "@boilerplate/shared/ui";
-import { useGraphqlQuery } from "@boilerplate/shared/utility/graphql";
-import { ProfileSettingsForm } from "@boilerplate/site/ui";
+import { useGraphqlMutation, useGraphqlQuery } from "@boilerplate/shared/utility/graphql";
+import { ProfileSettingsForm, ProfileSettingsFormData } from "@boilerplate/site/ui";
+import { useToast } from "@chakra-ui/react";
+import useTranslation from "next-translate/useTranslation";
 
 const ProfileSettingsQuery = gql(/* GraphQL */ `
   query ProfileSettings {
@@ -25,8 +27,40 @@ const UpdateProfileSettingsMutation = gql(/* GraphQL */ `
   }
 `);
 
+const UpdateUserProfileMutation = gql(/* GraphQL */ `
+  mutation UpdateUserProfile($data: UserUpdateInput!) {
+    updateUser(data: $data) {
+      id
+      name
+    }
+  }
+`);
+
 export function ProfileSettings() {
+  const toast = useToast();
+  const { t } = useTranslation("settings");
   const { data, isLoading, error } = useGraphqlQuery(ProfileSettingsQuery);
+
+  const { mutateAsync } = useGraphqlMutation(UpdateUserProfileMutation, {
+    onSuccess: () => {
+      toast({
+        title: t("update-success"),
+        status: "success",
+      });
+    },
+    onError: () => {
+      toast({
+        title: t("update-error"),
+        status: "error",
+      });
+    },
+  });
+
+  const onSubmit = async (data: ProfileSettingsFormData) => {
+    await mutateAsync({
+      data: { name: data.name ?? "" },
+    });
+  };
 
   if (isLoading || !data?.me) {
     return <CardLoading />;
@@ -36,7 +70,7 @@ export function ProfileSettings() {
     return null;
   }
 
-  return <ProfileSettingsForm user={data.me} />;
+  return <ProfileSettingsForm onSubmit={onSubmit} user={data.me} />;
 }
 
 export default ProfileSettings;

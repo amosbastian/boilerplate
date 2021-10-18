@@ -15,17 +15,18 @@ const ProfileSettingsFormUserFragment = gql(/* GraphQL */ `
   }
 `);
 
-interface ProfileSettingsFormData {
+export interface ProfileSettingsFormData {
   name?: string | null;
   email?: string | null;
   image?: FileList;
 }
 
-export interface ProfileSettingsFormProps extends GridProps {
+export interface ProfileSettingsFormProps extends Omit<GridProps, "onSubmit"> {
+  onSubmit: (data: ProfileSettingsFormData) => Promise<void>;
   user: DocumentType<typeof ProfileSettingsFormUserFragment>;
 }
 
-export function ProfileSettingsForm({ user, ...rest }: ProfileSettingsFormProps) {
+export function ProfileSettingsForm({ onSubmit, user, ...rest }: ProfileSettingsFormProps) {
   const { t } = useTranslation("settings");
   const [image, setImage] = React.useState<string | undefined | null>();
 
@@ -62,15 +63,6 @@ export function ProfileSettingsForm({ user, ...rest }: ProfileSettingsFormProps)
       setImage(null);
     }
   }, [watch, watchedImage]);
-
-  function onSubmit(data: ProfileSettingsFormData) {
-    return new Promise<void>((resolve) => {
-      setTimeout(() => {
-        alert(JSON.stringify(data, null, 2));
-        resolve();
-      }, 3000);
-    });
-  }
 
   const validateFile = (fileList?: FileList) => {
     if (!fileList || fileList.length === 0) {
@@ -109,7 +101,7 @@ export function ProfileSettingsForm({ user, ...rest }: ProfileSettingsFormProps)
             <FormLabel htmlFor="email" fontSize="sm">
               {t("common:email-address")}
             </FormLabel>
-            <Input {...register("email")} disabled={isSubmitting} />
+            <Input {...register("email")} disabled={isSubmitting || true} />
             <FormErrorMessage>{errors.email && errors.email.message}</FormErrorMessage>
           </FormControl>
 
@@ -120,7 +112,7 @@ export function ProfileSettingsForm({ user, ...rest }: ProfileSettingsFormProps)
             <Flex>
               <Avatar src={image ?? undefined} h={10} w={10} />
               <FileUpload accept={"image/*"} register={register("image", { validate: validateFile })} ml={6}>
-                <Button colorScheme="gray" variant="outline" fontSize="sm" disabled={isSubmitting}>
+                <Button colorScheme="gray" variant="outline" fontSize="sm" disabled={isSubmitting || true}>
                   {t("common:change")}
                 </Button>
               </FileUpload>
@@ -129,7 +121,7 @@ export function ProfileSettingsForm({ user, ...rest }: ProfileSettingsFormProps)
                 colorScheme="primary"
                 variant="ghost"
                 fontSize="sm"
-                disabled={isSubmitting}
+                disabled={isSubmitting || true}
                 onClick={removeImage}
               >
                 {t("common:remove")}
