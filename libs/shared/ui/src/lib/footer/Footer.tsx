@@ -1,14 +1,11 @@
 import {
   Box,
-  Button,
   Divider,
   Flex,
   Grid,
   Heading,
   HStack,
   Icon,
-  Input,
-  InputGroup,
   Link as ChakraLink,
   List,
   ListItem,
@@ -20,10 +17,10 @@ import { RiGithubFill, RiInstagramLine, RiLinkedinBoxFill, RiTwitterFill } from 
 import { ChangeLanguage } from "../change-language/ChangeLanguage";
 import { ChangeTheme } from "../change-theme/ChangeTheme";
 import { Link } from "../link/Link";
+import { NewsletterSubscriptionInput } from "../newsletter-subscription-input/NewsletterSubscriptionInput";
 
 const NewsletterSignup = () => {
   const { t } = useTranslation("common");
-  const backgroundColor = useColorModeValue("white", "transparent");
 
   return (
     <Box>
@@ -31,17 +28,7 @@ const NewsletterSignup = () => {
         {t("newsletter-heading")}
       </Heading>
       <Text mb={4}>{t("newsletter-subtitle")}</Text>
-      <InputGroup display="flex" flexDirection={{ base: "column", md: "row" }}>
-        <Input
-          backgroundColor={backgroundColor}
-          placeholder={t("newsletter-input-placeholder")}
-          mb={{ base: 4, md: 0 }}
-          maxW={{ base: "100%", md: "320px" }}
-        />
-        <Button w={{ md: "max-content" }} ml={{ base: 0, md: 4 }} flexShrink={0} colorScheme="primary">
-          {t("newsletter-cta")}
-        </Button>
-      </InputGroup>
+      <NewsletterSubscriptionInput />
     </Box>
   );
 };

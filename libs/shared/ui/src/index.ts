@@ -1,3 +1,4 @@
+export * from "./lib/newsletter-subscription-input/NewsletterSubscriptionInput";
 export * from "./lib/article-card/ArticleCard";
 export * from "./lib/button-link/ButtonLink";
 export * from "./lib/card-content/CardContent";
