@@ -1,3 +1,5 @@
+export * from "./lib/custom-error/CustomError";
+export * from "./lib/custom404/Custom404";
 export * from "./lib/newsletter-subscription-input/NewsletterSubscriptionInput";
 export * from "./lib/article-card/ArticleCard";
 export * from "./lib/button-link/ButtonLink";
