@@ -3,6 +3,7 @@ module.exports = {
   defaultLocale: "en",
   pages: {
     "*": ["common"],
+    "/": ["home"],
   },
   loadLocaleFrom: async (locale, namespace) => {
     const i18nShared = await import(`../../libs/shared/i18n/src/lib/${locale}/common`).then((m) => m.default);

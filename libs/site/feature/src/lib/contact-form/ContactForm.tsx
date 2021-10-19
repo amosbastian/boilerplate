@@ -61,7 +61,7 @@ export function ContactForm(props: ContactFormProps) {
 
       <FormControl isInvalid={Boolean(errors.email)} isRequired gridColumn="1 / -1">
         <FormLabel htmlFor="email">{t("common:email")}</FormLabel>
-        <Input placeholder="john.doe@gmail.com" {...register("email", { required: true })} />
+        <Input placeholder="john.doe@gmail.com" type="email" {...register("email", { required: true })} />
         <FormErrorMessage>{errors.email && errors.email.message}</FormErrorMessage>
       </FormControl>
 

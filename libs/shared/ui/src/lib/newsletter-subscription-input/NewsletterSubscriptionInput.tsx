@@ -1,5 +1,5 @@
-import type { InputGroupProps } from "@chakra-ui/react";
-import { Button, FormControl, Input, InputGroup, InputRightElement, useColorModeValue } from "@chakra-ui/react";
+import type { BoxProps } from "@chakra-ui/react";
+import { Box, Button, FormControl, Input, InputGroup, InputRightElement, useColorModeValue } from "@chakra-ui/react";
 import useTranslation from "next-translate/useTranslation";
 import { useForm } from "react-hook-form";
 
@@ -8,9 +8,11 @@ interface FormData {
 }
 
 /* eslint-disable-next-line */
-export interface NewsletterSubscriptionInputProps extends InputGroupProps {}
+export interface NewsletterSubscriptionInputProps extends BoxProps {
+  size?: "sm" | "md";
+}
 
-export function NewsletterSubscriptionInput(props: NewsletterSubscriptionInputProps) {
+export function NewsletterSubscriptionInput({ size = "sm", ...rest }: NewsletterSubscriptionInputProps) {
   const { t } = useTranslation("common");
   const backgroundColor = useColorModeValue("white", "transparent");
 
@@ -30,9 +32,9 @@ export function NewsletterSubscriptionInput(props: NewsletterSubscriptionInputPr
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <Box as="form" onSubmit={handleSubmit(onSubmit)} {...rest}>
       <FormControl isInvalid={Boolean(errors.email)} isRequired>
-        <InputGroup {...props}>
+        <InputGroup size={size === "sm" ? "md" : "lg"}>
           <Input
             backgroundColor={backgroundColor}
             placeholder={t("newsletter-input-placeholder")}
@@ -40,13 +42,13 @@ export function NewsletterSubscriptionInput(props: NewsletterSubscriptionInputPr
             {...register("email", { required: true })}
           />
           <InputRightElement w="max-content" pr={1}>
-            <Button flexShrink={0} colorScheme="primary" size="sm" isLoading={isSubmitting} type="submit">
+            <Button flexShrink={0} colorScheme="primary" size={size} isLoading={isSubmitting} type="submit">
               {t("newsletter-cta")}
             </Button>
           </InputRightElement>
         </InputGroup>
       </FormControl>
-    </form>
+    </Box>
   );
 }
 
