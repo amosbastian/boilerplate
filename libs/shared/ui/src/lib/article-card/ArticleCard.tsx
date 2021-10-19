@@ -19,7 +19,7 @@ export function ArticleCard({ frontMatter, ...rest }: ArticleCardProps) {
   return (
     <LinkBox as="article" {...rest}>
       <Badge mb={4}>{t(frontMatter.category.toLowerCase().replace(" ", "-"))}</Badge>
-      <NextLink href="#" passHref>
+      <NextLink href={`/${frontMatter.slug}`} passHref>
         <LinkOverlay>
           <Heading as="h2" size="md" mb={4}>
             {frontMatter.title}
@@ -34,8 +34,8 @@ export function ArticleCard({ frontMatter, ...rest }: ArticleCardProps) {
         <Box ml={4}>
           {frontMatter.author.name}
           <HStack spacing={1}>
-            <Text variant="secondary" as="time" dateTime={frontMatter.date}>
-              {dayjs(frontMatter.date).fromNow()}
+            <Text variant="secondary" as="time" dateTime={frontMatter.datePublished}>
+              <time dateTime={frontMatter.datePublished}>{dayjs(frontMatter.datePublished).fromNow()}</time>
             </Text>
             <Text variant="secondary" as="span">
               &middot;

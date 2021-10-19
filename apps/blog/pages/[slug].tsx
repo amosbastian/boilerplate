@@ -5,7 +5,7 @@ import { Container, getLayout } from "@boilerplate/shared/ui";
 import fs from "fs";
 import type { GetStaticPaths, GetStaticPropsContext, InferGetStaticPropsType } from "next";
 import { MDXRemote } from "next-mdx-remote";
-import { NextSeo } from "next-seo";
+import { ArticleJsonLd, NextSeo } from "next-seo";
 import { join } from "path";
 
 const POSTS_PATH = join(process.cwd(), process.env.ARTICLES_MARKDOWN_PATH || "_articles");
@@ -37,6 +37,17 @@ export const getStaticProps = async ({ params }: GetStaticPropsContext) => {
 export function Page({ frontMatter, html }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <Container maxW="container.md" py={10}>
+      <ArticleJsonLd
+        url={`${process.env.NEXT_PUBLIC_SITE_URL}/blog/${frontMatter.slug}`}
+        title={frontMatter.title}
+        images={[`${process.env.NEXT_PUBLIC_SITE_URL}/blog/${frontMatter.slug}.png`]}
+        datePublished={frontMatter.datePublished}
+        dateModified={frontMatter.dateModified}
+        authorName={[frontMatter.author.name]}
+        publisherName={process.env.NEXT_PUBLIC_BRAND_NAME}
+        publisherLogo={`${process.env.NEXT_PUBLIC_SITE_URL}/logo.png`}
+        description={frontMatter.description}
+      />
       <NextSeo title={frontMatter.title} description={frontMatter.description} />
       <article>
         <Heading frontMatter={frontMatter} />

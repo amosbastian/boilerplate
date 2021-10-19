@@ -6,8 +6,10 @@ export type FrontMatter = {
     image: string;
   };
   category: string;
-  date: string;
+  datePublished: string;
+  dateModified: string;
   description: string;
   readingTime: IReadTimeResults;
+  slug: string;
   title: string;
 };
