@@ -18,7 +18,7 @@ export function ArticleCard({ frontMatter, ...rest }: ArticleCardProps) {
 
   return (
     <LinkBox as="article" {...rest}>
-      <Badge mb={4}>{t(frontMatter.category)}</Badge>
+      <Badge mb={4}>{t(frontMatter.category.toLowerCase().replace(" ", "-"))}</Badge>
       <NextLink href="#" passHref>
         <LinkOverlay>
           <Heading as="h2" size="md" mb={4}>
@@ -40,7 +40,9 @@ export function ArticleCard({ frontMatter, ...rest }: ArticleCardProps) {
             <Text variant="secondary" as="span">
               &middot;
             </Text>
-            <Text variant="secondary">{t("reading-time", { minutes: frontMatter.readingTime.minutes })}</Text>
+            <Text variant="secondary">
+              {t("reading-time", { minutes: Math.ceil(frontMatter.readingTime.minutes) })}
+            </Text>
           </HStack>
         </Box>
       </Flex>

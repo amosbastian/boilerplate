@@ -32,7 +32,7 @@
   "privacy": "Privacy",
   "privacy-policy-agreement": "I agree to the <link>privacy policy</link>.",
   "product": "Product",
-  "reading-time": "{minutes} min read",
+  "reading-time": "{{minutes}} min read",
   "remove": "Remove",
   "resources": "Resources",
   "selected-language-aria-label": "Selected language: {{language}}",
