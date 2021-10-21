@@ -49,7 +49,7 @@ export default function Index() {
           <NextImage src="http://placekitten.com/g/900/500" alt={t("hero-image-alt-text")} width={900} height={500} />
         }
       />
-      <Features py={py} />
+      <Features title={t("features-section-heading")} subtitle={t("features-section-subtitle")} py={py} />
       <ImageSection
         variant="transparent"
         py={py}

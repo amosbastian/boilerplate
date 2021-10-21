@@ -8,48 +8,51 @@ const FEATURES: FeatureCardProps[] = [
   {
     icon: RiStarFill,
     heading: "feature-1-heading",
-    description: "feature-1-description",
+    description: "feature-1-long-description",
   },
   {
     icon: RiTimeFill,
     heading: "feature-2-heading",
-    description: "feature-2-description",
+    description: "feature-2-long-description",
   },
   {
     icon: RiLockFill,
     heading: "feature-3-heading",
-    description: "feature-3-description",
+    description: "feature-3-long-description",
   },
   {
     icon: RiCheckFill,
     heading: "feature-4-heading",
-    description: "feature-4-description",
+    description: "feature-4-long-description",
   },
   {
     icon: RiGameFill,
     heading: "feature-5-heading",
-    description: "feature-5-description",
+    description: "feature-5-long-description",
   },
   {
     icon: RiCupFill,
     heading: "feature-6-heading",
-    description: "feature-6-description",
+    description: "feature-6-long-description",
   },
 ];
 
-export type FeaturesProps = SectionProps;
+export interface FeaturesProps extends SectionProps {
+  title: string;
+  subtitle: string;
+}
 
-export function Features(props: FeaturesProps) {
-  const { t } = useTranslation("index");
+export function Features({ title, subtitle, ...rest }: FeaturesProps) {
+  const { t } = useTranslation("common");
 
   return (
-    <Section {...props}>
+    <Section {...rest}>
       <Flex direction="column" alignItems={{ base: "flex-start", md: "center" }} mb={{ base: 8, md: 16 }}>
         <Heading maxW={{ base: "100%", md: "42em" }} fontSize={{ base: "3xl", md: "5xl" }} mb={4}>
-          {t("features-section-heading")}
+          {title}
         </Heading>
         <Heading as="h3" fontSize={{ base: "md", md: "xl" }} variant="secondary">
-          {t("features-section-subtitle")}
+          {subtitle}
         </Heading>
       </Flex>
       <Box
