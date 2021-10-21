@@ -52,8 +52,9 @@ const NAV_ITEMS: NavItem[] = [
   {
     id: "features",
     links: [
-      { href: "#", id: "feature-1", icon: RiQuestionLine },
-      { href: "#", id: "feature-2", icon: RiQuestionLine },
+      { href: "/features/feature-1", id: "feature-1", icon: RiQuestionLine },
+      { href: "/features/feature-2", id: "feature-2", icon: RiQuestionLine },
+      { href: "/features", id: "feature-overview", icon: RiQuestionLine },
     ],
   },
   {

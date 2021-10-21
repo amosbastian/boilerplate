@@ -47,7 +47,7 @@ export default function Feature2Page() {
           </NextLink>
         }
         image={
-          <NextImage src="http://placekitten.com/g/900/500" alt={t("hero-image-alt-text")} width={900} height={500} />
+          <NextImage src="http://placekitten.com/g/800/500" alt={t("hero-image-alt-text")} width={800} height={500} />
         }
       />
       <ImageSection
