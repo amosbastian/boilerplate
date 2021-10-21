@@ -52,8 +52,9 @@ const NAV_ITEMS: NavItem[] = [
   {
     id: "features",
     links: [
-      { href: "#", id: "feature-1", icon: RiQuestionLine },
-      { href: "#", id: "feature-2", icon: RiQuestionLine },
+      { href: "/features/feature-1", id: "feature-1", icon: RiQuestionLine },
+      { href: "/features/feature-2", id: "feature-2", icon: RiQuestionLine },
+      { href: "/features", id: "feature-overview", icon: RiQuestionLine },
     ],
   },
   {
@@ -74,21 +75,11 @@ interface HeaderLinkProps {
   onClick?: () => void;
 }
 
-const HeaderLink = ({ children, href, onClick }: HeaderLinkProps) => {
-  const { basePath } = useRouter();
-  const isBlog = basePath === "/blog";
-
-  return (
-    <Link
-      fontSize="sm"
-      href={isBlog ? `${process.env.NEXT_PUBLIC_SITE_URL}${href}` : href}
-      onClick={onClick}
-      fontWeight="medium"
-    >
-      {children}
-    </Link>
-  );
-};
+const HeaderLink = ({ children, href, onClick }: HeaderLinkProps) => (
+  <Link fontSize="sm" href={href} onClick={onClick} fontWeight="medium">
+    {children}
+  </Link>
+);
 
 interface MobileNavListProps {
   onClick?: () => void;
@@ -98,6 +89,8 @@ interface MobileNavListProps {
 const MobileNavList = ({ onClick, headerNavItem }: MobileNavListProps) => {
   const { t } = useTranslation("common");
   const color = useColorModeValue("gray.500", "whiteAlpha.600");
+  const { basePath } = useRouter();
+  const isBlog = basePath === "/blog";
 
   return (
     <Box as="section" px={6} _last={{ pb: 8 }}>
@@ -108,7 +101,7 @@ const MobileNavList = ({ onClick, headerNavItem }: MobileNavListProps) => {
       )}
       <Grid gridTemplateColumns="repeat(2, 1fr)" columnGap={1} rowGap={3}>
         {headerNavItem.links.map((link) => (
-          <HeaderLink href={link.href} onClick={onClick}>
+          <HeaderLink href={isBlog ? `${process.env.NEXT_PUBLIC_SITE_URL}${link.href}` : link.href} onClick={onClick}>
             <Icon as={link.icon} mr={2} color={color} />
             {t(link.id)}
           </HeaderLink>
@@ -204,7 +197,7 @@ export function Header() {
                   {navItem.links.map((link) => (
                     <FlyoutMenuItem
                       key={link.id}
-                      href={link.href}
+                      href={isBlog ? `${process.env.NEXT_PUBLIC_SITE_URL}${link.href}` : link.href}
                       heading={t(link.id)}
                       description={t(`${link.id}-description`)}
                       iconType={link.icon}
@@ -215,7 +208,10 @@ export function Header() {
             }
 
             return (
-              <HeaderLink key={navItem.id} href={navItem.links[0].href}>
+              <HeaderLink
+                key={navItem.id}
+                href={isBlog ? `${process.env.NEXT_PUBLIC_SITE_URL}${navItem.links[0].href}` : navItem.links[0].href}
+              >
                 {t(navItem.links[0].id)}
               </HeaderLink>
             );

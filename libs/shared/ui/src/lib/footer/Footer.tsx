@@ -13,6 +13,7 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import useTranslation from "next-translate/useTranslation";
+import { useRouter } from "next/router";
 import { RiGithubFill, RiInstagramLine, RiLinkedinBoxFill, RiTwitterFill } from "react-icons/ri";
 import { ChangeLanguage } from "../change-language/ChangeLanguage";
 import { ChangeTheme } from "../change-theme/ChangeTheme";
@@ -41,6 +42,8 @@ type NavItem = {
 const FooterList = ({ navItem }: { navItem: NavItem }) => {
   const { t } = useTranslation("common");
   const hoverColor = useColorModeValue("primary.600", "primary.200");
+  const { basePath } = useRouter();
+  const isBlog = basePath === "/blog";
 
   return (
     <Flex flexDirection="column">
@@ -50,7 +53,12 @@ const FooterList = ({ navItem }: { navItem: NavItem }) => {
       <List>
         {navItem.links.map(({ id, href }, index) => (
           <ListItem key={id} mb={index === navItem.links.length ? 0 : 2}>
-            <Link href={href} fontWeight="normal" fontSize="sm" _hover={{ color: hoverColor }}>
+            <Link
+              href={isBlog ? `${process.env.NEXT_PUBLIC_SITE_URL}${href}` : href}
+              fontWeight="normal"
+              fontSize="sm"
+              _hover={{ color: hoverColor }}
+            >
               {t(id)}
             </Link>
           </ListItem>
