@@ -1,11 +1,14 @@
 import { ButtonLink, getLayout, Section } from "@boilerplate/shared/ui";
-import { CtaCard, Features, Hero, ImageSection, Testimonials } from "@boilerplate/site/ui";
-import { Box, Heading, useColorModeValue } from "@chakra-ui/react";
+import { CtaCard, Features, GradientButton, Hero, ImageSection, Testimonials } from "@boilerplate/site/ui";
+import { Box, Heading, Icon, useColorModeValue } from "@chakra-ui/react";
 import type { GetServerSidePropsContext } from "next";
 import { getSession } from "next-auth/client";
 import { NextSeo } from "next-seo";
 import Trans from "next-translate/Trans";
 import useTranslation from "next-translate/useTranslation";
+import NextImage from "next/image";
+import NextLink from "next/link";
+import { RiArrowRightLine } from "react-icons/ri";
 
 export const getServerSideProps = async (context: GetServerSidePropsContext) => {
   const session = await getSession(context);
@@ -32,7 +35,20 @@ export default function Index() {
   return (
     <>
       <NextSeo title={t("meta-title")} description={t("meta-description")} />
-      <Hero />
+      <Hero
+        title={t("hero-heading")}
+        subtitle={t("hero-subtitle")}
+        cta={
+          <NextLink href="/signin" passHref>
+            <GradientButton as="a" size="lg" rightIcon={<Icon as={RiArrowRightLine} />}>
+              {t("hero-cta")}
+            </GradientButton>
+          </NextLink>
+        }
+        image={
+          <NextImage src="http://placekitten.com/g/900/500" alt={t("hero-image-alt-text")} width={900} height={500} />
+        }
+      />
       <Features py={py} />
       <ImageSection
         variant="transparent"
