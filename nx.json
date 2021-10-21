@@ -26,93 +26,21 @@
       }
     ]
   },
-  "projects": {
-    "api": {
-      "tags": []
+  "cli": {
+    "defaultCollection": "@nrwl/next"
+  },
+  "generators": {
+    "@nrwl/react": {
+      "application": {
+        "babel": true
+      }
     },
-    "api-data-access": {
-      "tags": []
-    },
-    "api-utility": {
-      "tags": []
-    },
-    "articles": {
-      "tags": []
-    },
-    "blog": {
-      "tags": [],
-      "implicitDependencies": ["articles"]
-    },
-    "blog-e2e": {
-      "tags": [],
-      "implicitDependencies": ["blog"]
-    },
-    "blog-i18n": {
-      "tags": []
-    },
-    "blog-ui": {
-      "tags": []
-    },
-    "blog-ui-e2e": {
-      "tags": [],
-      "implicitDependencies": ["blog-ui"]
-    },
-    "generated-graphql": {
-      "tags": []
-    },
-    "markdown": {
-      "tags": []
-    },
-    "shared-i18n": {
-      "tags": []
-    },
-    "shared-mdx": {
-      "tags": []
-    },
-    "shared-storybook": {
-      "tags": []
-    },
-    "shared-theme": {
-      "tags": []
-    },
-    "shared-types": {
-      "tags": []
-    },
-    "shared-ui": {
-      "tags": []
-    },
-    "shared-ui-e2e": {
-      "tags": [],
-      "implicitDependencies": ["shared-ui"]
-    },
-    "shared-utility-graphql": {
-      "tags": []
-    },
-    "site": {
-      "tags": []
-    },
-    "site-e2e": {
-      "tags": [],
-      "implicitDependencies": ["site"]
-    },
-    "site-feature": {
-      "tags": []
-    },
-    "site-i18n": {
-      "tags": []
-    },
-    "site-ui": {
-      "tags": []
-    },
-    "site-ui-e2e": {
-      "tags": [],
-      "implicitDependencies": ["site-ui"]
-    },
-    "site-utility": {
-      "tags": []
-    },
-    "stripe": {
-      "tags": []
+    "@nrwl/next": {
+      "application": {
+        "style": "@emotion/styled",
+        "linter": "eslint"
+      }
     }
-  }
+  },
+  "defaultProject": "site"
 }

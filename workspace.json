@@ -50,7 +50,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "api-data-access": {
       "root": "libs/api/data-access",
@@ -72,7 +73,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "api-utility": {
       "root": "libs/api/utility",
@@ -94,13 +96,15 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "articles": {
       "root": "_articles",
       "sourceRoot": "_articles",
       "projectType": "application",
-      "targets": {}
+      "targets": {},
+      "tags": []
     },
     "blog": {
       "root": "apps/blog",
@@ -163,7 +167,9 @@
           },
           "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": [],
+      "implicitDependencies": ["articles"]
     },
     "blog-e2e": {
       "root": "apps/blog-e2e",
@@ -190,7 +196,9 @@
           },
           "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": [],
+      "implicitDependencies": ["blog"]
     },
     "blog-i18n": {
       "root": "libs/blog/i18n",
@@ -204,7 +212,8 @@
           },
           "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": []
     },
     "blog-ui": {
       "root": "libs/blog/ui",
@@ -257,7 +266,8 @@
             }
           }
         }
-      }
+      },
+      "tags": []
     },
     "blog-ui-e2e": {
       "root": "apps/blog-ui-e2e",
@@ -283,7 +293,9 @@
           },
           "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": [],
+      "implicitDependencies": ["blog-ui"]
     },
     "generated-graphql": {
       "root": "libs/generated/graphql",
@@ -297,7 +309,8 @@
           },
           "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": []
     },
     "markdown": {
       "root": "libs/markdown",
@@ -319,7 +332,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "shared-i18n": {
       "root": "libs/shared/i18n",
@@ -333,7 +347,8 @@
           },
           "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": []
     },
     "shared-mdx": {
       "root": "libs/shared/mdx",
@@ -355,7 +370,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "shared-storybook": {
       "root": "libs/shared/storybook",
@@ -400,7 +416,8 @@
             }
           }
         }
-      }
+      },
+      "tags": []
     },
     "shared-theme": {
       "root": "libs/shared/theme",
@@ -414,7 +431,8 @@
           },
           "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": []
     },
     "shared-types": {
       "root": "libs/shared/types",
@@ -428,7 +446,8 @@
           },
           "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": []
     },
     "shared-ui": {
       "root": "libs/shared/ui",
@@ -481,7 +500,8 @@
             }
           }
         }
-      }
+      },
+      "tags": []
     },
     "shared-ui-e2e": {
       "root": "apps/shared-ui-e2e",
@@ -508,7 +528,9 @@
           },
           "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": [],
+      "implicitDependencies": ["shared-ui"]
     },
     "shared-utility-graphql": {
       "root": "libs/shared/utility//graphql",
@@ -530,7 +552,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "site": {
       "root": "apps/site",
@@ -583,7 +606,8 @@
           },
           "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": []
     },
     "site-e2e": {
       "root": "apps/site-e2e",
@@ -610,7 +634,9 @@
           },
           "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": [],
+      "implicitDependencies": ["site"]
     },
     "site-feature": {
       "root": "libs/site/feature",
@@ -632,7 +658,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "site-i18n": {
       "root": "libs/site/i18n",
@@ -646,7 +673,8 @@
           },
           "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": []
     },
     "site-ui": {
       "root": "libs/site/ui",
@@ -699,7 +727,8 @@
             }
           }
         }
-      }
+      },
+      "tags": []
     },
     "site-ui-e2e": {
       "root": "apps/site-ui-e2e",
@@ -726,7 +755,9 @@
           },
           "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": [],
+      "implicitDependencies": ["site-ui"]
     },
     "site-utility": {
       "root": "libs/site/utility",
@@ -748,7 +779,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "stripe": {
       "root": "libs/stripe",
@@ -770,24 +802,8 @@
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     }
-  },
-  "cli": {
-    "defaultCollection": "@nrwl/next"
-  },
-  "generators": {
-    "@nrwl/react": {
-      "application": {
-        "babel": true
-      }
-    },
-    "@nrwl/next": {
-      "application": {
-        "style": "@emotion/styled",
-        "linter": "eslint"
-      }
-    }
-  },
-  "defaultProject": "site"
+  }
 }
