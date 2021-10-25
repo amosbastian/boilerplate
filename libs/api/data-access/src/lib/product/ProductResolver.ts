@@ -1,9 +1,21 @@
 import { Context } from "@boilerplate/shared/types";
-import { FindManyProductArgs, Price, Product, ProductPricesArgs, UpsertProductArgs } from "@generated/type-graphql";
+import {
+  FindManyProductArgs,
+  FindUniqueProductArgs,
+  Price,
+  Product,
+  ProductPricesArgs,
+  UpsertProductArgs,
+} from "@generated/type-graphql";
 import { Args, Authorized, Ctx, FieldResolver, Mutation, Query, Resolver, Root } from "type-graphql";
 
 @Resolver(() => Product)
 export class ProductResolver {
+  @Query(() => Product, { nullable: true })
+  async product(@Ctx() { prisma }: Context, @Args() args: FindUniqueProductArgs): Promise<Product | null> {
+    return prisma.product.findUnique(args);
+  }
+
   @Query(() => [Product], { nullable: false })
   async products(@Ctx() { prisma }: Context, @Args() args: FindManyProductArgs): Promise<Product[]> {
     return prisma.product.findMany(args);
