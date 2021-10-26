@@ -1,5 +1,5 @@
 import { upsertProduct } from "./upsertProduct";
-import { createTestContext, createProduct } from "@boilerplate/api/utility";
+import { createTestContext, createProduct } from "@boilerplate/api/test";
 import * as faker from "faker";
 
 const ctx = createTestContext();

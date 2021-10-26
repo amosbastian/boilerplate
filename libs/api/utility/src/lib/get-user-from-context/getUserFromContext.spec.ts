@@ -2,7 +2,7 @@ import type { Request } from "express";
 import type { Secret } from "jsonwebtoken";
 import { sign } from "jsonwebtoken";
 import { getUserFromContext } from "./getUserFromContext";
-import { createTestContext, createUser } from "@boilerplate/api/utility";
+import { createTestContext, createUser } from "@boilerplate/api/test";
 
 const ctx = createTestContext();
 

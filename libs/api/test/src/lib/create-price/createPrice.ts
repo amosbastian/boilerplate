@@ -1,7 +1,7 @@
 import { Price, PriceCreateInput, PriceType } from "@generated/type-graphql";
 import { PrismaClient } from "@prisma/client";
 import * as faker from "faker";
-import { createProduct } from "./createProduct";
+import { createProduct } from "../create-product/createProduct";
 
 export const createPrice = async (prisma: PrismaClient, props?: Partial<PriceCreateInput>): Promise<Price> => {
   const defaultProps = {
