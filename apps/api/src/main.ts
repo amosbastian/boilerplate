@@ -1,4 +1,5 @@
-import { createApolloServer, prisma } from "@boilerplate/api/utility";
+import { createApolloServer } from "@boilerplate/api/apollo";
+import { prisma } from "@boilerplate/api/utility";
 import * as Sentry from "@sentry/node";
 import * as Tracing from "@sentry/tracing";
 import * as cookieParser from "cookie-parser";

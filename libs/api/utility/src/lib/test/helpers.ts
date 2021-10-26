@@ -1,6 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import { createTestClient, TestQuery, TestSetOptions } from "apollo-server-integration-testing";
-import { createApolloServer } from "../create-apollo-server/createApolloServer";
+import { createApolloServer } from "@boilerplate/api/apollo";
 import { prisma } from "../prisma";
 
 type TestContext = {

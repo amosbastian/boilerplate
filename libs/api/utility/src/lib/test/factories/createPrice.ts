@@ -3,7 +3,7 @@ import { PrismaClient } from "@prisma/client";
 import * as faker from "faker";
 import { createProduct } from "./createProduct";
 
-export const createPrice = async (prisma: PrismaClient, props?: PriceCreateInput): Promise<Price> => {
+export const createPrice = async (prisma: PrismaClient, props?: Partial<PriceCreateInput>): Promise<Price> => {
   const defaultProps = {
     id: faker.datatype.uuid(),
     active: true,
