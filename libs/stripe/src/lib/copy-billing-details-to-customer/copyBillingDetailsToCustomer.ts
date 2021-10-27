@@ -2,6 +2,9 @@ import { prisma } from "@boilerplate/api/utility";
 import Stripe from "stripe";
 import { stripe } from "../stripe/stripe";
 
+// FIXME: import from Prisma
+type InputJsonObject = any;
+
 export const copyBillingDetailsToCustomer = async (userId: string, paymentMethod: Stripe.PaymentMethod) => {
   const customer = paymentMethod.customer;
 
@@ -19,6 +22,9 @@ export const copyBillingDetailsToCustomer = async (userId: string, paymentMethod
 
   await prisma.user.update({
     where: { id: userId },
-    data: { billingAddress: address as any, paymentMethod: paymentMethod[paymentMethod.type] as any },
+    data: {
+      billingAddress: address as InputJsonObject,
+      paymentMethod: paymentMethod[paymentMethod.type] as InputJsonObject,
+    },
   });
 };

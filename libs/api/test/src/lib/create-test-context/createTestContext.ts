@@ -34,6 +34,7 @@ export function createTestContext(): TestContext {
   afterEach(async () => {
     await graphqlCtx.afterEach();
     await prismaCtx.afterEach();
+    jest.clearAllMocks();
   });
 
   return ctx;

@@ -1,3 +1,4 @@
+import "reflect-metadata";
 import { createTestContext, createUser } from "@boilerplate/api/test";
 import * as faker from "faker";
 import { createOrRetrieveCustomer } from "./createOrRetrieveCustomer";
