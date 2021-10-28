@@ -1,5 +1,6 @@
 import { prisma } from "@boilerplate/api/utility";
 import { PriceType } from "@boilerplate/generated/graphql";
+import { logger } from "@boilerplate/shared/utility/logger";
 import Stripe from "stripe";
 
 export type UpsertPriceInput = Pick<
@@ -32,5 +33,5 @@ export const upsertPrice = async (price: UpsertPriceInput) => {
     update: input,
   });
 
-  console.log(`Price inserted/updated: ${price.id}`);
+  logger.info(`Price inserted/updated: ${price.id}`);
 };

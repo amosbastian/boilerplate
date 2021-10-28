@@ -1,5 +1,6 @@
 import { createApolloServer } from "@boilerplate/api/apollo";
 import { prisma } from "@boilerplate/api/utility";
+import { logger } from "@boilerplate/shared/utility/logger";
 import * as Sentry from "@sentry/node";
 import * as Tracing from "@sentry/tracing";
 import * as cookieParser from "cookie-parser";
@@ -54,10 +55,10 @@ const main = async () => {
       : `https://${process.env.DOMAIN_NAME}/graphql`;
 
   const server = app.listen(port, () => {
-    console.log(`Listening at ${url}`);
+    logger.info(`Listening at ${url}`);
   });
 
-  server.on("error", console.error);
+  server.on("error", logger.error);
 };
 
 main();

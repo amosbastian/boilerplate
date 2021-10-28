@@ -21,13 +21,9 @@ const PlanSettingsQuery = gql(/* GraphQL */ `
 export function PlanSettings() {
   const { data, isLoading, error } = useGraphqlQuery(PlanSettingsQuery);
 
-  console.log(data, isLoading);
-
   if (isLoading || !data?.me) {
     return <CardLoading />;
   }
-
-  console.log(data);
 
   if (error) {
     return null;

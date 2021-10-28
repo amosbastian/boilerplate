@@ -601,6 +601,29 @@
       },
       "tags": []
     },
+    "shared-utility-logger": {
+      "root": "libs/shared/utility/logger",
+      "sourceRoot": "libs/shared/utility/logger/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["libs/shared/utility/logger/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/shared/utility/logger"],
+          "options": {
+            "jestConfig": "libs/shared/utility/logger/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
+    },
     "site": {
       "root": "apps/site",
       "sourceRoot": "apps/site",
