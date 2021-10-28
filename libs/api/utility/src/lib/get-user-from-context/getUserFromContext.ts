@@ -3,7 +3,7 @@ import { User } from "@generated/type-graphql";
 import { decode } from "next-auth/jwt";
 
 export const getUserFromContext = async ({ prisma, req }: Pick<Context, "prisma" | "req">): Promise<User | null> => {
-  const token = req.cookies["next-auth.session-token"];
+  const token = req.cookies?.["next-auth.session-token"];
 
   if (!token || token === "null") {
     return null;

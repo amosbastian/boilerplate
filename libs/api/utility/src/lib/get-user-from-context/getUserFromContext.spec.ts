@@ -1,13 +1,14 @@
-import type { Request } from "express";
-import type { Secret } from "jsonwebtoken";
-import { sign } from "jsonwebtoken";
-import { getUserFromContext } from "./getUserFromContext";
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { createTestContext, createUser } from "@boilerplate/api/test";
+import type { Request } from "express";
+import { encode } from "next-auth/jwt";
+import "reflect-metadata";
+import { getUserFromContext } from "./getUserFromContext";
 
 const ctx = createTestContext();
 
 describe("getUserFromContext", () => {
-  it("should return null if no authorization header", async () => {
+  it("should return null if no next-auth.session-token cookie", async () => {
     const mockRequest = {
       headers: {},
     } as Request;
@@ -17,9 +18,9 @@ describe("getUserFromContext", () => {
     expect(user).toBeNull();
   });
 
-  it("should return null if authorization token is null", async () => {
+  it("should return null if next-auth.session-token cookie is null", async () => {
     const mockRequest = {
-      headers: { authorization: "null" },
+      cookies: { "next-auth.session-token": "null" },
     } as Request;
 
     const user = await getUserFromContext({ prisma: ctx.prisma, req: mockRequest });
@@ -27,13 +28,18 @@ describe("getUserFromContext", () => {
     expect(user).toBeNull();
   });
 
-  it("should return a user if authorization token set correctly", async () => {
+  it("should return a user if next-auth.session-token cookie set correctly", async () => {
     const createdUser = await createUser(ctx.prisma);
 
-    const encodedToken = sign({ id: createdUser.id }, process.env.JWT_SECRET as Secret);
+    const encodedToken = await encode({
+      token: { sub: createdUser.id },
+      secret: process.env.JWT_SECRET as string,
+      signingKey: process.env.JWT_SIGNING_KEY,
+      encryptionKey: process.env.JWT_ENCRYPTION_KEY,
+    });
 
     const mockRequest = {
-      headers: { authorization: `Bearer ${encodedToken}` },
+      cookies: { "next-auth.session-token": encodedToken },
     } as Request;
 
     const user = await getUserFromContext({ prisma: ctx.prisma, req: mockRequest });

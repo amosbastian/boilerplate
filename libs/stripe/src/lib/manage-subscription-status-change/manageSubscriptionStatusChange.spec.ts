@@ -1,7 +1,7 @@
+import "reflect-metadata";
 import { createPrice, createSubscription, createTestContext, createUser, mockFunction } from "@boilerplate/api/test";
 import { SubscriptionStatus } from "@boilerplate/generated/graphql";
 import * as faker from "faker";
-import "reflect-metadata";
 import Stripe from "stripe";
 import { stripe } from "../stripe/stripe";
 import { manageSubscriptionStatusChange } from "./manageSubscriptionStatusChange";

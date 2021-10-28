@@ -41,7 +41,7 @@ export function NewsletterSubscriptionInput({ size = "sm", ...rest }: Newsletter
             type="email"
             {...register("email", { required: true })}
           />
-          <InputRightElement w="max-content" pr={1}>
+          <InputRightElement zIndex={0} w="max-content" pr={1}>
             <Button flexShrink={0} colorScheme="primary" size={size} isLoading={isSubmitting} type="submit">
               {t("newsletter-cta")}
             </Button>
