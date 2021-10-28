@@ -1,4 +1,5 @@
 import { prisma } from "@boilerplate/api/utility";
+import { logger } from "@boilerplate/shared/utility/logger";
 import Stripe from "stripe";
 
 export const upsertProduct = async (
@@ -19,5 +20,5 @@ export const upsertProduct = async (
     update: input,
   });
 
-  console.log(`Product inserted/updated: ${product.id}`);
+  logger.info(`Product inserted/updated: ${product.id}`);
 };

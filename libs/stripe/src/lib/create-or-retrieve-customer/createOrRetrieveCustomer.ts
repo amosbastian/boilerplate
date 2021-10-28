@@ -1,4 +1,5 @@
 import { prisma } from "@boilerplate/api/utility";
+import { logger } from "@boilerplate/shared/utility/logger";
 import Stripe from "stripe";
 import { stripe } from "../stripe/stripe";
 
@@ -27,7 +28,7 @@ export const createOrRetrieveCustomer = async ({ userId }: { userId: string }) =
 
   await prisma.user.update({ where: { id: userId }, data: { stripeCustomerId: customer.id } });
 
-  console.log(`New customer created and inserted for ${userId}.`);
+  logger.info(`New customer created and inserted for ${userId}.`);
 
   return customer.id;
 };

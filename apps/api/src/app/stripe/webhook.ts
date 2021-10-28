@@ -54,7 +54,6 @@ export function addStripeWebhook(app: Express) {
             );
             break;
           case "checkout.session.completed":
-            console.log(event.data.object);
             if ((event.data.object as Stripe.Checkout.Session).mode === "subscription") {
               await manageSubscriptionStatusChange(
                 (event.data.object as Stripe.Checkout.Session).subscription as string,

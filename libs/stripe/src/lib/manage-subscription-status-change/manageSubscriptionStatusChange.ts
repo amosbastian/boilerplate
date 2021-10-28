@@ -1,5 +1,6 @@
 import { prisma } from "@boilerplate/api/utility";
 import { SubscriptionStatus } from "@boilerplate/generated/graphql";
+import { logger } from "@boilerplate/shared/utility/logger";
 import Stripe from "stripe";
 import { copyBillingDetailsToCustomer } from "../copy-billing-details-to-customer/copyBillingDetailsToCustomer";
 import { stripe } from "../stripe/stripe";
@@ -49,10 +50,10 @@ export const manageSubscriptionStatusChange = async (
       update: subscriptionData,
     });
   } catch (error: any) {
-    console.log("Error: ", error);
+    logger.error(error);
   }
 
-  console.log(`Inserted/updated subscription [${subscription.id}] for user [${user.id}]`);
+  logger.info(`Inserted/updated subscription [${subscription.id}] for user [${user.id}]`);
 
   // For a new subscription copy the billing details to the customer object.
   if (createAction && subscription.default_payment_method) {
