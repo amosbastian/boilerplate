@@ -1,5 +1,5 @@
 module.exports = {
-  displayName: "api-utility",
+  displayName: "api-apollo",
   preset: "../../../jest.preset.js",
   globals: {
     "ts-jest": {
@@ -11,7 +11,5 @@ module.exports = {
     "^.+\\.[tj]sx?$": "ts-jest",
   },
   moduleFileExtensions: ["ts", "tsx", "js", "jsx"],
-  coverageDirectory: "../../../coverage/libs/api/utility",
-  setupFilesAfterEnv: ["<rootDir>/../test/src/lib/setup-files-after-env/setupFilesAfterEnv.ts"],
-  globalSetup: "<rootDir>/../test/src/lib/global-setup/globalSetup.ts",
+  coverageDirectory: "../../../coverage/libs/api/apollo",
 };

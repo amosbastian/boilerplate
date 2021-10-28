@@ -121,7 +121,7 @@ enum SubscriptionStatus {
 model Subscription {
   id                 String             @id
   user               User               @relation(fields: [userId], references: [id])
-  userId             String
+  userId             String             @unique
   price              Price              @relation(fields: [priceId], references: [id])
   priceId            String
   status             SubscriptionStatus

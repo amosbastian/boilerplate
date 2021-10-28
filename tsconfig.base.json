@@ -16,7 +16,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@boilerplate/api/apollo": ["libs/api/apollo/src/index.ts"],
       "@boilerplate/api/data-access": ["libs/api/data-access/src/index.ts"],
+      "@boilerplate/api/test": ["libs/api/test/src/index.ts"],
       "@boilerplate/api/utility": ["libs/api/utility/src/index.ts"],
       "@boilerplate/blog/i18n": ["libs/blog/i18n/src/index.ts"],
       "@boilerplate/blog/ui": ["libs/blog/ui/src/index.ts"],

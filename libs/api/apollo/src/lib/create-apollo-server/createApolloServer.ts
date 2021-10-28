@@ -10,7 +10,7 @@ import { ApolloServer, ApolloServerExpressConfig } from "apollo-server-express";
 import { ApolloServerPlugin } from "apollo-server-plugin-base";
 import "dotenv/config";
 import { createSchema } from "../create-schema/createSchema";
-import { getUserFromContext } from "../get-user-from-context/getUserFromContext";
+import { getUserFromContext } from "@boilerplate/api/utility";
 
 const reportErrorToSentry: ApolloServerPlugin = {
   async requestDidStart() {

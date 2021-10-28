@@ -1,13 +1,12 @@
 import { Context } from "@boilerplate/shared/types";
-import { Price, Product, UpsertPriceArgs } from "@generated/type-graphql";
-import { Args, Authorized, Ctx, FieldResolver, Mutation, Resolver, Root } from "type-graphql";
+import { FindUniquePriceArgs, Price, Product } from "@generated/type-graphql";
+import { Args, Ctx, FieldResolver, Query, Resolver, Root } from "type-graphql";
 
 @Resolver(() => Price)
 export class PriceResolver {
-  @Authorized("Admin")
-  @Mutation(() => Price, { nullable: true })
-  async upsertPrice(@Ctx() { prisma }: Context, @Args() args: UpsertPriceArgs): Promise<Price> {
-    return prisma.price.upsert(args);
+  @Query(() => Price, { nullable: true })
+  async price(@Ctx() { prisma }: Context, @Args() args: FindUniquePriceArgs): Promise<Price | null> {
+    return prisma.price.findUnique(args);
   }
 
   @FieldResolver(() => Product, { nullable: true })

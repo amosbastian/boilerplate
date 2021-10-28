@@ -53,6 +53,29 @@
       },
       "tags": []
     },
+    "api-apollo": {
+      "root": "libs/api/apollo",
+      "sourceRoot": "libs/api/apollo/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["libs/api/apollo/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/api/apollo"],
+          "options": {
+            "jestConfig": "libs/api/apollo/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
+    },
     "api-data-access": {
       "root": "libs/api/data-access",
       "sourceRoot": "libs/api/data-access/src",
@@ -70,6 +93,29 @@
           "outputs": ["coverage/libs/api/data-access"],
           "options": {
             "jestConfig": "libs/api/data-access/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
+    },
+    "api-test": {
+      "root": "libs/api/test",
+      "sourceRoot": "libs/api/test/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["libs/api/test/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/api/test"],
+          "options": {
+            "jestConfig": "libs/api/test/jest.config.js",
             "passWithNoTests": true
           }
         }

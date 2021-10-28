@@ -1,12 +1,9 @@
 import { Price, PriceCreateInput, PriceType } from "@generated/type-graphql";
 import { PrismaClient } from "@prisma/client";
 import * as faker from "faker";
-import { createProduct } from "./createProduct";
+import { createProduct } from "../create-product/createProduct";
 
-export const createPrice = async (
-  prisma: PrismaClient,
-  props: Partial<Omit<PriceCreateInput, "id">> = {},
-): Promise<Price> => {
+export const createPrice = async (prisma: PrismaClient, props?: Partial<PriceCreateInput>): Promise<Price> => {
   const defaultProps = {
     id: faker.datatype.uuid(),
     active: true,
@@ -18,10 +15,10 @@ export const createPrice = async (
     ...props,
   };
 
-  if (!props.product) {
+  if (!props?.product) {
     const product = await createProduct(prisma);
     defaultProps.product = { connect: { id: product.id } };
   }
 
-  return prisma.price.create({ data: { ...defaultProps, ...props } as PriceCreateInput });
+  return prisma.price.create({ data: { ...(defaultProps as PriceCreateInput), ...props } });
 };

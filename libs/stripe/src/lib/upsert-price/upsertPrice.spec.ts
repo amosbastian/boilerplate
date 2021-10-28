@@ -1,4 +1,5 @@
-import { createPrice, createProduct, createTestContext } from "@boilerplate/api/utility";
+import "reflect-metadata";
+import { createPrice, createProduct, createTestContext } from "@boilerplate/api/test";
 import * as faker from "faker";
 import { upsertPrice } from "./upsertPrice";
 
