@@ -7,7 +7,9 @@ export const createOrRetrieveCustomer = async ({ userId }: { userId: string }) =
   const user = await prisma.user.findUnique({ where: { id: userId } });
 
   if (!user) {
-    throw new Error(`No user found for id: ${userId}`);
+    const error = new Error(`No user found for id: ${userId}`);
+    logger.error("createOrRetrieveCustomer", { error });
+    throw error;
   }
 
   if (user.stripeCustomerId) {

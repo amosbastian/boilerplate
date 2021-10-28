@@ -19,7 +19,9 @@ export const manageSubscriptionStatusChange = async (
   const user = await prisma.user.findUnique({ where: { stripeCustomerId: customerId } });
 
   if (!user) {
-    throw new Error(`No user found for stripeCustomerId: ${customerId}`);
+    const error = new Error(`No user found for stripeCustomerId: ${customerId}`);
+    logger.error("manageSubscriptionStatusChange", { error });
+    throw error;
   }
 
   const subscription = await stripe.subscriptions.retrieve(subscriptionId, {
@@ -43,15 +45,11 @@ export const manageSubscriptionStatusChange = async (
     trialEnd: subscription.trial_end ? toDateTime(subscription.trial_end) : null,
   };
 
-  try {
-    await prisma.subscription.upsert({
-      where: { id: subscription.id },
-      create: subscriptionData,
-      update: subscriptionData,
-    });
-  } catch (error: any) {
-    logger.error(error);
-  }
+  await prisma.subscription.upsert({
+    where: { id: subscription.id },
+    create: subscriptionData,
+    update: subscriptionData,
+  });
 
   logger.info(`Inserted/updated subscription [${subscription.id}] for user [${user.id}]`);
 

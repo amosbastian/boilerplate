@@ -1,3 +1,4 @@
+import { logger } from "@boilerplate/shared/utility/logger";
 import {
   manageSubscriptionStatusChange,
   stripe,
@@ -30,6 +31,7 @@ export function addStripeWebhook(app: Express) {
     try {
       event = stripe.webhooks.constructEvent(request.body, signature as string, webhookSecret as string);
     } catch (error: any) {
+      logger.error("Stripe webhook", { error });
       return response.status(400).send(`Webhook Error: ${error.message}`);
     }
 
@@ -66,6 +68,7 @@ export function addStripeWebhook(app: Express) {
             throw new Error(`🤷‍♀️ Unhandled event type: ${event.type}`);
         }
       } catch (error) {
+        logger.error("Stripe webhook", { error });
         return response.status(400).send('Webhook error: "Webhook handler failed."');
       }
     }

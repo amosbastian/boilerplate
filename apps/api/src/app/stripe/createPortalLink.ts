@@ -1,3 +1,4 @@
+import { logger } from "@boilerplate/shared/utility/logger";
 import { createOrRetrieveCustomer, stripe } from "@boilerplate/stripe";
 import type { Express } from "express";
 import { decode } from "next-auth/jwt";
@@ -31,6 +32,7 @@ export function addCreatePortalLink(app: Express) {
 
       return response.status(200).json({ url });
     } catch (error) {
+      logger.error("Stripe create portal link", { error });
       response.status(500).json({ error: { statusCode: 500, message: (error as any).message } });
     }
   });

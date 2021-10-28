@@ -1,3 +1,4 @@
+import { logger } from "@boilerplate/shared/utility/logger";
 import { createOrRetrieveCustomer, stripe } from "@boilerplate/stripe";
 import type { Express } from "express";
 import { decode } from "next-auth/jwt";
@@ -48,6 +49,7 @@ export function addCreateCheckoutSession(app: Express) {
 
       return response.status(200).json({ sessionId: session.id });
     } catch (error: any) {
+      logger.error("Stripe create checkout session", { error });
       response.status(500).json({ error: { statusCode: 500, message: error.message } });
     }
   });

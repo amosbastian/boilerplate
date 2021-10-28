@@ -1,4 +1,5 @@
 import { Context } from "@boilerplate/shared/types";
+import { logger } from "@boilerplate/shared/utility/logger";
 import { User } from "@generated/type-graphql";
 import { decode } from "next-auth/jwt";
 
@@ -23,6 +24,7 @@ export const getUserFromContext = async ({ prisma, req }: Pick<Context, "prisma"
 
     return user;
   } catch (error) {
+    logger.error("getUserFromContext", { error });
     return null;
   }
 };
