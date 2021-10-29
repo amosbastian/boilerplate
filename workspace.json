@@ -47,7 +47,8 @@
           "outputs": ["coverage/apps/api"],
           "options": {
             "jestConfig": "apps/api/jest.config.js",
-            "passWithNoTests": true
+            "passWithNoTests": true,
+            "runInBand": true
           }
         }
       },
@@ -70,7 +71,8 @@
           "outputs": ["coverage/libs/api/apollo"],
           "options": {
             "jestConfig": "libs/api/apollo/jest.config.js",
-            "passWithNoTests": true
+            "passWithNoTests": true,
+            "runInBand": true
           }
         }
       },
@@ -93,7 +95,8 @@
           "outputs": ["coverage/libs/api/data-access"],
           "options": {
             "jestConfig": "libs/api/data-access/jest.config.js",
-            "passWithNoTests": true
+            "passWithNoTests": true,
+            "runInBand": true
           }
         }
       },
@@ -139,7 +142,8 @@
           "outputs": ["coverage/libs/api/utility"],
           "options": {
             "jestConfig": "libs/api/utility/jest.config.js",
-            "passWithNoTests": true
+            "passWithNoTests": true,
+            "runInBand": true
           }
         }
       },
@@ -868,7 +872,8 @@
           "outputs": ["coverage/libs/stripe"],
           "options": {
             "jestConfig": "libs/stripe/jest.config.js",
-            "passWithNoTests": true
+            "passWithNoTests": true,
+            "runInBand": true
           }
         }
       },
