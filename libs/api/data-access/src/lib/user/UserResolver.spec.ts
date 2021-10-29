@@ -1,7 +1,5 @@
 import "reflect-metadata";
-// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { getUserFromContext } from "@boilerplate/api/utility";
-// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { createRole, createTestContext, createUser, mockFunction } from "@boilerplate/api/test";
 import { gql } from "apollo-server-express";
 

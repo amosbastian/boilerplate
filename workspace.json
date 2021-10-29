@@ -254,15 +254,7 @@
       "root": "libs/blog/i18n",
       "sourceRoot": "libs/blog/i18n/src",
       "projectType": "library",
-      "targets": {
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["libs/blog/i18n/**/*.ts"]
-          },
-          "outputs": ["{options.outputFile}"]
-        }
-      },
+      "targets": {},
       "tags": []
     },
     "blog-ui": {
@@ -389,15 +381,7 @@
       "root": "libs/shared/i18n",
       "sourceRoot": "libs/shared/i18n/src",
       "projectType": "library",
-      "targets": {
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["libs/shared/i18n/**/*.ts"]
-          },
-          "outputs": ["{options.outputFile}"]
-        }
-      },
+      "targets": {},
       "tags": []
     },
     "shared-mdx": {
@@ -738,15 +722,7 @@
       "root": "libs/site/i18n",
       "sourceRoot": "libs/site/i18n/src",
       "projectType": "library",
-      "targets": {
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["libs/site/i18n/**/*.ts"]
-          },
-          "outputs": ["{options.outputFile}"]
-        }
-      },
+      "targets": {},
       "tags": []
     },
     "site-ui": {

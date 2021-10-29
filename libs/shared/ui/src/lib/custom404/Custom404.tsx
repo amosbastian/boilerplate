@@ -1,8 +1,8 @@
-import { ButtonLink, Section } from "@boilerplate/shared/ui";
 import { Heading, Icon, Text, useColorModeValue } from "@chakra-ui/react";
 import useTranslation from "next-translate/useTranslation";
 import React from "react";
 import { RiArrowRightLine } from "react-icons/ri";
+import { ButtonLink, Section } from "../../";
 
 export function Custom404() {
   const { t } = useTranslation("404");

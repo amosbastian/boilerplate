@@ -1,5 +1,4 @@
 import "reflect-metadata";
-// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { createPrice, createProduct, createTestContext } from "@boilerplate/api/test";
 import { gql } from "apollo-server-express";
 
