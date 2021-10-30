@@ -160,6 +160,7 @@
       "root": "apps/blog",
       "sourceRoot": "apps/blog",
       "projectType": "application",
+
       "targets": {
         "build": {
           "executor": "@nrwl/next:build",
@@ -219,7 +220,7 @@
         }
       },
       "tags": [],
-      "implicitDependencies": ["articles"]
+      "implicitDependencies": ["articles", "blog-i18n", "shared-i18n"]
     },
     "blog-e2e": {
       "root": "apps/blog-e2e",
@@ -664,7 +665,8 @@
           "outputs": ["{options.outputFile}"]
         }
       },
-      "tags": []
+      "tags": [],
+      "implicitDependencies": ["site-i18n", "shared-i18n"]
     },
     "site-e2e": {
       "root": "apps/site-e2e",
