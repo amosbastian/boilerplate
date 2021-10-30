@@ -16,28 +16,25 @@ const SentryWebpackPluginOptions = {
   // https://github.com/getsentry/sentry-webpack-plugin#options.
 };
 
-module.exports = withPlugins(
-  [withNx, nextTranslate, (nextConfig) => withSentryConfig(nextConfig, SentryWebpackPluginOptions)],
-  {
-    nx: { svgr: true },
-    images: {
-      domains: ["placekitten.com"],
-    },
-    async rewrites() {
-      return [
-        {
-          source: "/:path*",
-          destination: `/:path*`,
-        },
-        {
-          source: "/blog",
-          destination: `${process.env.NEXT_PUBLIC_BLOG_URL}/blog`,
-        },
-        {
-          source: "/blog/:path*",
-          destination: `${process.env.NEXT_PUBLIC_BLOG_URL}/blog/:path*`,
-        },
-      ];
-    },
+module.exports = withPlugins([withNx, (nextConfig) => withSentryConfig(nextConfig, SentryWebpackPluginOptions)], {
+  nx: { svgr: true },
+  images: {
+    domains: ["placekitten.com"],
   },
-);
+  async rewrites() {
+    return [
+      {
+        source: "/:path*",
+        destination: `/:path*`,
+      },
+      {
+        source: "/blog",
+        destination: `${process.env.NEXT_PUBLIC_BLOG_URL}/blog`,
+      },
+      {
+        source: "/blog/:path*",
+        destination: `${process.env.NEXT_PUBLIC_BLOG_URL}/blog/:path*`,
+      },
+    ];
+  },
+});
