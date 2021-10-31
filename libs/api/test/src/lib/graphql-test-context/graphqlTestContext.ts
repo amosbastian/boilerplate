@@ -1,4 +1,3 @@
-// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { createApolloServer } from "@boilerplate/api/apollo";
 import { prisma } from "@boilerplate/api/utility";
 import { createTestClient } from "apollo-server-integration-testing";

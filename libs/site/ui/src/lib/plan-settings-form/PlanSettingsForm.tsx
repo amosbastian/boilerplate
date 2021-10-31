@@ -51,7 +51,7 @@ const ProductRadioCard = ({
   const planPrice = price;
 
   const { t } = useTranslation("common");
-  const { getInputProps, getCheckboxProps, state } = useRadio({ children, ...rest });
+  const { getInputProps, getCheckboxProps, state } = useRadio({ ...rest });
 
   const inputProps = getInputProps();
   const checkboxProps = getCheckboxProps();
@@ -64,7 +64,7 @@ const ProductRadioCard = ({
     <Box as="label">
       <input {...inputProps} />
       <Box
-        {...checkboxProps}
+        {...(checkboxProps as any)}
         cursor="pointer"
         color={color}
         _checked={{
@@ -208,7 +208,7 @@ export function PlanSettingsForm({ products, user, ...rest }: PlanSettingsFormPr
       />
       <CardContent {...rest}>
         {subscriptionName === "Free" && (
-          <Stack {...rootProps} spacing={2}>
+          <Stack {...(rootProps as any)} spacing={2}>
             {products.map((product) => {
               const planPrice = product.prices.find((price) => price.recurring.interval === billingPeriod);
               const radioProps = getRadioProps({ value: planPrice?.id });

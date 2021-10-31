@@ -4,6 +4,8 @@ const withNx = require("@nrwl/next/plugins/with-nx");
 const withPlugins = require("next-compose-plugins");
 const { withSentryConfig } = require("@sentry/nextjs");
 
+process.env.NEXT_TRANSLATE_PATH = "apps/site";
+
 const SentryWebpackPluginOptions = {
   // Additional config options for the Sentry Webpack plugin. Keep in mind that
   // the following options are set automatically, and overriding them is not
@@ -31,11 +33,11 @@ module.exports = withPlugins(
         },
         {
           source: "/blog",
-          destination: `${process.env.NEXT_PUBLIC_BLOG_URL}/blog`,
+          destination: `${process.env.NEXT_PUBLIC_BLOG_URL ?? "http://localhost:4200"}/blog`,
         },
         {
           source: "/blog/:path*",
-          destination: `${process.env.NEXT_PUBLIC_BLOG_URL}/blog/:path*`,
+          destination: `${process.env.NEXT_PUBLIC_BLOG_URL ?? "http://localhost:4200"}/blog/:path*`,
         },
       ];
     },

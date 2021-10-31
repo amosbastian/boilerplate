@@ -20,5 +20,5 @@ export const upsertProduct = async (
     update: input,
   });
 
-  logger.info(`Product inserted/updated: ${product.id}`);
+  logger.info(`Product upserted: ${product.id}`);
 };

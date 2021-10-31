@@ -1,10 +1,9 @@
 import "reflect-metadata";
 import { getUserFromContext } from "@boilerplate/api/utility";
-// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { createRole, createTestContext, createUser, mockFunction } from "@boilerplate/api/test";
 import { gql } from "apollo-server-express";
 
-jest.mock("../../../../apollo/src/lib/get-user-from-context/getUserFromContext");
+jest.mock("../../../../utility/src/lib/get-user-from-context/getUserFromContext");
 
 const mockedGetUserFromContext = mockFunction(getUserFromContext);
 const ctx = createTestContext();

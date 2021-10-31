@@ -1,5 +1,4 @@
 import "reflect-metadata";
-// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { PriceResolver, ProductResolver, SubscriptionResolver, UserResolver } from "@boilerplate/api/data-access";
 import "dotenv/config";
 import { GraphQLSchema } from "graphql";

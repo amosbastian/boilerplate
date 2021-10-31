@@ -10,7 +10,12 @@
           "error",
           {
             "enforceBuildableLibDependency": true,
-            "allow": [],
+            "allow": [
+              "@boilerplate/api/apollo",
+              "@boilerplate/api/data-access",
+              "@boilerplate/api/test",
+              "@boilerplate/api/utility"
+            ],
             "depConstraints": [
               {
                 "sourceTag": "*",

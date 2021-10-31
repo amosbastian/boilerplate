@@ -1,8 +1,7 @@
-// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
+import "reflect-metadata";
 import { createTestContext, createUser } from "@boilerplate/api/test";
 import type { Request } from "express";
 import { encode } from "next-auth/jwt";
-import "reflect-metadata";
 import { getUserFromContext } from "./getUserFromContext";
 
 const ctx = createTestContext();

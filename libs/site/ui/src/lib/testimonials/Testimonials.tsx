@@ -1,7 +1,7 @@
 import { Section, SectionProps } from "@boilerplate/shared/ui";
-import { Testimonial, TestimonialCard } from "@boilerplate/site/ui";
 import { Flex, Grid, Heading, VStack } from "@chakra-ui/react";
 import useTranslation from "next-translate/useTranslation";
+import { Testimonial, TestimonialCard } from "../../";
 
 export const TESTIMONIALS: Array<Testimonial[]> = [
   [
