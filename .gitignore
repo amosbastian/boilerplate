@@ -41,6 +41,3 @@ Thumbs.db
 # Custom
 .eslintcache
 .env
-
-# Sentry
-.sentryclirc
