@@ -42,7 +42,7 @@
     "@next-auth/prisma-adapter": "^0.5.4",
     "@nrwl/next": "13.0.2",
     "@ory/integrations": "^0.2.1",
-    "@ory/kratos-client": "^0.8.0-alpha.2",
+    "@ory/kratos-client": "0.8.0-alpha.2",
     "@prisma/client": "^3.3.0",
     "@sentry/nextjs": "^6.13.3",
     "@stripe/stripe-js": "^1.20.3",
