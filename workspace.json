@@ -160,7 +160,6 @@
       "root": "apps/blog",
       "sourceRoot": "apps/blog",
       "projectType": "application",
-
       "targets": {
         "build": {
           "executor": "@nrwl/next:build",
@@ -568,14 +567,14 @@
       "implicitDependencies": ["shared-ui"]
     },
     "shared-utility-graphql": {
-      "root": "libs/shared/utility//graphql",
+      "root": "libs/shared/utility/graphql",
       "sourceRoot": "libs/shared/utility/graphql/src",
       "projectType": "library",
       "targets": {
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["libs/shared/utility//graphql/**/*.ts"]
+            "lintFilePatterns": ["libs/shared/utility/graphql/**/*.ts"]
           },
           "outputs": ["{options.outputFile}"]
         },
@@ -607,6 +606,29 @@
           "outputs": ["coverage/libs/shared/utility/logger"],
           "options": {
             "jestConfig": "libs/shared/utility/logger/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
+    },
+    "shared-utility-ory": {
+      "root": "libs/shared/utility/ory",
+      "sourceRoot": "libs/shared/utility/ory/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["libs/shared/utility/ory/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/shared/utility/ory"],
+          "options": {
+            "jestConfig": "libs/shared/utility/ory/jest.config.js",
             "passWithNoTests": true
           }
         }

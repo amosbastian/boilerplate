@@ -32,6 +32,7 @@
       "@boilerplate/shared/ui": ["libs/shared/ui/src/index.ts"],
       "@boilerplate/shared/utility/graphql": ["libs/shared/utility/graphql/src/index.ts"],
       "@boilerplate/shared/utility/logger": ["libs/shared/utility/logger/src/index.ts"],
+      "@boilerplate/shared/utility/ory": ["libs/shared/utility/ory/src/index.ts"],
       "@boilerplate/site-feature": ["libs/site/feature/src/index.ts"],
       "@boilerplate/site/i18n": ["libs/site/i18n/src/index.ts"],
       "@boilerplate/site/ui": ["libs/site/ui/src/index.ts"],
