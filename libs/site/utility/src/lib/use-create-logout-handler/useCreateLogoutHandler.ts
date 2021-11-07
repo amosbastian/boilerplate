@@ -5,34 +5,35 @@ import { useRouter } from "next/router";
 import * as React from "react";
 
 // Returns a function which will log the user out
-export function createLogoutHandler(dependencies?: React.DependencyList) {
+export function useCreateLogoutHandler(dependencies?: React.DependencyList) {
   const [logoutToken, setLogoutToken] = React.useState<string>("");
   const router = useRouter();
 
   React.useEffect(() => {
-    ory
-      .createSelfServiceLogoutFlowUrlForBrowsers()
-      .then(({ data }) => {
+    const createSelfServiceLogoutFlowUrlForBrowsers = async () => {
+      try {
+        const { data } = await ory.createSelfServiceLogoutFlowUrlForBrowsers();
         setLogoutToken(data.logout_token);
-      })
-      .catch((error: AxiosError) => {
-        switch (error.response?.status) {
+      } catch (error) {
+        switch ((error as AxiosError).response?.status) {
+          // User is not logged in
           case 401:
-            // do nothing, the user is not logged in
             return;
         }
 
-        // Something else happened!
         return Promise.reject(error);
-      });
+      }
+    };
+
+    createSelfServiceLogoutFlowUrlForBrowsers();
   }, dependencies);
 
-  return () => {
+  return async () => {
     if (logoutToken) {
-      ory
-        .submitSelfServiceLogoutFlow(logoutToken)
-        .then(() => router.push("/login"))
-        .then(() => router.reload());
+      await ory.submitSelfServiceLogoutFlow(logoutToken);
+
+      router.push("/signin");
+      router.reload();
     }
   };
 }
