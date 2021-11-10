@@ -2,7 +2,7 @@ import { Link, Logo } from "@boilerplate/shared/ui";
 import { ory } from "@boilerplate/shared/utility/ory";
 import { FlowForm } from "@boilerplate/site/ui";
 import { handleOryRedirect, useCreateLogoutHandler, useHandleFlowError } from "@boilerplate/site/utility";
-import { Center, Heading, useColorModeValue } from "@chakra-ui/react";
+import { Box, Button, Center, Heading, useColorModeValue, VStack } from "@chakra-ui/react";
 import { SelfServiceLoginFlow, SubmitSelfServiceLoginFlowBody } from "@ory/kratos-client";
 import type { GetServerSidePropsContext } from "next";
 import { NextSeo } from "next-seo";
@@ -15,7 +15,9 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
   return await handleOryRedirect(false, "/home", context.req.headers.cookie);
 };
 
-export default function Signin() {
+export default function Login() {
+  const { t } = useTranslation("login");
+  const bg = useColorModeValue("gray.50", "gray.900");
   const [flow, setFlow] = React.useState<SelfServiceLoginFlow>();
 
   // Get ?flow=... from the URL
@@ -31,7 +33,7 @@ export default function Signin() {
     aal,
   } = router.query;
 
-  const onLogout = useCreateLogoutHandler([aal, refresh]);
+  const { handleLogout, loading } = useCreateLogoutHandler([aal, refresh]);
   const handleFlowError = useHandleFlowError(router, "login", setFlow);
 
   React.useEffect(() => {
@@ -98,9 +100,6 @@ export default function Signin() {
     }
   };
 
-  const { t } = useTranslation("login");
-  const bg = useColorModeValue("gray.50", "gray.900");
-
   return (
     <Center height="-webkit-fill-available" flexDirection="column" px={4} justifyContent="center" bg={bg}>
       <NextSeo title={t("meta-title")} description={t("meta-description")} />
@@ -109,14 +108,22 @@ export default function Signin() {
         {t("heading")}
       </Heading>
       <FlowForm flow={flow} onSubmit={onSubmit} />
-      <Center fontSize="sm" mt={4}>
-        <Trans
-          i18nKey="login:create-account"
-          components={{
-            link: <Link ml={1} variant="cta" href="/registration" />,
-          }}
-        />
-      </Center>
+      <VStack spacing={4} fontSize="sm" mt={4}>
+        {aal || refresh ? (
+          <Button isLoading={loading} variant="ghost" onClick={handleLogout}>
+            {t("common:sign-out")}
+          </Button>
+        ) : (
+          <Box>
+            <Trans
+              i18nKey="login:create-account"
+              components={{
+                link: <Link variant="cta" href="/registration" />,
+              }}
+            />
+          </Box>
+        )}
+      </VStack>
     </Center>
   );
 }
