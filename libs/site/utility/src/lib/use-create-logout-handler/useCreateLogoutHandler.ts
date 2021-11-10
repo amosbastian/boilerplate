@@ -32,7 +32,7 @@ export function useCreateLogoutHandler(dependencies?: React.DependencyList) {
     if (logoutToken) {
       await ory.submitSelfServiceLogoutFlow(logoutToken);
 
-      router.push("/signin");
+      router.push("/login");
       router.reload();
     }
   };

@@ -6,7 +6,7 @@ import * as React from "react";
 
 export function useHandleFlowError<S>(
   router: NextRouter,
-  flowType: "signin" | "registration" | "settings" | "recovery" | "verification",
+  flowType: "login" | "registration" | "settings" | "recovery" | "verification",
   resetFlow: React.Dispatch<React.SetStateAction<S | undefined>>,
 ) {
   const toast = useToast();
