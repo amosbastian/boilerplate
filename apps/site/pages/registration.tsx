@@ -1,7 +1,7 @@
 import { Link, Logo } from "@boilerplate/shared/ui";
 import { ory } from "@boilerplate/shared/utility/ory";
 import { FlowForm } from "@boilerplate/site/ui";
-import { getOrySession, useHandleFlowError } from "@boilerplate/site/utility";
+import { handleOryRedirect, useHandleFlowError } from "@boilerplate/site/utility";
 import { Center, Heading, useColorModeValue } from "@chakra-ui/react";
 import { SelfServiceRegistrationFlow, SubmitSelfServiceRegistrationFlowBody } from "@ory/kratos-client";
 import type { GetServerSidePropsContext } from "next";
@@ -12,22 +12,7 @@ import { useRouter } from "next/router";
 import * as React from "react";
 
 export const getServerSideProps = async (context: GetServerSidePropsContext) => {
-  const { data } = await getOrySession(context.req);
-
-  const isLoggedIn = data?.active && Boolean(data.id);
-
-  if (isLoggedIn) {
-    return {
-      redirect: {
-        destination: "/home",
-        permanent: false,
-      },
-    };
-  }
-
-  return {
-    props: {},
-  };
+  return await handleOryRedirect(false, "/login", context.req.headers.cookie);
 };
 
 export default function Signin() {

@@ -1,8 +1,8 @@
 import { ButtonLink, getLayout, Section } from "@boilerplate/shared/ui";
 import { CtaCard, Features, GradientButton, Hero, ImageSection } from "@boilerplate/site/ui";
+import { handleOryRedirect } from "@boilerplate/site/utility";
 import { Box, Heading, Icon, useColorModeValue } from "@chakra-ui/react";
 import type { GetServerSidePropsContext } from "next";
-import { getSession } from "next-auth/client";
 import { NextSeo } from "next-seo";
 import Trans from "next-translate/Trans";
 import useTranslation from "next-translate/useTranslation";
@@ -12,20 +12,7 @@ import React from "react";
 import { RiArrowRightLine } from "react-icons/ri";
 
 export const getServerSideProps = async (context: GetServerSidePropsContext) => {
-  const session = await getSession(context);
-
-  if (session) {
-    return {
-      redirect: {
-        destination: "/home",
-        permanent: false,
-      },
-    };
-  }
-
-  return {
-    props: {},
-  };
+  return await handleOryRedirect(false, "/home", context.req.headers.cookie);
 };
 
 export default function Feature2Page() {

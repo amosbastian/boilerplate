@@ -1,27 +1,14 @@
 import { Container } from "@boilerplate/shared/ui";
 import { UserWelcome } from "@boilerplate/site-feature";
 import { getLayout, PageHeading } from "@boilerplate/site/ui";
+import { handleOryRedirect } from "@boilerplate/site/utility";
 import type { GetServerSidePropsContext } from "next";
-import { getSession } from "next-auth/client";
 import { NextSeo } from "next-seo";
 import useTranslation from "next-translate/useTranslation";
 
-// export const getServerSideProps = async (context: GetServerSidePropsContext) => {
-//   const session = await getSession(context);
-
-//   if (!session) {
-//     return {
-//       redirect: {
-//         destination: "/login",
-//         permanent: false,
-//       },
-//     };
-//   }
-
-//   return {
-//     props: {},
-//   };
-// };
+export const getServerSideProps = async (context: GetServerSidePropsContext) => {
+  return await handleOryRedirect(true, "/login", context.req.headers.cookie);
+};
 
 export default function Home() {
   const { t } = useTranslation("home");

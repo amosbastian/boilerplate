@@ -20,6 +20,5 @@ export * from "./lib/product-card/ProductCard";
 export * from "./lib/profile-settings-form/ProfileSettingsForm";
 export * from "./lib/settings-aside/SettingsAside";
 export * from "./lib/settings-section/SettingsSection";
-export * from "./lib/sign-in-form/SignInForm";
 export * from "./lib/testimonial-card/TestimonialCard";
 export * from "./lib/testimonials/Testimonials";
