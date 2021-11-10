@@ -1,4 +1,5 @@
-import { FormControl, FormHelperText, FormLabel, Input } from "@chakra-ui/react";
+import { Link } from "@boilerplate/shared/ui";
+import { FormControl, FormHelperText, FormLabel, HStack, Input } from "@chakra-ui/react";
 import { FlowNodeInputProps } from "../flow-node-input";
 
 export function FlowNodeInputDefault({ node, attributes, value = "", setValue, disabled }: FlowNodeInputProps) {
@@ -16,28 +17,37 @@ export function FlowNodeInputDefault({ node, attributes, value = "", setValue, d
 
   // Render a generic text input field.
   return (
-    <FormControl isInvalid={node.messages.find(({ type }) => type === "error") ? true : false}>
-      <FormLabel>{node.meta.label?.text}</FormLabel>
-      <Input
-        onClick={onClick}
-        onChange={(event) => {
-          setValue(event.target.value);
-        }}
-        type={attributes.type}
-        name={attributes.name}
-        value={value}
-        isDisabled={attributes.disabled || disabled}
-      />
-      {node.messages.length > 0 ? (
-        <FormHelperText>
-          {node.messages.map(({ text, id }, k) => (
-            <span key={`${id}-${k}`} data-testid={`ui/message/${id}`}>
-              {text}
-            </span>
-          ))}
-        </FormHelperText>
+    <>
+      <FormControl isInvalid={node.messages.find(({ type }) => type === "error") ? true : false}>
+        <FormLabel>{node.meta.label?.text}</FormLabel>
+        <Input
+          onClick={onClick}
+          onChange={(event) => {
+            setValue(event.target.value);
+          }}
+          type={attributes.type}
+          name={attributes.name}
+          value={value}
+          isDisabled={attributes.disabled || disabled}
+        />
+        {node.messages.length > 0 ? (
+          <FormHelperText>
+            {node.messages.map(({ text, id }, k) => (
+              <span key={`${id}-${k}`} data-testid={`ui/message/${id}`}>
+                {text}
+              </span>
+            ))}
+          </FormHelperText>
+        ) : null}
+      </FormControl>
+      {attributes.type === "password" ? (
+        <HStack justifyContent="flex-end">
+          <Link variant="cta" href="/recovery">
+            Forgot your password?
+          </Link>
+        </HStack>
       ) : null}
-    </FormControl>
+    </>
   );
 }
 
