@@ -10,7 +10,7 @@ export interface AvatarMenuProps {}
 export function AvatarMenu(props: AvatarMenuProps) {
   const { t } = useTranslation("common");
 
-  const onSignout = useCreateLogoutHandler();
+  const { handleLogout } = useCreateLogoutHandler();
 
   return (
     <Menu {...props}>
@@ -24,7 +24,7 @@ export function AvatarMenu(props: AvatarMenuProps) {
           </MenuItem>
         </NextLink>
         <MenuDivider />
-        <MenuItem as={ChakraLink} icon={<Icon as={RiLogoutBoxLine} boxSize={5} />} onClick={onSignout}>
+        <MenuItem as={ChakraLink} icon={<Icon as={RiLogoutBoxLine} boxSize={5} />} onClick={handleLogout}>
           {t("sign-out")}
         </MenuItem>
       </MenuList>

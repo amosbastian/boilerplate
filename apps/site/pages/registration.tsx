@@ -2,7 +2,7 @@ import { Link, Logo } from "@boilerplate/shared/ui";
 import { ory } from "@boilerplate/shared/utility/ory";
 import { FlowForm } from "@boilerplate/site/ui";
 import { handleOryRedirect, useHandleFlowError } from "@boilerplate/site/utility";
-import { Center, Heading, useColorModeValue } from "@chakra-ui/react";
+import { Box, Center, Heading, useColorModeValue } from "@chakra-ui/react";
 import { SelfServiceRegistrationFlow, SubmitSelfServiceRegistrationFlowBody } from "@ory/kratos-client";
 import type { GetServerSidePropsContext } from "next";
 import { NextSeo } from "next-seo";
@@ -102,12 +102,14 @@ export default function Signin() {
       </Heading>
       <FlowForm flow={flow} onSubmit={onSubmit} />
       <Center fontSize="sm" mt={4}>
-        <Trans
-          i18nKey="registration:sign-in-to-account"
-          components={{
-            link: <Link ml={1} variant="cta" href="/login" />,
-          }}
-        />
+        <Box>
+          <Trans
+            i18nKey="registration:sign-in-to-account"
+            components={{
+              link: <Link variant="cta" href="/login" />,
+            }}
+          />
+        </Box>
       </Center>
     </Center>
   );

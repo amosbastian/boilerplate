@@ -15,6 +15,7 @@ module.exports = {
     "/home": ["home"],
     "/login": ["login"],
     "/pricing": ["pricing"],
+    "/recovery": ["recovery"],
     "/registration": ["registration"],
     "/verify-request": ["verify"],
     "rgx:^/settings": ["settings"],

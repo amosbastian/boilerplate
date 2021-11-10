@@ -6,6 +6,7 @@ import * as React from "react";
 
 // Returns a function which will log the user out
 export function useCreateLogoutHandler(dependencies?: React.DependencyList) {
+  const [loading, setLoading] = React.useState(false);
   const [logoutToken, setLogoutToken] = React.useState<string>("");
   const router = useRouter();
 
@@ -28,12 +29,16 @@ export function useCreateLogoutHandler(dependencies?: React.DependencyList) {
     createSelfServiceLogoutFlowUrlForBrowsers();
   }, dependencies);
 
-  return async () => {
+  const handleLogout = async () => {
     if (logoutToken) {
+      setLoading(true);
       await ory.submitSelfServiceLogoutFlow(logoutToken);
+      setLoading(false);
 
       router.push("/login");
       router.reload();
     }
   };
+
+  return { handleLogout, loading };
 }
