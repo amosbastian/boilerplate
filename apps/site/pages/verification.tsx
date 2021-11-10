@@ -3,7 +3,7 @@ import { ory } from "@boilerplate/shared/utility/ory";
 import { FlowForm } from "@boilerplate/site/ui";
 import { handleOryRedirect, useHandleFlowError } from "@boilerplate/site/utility";
 import { Center, Heading, useColorModeValue } from "@chakra-ui/react";
-import { SelfServiceRecoveryFlow, SubmitSelfServiceRecoveryFlowBody } from "@ory/kratos-client";
+import { SelfServiceVerificationFlow, SubmitSelfServiceVerificationFlowBody } from "@ory/kratos-client";
 import type { GetServerSidePropsContext } from "next";
 import { NextSeo } from "next-seo";
 import Trans from "next-translate/Trans";
@@ -15,16 +15,16 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
   return await handleOryRedirect(false, "/home", context.req.headers.cookie);
 };
 
-export default function Recovery() {
-  const { t } = useTranslation("recovery");
+export default function Verification() {
+  const { t } = useTranslation("verification");
   const bg = useColorModeValue("gray.50", "gray.900");
-  const [flow, setFlow] = React.useState<SelfServiceRecoveryFlow>();
+  const [flow, setFlow] = React.useState<SelfServiceVerificationFlow>();
 
   // Get ?flow=... from the URL
   const router = useRouter();
   const { return_to: returnTo, flow: flowId } = router.query;
 
-  const handleFlowError = useHandleFlowError(router, "recovery", setFlow);
+  const handleFlowError = useHandleFlowError(router, "verification", setFlow);
 
   React.useEffect(() => {
     // If the router is not ready yet, or we already have a flow, do nothing.
@@ -36,10 +36,19 @@ export default function Recovery() {
       // If ?flow=.. was in the URL, we fetch it
       if (flowId) {
         try {
-          const { data } = await ory.getSelfServiceRecoveryFlow(String(flowId));
+          const { data } = await ory.getSelfServiceVerificationFlow(String(flowId));
           setFlow(data);
         } catch (error) {
-          await handleFlowError(error);
+          switch (error.response?.status) {
+            case 410:
+              // Status code 410 means the request has expired - so let's load a fresh flow!
+              break;
+            case 403:
+              // Status code 403 implies some other issue (e.g. CSRF) - let's reload!
+              return router.push("/verification");
+          }
+
+          throw error;
         }
 
         return;
@@ -47,22 +56,30 @@ export default function Recovery() {
 
       // Otherwise we initialise it
       try {
-        const { data } = await ory.initializeSelfServiceRecoveryFlowForBrowsers();
+        const { data } = await ory.initializeSelfServiceVerificationFlowForBrowsers(
+          returnTo ? String(returnTo) : undefined,
+        );
         setFlow(data);
       } catch (error) {
-        await handleFlowError(error);
+        switch (error.response?.status) {
+          case 400:
+            // Status code 400 implies the user is already signed in
+            return router.push("/");
+        }
+
+        throw error;
       }
     }
 
     fetchFlow();
-  }, [flowId, router, router.isReady, returnTo, flow, handleFlowError]);
+  }, [flowId, router, router.isReady, returnTo, flow]);
 
-  const onSubmit = async (values: SubmitSelfServiceRecoveryFlowBody) => {
+  const onSubmit = async (values: SubmitSelfServiceVerificationFlowBody) => {
     // On submission, add the flow ID to the URL but do not navigate. This prevents the user losing
     // his data when she/he reloads the page.
     try {
-      await router.push(`/recovery?flow=${flow?.id}`, undefined, { shallow: true });
-      const { data } = await ory.submitSelfServiceRecoveryFlow(String(flow?.id), undefined, values);
+      await router.push(`/verification?flow=${flow?.id}`, undefined, { shallow: true });
+      const { data } = await ory.submitSelfServiceVerificationFlow(String(flow?.id), undefined, values);
 
       setFlow(data);
     } catch (error) {
@@ -90,7 +107,7 @@ export default function Recovery() {
       <FlowForm flow={flow} onSubmit={onSubmit} />
       <Center fontSize="sm" mt={4}>
         <Trans
-          i18nKey="recovery:go-back"
+          i18nKey="verification:go-back"
           components={{
             link: <Link variant="cta" href="/login" />,
           }}

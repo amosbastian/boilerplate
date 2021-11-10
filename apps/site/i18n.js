@@ -17,7 +17,7 @@ module.exports = {
     "/pricing": ["pricing"],
     "/recovery": ["recovery"],
     "/registration": ["registration"],
-    "/verify-request": ["verify"],
+    "/verification": ["verification"],
     "rgx:^/settings": ["settings"],
   },
   loadLocaleFrom: async (locale, namespace) => {
