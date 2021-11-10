@@ -1,0 +1,129 @@
+import { Logo } from "@boilerplate/shared/ui";
+import { ory } from "@boilerplate/shared/utility/ory";
+import { FlowForm } from "@boilerplate/site/ui";
+import { getOrySession, useCreateLogoutHandler, useHandleFlowError } from "@boilerplate/site/utility";
+import { Center, Heading, useColorModeValue } from "@chakra-ui/react";
+import { SelfServiceLoginFlow, SubmitSelfServiceLoginFlowBody } from "@ory/kratos-client";
+import type { GetServerSidePropsContext } from "next";
+import { NextSeo } from "next-seo";
+import useTranslation from "next-translate/useTranslation";
+import { useRouter } from "next/router";
+import * as React from "react";
+
+export const getServerSideProps = async (context: GetServerSidePropsContext) => {
+  const { data } = await getOrySession(context.req);
+
+  const isLoggedIn = data?.active && Boolean(data.id);
+
+  if (isLoggedIn) {
+    return {
+      redirect: {
+        destination: "/home",
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: {},
+  };
+};
+
+export default function Signin() {
+  const [flow, setFlow] = React.useState<SelfServiceLoginFlow>();
+
+  // Get ?flow=... from the URL
+  const router = useRouter();
+  const {
+    return_to: returnTo,
+    flow: flowId,
+    // Refresh means we want to refresh the session. This is needed, for example, when we want to update the password
+    // of a user.
+    refresh,
+    // AAL = Authorization Assurance Level. This implies that we want to upgrade the AAL, meaning that we want
+    // to perform two-factor authentication/verification.
+    aal,
+  } = router.query;
+
+  const onLogout = useCreateLogoutHandler([aal, refresh]);
+  const handleFlowError = useHandleFlowError(router, "login", setFlow);
+
+  React.useEffect(() => {
+    // If the router is not ready yet, or we already have a flow, do nothing.
+    if (!router.isReady || flow) {
+      return;
+    }
+
+    async function createFlow() {
+      // If ?flow=.. was in the URL, we fetch it
+      if (flowId) {
+        try {
+          const { data } = await ory.getSelfServiceLoginFlow(String(flowId));
+          setFlow(data);
+        } catch (error) {
+          await handleFlowError(error);
+        }
+
+        return;
+      }
+
+      // Otherwise we initialise it
+      try {
+        const { data } = await ory.initializeSelfServiceLoginFlowForBrowsers(
+          Boolean(refresh),
+          aal ? String(aal) : undefined,
+          returnTo ? String(returnTo) : undefined,
+        );
+
+        setFlow(data);
+      } catch (error) {
+        await handleFlowError(error);
+      }
+    }
+
+    createFlow();
+  }, [flowId, router, router.isReady, aal, refresh, returnTo, flow, handleFlowError]);
+
+  const onSubmit = async (values: SubmitSelfServiceLoginFlowBody) => {
+    // On submission, add the flow ID to the URL but do not navigate. This prevents the user losing
+    // his data when she/he reloads the page.
+    try {
+      await router.push(`/login?flow=${flow?.id}`, undefined, { shallow: true });
+      await ory.submitSelfServiceLoginFlow(String(flow?.id), undefined, values);
+
+      if (flow?.return_to) {
+        window.location.href = flow?.return_to;
+        return;
+      }
+
+      // We logged in successfully! Let's bring the user home.
+      await router.push("/");
+    } catch (error) {
+      try {
+        await handleFlowError(error);
+      } catch (error) {
+        if (error.response?.status === 400) {
+          // Yup, it is!
+          setFlow(error.response?.data);
+          return;
+        }
+
+        return Promise.reject(error);
+      }
+    }
+  };
+
+  const { t } = useTranslation("login");
+  const bg = useColorModeValue("gray.50", "gray.900");
+
+  return (
+    <Center height="-webkit-fill-available" flexDirection="column" px={4} justifyContent="center" bg={bg}>
+      <NextSeo title={t("meta-title")} description={t("meta-description")} />
+      <Logo />
+      <Heading size="lg" mt={4}>
+        {t("heading")}
+      </Heading>
+      <FlowForm flow={flow} onSubmit={onSubmit} />
+    </Center>
+  );
+}
