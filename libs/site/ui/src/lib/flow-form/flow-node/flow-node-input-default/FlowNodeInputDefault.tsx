@@ -1,8 +1,10 @@
 import { Link } from "@boilerplate/shared/ui";
 import { FormControl, FormHelperText, FormLabel, HStack, Input } from "@chakra-ui/react";
+import { useRouter } from "next/router";
 import { FlowNodeInputProps } from "../flow-node-input";
 
 export function FlowNodeInputDefault({ node, attributes, value = "", setValue, disabled }: FlowNodeInputProps) {
+  const router = useRouter();
   // Some attributes have dynamic JavaScript - this is for example required for WebAuthn.
   const onClick = () => {
     // This section is only used for WebAuthn. The script is loaded via a <script> node
@@ -40,7 +42,7 @@ export function FlowNodeInputDefault({ node, attributes, value = "", setValue, d
           </FormHelperText>
         ) : null}
       </FormControl>
-      {attributes.type === "password" ? (
+      {attributes.type === "password" && router.pathname === "/login" ? (
         <HStack justifyContent="flex-end">
           <Link variant="cta" href="/recovery">
             Forgot your password?

@@ -13,6 +13,7 @@ export function FlowNodeInputSubmit({ node, attributes, setValue, disabled, disp
       }}
       value={attributes.value || ""}
       disabled={attributes.disabled || disabled}
+      isLoading={attributes.disabled || disabled}
     >
       {getNodeLabel(node)}
     </Button>

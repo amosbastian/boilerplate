@@ -1,9 +1,9 @@
 import { Link, Logo } from "@boilerplate/shared/ui";
 import { ory } from "@boilerplate/shared/utility/ory";
 import { FlowForm } from "@boilerplate/site/ui";
-import { getOrySession, useCreateLogoutHandler, useHandleFlowError } from "@boilerplate/site/utility";
+import { getOrySession, useHandleFlowError } from "@boilerplate/site/utility";
 import { Center, Heading, useColorModeValue } from "@chakra-ui/react";
-import { SelfServiceLoginFlow, SubmitSelfServiceLoginFlowBody } from "@ory/kratos-client";
+import { SelfServiceRegistrationFlow, SubmitSelfServiceRegistrationFlowBody } from "@ory/kratos-client";
 import type { GetServerSidePropsContext } from "next";
 import { NextSeo } from "next-seo";
 import Trans from "next-translate/Trans";
@@ -31,24 +31,21 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
 };
 
 export default function Signin() {
-  const [flow, setFlow] = React.useState<SelfServiceLoginFlow>();
+  const { t } = useTranslation("registration");
+  const bg = useColorModeValue("gray.50", "gray.900");
+
+  const router = useRouter();
+
+  // The "flow" represents a registration process and contains
+  // information about the form we need to render (e.g. username + password)
+  const [flow, setFlow] = React.useState<SelfServiceRegistrationFlow>();
 
   // Get ?flow=... from the URL
-  const router = useRouter();
-  const {
-    return_to: returnTo,
-    flow: flowId,
-    // Refresh means we want to refresh the session. This is needed, for example, when we want to update the password
-    // of a user.
-    refresh,
-    // AAL = Authorization Assurance Level. This implies that we want to upgrade the AAL, meaning that we want
-    // to perform two-factor authentication/verification.
-    aal,
-  } = router.query;
+  const { flow: flowId, return_to: returnTo } = router.query;
 
-  const onLogout = useCreateLogoutHandler([aal, refresh]);
-  const handleFlowError = useHandleFlowError(router, "login", setFlow);
+  const handleFlowError = useHandleFlowError(router, "registration", setFlow);
 
+  // In this effect we either initiate a new registration flow, or we fetch an existing registration flow.
   React.useEffect(() => {
     // If the router is not ready yet, or we already have a flow, do nothing.
     if (!router.isReady || flow) {
@@ -59,62 +56,57 @@ export default function Signin() {
       // If ?flow=.. was in the URL, we fetch it
       if (flowId) {
         try {
-          const { data } = await ory.getSelfServiceLoginFlow(String(flowId));
+          const { data } = await ory.getSelfServiceRegistrationFlow(String(flowId));
           setFlow(data);
         } catch (error) {
-          await handleFlowError(error);
+          handleFlowError(error);
         }
-
         return;
       }
 
       // Otherwise we initialise it
       try {
-        const { data } = await ory.initializeSelfServiceLoginFlowForBrowsers(
-          Boolean(refresh),
-          aal ? String(aal) : undefined,
+        const { data } = await ory.initializeSelfServiceRegistrationFlowForBrowsers(
           returnTo ? String(returnTo) : undefined,
         );
-
         setFlow(data);
       } catch (error) {
-        await handleFlowError(error);
+        handleFlowError(error);
       }
     }
 
     fetchFlow();
-  }, [flowId, router, router.isReady, aal, refresh, returnTo, flow, handleFlowError]);
+  }, [flowId, router, router.isReady, returnTo, flow, handleFlowError]);
 
-  const onSubmit = async (values: SubmitSelfServiceLoginFlowBody) => {
-    // On submission, add the flow ID to the URL but do not navigate. This prevents the user losing
-    // his data when she/he reloads the page.
+  const onSubmit = async (values: SubmitSelfServiceRegistrationFlowBody) => {
     try {
-      await router.push(`/login?flow=${flow?.id}`, undefined, { shallow: true });
-      await ory.submitSelfServiceLoginFlow(String(flow?.id), undefined, values);
+      // On submission, add the flow ID to the URL but do not navigate. This prevents the user loosing
+      // his data when she/he reloads the page.
+      await router.push(`/registration?flow=${flow?.id}`, undefined, { shallow: true });
+      const { data } = await ory.submitSelfServiceRegistrationFlow(String(flow?.id), values);
+      // If we ended up here, it means we are successfully signed up!
+      //
+      // You can do cool stuff here, like having access to the identity which just signed up:
+      console.log("This is the user session: ", data, data.identity);
+      console.log("DATA: ", data);
 
-      if (flow?.return_to) {
-        window.location.href = flow?.return_to;
-        return;
-      }
+      // TODO: create user in the db
 
-      // We logged in successfully! Let's bring the user home.
-      await router.push("/");
+      // For now however we just want to redirect home!
+      return router.push(flow?.return_to || "/home");
     } catch (error) {
       try {
         await handleFlowError(error);
       } catch (error) {
+        // If the previous handler did not catch the error it's most likely a form validation error
         if (error.response?.status === 400) {
           setFlow(error.response?.data);
           return;
         }
-
         return Promise.reject(error);
       }
     }
   };
-
-  const { t } = useTranslation("login");
-  const bg = useColorModeValue("gray.50", "gray.900");
 
   return (
     <Center height="-webkit-fill-available" flexDirection="column" px={4} justifyContent="center" bg={bg}>
@@ -126,9 +118,9 @@ export default function Signin() {
       <FlowForm flow={flow} onSubmit={onSubmit} />
       <Center fontSize="sm" mt={4}>
         <Trans
-          i18nKey="login:create-account"
+          i18nKey="registration:sign-in-to-account"
           components={{
-            link: <Link ml={1} variant="cta" href="/registration" />,
+            link: <Link ml={1} variant="cta" href="/login" />,
           }}
         />
       </Center>
