@@ -1,4 +1,4 @@
-import { Link, Logo } from "@boilerplate/shared/ui";
+import { Card, Link, Logo } from "@boilerplate/shared/ui";
 import { ory } from "@boilerplate/shared/utility/ory";
 import { FlowForm } from "@boilerplate/site/ui";
 import { handleOryRedirect, useHandleFlowError } from "@boilerplate/site/utility";
@@ -87,7 +87,9 @@ export default function Recovery() {
       <Heading size="lg" mt={4} mb={4}>
         {t("heading")}
       </Heading>
-      <FlowForm flow={flow} onSubmit={onSubmit} />
+      <Card mt={4} px={10} py={8} flexDirection="column" width="100%" maxWidth={{ base: "100%", md: "md" }}>
+        <FlowForm flow={flow} onSubmit={onSubmit} />
+      </Card>
       <Center fontSize="sm" mt={4}>
         <Trans
           i18nKey="recovery:go-back"

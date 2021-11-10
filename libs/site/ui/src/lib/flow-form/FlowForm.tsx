@@ -148,43 +148,41 @@ export class FlowForm<T extends Values> extends Component<Props<T>, State<T>> {
     }
 
     return (
-      <Card mt={4} px={10} py={8} flexDirection="column" width="100%" maxWidth={{ base: "100%", md: "md" }}>
-        <Box
-          as="form"
-          action={flow.ui.action}
-          method={flow.ui.method}
-          onSubmit={this.handleSubmit}
-          __css={{ "& > *:not(:last-child)": { mb: 6 }, "input[type='hidden']": { mb: 0 } }}
-        >
-          {!hideGlobalMessages ? <FlowMessages messages={flow.ui.messages} /> : null}
-          {nodes.map((node, k) => {
-            const id = getNodeId(node) as keyof Values;
-            return (
-              <FlowNode
-                key={`${id}-${k}`}
-                disabled={isLoading}
-                node={node}
-                value={values[id]}
-                dispatchSubmit={this.handleSubmit}
-                setValue={(value) =>
-                  new Promise((resolve) => {
-                    this.setState(
-                      (state) => ({
-                        ...state,
-                        values: {
-                          ...state.values,
-                          [getNodeId(node)]: value,
-                        },
-                      }),
-                      resolve,
-                    );
-                  })
-                }
-              />
-            );
-          })}
-        </Box>
-      </Card>
+      <Box
+        as="form"
+        action={flow.ui.action}
+        method={flow.ui.method}
+        onSubmit={this.handleSubmit}
+        __css={{ "& > *:not(:last-child)": { mb: 6 }, "input[type='hidden']": { mb: 0 } }}
+      >
+        {!hideGlobalMessages ? <FlowMessages messages={flow.ui.messages} /> : null}
+        {nodes.map((node, k) => {
+          const id = getNodeId(node) as keyof Values;
+          return (
+            <FlowNode
+              key={`${id}-${k}`}
+              disabled={isLoading}
+              node={node}
+              value={values[id]}
+              dispatchSubmit={this.handleSubmit}
+              setValue={(value) =>
+                new Promise((resolve) => {
+                  this.setState(
+                    (state) => ({
+                      ...state,
+                      values: {
+                        ...state.values,
+                        [getNodeId(node)]: value,
+                      },
+                    }),
+                    resolve,
+                  );
+                })
+              }
+            />
+          );
+        })}
+      </Box>
     );
   }
 }
