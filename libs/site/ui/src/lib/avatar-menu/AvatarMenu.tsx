@@ -1,26 +1,21 @@
-import { Avatar, Link as ChakraLink, Icon, Menu, MenuButton, MenuDivider, MenuItem, MenuList } from "@chakra-ui/react";
-import { signOut, useSession } from "next-auth/client";
+import { useCreateLogoutHandler } from "@boilerplate/site/utility";
+import { Avatar, Icon, Link as ChakraLink, Menu, MenuButton, MenuDivider, MenuItem, MenuList } from "@chakra-ui/react";
 import useTranslation from "next-translate/useTranslation";
 import NextLink from "next/link";
-import { RiSettings2Line, RiLogoutBoxLine } from "react-icons/ri";
+import { RiLogoutBoxLine, RiSettings2Line } from "react-icons/ri";
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface AvatarMenuProps {}
 
 export function AvatarMenu(props: AvatarMenuProps) {
   const { t } = useTranslation("common");
-  const [session] = useSession();
 
-  const handleSignOut = (event: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement, MouseEvent>) => {
-    event.preventDefault();
-
-    signOut();
-  };
+  const onSignout = useCreateLogoutHandler();
 
   return (
     <Menu {...props}>
       <MenuButton borderRadius="50%" _focus={{ boxShadow: "outline" }}>
-        <Avatar src={session?.user?.image || undefined} h={7} w={7} />
+        <Avatar src={undefined} h={7} w={7} />
       </MenuButton>
       <MenuList>
         <NextLink href="/settings" passHref>
@@ -29,11 +24,9 @@ export function AvatarMenu(props: AvatarMenuProps) {
           </MenuItem>
         </NextLink>
         <MenuDivider />
-        <NextLink href="/api/auth/signout" passHref>
-          <MenuItem as={ChakraLink} icon={<Icon as={RiLogoutBoxLine} boxSize={5} />} onClick={handleSignOut}>
-            {t("sign-out")}
-          </MenuItem>
-        </NextLink>
+        <MenuItem as={ChakraLink} icon={<Icon as={RiLogoutBoxLine} boxSize={5} />} onClick={onSignout}>
+          {t("sign-out")}
+        </MenuItem>
       </MenuList>
     </Menu>
   );
