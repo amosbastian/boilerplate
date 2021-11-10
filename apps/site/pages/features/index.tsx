@@ -40,7 +40,7 @@ export default function FeaturesPage() {
         title={t("hero-heading")}
         subtitle={t("hero-subtitle")}
         cta={
-          <NextLink href="/signin" passHref>
+          <NextLink href="/login" passHref>
             <GradientButton as="a" size="lg" rightIcon={<Icon as={RiArrowRightLine} />}>
               {t("hero-cta")}
             </GradientButton>
@@ -100,7 +100,7 @@ export default function FeaturesPage() {
       <Features title={t("features-section-heading")} subtitle={t("features-section-subtitle")} py={py} />
       <Section variant="transparent" py={py}>
         <CtaCard backgroundColor={cardBackgroundColor} heading={t("cta-heading")} subtitle={t("cta-subtitle")}>
-          <ButtonLink href="/signin" colorScheme="primary">
+          <ButtonLink href="/login" colorScheme="primary">
             {t("cta-button-text")}
           </ButtonLink>
         </CtaCard>

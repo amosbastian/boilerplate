@@ -6,22 +6,22 @@ import { getSession } from "next-auth/client";
 import { NextSeo } from "next-seo";
 import useTranslation from "next-translate/useTranslation";
 
-export const getServerSideProps = async (context: GetServerSidePropsContext) => {
-  const session = await getSession(context);
+// export const getServerSideProps = async (context: GetServerSidePropsContext) => {
+//   const session = await getSession(context);
 
-  if (!session) {
-    return {
-      redirect: {
-        destination: "/signin",
-        permanent: false,
-      },
-    };
-  }
+//   if (!session) {
+//     return {
+//       redirect: {
+//         destination: "/login",
+//         permanent: false,
+//       },
+//     };
+//   }
 
-  return {
-    props: {},
-  };
-};
+//   return {
+//     props: {},
+//   };
+// };
 
 export default function Home() {
   const { t } = useTranslation("home");

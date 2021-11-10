@@ -52,7 +52,7 @@ export function ProductCard({ plan, recommended = false, ...rest }: ProductCardP
 
   const handleCheckout = () => {
     if (!session) {
-      return router.push("/signin");
+      return router.push("/login");
     }
 
     return router.push("/settings/billing");
