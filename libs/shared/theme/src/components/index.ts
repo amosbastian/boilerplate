@@ -2,6 +2,7 @@ import { Alert } from "./Alert";
 import { Badge } from "./Badge";
 import { Button } from "./Button";
 import { Card } from "./Card";
+import { FormLabel } from "./FormLabel";
 import { Heading } from "./Heading";
 import { Input } from "./Input";
 import { Link } from "./Link";
@@ -14,6 +15,7 @@ export const components = {
   Badge,
   Button,
   Card,
+  FormLabel,
   Heading,
   Input,
   Link,
