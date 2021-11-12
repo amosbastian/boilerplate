@@ -1,7 +1,7 @@
 import { Card, Link, Logo } from "@boilerplate/shared/ui";
 import { ory } from "@boilerplate/shared/utility/ory";
 import { FlowForm } from "@boilerplate/site/ui";
-import { handleOryRedirect, useHandleFlowError } from "@boilerplate/site/utility";
+import { fetcher, handleOryRedirect, useHandleFlowError } from "@boilerplate/site/utility";
 import { Box, Center, Heading, useColorModeValue } from "@chakra-ui/react";
 import { SelfServiceRegistrationFlow, SubmitSelfServiceRegistrationFlowBody } from "@ory/kratos-client";
 import type { GetServerSidePropsContext } from "next";
@@ -71,11 +71,12 @@ export default function Signin() {
       const { data } = await ory.submitSelfServiceRegistrationFlow(String(flow?.id), values);
       // If we ended up here, it means we are successfully signed up!
       //
-      // You can do cool stuff here, like having access to the identity which just signed up:
-      console.log("This is the user session: ", data, data.identity);
-      console.log("DATA: ", data);
 
-      // TODO: create user in the db
+      await fetcher({
+        url: "http://localhost:3333/api/create-user",
+        method: "POST",
+        body: { identity: data.identity },
+      });
 
       // For now however we just want to redirect home!
       return router.push(flow?.return_to || "/home");
