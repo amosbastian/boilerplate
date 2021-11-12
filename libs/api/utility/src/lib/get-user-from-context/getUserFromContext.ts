@@ -1,26 +1,29 @@
 import { Context } from "@boilerplate/shared/types";
 import { logger } from "@boilerplate/shared/utility/logger";
+import { getOrySession } from "@boilerplate/shared/utility/ory";
 import { User } from "@generated/type-graphql";
-import { decode } from "next-auth/jwt";
 
 export const getUserFromContext = async ({ prisma, req }: Pick<Context, "prisma" | "req">): Promise<User | null> => {
-  const token = req.cookies?.["next-auth.session-token"];
+  const cookie = req.cookies?.["ory_kratos_session"];
 
-  if (!token || token === "null") {
+  if (!cookie) {
+    return null;
+  }
+
+  const { error, session } = await getOrySession(req.headers.cookie);
+
+  if (error) {
+    throw new Error(error);
+  }
+
+  if (!session) {
     return null;
   }
 
   if (!process.env.JWT_SECRET) return null;
 
   try {
-    const decodedToken = await decode({
-      token,
-      secret: process.env.JWT_SECRET,
-      signingKey: process.env.JWT_SIGNING_KEY,
-      encryptionKey: process.env.JWT_ENCRYPTION_KEY,
-    });
-
-    const user = await prisma.user.findUnique({ where: { id: decodedToken.sub }, include: { roles: true } });
+    const user = await prisma.user.findUnique({ where: { id: session.identity.id }, include: { roles: true } });
 
     return user;
   } catch (error) {
