@@ -26,7 +26,7 @@ export type Values = Partial<
   | SubmitSelfServiceVerificationFlowBody
 >;
 
-export type Methods = "oidc" | "password" | "profile" | "totp" | "webauthn" | "link" | "lookup_secret";
+export type FlowMethods = "oidc" | "password" | "profile" | "totp" | "webauthn" | "link" | "lookup_secret";
 
 export type Props<T> = {
   // The flow
@@ -37,7 +37,7 @@ export type Props<T> = {
     | SelfServiceVerificationFlow
     | SelfServiceRecoveryFlow;
   // Only show certain nodes. We will always render the default nodes for CSRF tokens.
-  only?: Methods;
+  only?: FlowMethods;
   // Is triggered on submission
   onSubmit: (values: T) => Promise<void>;
   // Do not show the global messages. Useful when rendering them elsewhere.
