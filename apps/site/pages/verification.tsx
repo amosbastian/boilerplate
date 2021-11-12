@@ -92,7 +92,7 @@ export default function Verification() {
             return;
         }
 
-        throw error;
+        return Promise.reject(error);
       }
     }
   };

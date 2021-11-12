@@ -75,7 +75,7 @@ export default function Recovery() {
             return;
         }
 
-        throw error;
+        return Promise.reject(error);
       }
     }
   };

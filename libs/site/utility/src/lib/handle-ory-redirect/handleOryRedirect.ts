@@ -1,14 +1,8 @@
-// const URL = `${process.env.NEXT_PUBLIC_ORY_KRATOS_PUBLIC}/sessions/whoami`;
-const URL = `http://localhost:3000/api/.ory/sessions/whoami`;
+import { getOrySession } from "@boilerplate/shared/utility/ory";
 
 export const handleOryRedirect = async (requireActiveSession: boolean, destination: string, cookie?: string) => {
   try {
-    const response = await fetch(URL, {
-      method: "GET",
-      headers: cookie ? { cookie: cookie } : undefined,
-    });
-
-    const { error, ...session } = await response.json();
+    const { error, session } = await getOrySession(cookie);
 
     const hasActiveSession = session?.active && Boolean(session.id);
 
