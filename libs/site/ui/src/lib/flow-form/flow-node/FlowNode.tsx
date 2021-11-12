@@ -19,7 +19,6 @@ export const FlowNode = ({
   disabled,
   dispatchSubmit,
 }: Omit<FlowNodeInputProps, "attributes">) => {
-  console.log("FlowNode: ", node.attributes);
   if (isUiNodeImageAttributes(node.attributes)) {
     return <FlowNodeImage node={node} attributes={node.attributes} />;
   }
