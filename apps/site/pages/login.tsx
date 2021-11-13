@@ -68,11 +68,10 @@ export default function Login() {
         );
 
         setFlow(data);
-        setFlowLoading(false);
       } catch (error) {
-        setFlowLoading(false);
         await handleFlowError(error);
       }
+      setFlowLoading(false);
     }
 
     fetchFlow();

@@ -1,8 +1,8 @@
 import { Card, Link, Logo } from "@boilerplate/shared/ui";
 import { ory } from "@boilerplate/shared/utility/ory";
 import { FlowForm } from "@boilerplate/site/ui";
-import { fetcher, handleOryRedirect, handleGetFlowError } from "@boilerplate/site/utility";
-import { Box, Center, Heading, useColorModeValue } from "@chakra-ui/react";
+import { fetcher, handleGetFlowError, handleOryRedirect } from "@boilerplate/site/utility";
+import { Box, Center, Collapse, Heading, Spinner, useColorModeValue } from "@chakra-ui/react";
 import { SelfServiceRegistrationFlow, SubmitSelfServiceRegistrationFlowBody } from "@ory/kratos-client";
 import type { GetServerSidePropsContext } from "next";
 import { NextSeo } from "next-seo";
@@ -15,9 +15,10 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
   return await handleOryRedirect(false, "/login", context.req.headers.cookie);
 };
 
-export default function Signin() {
+export default function Registration() {
   const { t } = useTranslation("registration");
   const bg = useColorModeValue("gray.50", "gray.900");
+  const [flowLoading, setFlowLoading] = React.useState<boolean>(false);
 
   const router = useRouter();
 
@@ -38,13 +39,16 @@ export default function Signin() {
     }
 
     async function fetchFlow() {
+      setFlowLoading(true);
       // If ?flow=.. was in the URL, we fetch it
       if (flowId) {
         try {
           const { data } = await ory.getSelfServiceRegistrationFlow(String(flowId));
           setFlow(data);
+          setFlowLoading(false);
         } catch (error) {
           handleFlowError(error);
+          setFlowLoading(false);
         }
         return;
       }
@@ -58,6 +62,7 @@ export default function Signin() {
       } catch (error) {
         handleFlowError(error);
       }
+      setFlowLoading(false);
     }
 
     fetchFlow();
@@ -102,7 +107,14 @@ export default function Signin() {
         {t("heading")}
       </Heading>
       <Card mt={4} px={10} py={8} flexDirection="column" width="100%" maxWidth={{ base: "100%", md: "md" }}>
-        <FlowForm flow={flow} onSubmit={onSubmit} />
+        {flowLoading ? (
+          <Center>
+            <Spinner />
+          </Center>
+        ) : null}
+        <Collapse in={Boolean(flow)}>
+          <FlowForm flow={flow} onSubmit={onSubmit} />
+        </Collapse>
       </Card>
       <Center fontSize="sm" mt={4}>
         <Box>
