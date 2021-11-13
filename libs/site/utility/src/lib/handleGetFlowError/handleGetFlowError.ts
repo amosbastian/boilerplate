@@ -1,15 +1,16 @@
 // Source: https://github.com/ory/kratos-selfservice-ui-react-nextjs
-import { useToast } from "@chakra-ui/react";
+import { theme } from "@boilerplate/shared/theme";
+import { createStandaloneToast } from "@chakra-ui/react";
 import type { AxiosError } from "axios";
 import { NextRouter } from "next/router";
 import * as React from "react";
 
-export function useHandleFlowError<S>(
+export function handleGetFlowError<T>(
   router: NextRouter,
   flowType: "login" | "registration" | "settings" | "recovery" | "verification",
-  resetFlow: React.Dispatch<React.SetStateAction<S | undefined>>,
+  setFlow: React.Dispatch<React.SetStateAction<T | undefined>>,
 ) {
-  const toast = useToast();
+  const toast = createStandaloneToast(theme);
 
   return async (error: AxiosError) => {
     switch (error.response?.data.error?.id) {
@@ -28,24 +29,24 @@ export function useHandleFlowError<S>(
       case "self_service_flow_return_to_forbidden":
         // The flow expired, let's request a new one.
         toast({ title: "The return_to address is not allowed.", status: "error" });
-        resetFlow(undefined);
+        setFlow(undefined);
         await router.push("/" + flowType);
         return;
       case "self_service_flow_expired":
         // The flow expired, let's request a new one.
         toast({ title: "Your interaction expired, please fill out the form again.", status: "error" });
-        resetFlow(undefined);
+        setFlow(undefined);
         await router.push("/" + flowType);
         return;
       case "security_csrf_violation":
         // A CSRF violation occurred. Best to just refresh the flow!
         toast({ title: "A security violation was detected, please fill out the form again.", status: "error" });
-        resetFlow(undefined);
+        setFlow(undefined);
         await router.push("/" + flowType);
         return;
       case "security_identity_mismatch":
         // The requested item was intended for someone else. Let's request a new flow...
-        resetFlow(undefined);
+        setFlow(undefined);
         await router.push("/" + flowType);
         return;
       case "browser_location_change_required":
@@ -57,7 +58,7 @@ export function useHandleFlowError<S>(
     switch (error.response?.status) {
       case 410:
         // The flow expired, let's request a new one.
-        resetFlow(undefined);
+        setFlow(undefined);
         await router.push("/" + flowType);
         return;
     }

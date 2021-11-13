@@ -1,7 +1,7 @@
 import { Card, Link, Logo } from "@boilerplate/shared/ui";
 import { ory } from "@boilerplate/shared/utility/ory";
 import { FlowForm } from "@boilerplate/site/ui";
-import { handleOryRedirect, useHandleFlowError } from "@boilerplate/site/utility";
+import { handleOryRedirect, handleGetFlowError } from "@boilerplate/site/utility";
 import { Center, Heading, useColorModeValue } from "@chakra-ui/react";
 import { SelfServiceVerificationFlow, SubmitSelfServiceVerificationFlowBody } from "@ory/kratos-client";
 import type { GetServerSidePropsContext } from "next";
@@ -24,7 +24,7 @@ export default function Verification() {
   const router = useRouter();
   const { return_to: returnTo, flow: flowId } = router.query;
 
-  const handleFlowError = useHandleFlowError(router, "verification", setFlow);
+  const handleFlowError = handleGetFlowError(router, "verification", setFlow);
 
   React.useEffect(() => {
     // If the router is not ready yet, or we already have a flow, do nothing.

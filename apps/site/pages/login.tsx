@@ -1,7 +1,7 @@
 import { Card, Link, Logo } from "@boilerplate/shared/ui";
 import { ory } from "@boilerplate/shared/utility/ory";
 import { FlowForm } from "@boilerplate/site/ui";
-import { handleOryRedirect, useCreateLogoutHandler, useHandleFlowError } from "@boilerplate/site/utility";
+import { handleOryRedirect, useCreateLogoutHandler, handleGetFlowError } from "@boilerplate/site/utility";
 import { Box, Button, Center, Heading, useColorModeValue, VStack } from "@chakra-ui/react";
 import { SelfServiceLoginFlow, SubmitSelfServiceLoginFlowBody } from "@ory/kratos-client";
 import type { GetServerSidePropsContext } from "next";
@@ -34,7 +34,7 @@ export default function Login() {
   } = router.query;
 
   const { handleLogout, loading } = useCreateLogoutHandler([aal, refresh]);
-  const handleFlowError = useHandleFlowError(router, "login", setFlow);
+  const handleFlowError = handleGetFlowError(router, "login", setFlow);
 
   React.useEffect(() => {
     // If the router is not ready yet, or we already have a flow, do nothing.

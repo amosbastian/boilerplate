@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader, Container } from "@boilerplate/shared/ui";
 import { ory } from "@boilerplate/shared/utility/ory";
 import { FlowForm, FlowMessages, FlowMethods, getLayout, PageHeading, SettingsSection } from "@boilerplate/site/ui";
-import { handleOryRedirect, useHandleFlowError } from "@boilerplate/site/utility";
+import { handleOryRedirect, handleGetFlowError } from "@boilerplate/site/utility";
 import { Text } from "@chakra-ui/react";
 import { SelfServiceSettingsFlow, SubmitSelfServiceSettingsFlowBody } from "@ory/kratos-client";
 import type { GetServerSidePropsContext } from "next";
@@ -41,7 +41,7 @@ export default function Security() {
   const router = useRouter();
   const { return_to: returnTo, flow: flowId } = router.query;
 
-  const handleFlowError = useHandleFlowError(router, "settings", setFlow);
+  const handleFlowError = handleGetFlowError(router, "settings", setFlow);
 
   React.useEffect(() => {
     // If the router is not ready yet, or we already have a flow, do nothing.

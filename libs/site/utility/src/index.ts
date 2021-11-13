@@ -4,4 +4,4 @@ export * from "./lib/fetcher/fetcher";
 export * from "./lib/get-stripe-promise/getStripePromise";
 export * from "./lib/handle-ory-redirect/handleOryRedirect";
 export * from "./lib/use-create-logout-handler/useCreateLogoutHandler";
-export * from "./lib/use-handle-flow-error/useHandleFlowError";
+export * from "./lib/handleGetFlowError/handleGetFlowError";

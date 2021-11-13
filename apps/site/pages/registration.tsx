@@ -1,7 +1,7 @@
 import { Card, Link, Logo } from "@boilerplate/shared/ui";
 import { ory } from "@boilerplate/shared/utility/ory";
 import { FlowForm } from "@boilerplate/site/ui";
-import { fetcher, handleOryRedirect, useHandleFlowError } from "@boilerplate/site/utility";
+import { fetcher, handleOryRedirect, handleGetFlowError } from "@boilerplate/site/utility";
 import { Box, Center, Heading, useColorModeValue } from "@chakra-ui/react";
 import { SelfServiceRegistrationFlow, SubmitSelfServiceRegistrationFlowBody } from "@ory/kratos-client";
 import type { GetServerSidePropsContext } from "next";
@@ -28,7 +28,7 @@ export default function Signin() {
   // Get ?flow=... from the URL
   const { flow: flowId, return_to: returnTo } = router.query;
 
-  const handleFlowError = useHandleFlowError(router, "registration", setFlow);
+  const handleFlowError = handleGetFlowError(router, "registration", setFlow);
 
   // In this effect we either initiate a new registration flow, or we fetch an existing registration flow.
   React.useEffect(() => {
