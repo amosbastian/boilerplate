@@ -45,11 +45,11 @@ export default function Registration() {
         try {
           const { data } = await ory.getSelfServiceRegistrationFlow(String(flowId));
           setFlow(data);
-          setFlowLoading(false);
         } catch (error) {
           handleFlowError(error);
-          setFlowLoading(false);
         }
+
+        setFlowLoading(false);
         return;
       }
 
@@ -62,6 +62,7 @@ export default function Registration() {
       } catch (error) {
         handleFlowError(error);
       }
+
       setFlowLoading(false);
     }
 

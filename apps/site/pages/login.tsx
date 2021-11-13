@@ -51,7 +51,6 @@ export default function Login() {
           const { data } = await ory.getSelfServiceLoginFlow(String(flowId));
           setFlow(data);
         } catch (error) {
-          setFlowLoading(false);
           await handleFlowError(error);
         }
 
@@ -71,6 +70,7 @@ export default function Login() {
       } catch (error) {
         await handleFlowError(error);
       }
+
       setFlowLoading(false);
     }
 
@@ -112,16 +112,15 @@ export default function Login() {
       <Heading size="lg" mt={4} mb={4}>
         {t("heading")}
       </Heading>
-      <Card mt={4} px={10} py={8} flexDirection="column" width="100%" maxWidth={{ base: "100%", md: "md" }}>
-        {flowLoading ? (
-          <Center>
-            <Spinner />
-          </Center>
-        ) : null}
-        <Collapse in={Boolean(flow)}>
-          <FlowForm flow={flow} onSubmit={onSubmit} />
-        </Collapse>
-      </Card>
+      <Card mt={4} px={10} py={8} flexDirection="column" width="100%" maxWidth={{ base: "100%", md: "md" }}></Card>
+      {flowLoading ? (
+        <Center>
+          <Spinner />
+        </Center>
+      ) : null}
+      <Collapse in={Boolean(flow)}>
+        <FlowForm flow={flow} onSubmit={onSubmit} />
+      </Collapse>
       <VStack spacing={4} fontSize="sm" mt={4}>
         {aal || refresh ? (
           <Button isLoading={signingOut} variant="ghost" onClick={handleLogout}>
