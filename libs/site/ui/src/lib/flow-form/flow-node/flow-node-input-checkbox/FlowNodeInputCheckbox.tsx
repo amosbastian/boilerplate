@@ -1,10 +1,17 @@
+import type { FormControlProps } from "@chakra-ui/react";
 import { Checkbox, FormControl, FormLabel } from "@chakra-ui/react";
 import { getNodeLabel } from "@ory/integrations/ui";
 import { FlowNodeInputProps } from "../flow-node-input";
 
-export function FlowNodeInputCheckbox({ node, attributes, setValue, disabled }: FlowNodeInputProps) {
+export function FlowNodeInputCheckbox({
+  node,
+  attributes,
+  setValue,
+  disabled,
+  ...rest
+}: FlowNodeInputProps & FormControlProps) {
   return (
-    <FormControl mb={4}>
+    <FormControl {...rest}>
       <FormLabel>{getNodeLabel(node)}</FormLabel>
       <Checkbox
         name={attributes.name}

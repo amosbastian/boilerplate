@@ -1,12 +1,22 @@
 import { Link } from "@boilerplate/shared/ui";
+import type { FormControlProps } from "@chakra-ui/react";
 import { FormControl, FormHelperText, FormLabel, HStack, Input, Stack } from "@chakra-ui/react";
+import useTranslation from "next-translate/useTranslation";
 import { useRouter } from "next/router";
 import { PasswordInput } from "../../../password-input/PasswordInput";
 import { FlowNodeInputProps } from "../flow-node-input";
 
-export function FlowNodeInputDefault({ node, attributes, value = "", setValue, disabled }: FlowNodeInputProps) {
+export function FlowNodeInputDefault({
+  node,
+  attributes,
+  value = "",
+  setValue,
+  disabled,
+  ...rest
+}: FlowNodeInputProps & FormControlProps) {
   const router = useRouter();
   const { refresh, aal } = router.query;
+  const { t } = useTranslation("common");
 
   // Some attributes have dynamic JavaScript - this is for example required for WebAuthn.
   const onClick = () => {
@@ -23,7 +33,7 @@ export function FlowNodeInputDefault({ node, attributes, value = "", setValue, d
   // Render a generic text input field.
   return (
     <>
-      <FormControl isInvalid={node.messages.find(({ type }) => type === "error") ? true : false}>
+      <FormControl isInvalid={node.messages.find(({ type }) => type === "error") ? true : false} {...rest}>
         <FormLabel textTransform="capitalize">{node.meta.label?.text ?? attributes.type}</FormLabel>
         {attributes.type === "password" ? (
           <PasswordInput
@@ -60,7 +70,7 @@ export function FlowNodeInputDefault({ node, attributes, value = "", setValue, d
       {attributes.type === "password" && router.pathname === "/login" && !(aal || refresh) ? (
         <HStack justifyContent="flex-end">
           <Link variant="cta" href="/recovery">
-            Forgot your password?
+            {t("forgot-password")}
           </Link>
         </HStack>
       ) : null}

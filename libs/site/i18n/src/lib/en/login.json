@@ -1,9 +1,9 @@
 {
   "callback-error": "Try signing with a different account.",
+  "create-account": "Don't have an account? <link>Create one for free!</link>",
   "default-error": "Sorry, we aren't sure what went wrong. Please try again later.",
   "emailcreateaccount-error": "Could not create an account with the provided email. Please try again later.",
   "emailsignin-error": "Could not send an email to the provided email address. Please check your email address and try again.",
-  "create-account": "Don't have an account? <link>Create one for free!</link>",
   "heading": "Sign in to Boilerplate",
   "meta-description": "meta-description",
   "meta-title": "Sign in",

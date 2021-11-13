@@ -1,8 +1,16 @@
+import type { ButtonProps } from "@chakra-ui/react";
 import { Button } from "@chakra-ui/react";
 import { getNodeLabel } from "@ory/integrations/ui";
 import { FlowNodeInputProps } from "../flow-node-input";
 
-export function FlowNodeInputButton({ node, attributes, setValue, disabled, dispatchSubmit }: FlowNodeInputProps) {
+export function FlowNodeInputButton({
+  node,
+  attributes,
+  setValue,
+  disabled,
+  dispatchSubmit,
+  ...rest
+}: FlowNodeInputProps & ButtonProps) {
   // Some attributes have dynamic JavaScript - this is for example required for WebAuthn.
   const onClick = () => {
     // This section is only used for WebAuthn. The script is loaded via a <script> node
@@ -24,6 +32,7 @@ export function FlowNodeInputButton({ node, attributes, setValue, disabled, disp
       }}
       value={attributes.value || ""}
       disabled={attributes.disabled || disabled}
+      {...rest}
     >
       {getNodeLabel(node)}
     </Button>
