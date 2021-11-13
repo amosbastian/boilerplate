@@ -1,3 +1,4 @@
+import { Box, Center, Collapse, Spinner } from "@chakra-ui/react";
 import { getNodeId, isUiNodeInputAttributes } from "@ory/integrations/ui";
 import {
   SelfServiceLoginFlow,
@@ -13,10 +14,8 @@ import {
   UiNode,
 } from "@ory/kratos-client";
 import { Component, FormEvent } from "react";
-import { FlowNode } from "./flow-node/FlowNode";
 import { FlowMessages } from "./flow-messages/FlowMessages";
-import { Card } from "@boilerplate/shared/ui";
-import { Box } from "@chakra-ui/react";
+import { FlowNode } from "./flow-node/FlowNode";
 
 export type Values = Partial<
   | SubmitSelfServiceLoginFlowBody
@@ -42,6 +41,7 @@ export type Props<T> = {
   onSubmit: (values: T) => Promise<void>;
   // Do not show the global messages. Useful when rendering them elsewhere.
   hideGlobalMessages?: boolean;
+  flowLoading: boolean;
 };
 
 function emptyState<T>() {
@@ -139,50 +139,51 @@ export class FlowForm<T extends Values> extends Component<Props<T>, State<T>> {
     // Filter the nodes - only show the ones we want
     const nodes = this.filterNodes();
 
-    if (!flow) {
-      // No flow was set yet? It's probably still loading...
-      //
-      // Nodes have only one element? It is probably just the CSRF Token
-      // and the filter did not match any elements!
-      return null;
-    }
-
     return (
-      <Box
-        as="form"
-        action={flow.ui.action}
-        method={flow.ui.method}
-        onSubmit={this.handleSubmit}
-        __css={{ "& > *:not(:last-child)": { mb: 6 }, "input[type='hidden']": { mb: 0 } }}
-      >
-        {!hideGlobalMessages ? <FlowMessages messages={flow.ui.messages} /> : null}
-        {nodes.map((node, k) => {
-          const id = getNodeId(node) as keyof Values;
-          return (
-            <FlowNode
-              key={`${id}-${k}`}
-              disabled={isLoading}
-              node={node}
-              value={values[id]}
-              dispatchSubmit={this.handleSubmit}
-              setValue={(value) =>
-                new Promise((resolve) => {
-                  this.setState(
-                    (state) => ({
-                      ...state,
-                      values: {
-                        ...state.values,
-                        [getNodeId(node)]: value,
-                      },
-                    }),
-                    resolve,
-                  );
-                })
-              }
-            />
-          );
-        })}
-      </Box>
+      <>
+        {this.props.flowLoading ? (
+          <Center>
+            <Spinner />
+          </Center>
+        ) : null}
+        <Collapse in={Boolean(flow)}>
+          <Box
+            as="form"
+            action={flow?.ui.action}
+            method={flow?.ui.method}
+            onSubmit={this.handleSubmit}
+            __css={{ "& > *:not(:last-child)": { mb: 6 }, "input[type='hidden']": { mb: 0 } }}
+          >
+            {!hideGlobalMessages ? <FlowMessages messages={flow?.ui.messages} /> : null}
+            {nodes.map((node, k) => {
+              const id = getNodeId(node) as keyof Values;
+              return (
+                <FlowNode
+                  key={`${id}-${k}`}
+                  disabled={isLoading}
+                  node={node}
+                  value={values[id]}
+                  dispatchSubmit={this.handleSubmit}
+                  setValue={(value) =>
+                    new Promise((resolve) => {
+                      this.setState(
+                        (state) => ({
+                          ...state,
+                          values: {
+                            ...state.values,
+                            [getNodeId(node)]: value,
+                          },
+                        }),
+                        resolve,
+                      );
+                    })
+                  }
+                />
+              );
+            })}
+          </Box>
+        </Collapse>
+      </>
     );
   }
 }

@@ -108,14 +108,7 @@ export default function Registration() {
         {t("heading")}
       </Heading>
       <Card mt={4} px={10} py={8} flexDirection="column" width="100%" maxWidth={{ base: "100%", md: "md" }}>
-        {flowLoading ? (
-          <Center>
-            <Spinner />
-          </Center>
-        ) : null}
-        <Collapse in={Boolean(flow)}>
-          <FlowForm flow={flow} onSubmit={onSubmit} />
-        </Collapse>
+        <FlowForm flow={flow} onSubmit={onSubmit} flowLoading={flowLoading} />
       </Card>
       <Center fontSize="sm" mt={4}>
         <Box>

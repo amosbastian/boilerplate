@@ -36,6 +36,7 @@ export const getServerSideProps = async (context: GetServerSidePropsContext) => 
 export default function Security() {
   const { t } = useTranslation("settings");
   const [flow, setFlow] = React.useState<SelfServiceSettingsFlow>();
+  const [flowLoading, setFlowLoading] = React.useState<boolean>(false);
 
   // Get ?flow=... from the URL
   const router = useRouter();
@@ -50,6 +51,7 @@ export default function Security() {
     }
 
     async function fetchFlow() {
+      setFlowLoading(true);
       // If ?flow=.. was in the URL, we fetch it
       if (flowId) {
         try {
@@ -59,6 +61,7 @@ export default function Security() {
           await handleFlowError(error);
         }
 
+        setFlowLoading(false);
         return;
       }
 
@@ -71,6 +74,8 @@ export default function Security() {
       } catch (error) {
         await handleFlowError(error);
       }
+
+      setFlowLoading(false);
     }
 
     fetchFlow();
@@ -109,21 +114,21 @@ export default function Security() {
             <CardHeader title={t("Profile settings")} />
             <CardContent>
               <FlowMessages messages={flow?.ui.messages} mb={4} />
-              <FlowForm hideGlobalMessages onSubmit={onSubmit} only="profile" flow={flow} />
+              <FlowForm hideGlobalMessages onSubmit={onSubmit} only="profile" flow={flow} flowLoading={flowLoading} />
             </CardContent>
           </SettingsCard>
           <SettingsCard only="password" flow={flow}>
             <CardHeader title={t("Change password")} />
             <CardContent>
               <FlowMessages messages={flow?.ui.messages} mb={4} />
-              <FlowForm hideGlobalMessages onSubmit={onSubmit} only="password" flow={flow} />
+              <FlowForm hideGlobalMessages onSubmit={onSubmit} only="password" flow={flow} flowLoading={flowLoading} />
             </CardContent>
           </SettingsCard>
           <SettingsCard only="oidc" flow={flow}>
             <CardHeader title={t("Manage social sign in")} />
             <CardContent>
               <FlowMessages messages={flow?.ui.messages} mb={4} />
-              <FlowForm hideGlobalMessages onSubmit={onSubmit} only="oidc" flow={flow} />
+              <FlowForm hideGlobalMessages onSubmit={onSubmit} only="oidc" flow={flow} flowLoading={flowLoading} />
             </CardContent>
           </SettingsCard>
           <SettingsCard only="lookup_secret" flow={flow}>
@@ -135,7 +140,13 @@ export default function Security() {
             />
             <CardContent>
               <FlowMessages messages={flow?.ui.messages} mb={4} />
-              <FlowForm hideGlobalMessages onSubmit={onSubmit} only="lookup_secret" flow={flow} />
+              <FlowForm
+                hideGlobalMessages
+                onSubmit={onSubmit}
+                only="lookup_secret"
+                flow={flow}
+                flowLoading={flowLoading}
+              />
             </CardContent>
           </SettingsCard>
           <SettingsCard only="totp" flow={flow}>
@@ -166,7 +177,7 @@ export default function Security() {
                 ).
               </Text>
               <FlowMessages messages={flow?.ui.messages} mb={4} />
-              <FlowForm hideGlobalMessages onSubmit={onSubmit} only="totp" flow={flow} />
+              <FlowForm hideGlobalMessages onSubmit={onSubmit} only="totp" flow={flow} flowLoading={flowLoading} />
             </CardContent>
           </SettingsCard>
           <SettingsCard only="webauthn" flow={flow}>
@@ -178,7 +189,7 @@ export default function Security() {
             />
             <CardContent>
               <FlowMessages messages={flow?.ui.messages} mb={4} />
-              <FlowForm hideGlobalMessages onSubmit={onSubmit} only="webauthn" flow={flow} />
+              <FlowForm hideGlobalMessages onSubmit={onSubmit} only="webauthn" flow={flow} flowLoading={flowLoading} />
             </CardContent>
           </SettingsCard>
         </SettingsSection>
