@@ -1,8 +1,8 @@
 import { Card, Link, Logo } from "@boilerplate/shared/ui";
 import { ory } from "@boilerplate/shared/utility/ory";
 import { FlowForm } from "@boilerplate/site/ui";
-import { handleOryRedirect, useCreateLogoutHandler, handleGetFlowError } from "@boilerplate/site/utility";
-import { Box, Button, Center, Heading, useColorModeValue, VStack } from "@chakra-ui/react";
+import { handleGetFlowError, handleOryRedirect, useCreateLogoutHandler } from "@boilerplate/site/utility";
+import { Box, Button, Center, Collapse, Heading, Spinner, useColorModeValue, VStack } from "@chakra-ui/react";
 import { SelfServiceLoginFlow, SubmitSelfServiceLoginFlowBody } from "@ory/kratos-client";
 import type { GetServerSidePropsContext } from "next";
 import { NextSeo } from "next-seo";
@@ -19,6 +19,7 @@ export default function Login() {
   const { t } = useTranslation("login");
   const bg = useColorModeValue("gray.50", "gray.900");
   const [flow, setFlow] = React.useState<SelfServiceLoginFlow>();
+  const [flowLoading, setFlowLoading] = React.useState<boolean>(false);
 
   // Get ?flow=... from the URL
   const router = useRouter();
@@ -33,7 +34,7 @@ export default function Login() {
     aal,
   } = router.query;
 
-  const { handleLogout, loading } = useCreateLogoutHandler([aal, refresh]);
+  const { handleLogout, loading: signingOut } = useCreateLogoutHandler([aal, refresh]);
   const handleFlowError = handleGetFlowError(router, "login", setFlow);
 
   React.useEffect(() => {
@@ -43,15 +44,18 @@ export default function Login() {
     }
 
     async function fetchFlow() {
+      setFlowLoading(true);
       // If ?flow=.. was in the URL, we fetch it
       if (flowId) {
         try {
           const { data } = await ory.getSelfServiceLoginFlow(String(flowId));
           setFlow(data);
         } catch (error) {
+          setFlowLoading(false);
           await handleFlowError(error);
         }
 
+        setFlowLoading(false);
         return;
       }
 
@@ -64,7 +68,9 @@ export default function Login() {
         );
 
         setFlow(data);
+        setFlowLoading(false);
       } catch (error) {
+        setFlowLoading(false);
         await handleFlowError(error);
       }
     }
@@ -108,11 +114,18 @@ export default function Login() {
         {t("heading")}
       </Heading>
       <Card mt={4} px={10} py={8} flexDirection="column" width="100%" maxWidth={{ base: "100%", md: "md" }}>
-        <FlowForm flow={flow} onSubmit={onSubmit} />
+        {flowLoading ? (
+          <Center>
+            <Spinner />
+          </Center>
+        ) : null}
+        <Collapse in={Boolean(flow)}>
+          <FlowForm flow={flow} onSubmit={onSubmit} />
+        </Collapse>
       </Card>
       <VStack spacing={4} fontSize="sm" mt={4}>
         {aal || refresh ? (
-          <Button isLoading={loading} variant="ghost" onClick={handleLogout}>
+          <Button isLoading={signingOut} variant="ghost" onClick={handleLogout}>
             {t("common:sign-out")}
           </Button>
         ) : (
