@@ -1,8 +1,8 @@
 import { Card, Link, Logo } from "@boilerplate/shared/ui";
 import { ory } from "@boilerplate/shared/utility/ory";
 import { FlowForm } from "@boilerplate/site/ui";
-import { handleOryRedirect, handleGetFlowError } from "@boilerplate/site/utility";
-import { Center, Heading, useColorModeValue } from "@chakra-ui/react";
+import { handleGetFlowError, handleOryRedirect } from "@boilerplate/site/utility";
+import { Center, Collapse, Heading, Spinner, useColorModeValue } from "@chakra-ui/react";
 import { SelfServiceRecoveryFlow, SubmitSelfServiceRecoveryFlowBody } from "@ory/kratos-client";
 import type { GetServerSidePropsContext } from "next";
 import { NextSeo } from "next-seo";
@@ -19,6 +19,7 @@ export default function Recovery() {
   const { t } = useTranslation("recovery");
   const bg = useColorModeValue("gray.50", "gray.900");
   const [flow, setFlow] = React.useState<SelfServiceRecoveryFlow>();
+  const [flowLoading, setFlowLoading] = React.useState<boolean>(false);
 
   // Get ?flow=... from the URL
   const router = useRouter();
@@ -33,6 +34,7 @@ export default function Recovery() {
     }
 
     async function fetchFlow() {
+      setFlowLoading(true);
       // If ?flow=.. was in the URL, we fetch it
       if (flowId) {
         try {
@@ -42,6 +44,7 @@ export default function Recovery() {
           await handleFlowError(error);
         }
 
+        setFlowLoading(false);
         return;
       }
 
@@ -52,6 +55,8 @@ export default function Recovery() {
       } catch (error) {
         await handleFlowError(error);
       }
+
+      setFlowLoading(false);
     }
 
     fetchFlow();
@@ -88,7 +93,14 @@ export default function Recovery() {
         {t("heading")}
       </Heading>
       <Card mt={4} px={10} py={8} flexDirection="column" width="100%" maxWidth={{ base: "100%", md: "md" }}>
-        <FlowForm flow={flow} onSubmit={onSubmit} />
+        {flowLoading ? (
+          <Center>
+            <Spinner />
+          </Center>
+        ) : null}
+        <Collapse in={Boolean(flow)}>
+          <FlowForm flow={flow} onSubmit={onSubmit} />
+        </Collapse>
       </Card>
       <Center fontSize="sm" mt={4}>
         <Trans
