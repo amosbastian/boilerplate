@@ -16,8 +16,9 @@ export function PasswordInput(props: PasswordInputProps) {
       <Input pr={14} type={show ? "text" : "password"} placeholder={t("password-placeholder")} {...props} />
       <InputRightElement>
         <IconButton
+          size="sm"
+          borderRadius="50%"
           variant="ghost"
-          colorScheme="gray"
           onClick={handleClick}
           aria-label={show ? t("hide-password") : t("show-password")}
           icon={<Icon as={show ? RiEyeOffLine : RiEyeLine} />}

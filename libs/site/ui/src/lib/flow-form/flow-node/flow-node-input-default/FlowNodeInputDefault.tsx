@@ -1,7 +1,7 @@
 import { Link } from "@boilerplate/shared/ui";
-import { PasswordInput } from "../../../password-input/PasswordInput";
-import { FormControl, FormHelperText, FormLabel, HStack, Input } from "@chakra-ui/react";
+import { FormControl, FormHelperText, FormLabel, HStack, Input, Stack } from "@chakra-ui/react";
 import { useRouter } from "next/router";
+import { PasswordInput } from "../../../password-input/PasswordInput";
 import { FlowNodeInputProps } from "../flow-node-input";
 
 export function FlowNodeInputDefault({ node, attributes, value = "", setValue, disabled }: FlowNodeInputProps) {
@@ -49,11 +49,11 @@ export function FlowNodeInputDefault({ node, attributes, value = "", setValue, d
         )}
         {node.messages.length > 0 ? (
           <FormHelperText>
-            {node.messages.map(({ text, id }, k) => (
-              <span key={`${id}-${k}`} data-testid={`ui/message/${id}`}>
-                {text}
-              </span>
-            ))}
+            <Stack spacing={1}>
+              {[...new Set(node.messages.map(({ text }) => text))].map((text, index) => (
+                <div key={`${text}-${index}`}>{text}</div>
+              ))}
+            </Stack>
           </FormHelperText>
         ) : null}
       </FormControl>
