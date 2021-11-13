@@ -1,3 +1,4 @@
+export * from "./lib/password-input/PasswordInput";
 export * from "./lib/flow-form/FlowForm";
 export * from "./lib/account-settings-form/AccountSettingsForm";
 export * from "./lib/avatar-menu/AvatarMenu";

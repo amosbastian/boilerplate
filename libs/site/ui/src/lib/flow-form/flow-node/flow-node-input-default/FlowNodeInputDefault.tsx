@@ -1,4 +1,5 @@
 import { Link } from "@boilerplate/shared/ui";
+import { PasswordInput } from "../../../password-input/PasswordInput";
 import { FormControl, FormHelperText, FormLabel, HStack, Input } from "@chakra-ui/react";
 import { useRouter } from "next/router";
 import { FlowNodeInputProps } from "../flow-node-input";
@@ -24,16 +25,28 @@ export function FlowNodeInputDefault({ node, attributes, value = "", setValue, d
     <>
       <FormControl isInvalid={node.messages.find(({ type }) => type === "error") ? true : false}>
         <FormLabel textTransform="capitalize">{node.meta.label?.text ?? attributes.type}</FormLabel>
-        <Input
-          onClick={onClick}
-          onChange={(event) => {
-            setValue(event.target.value);
-          }}
-          type={attributes.type}
-          name={attributes.name}
-          value={value}
-          isDisabled={attributes.disabled || disabled}
-        />
+        {attributes.type === "password" ? (
+          <PasswordInput
+            onClick={onClick}
+            onChange={(event) => {
+              setValue(event.target.value);
+            }}
+            name={attributes.name}
+            value={value}
+            isDisabled={attributes.disabled || disabled}
+          />
+        ) : (
+          <Input
+            onClick={onClick}
+            onChange={(event) => {
+              setValue(event.target.value);
+            }}
+            type={attributes.type}
+            name={attributes.name}
+            value={value}
+            isDisabled={attributes.disabled || disabled}
+          />
+        )}
         {node.messages.length > 0 ? (
           <FormHelperText>
             {node.messages.map(({ text, id }, k) => (
