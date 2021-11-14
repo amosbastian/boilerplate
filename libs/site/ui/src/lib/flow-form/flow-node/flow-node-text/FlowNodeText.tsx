@@ -1,4 +1,4 @@
-import { Box, Text } from "@chakra-ui/react";
+import { Box, FormControl, FormLabel } from "@chakra-ui/react";
 import { UiNode, UiNodeTextAttributes, UiText } from "@ory/kratos-client";
 
 export interface FlowNodeTextProps {
@@ -18,24 +18,26 @@ const Content = ({ node, attributes }: FlowNodeTextProps) => {
     case 1050015:
       return (
         <div data-testid={`node/text/${attributes.id}/text`}>
-          <div>{secrets}</div>
+          <Box overflowX="auto">{secrets}</Box>
         </div>
       );
   }
 
   return (
     <div data-testid={`node/text/${attributes.id}/text`}>
-      <Box>{attributes.text.text}</Box>
+      <Box overflowX="auto">{attributes.text.text}</Box>
     </div>
   );
 };
 
 export function FlowNodeText({ node, attributes }: FlowNodeTextProps) {
   return (
-    <>
-      <Text data-testid={`node/text/${attributes.id}/label`}>{node.meta?.label?.text}</Text>
+    <FormControl>
+      <FormLabel textTransform="capitalize" data-testid={`node/text/${attributes.id}/label`}>
+        {node.meta?.label?.text}
+      </FormLabel>
       <Content node={node} attributes={attributes} />
-    </>
+    </FormControl>
   );
 }
 

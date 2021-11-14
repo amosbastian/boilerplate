@@ -1,4 +1,4 @@
-import { Image } from "@boilerplate/shared/ui";
+import { Image } from "@chakra-ui/react";
 import { UiNode, UiNodeImageAttributes } from "@ory/kratos-client";
 
 export interface FlowNodeImageProps {
@@ -7,5 +7,13 @@ export interface FlowNodeImageProps {
 }
 
 export function FlowNodeImage({ node, attributes }: FlowNodeImageProps) {
-  return <Image data-testid={`node/image/${attributes.id}`} src={attributes.src} alt={node.meta.label?.text} />;
+  return (
+    <Image
+      data-testid={`node/image/${attributes.id}`}
+      w={`${attributes.width}px`}
+      h={`${attributes.height}px`}
+      src={attributes.src}
+      alt={node.meta.label?.text}
+    />
+  );
 }
