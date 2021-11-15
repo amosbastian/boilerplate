@@ -2,12 +2,13 @@ import { DocumentType, gql } from "@boilerplate/generated/graphql";
 import { useProvidedStyles } from "@boilerplate/shared/theme";
 import type { CardProps } from "@boilerplate/shared/ui";
 import { Card } from "@boilerplate/shared/ui";
-import { currencyToSymbol } from "@boilerplate/site/utility";
+import { currencyToSymbol, oryBrowserClient } from "@boilerplate/site/utility";
 import { Box, Button, Heading, List, ListIcon, ListItem, Text, useColorModeValue } from "@chakra-ui/react";
-import { useSession } from "next-auth/client";
+import type { AxiosError } from "axios";
 import Trans from "next-translate/Trans";
 import useTranslation from "next-translate/useTranslation";
 import { useRouter } from "next/router";
+import * as React from "react";
 import { RiCheckFill } from "react-icons/ri";
 
 const featuresMap: Record<string, { name: string }[]> = {
@@ -42,16 +43,43 @@ export interface ProductCardProps {
 export function ProductCard({ plan, recommended = false, ...rest }: ProductCardProps & CardProps) {
   const { t } = useTranslation("pricing");
   const styles = useProvidedStyles({ name: "card" });
+  const [hasSession, setHasSession] = React.useState<boolean>(false);
 
   const planName = plan.name.toLowerCase();
   const planPrice = plan.prices.find((price) => price.recurring.interval === "month");
 
   const borderWidth = useColorModeValue(1, 0);
-  const session = useSession();
   const router = useRouter();
 
+  React.useEffect(() => {
+    const fetchSession = async () => {
+      try {
+        const { data: session } = await oryBrowserClient.toSession();
+        setHasSession(Boolean(session.active));
+      } catch (error) {
+        switch ((error as AxiosError).response?.status) {
+          case 403:
+            // This is a legacy error code thrown.
+            break;
+          case 422:
+            // This status code is returned when we are trying to
+            // validate a session which has not yet completed
+            // it's second factor
+            return router.push("/login?aal=aal2");
+          case 401:
+            // do nothing, the user is not logged in
+            break;
+        }
+
+        setHasSession(false);
+      }
+    };
+
+    fetchSession();
+  }, [router]);
+
   const handleCheckout = () => {
-    if (!session) {
+    if (!hasSession) {
       return router.push("/login");
     }
 

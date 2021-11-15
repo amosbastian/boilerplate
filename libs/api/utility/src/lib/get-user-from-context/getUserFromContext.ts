@@ -17,8 +17,6 @@ export const getUserFromContext = async ({ prisma, req }: Pick<Context, "prisma"
       return null;
     }
 
-    if (!process.env.JWT_SECRET) return null;
-
     const user = await prisma.user.findUnique({ where: { id: session.identity.id }, include: { roles: true } });
 
     return user;
