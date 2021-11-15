@@ -1,5 +1,5 @@
 import { Card, Link, Logo } from "@boilerplate/shared/ui";
-import { ory } from "@boilerplate/shared/utility/ory";
+import { oryBrowserClient } from "@boilerplate/site/utility";
 import { FlowForm } from "@boilerplate/site/ui";
 import { handleGetFlowError, handleOryRedirect } from "@boilerplate/site/utility";
 import { Center, Collapse, Heading, Spinner, useColorModeValue } from "@chakra-ui/react";
@@ -38,7 +38,7 @@ export default function Verification() {
       // If ?flow=.. was in the URL, we fetch it
       if (flowId) {
         try {
-          const { data } = await ory.getSelfServiceVerificationFlow(String(flowId));
+          const { data } = await oryBrowserClient.getSelfServiceVerificationFlow(String(flowId));
           setFlow(data);
         } catch (error) {
           switch (error.response?.status) {
@@ -59,7 +59,7 @@ export default function Verification() {
 
       // Otherwise we initialise it
       try {
-        const { data } = await ory.initializeSelfServiceVerificationFlowForBrowsers(
+        const { data } = await oryBrowserClient.initializeSelfServiceVerificationFlowForBrowsers(
           returnTo ? String(returnTo) : undefined,
         );
         setFlow(data);
@@ -84,7 +84,7 @@ export default function Verification() {
     // his data when she/he reloads the page.
     try {
       await router.push(`/verification?flow=${flow?.id}`, undefined, { shallow: true });
-      const { data } = await ory.submitSelfServiceVerificationFlow(String(flow?.id), undefined, values);
+      const { data } = await oryBrowserClient.submitSelfServiceVerificationFlow(String(flow?.id), undefined, values);
 
       setFlow(data);
     } catch (error) {

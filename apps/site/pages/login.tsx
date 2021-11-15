@@ -1,5 +1,5 @@
 import { Card, Link, Logo } from "@boilerplate/shared/ui";
-import { ory } from "@boilerplate/shared/utility/ory";
+import { oryBrowserClient } from "@boilerplate/site/utility";
 import { FlowForm } from "@boilerplate/site/ui";
 import { handleGetFlowError, handleOryRedirect, useCreateLogoutHandler } from "@boilerplate/site/utility";
 import { Box, Button, Center, Collapse, Heading, Spinner, useColorModeValue, VStack } from "@chakra-ui/react";
@@ -48,7 +48,7 @@ export default function Login() {
       // If ?flow=.. was in the URL, we fetch it
       if (flowId) {
         try {
-          const { data } = await ory.getSelfServiceLoginFlow(String(flowId));
+          const { data } = await oryBrowserClient.getSelfServiceLoginFlow(String(flowId));
           setFlow(data);
         } catch (error) {
           await handleFlowError(error);
@@ -60,7 +60,7 @@ export default function Login() {
 
       // Otherwise we initialise it
       try {
-        const { data } = await ory.initializeSelfServiceLoginFlowForBrowsers(
+        const { data } = await oryBrowserClient.initializeSelfServiceLoginFlowForBrowsers(
           Boolean(refresh),
           aal ? String(aal) : undefined,
           returnTo ? String(returnTo) : undefined,
@@ -82,7 +82,7 @@ export default function Login() {
     // his data when she/he reloads the page.
     try {
       await router.push(`/login?flow=${flow?.id}`, undefined, { shallow: true });
-      await ory.submitSelfServiceLoginFlow(String(flow?.id), undefined, values);
+      await oryBrowserClient.submitSelfServiceLoginFlow(String(flow?.id), undefined, values);
 
       if (flow?.return_to) {
         window.location.href = flow?.return_to;

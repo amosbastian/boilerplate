@@ -1,5 +1,5 @@
 import { Card, CardHeader, Container } from "@boilerplate/shared/ui";
-import { ory } from "@boilerplate/shared/utility/ory";
+import { oryBrowserClient } from "@boilerplate/site/utility";
 import { FlowForm, FlowMessages, FlowMethods, getLayout, PageHeading, SettingsSection } from "@boilerplate/site/ui";
 import { handleGetFlowError, handleOryRedirect } from "@boilerplate/site/utility";
 import { Text } from "@chakra-ui/react";
@@ -55,7 +55,7 @@ export default function Security() {
       // If ?flow=.. was in the URL, we fetch it
       if (flowId) {
         try {
-          const { data } = await ory.getSelfServiceSettingsFlow(String(flowId));
+          const { data } = await oryBrowserClient.getSelfServiceSettingsFlow(String(flowId));
           setFlow(data);
         } catch (error) {
           await handleFlowError(error);
@@ -67,7 +67,7 @@ export default function Security() {
 
       // Otherwise we initialise it
       try {
-        const { data } = await ory.initializeSelfServiceSettingsFlowForBrowsers(
+        const { data } = await oryBrowserClient.initializeSelfServiceSettingsFlowForBrowsers(
           returnTo ? String(returnTo) : undefined,
         );
         setFlow(data);
@@ -86,7 +86,7 @@ export default function Security() {
     // his data when she/he reloads the page.
     try {
       await router.push(`/settings/security?flow=${flow?.id}`, undefined, { shallow: true });
-      const { data } = await ory.submitSelfServiceSettingsFlow(String(flow?.id), undefined, values);
+      const { data } = await oryBrowserClient.submitSelfServiceSettingsFlow(String(flow?.id), undefined, values);
 
       setFlow(data);
     } catch (error) {

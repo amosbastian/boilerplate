@@ -1,5 +1,5 @@
 import { Card, Link, Logo } from "@boilerplate/shared/ui";
-import { ory } from "@boilerplate/shared/utility/ory";
+import { oryBrowserClient } from "@boilerplate/site/utility";
 import { FlowForm } from "@boilerplate/site/ui";
 import { fetcher, handleGetFlowError, handleOryRedirect } from "@boilerplate/site/utility";
 import { Box, Center, Collapse, Heading, Spinner, useColorModeValue } from "@chakra-ui/react";
@@ -43,7 +43,7 @@ export default function Registration() {
       // If ?flow=.. was in the URL, we fetch it
       if (flowId) {
         try {
-          const { data } = await ory.getSelfServiceRegistrationFlow(String(flowId));
+          const { data } = await oryBrowserClient.getSelfServiceRegistrationFlow(String(flowId));
           setFlow(data);
         } catch (error) {
           handleFlowError(error);
@@ -55,7 +55,7 @@ export default function Registration() {
 
       // Otherwise we initialise it
       try {
-        const { data } = await ory.initializeSelfServiceRegistrationFlowForBrowsers(
+        const { data } = await oryBrowserClient.initializeSelfServiceRegistrationFlowForBrowsers(
           returnTo ? String(returnTo) : undefined,
         );
         setFlow(data);
@@ -74,7 +74,7 @@ export default function Registration() {
       // On submission, add the flow ID to the URL but do not navigate. This prevents the user loosing
       // his data when she/he reloads the page.
       await router.push(`/registration?flow=${flow?.id}`, undefined, { shallow: true });
-      const { data } = await ory.submitSelfServiceRegistrationFlow(String(flow?.id), values);
+      const { data } = await oryBrowserClient.submitSelfServiceRegistrationFlow(String(flow?.id), values);
       // If we ended up here, it means we are successfully signed up!
       //
 

@@ -1,5 +1,5 @@
 import { Card, Link, Logo } from "@boilerplate/shared/ui";
-import { ory } from "@boilerplate/shared/utility/ory";
+import { oryBrowserClient } from "@boilerplate/site/utility";
 import { FlowForm } from "@boilerplate/site/ui";
 import { handleGetFlowError, handleOryRedirect } from "@boilerplate/site/utility";
 import { Center, Collapse, Heading, Spinner, useColorModeValue } from "@chakra-ui/react";
@@ -38,7 +38,7 @@ export default function Recovery() {
       // If ?flow=.. was in the URL, we fetch it
       if (flowId) {
         try {
-          const { data } = await ory.getSelfServiceRecoveryFlow(String(flowId));
+          const { data } = await oryBrowserClient.getSelfServiceRecoveryFlow(String(flowId));
           setFlow(data);
         } catch (error) {
           await handleFlowError(error);
@@ -50,7 +50,7 @@ export default function Recovery() {
 
       // Otherwise we initialise it
       try {
-        const { data } = await ory.initializeSelfServiceRecoveryFlowForBrowsers();
+        const { data } = await oryBrowserClient.initializeSelfServiceRecoveryFlowForBrowsers();
         setFlow(data);
       } catch (error) {
         await handleFlowError(error);
@@ -67,7 +67,7 @@ export default function Recovery() {
     // his data when she/he reloads the page.
     try {
       await router.push(`/recovery?flow=${flow?.id}`, undefined, { shallow: true });
-      const { data } = await ory.submitSelfServiceRecoveryFlow(String(flow?.id), undefined, values);
+      const { data } = await oryBrowserClient.submitSelfServiceRecoveryFlow(String(flow?.id), undefined, values);
 
       setFlow(data);
     } catch (error) {

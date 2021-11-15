@@ -1,5 +1,5 @@
 // Source: https://github.com/ory/kratos-selfservice-ui-react-nextjs
-import { ory } from "@boilerplate/shared/utility/ory";
+import { oryBrowserClient } from "../ory-browser-client/oryBrowserClient";
 import type { AxiosError } from "axios";
 import { useRouter } from "next/router";
 import * as React from "react";
@@ -13,7 +13,7 @@ export function useCreateLogoutHandler(dependencies?: React.DependencyList) {
   React.useEffect(() => {
     const createSelfServiceLogoutFlowUrlForBrowsers = async () => {
       try {
-        const { data } = await ory.createSelfServiceLogoutFlowUrlForBrowsers();
+        const { data } = await oryBrowserClient.createSelfServiceLogoutFlowUrlForBrowsers();
         setLogoutToken(data.logout_token);
       } catch (error) {
         switch ((error as AxiosError).response?.status) {
@@ -32,7 +32,7 @@ export function useCreateLogoutHandler(dependencies?: React.DependencyList) {
   const handleLogout = async () => {
     if (logoutToken) {
       setLoading(true);
-      await ory.submitSelfServiceLogoutFlow(logoutToken);
+      await oryBrowserClient.submitSelfServiceLogoutFlow(logoutToken);
       setLoading(false);
 
       router.push("/login");
