@@ -1,3 +1,4 @@
+import { useOryTranslation } from "@boilerplate/site/utility";
 import type { ButtonProps } from "@chakra-ui/react";
 import { Button } from "@chakra-ui/react";
 import { getNodeLabel } from "@ory/integrations/ui";
@@ -11,6 +12,8 @@ export function FlowNodeInputButton({
   dispatchSubmit,
   ...rest
 }: FlowNodeInputProps & ButtonProps) {
+  const { oryT } = useOryTranslation();
+
   // Some attributes have dynamic JavaScript - this is for example required for WebAuthn.
   const onClick = () => {
     // This section is only used for WebAuthn. The script is loaded via a <script> node
@@ -30,11 +33,11 @@ export function FlowNodeInputButton({
         onClick();
         setValue(attributes.value).then(() => dispatchSubmit(event));
       }}
-      value={attributes.value || ""}
-      disabled={attributes.disabled || disabled}
+      isDisabled={attributes.disabled || disabled}
       {...rest}
+      value={attributes.value || ""}
     >
-      {getNodeLabel(node)}
+      {node.meta.label?.id ? oryT(node.meta.label.id, node.meta.label.context) : getNodeLabel(node)}
     </Button>
   );
 }

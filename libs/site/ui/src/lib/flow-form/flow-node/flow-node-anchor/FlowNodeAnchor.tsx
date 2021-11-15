@@ -10,9 +10,9 @@ export function FlowNodeAnchor({ attributes }: FlowNodeAnchorProps) {
   return (
     <Button
       data-testid={`node/anchor/${attributes.id}`}
-      onClick={(e) => {
-        e.stopPropagation();
-        e.preventDefault();
+      onClick={(event) => {
+        event.stopPropagation();
+        event.preventDefault();
         window.location.href = attributes.href;
       }}
     >

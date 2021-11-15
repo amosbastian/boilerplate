@@ -1,3 +1,4 @@
+import { useOryTranslation } from "@boilerplate/site/utility";
 import { Box, FormControl, FormLabel } from "@chakra-ui/react";
 import { UiNode, UiNodeTextAttributes, UiText } from "@ory/kratos-client";
 
@@ -31,11 +32,15 @@ const Content = ({ node, attributes }: FlowNodeTextProps) => {
 };
 
 export function FlowNodeText({ node, attributes }: FlowNodeTextProps) {
+  const { oryT } = useOryTranslation();
+
   return (
     <FormControl>
-      <FormLabel textTransform="capitalize" data-testid={`node/text/${attributes.id}/label`}>
-        {node.meta?.label?.text}
-      </FormLabel>
+      {node.meta?.label?.id ? (
+        <FormLabel textTransform="capitalize" data-testid={`node/text/${attributes.id}/label`}>
+          {oryT(node.meta.label.id, node.meta.label.context)}
+        </FormLabel>
+      ) : null}
       <Content node={node} attributes={attributes} />
     </FormControl>
   );

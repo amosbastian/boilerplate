@@ -1,4 +1,5 @@
 import { Link } from "@boilerplate/shared/ui";
+import { useOryTranslation } from "@boilerplate/site/utility";
 import type { FormControlProps } from "@chakra-ui/react";
 import { FormControl, FormHelperText, FormLabel, HStack, Input, Stack } from "@chakra-ui/react";
 import useTranslation from "next-translate/useTranslation";
@@ -17,6 +18,7 @@ export function FlowNodeInputDefault({
   const router = useRouter();
   const { refresh, aal } = router.query;
   const { t } = useTranslation("common");
+  const { oryT } = useOryTranslation();
 
   // Some attributes have dynamic JavaScript - this is for example required for WebAuthn.
   const onClick = () => {
@@ -30,11 +32,21 @@ export function FlowNodeInputDefault({
     }
   };
 
+  console.log(node.meta.label);
+
   // Render a generic text input field.
   return (
     <>
       <FormControl isInvalid={node.messages.find(({ type }) => type === "error") ? true : false} {...rest}>
-        <FormLabel textTransform="capitalize">{node.meta.label?.text ?? attributes.type}</FormLabel>
+        {node.meta.label?.id ? (
+          <FormLabel>
+            {attributes.type === "password"
+              ? t("password")
+              : attributes.type === "email"
+              ? t("email")
+              : oryT(node.meta.label.id, node.meta.label.context)}
+          </FormLabel>
+        ) : null}
         {attributes.type === "password" ? (
           <PasswordInput
             onClick={onClick}
@@ -44,6 +56,7 @@ export function FlowNodeInputDefault({
             name={attributes.name}
             value={value}
             isDisabled={attributes.disabled || disabled}
+            placeholder={t("password-placeholder")}
           />
         ) : (
           <Input
@@ -55,12 +68,13 @@ export function FlowNodeInputDefault({
             name={attributes.name}
             value={value}
             isDisabled={attributes.disabled || disabled}
+            placeholder={attributes.type === "email" ? t("email") : undefined}
           />
         )}
         {node.messages.length > 0 ? (
           <FormHelperText>
             <Stack spacing={1}>
-              {[...new Set(node.messages.map(({ text }) => text))].map((text, index) => (
+              {[...new Set(node.messages.map(({ id, context }) => oryT(id, context)))].map((text, index) => (
                 <div key={`${text}-${index}`}>{text}</div>
               ))}
             </Stack>

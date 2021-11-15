@@ -1,8 +1,11 @@
+import { useOryTranslation } from "@boilerplate/site/utility";
 import { Button } from "@chakra-ui/react";
 import { getNodeLabel } from "@ory/integrations/ui";
 import { FlowNodeInputProps } from "../flow-node-input";
 
 export function FlowNodeInputSubmit({ node, attributes, setValue, disabled, dispatchSubmit }: FlowNodeInputProps) {
+  const { oryT } = useOryTranslation();
+
   return (
     <Button
       w="100%"
@@ -15,7 +18,7 @@ export function FlowNodeInputSubmit({ node, attributes, setValue, disabled, disp
       disabled={attributes.disabled || disabled}
       isLoading={attributes.disabled || disabled}
     >
-      {getNodeLabel(node)}
+      {node.meta.label?.id ? oryT(node.meta.label.id, node.meta.label.context) : getNodeLabel(node)}
     </Button>
   );
 }
