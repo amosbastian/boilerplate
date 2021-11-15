@@ -16,6 +16,7 @@
   "forgot-password": "Forgot password?",
   "free": "Free",
   "hide-password": "Hide password",
+  "password": "Password",
   "password-placeholder": "Enter password",
   "premium": "Premium",
   "price-per-month": "<0>{{currencySymbol}}{{price}}</0><1> / month</1>",

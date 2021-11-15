@@ -13,12 +13,13 @@ module.exports = {
     "/features/feature-1": ["feature-1"],
     "/features/feature-2": ["feature-2"],
     "/home": ["home"],
-    "/login": ["login"],
+    "/login": ["login", "ory"],
     "/pricing": ["pricing"],
-    "/recovery": ["recovery"],
-    "/registration": ["registration"],
-    "/verification": ["verification"],
+    "/recovery": ["recovery", "ory"],
+    "/registration": ["registration", "ory"],
+    "/verification": ["verification", "ory"],
     "rgx:^/settings": ["settings"],
+    "/settings/security": ["settings", "ory"],
   },
   loadLocaleFrom: async (locale, namespace) => {
     const i18nShared = await import(`../../libs/shared/i18n/src/lib/${locale}/common`).then((m) => m.default);
