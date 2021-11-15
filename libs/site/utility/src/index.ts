@@ -3,5 +3,6 @@ export * from "./lib/email-templates/signIn";
 export * from "./lib/fetcher/fetcher";
 export * from "./lib/get-stripe-promise/getStripePromise";
 export * from "./lib/handle-ory-redirect/handleOryRedirect";
-export * from "./lib/use-create-logout-handler/useCreateLogoutHandler";
 export * from "./lib/handleGetFlowError/handleGetFlowError";
+export * from "./lib/use-create-logout-handler/useCreateLogoutHandler";
+export * from "./lib/use-ory-translation/useOryTranslation";
