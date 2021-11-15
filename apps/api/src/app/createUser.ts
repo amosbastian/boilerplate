@@ -1,6 +1,6 @@
 import { prisma } from "@boilerplate/api/utility";
 import { logger } from "@boilerplate/shared/utility/logger";
-import { getOrySession } from "@boilerplate/shared/utility/ory";
+import { oryApiClient } from "@boilerplate/shared/utility/ory";
 import { SuccessfulSelfServiceRegistrationWithoutBrowser } from "@ory/kratos-client";
 import type { Express } from "express";
 
@@ -13,7 +13,7 @@ export function addCreateUser(app: Express) {
     }
 
     try {
-      const { session } = await getOrySession(request.headers.cookie);
+      const { data: session } = await oryApiClient.toSession(undefined, request.headers.cookie);
 
       if (!session.id) {
         return response.status(500).json({ error: { statusCode: 500, message: "Invalid session" } });

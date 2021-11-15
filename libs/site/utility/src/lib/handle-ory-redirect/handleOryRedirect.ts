@@ -1,27 +1,10 @@
-import { getOrySession } from "@boilerplate/shared/utility/ory";
+import { oryBrowserClient } from "../ory-browser-client/oryBrowserClient";
 
 export const handleOryRedirect = async (requireActiveSession: boolean, destination: string, cookie?: string) => {
   try {
-    const { error, session } = await getOrySession(cookie);
+    await oryBrowserClient.toSession(undefined, cookie);
 
-    const hasActiveSession = session?.active && Boolean(session.id);
-
-    if (requireActiveSession && hasActiveSession) {
-      return {
-        props: {},
-      };
-    }
-
-    if (requireActiveSession && !hasActiveSession) {
-      return {
-        redirect: {
-          destination: destination,
-          permanent: false,
-        },
-      };
-    }
-
-    if (error || !hasActiveSession) {
+    if (requireActiveSession) {
       return {
         props: {},
       };
@@ -50,7 +33,18 @@ export const handleOryRedirect = async (requireActiveSession: boolean, destinati
         };
       case 401:
         // User is not logged in
-        return;
+        if (requireActiveSession) {
+          return {
+            redirect: {
+              destination: destination,
+              permanent: false,
+            },
+          };
+        }
+
+        return {
+          props: {},
+        };
     }
 
     // Something else happened!
