@@ -5,6 +5,7 @@ module.exports = {
     "*": ["common"],
     "/": ["index"],
     "/404": ["404"],
+    "/error": ["error"],
     "/_error": ["error"],
     "/about": ["about"],
     "/contact": ["contact"],

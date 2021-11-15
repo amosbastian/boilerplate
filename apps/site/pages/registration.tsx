@@ -1,8 +1,7 @@
 import { Card, Link, Logo } from "@boilerplate/shared/ui";
-import { oryBrowserClient } from "@boilerplate/site/utility";
 import { FlowForm } from "@boilerplate/site/ui";
-import { fetcher, handleGetFlowError, handleOryRedirect } from "@boilerplate/site/utility";
-import { Box, Center, Collapse, Heading, Spinner, useColorModeValue } from "@chakra-ui/react";
+import { fetcher, handleGetFlowError, handleOryRedirect, oryBrowserClient } from "@boilerplate/site/utility";
+import { Box, Center, Heading, useColorModeValue } from "@chakra-ui/react";
 import { SelfServiceRegistrationFlow, SubmitSelfServiceRegistrationFlowBody } from "@ory/kratos-client";
 import type { GetServerSidePropsContext } from "next";
 import { NextSeo } from "next-seo";
@@ -85,7 +84,7 @@ export default function Registration() {
       });
 
       // For now however we just want to redirect home!
-      return router.push(flow?.return_to || "/home");
+      await router.push(flow?.return_to || "/home");
     } catch (error) {
       try {
         await handleFlowError(error);
