@@ -1,29 +1,20 @@
 import { logger } from "@boilerplate/shared/utility/logger";
+import { oryApiClient } from "@boilerplate/shared/utility/ory";
 import { createOrRetrieveCustomer, stripe } from "@boilerplate/stripe";
 import type { Express } from "express";
-import { decode } from "next-auth/jwt";
 
 export function addCreatePortalLink(app: Express) {
   app.post("/api/stripe/create-portal-link", async (request, response) => {
-    const token = request.cookies["next-auth.session-token"];
+    const token = request.cookies["ory_kratos_session"];
 
-    if (!token || token === "null" || !process.env.JWT_SECRET) {
+    if (!token) {
       return response.status(500).json({ error: { statusCode: 500, message: "Invalid token" } });
     }
 
     try {
-      const decodedToken = await decode({
-        token,
-        secret: process.env.JWT_SECRET,
-        signingKey: process.env.JWT_SIGNING_KEY,
-        encryptionKey: process.env.JWT_ENCRYPTION_KEY,
-      });
+      const { data: orySession } = await oryApiClient.toSession(undefined, request.headers.cookie);
 
-      if (!decodedToken.sub) {
-        return response.status(500).json({ error: { statusCode: 500, message: "Invalid userId" } });
-      }
-
-      const customer = await createOrRetrieveCustomer({ userId: decodedToken.sub });
+      const customer = await createOrRetrieveCustomer({ userId: orySession.identity.id });
 
       const { url } = await stripe.billingPortal.sessions.create({
         customer,

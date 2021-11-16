@@ -1,26 +1,13 @@
 import { Container } from "@boilerplate/shared/ui";
 import { ProfileSettings } from "@boilerplate/site-feature";
 import { AccountSettingsForm, getLayout, PageHeading, SettingsAside, SettingsSection } from "@boilerplate/site/ui";
+import { handleOryRedirect } from "@boilerplate/site/utility";
 import type { GetServerSidePropsContext } from "next";
-import { getSession } from "next-auth/client";
 import { NextSeo } from "next-seo";
 import useTranslation from "next-translate/useTranslation";
 
 export const getServerSideProps = async (context: GetServerSidePropsContext) => {
-  const session = await getSession(context);
-
-  if (!session) {
-    return {
-      redirect: {
-        destination: "/signin",
-        permanent: false,
-      },
-    };
-  }
-
-  return {
-    props: {},
-  };
+  return await handleOryRedirect(true, "/login", context.req.headers.cookie);
 };
 
 export default function Settings() {

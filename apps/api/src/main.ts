@@ -6,6 +6,7 @@ import * as Tracing from "@sentry/tracing";
 import * as cookieParser from "cookie-parser";
 import * as cors from "cors";
 import * as express from "express";
+import { addCreateUser } from "./app/createUser";
 import { addCreateCheckoutSession, addCreatePortalLink, addStripeWebhook } from "./app/stripe";
 
 const main = async () => {
@@ -34,6 +35,7 @@ const main = async () => {
 
   addStripeWebhook(app);
   app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
+  addCreateUser(app);
   addCreateCheckoutSession(app);
   addCreatePortalLink(app);
 

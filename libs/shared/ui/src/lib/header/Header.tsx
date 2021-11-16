@@ -128,7 +128,7 @@ const NavModal = ({ isOpen, onClose }: Pick<ModalProps, "isOpen" | "onClose">) =
         </VStack>
         <Divider />
         <ModalFooter>
-          <NextLink href={isBlog ? `${process.env.NEXT_PUBLIC_SITE_URL}/signin` : "signin"} passHref>
+          <NextLink href={isBlog ? `${process.env.NEXT_PUBLIC_SITE_URL}/login` : "login"} passHref>
             <Button as="a" colorScheme="primary" width="100%">
               {t("sign-in")}
             </Button>
@@ -218,7 +218,7 @@ export function Header() {
           })}
         </HStack>
         <Box display={{ base: "none", lg: "flex" }}>
-          <NextLink href={isBlog ? `${process.env.NEXT_PUBLIC_SITE_URL}/signin` : "/signin"} passHref>
+          <NextLink href={isBlog ? `${process.env.NEXT_PUBLIC_SITE_URL}/login` : "/login"} passHref>
             <Button colorScheme="primary">{t("sign-in")}</Button>
           </NextLink>
         </Box>
