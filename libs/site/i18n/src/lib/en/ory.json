@@ -40,7 +40,7 @@
   "1070006": "Verify code",
   "1070007": "Email",
   "4000001": "{{reason}}",
-  "4000002": "Property {{field}} is missing",
+  "4000002": "{{property}} is required",
   "4000003": "Length must be {{expected_length}}, but is {{actual_length}}",
   "4000004": "\"{{actual_value}}\" is not valid \"{{expected_format}}\"",
   "4000005": "This password can not be used because {{reason}}.",

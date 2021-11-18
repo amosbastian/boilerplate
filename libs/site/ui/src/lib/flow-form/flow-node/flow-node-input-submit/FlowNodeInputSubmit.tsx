@@ -17,6 +17,7 @@ export function FlowNodeInputSubmit({ node, attributes, setValue, disabled, disp
       value={attributes.value || ""}
       disabled={attributes.disabled || disabled}
       isLoading={attributes.disabled || disabled}
+      type="submit"
     >
       {node.meta.label?.id ? oryT(node.meta.label.id, node.meta.label.context) : getNodeLabel(node)}
     </Button>

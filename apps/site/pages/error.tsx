@@ -61,7 +61,7 @@ const Error: NextPage = () => {
     <Center height="-webkit-fill-available" flexDirection="column" px={4} justifyContent="center" bg={bg}>
       <NextSeo title={t("meta-title")} description={t("meta-description")} />
       <Logo />
-      <Heading size="lg" mt={4} mb={4}>
+      <Heading as="h1" size="lg" mt={4} mb={4}>
         {t("heading")}
       </Heading>
       <Card mt={4} px={10} py={8} flexDirection="column" width="100%" maxWidth={{ base: "100%", md: "md" }}>
