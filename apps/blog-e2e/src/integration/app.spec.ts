@@ -1,13 +1,23 @@
-import { getGreeting } from "../support/app.po";
+import * as faker from "faker";
 
 describe("blog", () => {
-  beforeEach(() => cy.visit("/"));
+  beforeEach(() => cy.visit("/blog"));
 
-  it("should display welcome message", () => {
-    // Custom command example, see `../support/commands.ts` file
-    cy.login("my-email@something.com", "myPassword");
+  it("should display blog heading", () => {
+    cy.get("h1").should("contain", "Blog");
+  });
 
-    // Function helper example, see `../support/app.po.ts` file
-    getGreeting().contains("Welcome to blog!");
+  it("should be possible to subscribe to the newsletter", () => {
+    cy.get('input[type="email"]').first().type(faker.internet.email());
+
+    cy.findAllByRole("button", { name: /Subscribe/i })
+      .first()
+      .click();
+
+    // TODO: check if email is sent
+  });
+
+  it("should show blog posts ", () => {
+    cy.get("article").should("have.length.greaterThan", 1);
   });
 });
