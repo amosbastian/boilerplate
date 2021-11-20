@@ -1,7 +1,7 @@
 import * as faker from "faker";
 
-describe("verification", () => {
-  beforeEach(() => cy.visit("/verification"));
+describe("recovery", () => {
+  beforeEach(() => cy.visit("/recovery"));
 
   it("requires an email", () => {
     cy.findByRole("button", { name: /Submit/i }).click();
@@ -16,10 +16,10 @@ describe("verification", () => {
     cy.findByTestId("ory-4000001").should("be.visible");
   });
 
-  it("should show an alert of successful verification request", () => {
+  it("should show an alert of successful recovery request", () => {
     cy.get('[name="email"]').type(faker.internet.email()).type("{enter}");
 
-    cy.findByTestId("ory-1070001").should("be.visible");
+    cy.findByTestId("ory-1060002").should("be.visible");
   });
 
   it("links to /login", () => {

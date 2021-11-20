@@ -98,7 +98,7 @@ export default function Recovery() {
         <Trans
           i18nKey="recovery:go-back"
           components={{
-            link: <Link variant="cta" href="/login" />,
+            link: <Link data-testid="login" variant="cta" href="/login" />,
           }}
         />
       </Center>

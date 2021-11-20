@@ -115,7 +115,7 @@ export default function Verification() {
         <Trans
           i18nKey="verification:go-back"
           components={{
-            link: <Link variant="cta" href="/login" />,
+            link: <Link data-testid="login" variant="cta" href="/login" />,
           }}
         />
       </Center>
