@@ -23,12 +23,13 @@ export const useOryTranslation = () => {
         // }
         return t(messageId.toString(), context);
       case 4000002:
-        if (context?.property === "password_identifier") {
-          return t(`${messageId}`, { property: t("common:email") });
+        console.log(context);
+        if (context?.property === "password_identifier" || context?.property === "email") {
+          return t(`${messageId}-email`);
         }
 
         if (context?.property === "password") {
-          return t(`${messageId}`, { property: t("common:password") });
+          return t(`${messageId}-password`);
         }
 
         return t(`${messageId}`, context);

@@ -18,22 +18,22 @@ describe("login", () => {
   });
 
   it("requires a password", () => {
-    cy.findByLabelText(/Email/i).type(faker.internet.email()).type("{enter}");
+    cy.get('[name="password_identifier"]').type(faker.internet.email()).type("{enter}");
 
     cy.findAllByTestId("ory-4000002").should("have.length", 1);
   });
 
   it("requires a valid email and password", () => {
-    cy.findByLabelText(/Email/i).type(faker.internet.email());
-    cy.get('input[type="password"]').type(faker.internet.password());
+    cy.get('[name="password_identifier"]').type(faker.internet.email());
+    cy.get('[name="password"]').type(faker.internet.password());
     cy.findByRole("button", { name: /Sign in/i }).click();
 
     cy.findByTestId("ory-4000006").should("be.visible");
   });
 
   it("should navigate to /home on successful login", () => {
-    cy.findByLabelText(/Email/i).type("kristina.bilkova@gmail.com");
-    cy.get('input[type="password"]').type("fjfFK!C4U7cWF5c");
+    cy.get('[name="password_identifier"]').type("kristina.bilkova@gmail.com");
+    cy.get('[name="password"]').type("fjfFK!C4U7cWF5c");
     cy.findByRole("button", { name: /Sign in/i }).click();
 
     cy.url().should("include", "/home");
