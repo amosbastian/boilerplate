@@ -12,9 +12,23 @@ describe("settings", () => {
   });
 
   describe("general", () => {
-    it("should be possible to change theme", () => {
+    beforeEach(() => {
       cy.visit("/settings");
+    });
 
+    it("links to /settings/billing", () => {
+      cy.get("#settings-aside").within(() => {
+        cy.findByTestId("/settings/billing").should("have.attr", "href", "/settings/billing");
+      });
+    });
+
+    it("links to /settings/security", () => {
+      cy.get("#settings-aside").within(() => {
+        cy.findByTestId("/settings/security").should("have.attr", "href", "/settings/security");
+      });
+    });
+
+    it("should be possible to change theme", () => {
       cy.findByTestId("account-settings-form").within(() => {
         cy.findByLabelText("Theme").select("dark");
         cy.findByLabelText("Theme").should("have.value", "dark");
@@ -25,8 +39,6 @@ describe("settings", () => {
     });
 
     it("should be possible to change language", () => {
-      cy.visit("/settings");
-
       cy.findByTestId("account-settings-form").within(() => {
         cy.findByLabelText("Language").select("nl");
         cy.findByLabelText("Language").should("have.value", "nl");
@@ -37,8 +49,6 @@ describe("settings", () => {
     });
 
     it("should be possible to update a user's username", () => {
-      cy.visit("/settings");
-
       cy.findByTestId("profile-settings-form").within(() => {
         const newUsername = faker.internet.userName();
 
@@ -47,6 +57,103 @@ describe("settings", () => {
       });
 
       cy.get("#profile-update-success").should("be.visible");
+    });
+  });
+
+  describe("billing", () => {
+    beforeEach(() => {
+      cy.visit("/settings/billing");
+    });
+
+    it("links to /settings", () => {
+      cy.get("#settings-aside").within(() => {
+        cy.findByTestId("/settings").should("have.attr", "href", "/settings");
+      });
+    });
+
+    it("links to /settings/security", () => {
+      cy.get("#settings-aside").within(() => {
+        cy.findByTestId("/settings/security").should("have.attr", "href", "/settings/security");
+      });
+    });
+
+    it("should be possible to upgrade a user's plan", () => {
+      // cy.findByText(/Upgrade/i).click();
+    });
+
+    it("should be possible to update a user's plan", () => {
+      // cy.findByText(/Update/i).click();
+    });
+
+    it("should be possible to switch between yearly and monthly billing", () => {
+      cy.get("#billing-period").click({ force: true });
+      cy.contains("/ year");
+
+      cy.get("#billing-period").click({ force: true });
+      cy.contains("/ month");
+    });
+  });
+
+  describe("security", () => {
+    beforeEach(() => {
+      cy.visit("/settings/security");
+    });
+
+    it("links to /settings", () => {
+      cy.get("#settings-aside").within(() => {
+        cy.findByTestId("/settings").should("have.attr", "href", "/settings");
+      });
+    });
+
+    it("links to /settings/billing", () => {
+      cy.get("#settings-aside").within(() => {
+        cy.findByTestId("/settings/billing").should("have.attr", "href", "/settings/billing");
+      });
+    });
+
+    describe("email", () => {
+      it("requires an email", () => {
+        cy.get("#ory-profile-settings").within(() => {
+          cy.get('[name="traits.email"]').clear();
+          cy.findByRole("button", { name: /Save/i }).click();
+
+          cy.findAllByTestId("ory-4000002").should("have.length", 1);
+        });
+      });
+
+      it("requires an email that isn't taken", () => {
+        cy.get("#ory-profile-settings").within(() => {
+          cy.get('[name="traits.email"]').clear().type("amosbastian@gmail.com").type("{enter}");
+
+          cy.findAllByTestId("ory-4000007").should("have.length", 1);
+        });
+      });
+
+      it("should be possible to update a user's email", () => {
+        cy.get("#ory-profile-settings").within(() => {
+          cy.get('[name="traits.email"]').clear().type("test123@boilerplate.com").type("{enter}");
+
+          cy.findAllByTestId("ory-1050001").should("have.length", 1);
+        });
+      });
+    });
+
+    describe("password", () => {
+      it("requires a password", () => {
+        cy.get("#ory-password-settings").within(() => {
+          cy.findByRole("button", { name: /Save/i }).click();
+
+          cy.findAllByTestId("ory-4000002").should("have.length", 1);
+        });
+      });
+
+      it("should be possible to update a user's password", () => {
+        cy.get("#ory-password-settings").within(() => {
+          cy.get('[name="password"]').type("RdrK5QZ9xLGsAHg").type("{enter}");
+
+          cy.findAllByTestId("ory-1050001").should("have.length", 1);
+        });
+      });
     });
   });
 });

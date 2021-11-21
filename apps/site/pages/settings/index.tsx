@@ -1,6 +1,6 @@
 import { Container } from "@boilerplate/shared/ui";
 import { ProfileSettings } from "@boilerplate/site-feature";
-import { AccountSettingsForm, getLayout, PageHeading, SettingsAside, SettingsSection } from "@boilerplate/site/ui";
+import { AccountSettingsForm, getLayout, PageHeading, SettingsSection } from "@boilerplate/site/ui";
 import { handleOryRedirect } from "@boilerplate/site/utility";
 import type { GetServerSidePropsContext } from "next";
 import { NextSeo } from "next-seo";
@@ -18,7 +18,6 @@ export default function Settings() {
       <NextSeo title={t("meta-title")} />
       <PageHeading heading={t("page-heading")} />
       <Container pb={{ base: 4, md: 10 }}>
-        <SettingsAside position="relative" display={{ lg: "none" }} />
         <SettingsSection display={{ base: "none", lg: "grid" }}>
           <ProfileSettings />
           <AccountSettingsForm />

@@ -69,7 +69,7 @@ Cypress.Commands.add("noSession", () =>
 Cypress.Commands.add(
   "login",
   ({
-    email = "test@boilerplate.com",
+    email = "test123@boilerplate.com",
     password = "RdrK5QZ9xLGsAHg",
     expectSession = true,
   }: {
@@ -140,7 +140,7 @@ Cypress.Commands.add(
 Cypress.Commands.add(
   "loginApi",
   ({
-    email = "test@boilerplate.com",
+    email = "test123@boilerplate.com",
     password = "RdrK5QZ9xLGsAHg",
   }: {
     email?: string;

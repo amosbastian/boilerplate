@@ -11,11 +11,12 @@ import { useRouter } from "next/router";
 import React from "react";
 
 interface Props {
+  id?: string;
   flow?: SelfServiceSettingsFlow;
   only?: FlowMethods;
 }
 
-function SettingsCard({ flow, only, children }: Props & { children: React.ReactNode }) {
+function SettingsCard({ id, flow, only, children }: Props & { children: React.ReactNode }) {
   if (!flow) {
     return null;
   }
@@ -26,7 +27,7 @@ function SettingsCard({ flow, only, children }: Props & { children: React.ReactN
     return null;
   }
 
-  return <Card>{children}</Card>;
+  return <Card id={id}>{children}</Card>;
 }
 
 export const getServerSideProps = async (context: GetServerSidePropsContext) => {
@@ -110,22 +111,22 @@ export default function Security() {
       <PageHeading heading={t("page-heading")} />
       <Container pb={{ base: 4, md: 10 }}>
         <SettingsSection>
-          <SettingsCard only="profile" flow={flow}>
+          <SettingsCard id="ory-profile-settings" only="profile" flow={flow}>
             <CardHeader mb={6} title={t("Profile settings")} />
-            <FlowMessages messages={flow?.ui.messages} mb={4} />
+            <FlowMessages mx={6} messages={flow?.ui.messages} mb={4} />
             <FlowForm hideGlobalMessages onSubmit={onSubmit} only="profile" flow={flow} flowLoading={flowLoading} />
           </SettingsCard>
-          <SettingsCard only="password" flow={flow}>
+          <SettingsCard id="ory-password-settings" only="password" flow={flow}>
             <CardHeader mb={6} title={t("Change password")} />
-            <FlowMessages messages={flow?.ui.messages} mb={4} />
+            <FlowMessages mx={6} messages={flow?.ui.messages} mb={4} />
             <FlowForm hideGlobalMessages onSubmit={onSubmit} only="password" flow={flow} flowLoading={flowLoading} />
           </SettingsCard>
-          <SettingsCard only="oidc" flow={flow}>
+          <SettingsCard id="ory-oidc-settings" only="oidc" flow={flow}>
             <CardHeader mb={6} title={t("Manage social sign in")} />
-            <FlowMessages messages={flow?.ui.messages} mb={4} />
+            <FlowMessages mx={6} messages={flow?.ui.messages} mb={4} />
             <FlowForm hideGlobalMessages onSubmit={onSubmit} only="oidc" flow={flow} flowLoading={flowLoading} />
           </SettingsCard>
-          <SettingsCard only="lookup_secret" flow={flow}>
+          <SettingsCard id="ory-lookup-secret-settings" only="lookup_secret" flow={flow}>
             <CardHeader
               mb={6}
               title={t("Manage 2FA Backup Recovery Codes")}
@@ -133,7 +134,7 @@ export default function Security() {
                 "Recovery codes can be used in panic situations where you have lost access to your 2FA device.",
               )}
             />
-            <FlowMessages messages={flow?.ui.messages} mb={4} />
+            <FlowMessages mx={6} messages={flow?.ui.messages} mb={4} />
             <FlowForm
               hideGlobalMessages
               onSubmit={onSubmit}
@@ -142,7 +143,7 @@ export default function Security() {
               flowLoading={flowLoading}
             />
           </SettingsCard>
-          <SettingsCard only="totp" flow={flow}>
+          <SettingsCard id="ory-totp-settings" only="totp" flow={flow}>
             <CardHeader mb={6} title={t("Manage 2FA TOTP Authenticator App")} />
             <Text>
               Add a TOTP Authenticator App to your account to improve your account security. Popular Authenticator Apps
@@ -164,10 +165,10 @@ export default function Security() {
               </a>
               ).
             </Text>
-            <FlowMessages messages={flow?.ui.messages} mb={4} />
+            <FlowMessages mx={6} messages={flow?.ui.messages} mb={4} />
             <FlowForm hideGlobalMessages onSubmit={onSubmit} only="totp" flow={flow} flowLoading={flowLoading} />
           </SettingsCard>
-          <SettingsCard only="webauthn" flow={flow}>
+          <SettingsCard id="ory-webauthn-settings" only="webauthn" flow={flow}>
             <CardHeader
               mb={6}
               title={t("Manage Hardware Tokens and Biometrics")}
@@ -175,7 +176,7 @@ export default function Security() {
                 "Use Hardware Tokens (e.g. YubiKey) or Biometrics (e.g. FaceID, TouchID) to enhance your account security.",
               )}
             />
-            <FlowMessages messages={flow?.ui.messages} mb={4} />
+            <FlowMessages mx={6} messages={flow?.ui.messages} mb={4} />
             <FlowForm hideGlobalMessages onSubmit={onSubmit} only="webauthn" flow={flow} flowLoading={flowLoading} />
           </SettingsCard>
         </SettingsSection>
