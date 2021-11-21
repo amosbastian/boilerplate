@@ -61,7 +61,7 @@ resilience(axios); // Adds retry mechanism to axios
 
 export const oryApiClient = new V0alpha2Api(
   new Configuration({
-    basePath: process.env.ORY_KRATOS_URL,
+    basePath: process.env.ORY_KRATOS_PUBLIC,
     baseOptions: {
       // Setting this is very important as axios will send the CSRF cookie otherwise
       // which causes problems with ORY Kratos' security detection

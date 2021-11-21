@@ -19,7 +19,9 @@ export function PageHeading({ actions, heading, ...rest }: PageHeadingProps) {
         w="100%"
         {...rest}
       >
-        <Heading mb={{ base: actions ? 6 : 0, lg: 0 }}>{heading}</Heading>
+        <Heading as="h1" mb={{ base: actions ? 6 : 0, lg: 0 }}>
+          {heading}
+        </Heading>
         {actions}
       </Container>
     </Flex>
