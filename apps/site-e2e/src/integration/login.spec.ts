@@ -32,8 +32,8 @@ describe("login", () => {
   });
 
   it("should navigate to /home on successful login", () => {
-    cy.get('[name="password_identifier"]').type("kristina.bilkova@gmail.com");
-    cy.get('[name="password"]').type("fjfFK!C4U7cWF5c");
+    cy.get('[name="password_identifier"]').type("test@boilerplate.com");
+    cy.get('[name="password"]').type("RdrK5QZ9xLGsAHg");
     cy.findByRole("button", { name: /Sign in/i }).click();
 
     cy.url().should("include", "/home");

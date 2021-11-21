@@ -1,5 +1,5 @@
 describe("home", () => {
-  it("shows a welcome message", () => {
+  it("should load the page", () => {
     cy.login();
 
     cy.visit("/home");

@@ -69,8 +69,8 @@ Cypress.Commands.add("noSession", () =>
 Cypress.Commands.add(
   "login",
   ({
-    email = "kristina.bilkova@gmail.com",
-    password = "fjfFK!C4U7cWF5c",
+    email = "test@boilerplate.com",
+    password = "RdrK5QZ9xLGsAHg",
     expectSession = true,
   }: {
     email?: string;
@@ -84,11 +84,11 @@ Cypress.Commands.add(
       console.log("Attempting user sign in: ", { email, password });
     }
 
-    cy.visit("/");
-    // https://github.com/cypress-io/cypress/issues/408
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    cy.clearCookies({ domain: null });
+    // cy.visit("/");
+    // // https://github.com/cypress-io/cypress/issues/408
+    // // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // // @ts-ignore
+    // cy.clearCookies({ domain: null });
 
     cy.session([email, password], () => {
       cy.request({
@@ -140,8 +140,8 @@ Cypress.Commands.add(
 Cypress.Commands.add(
   "loginApi",
   ({
-    email = "kristina.bilkova@gmail.com",
-    password = "fjfFK!C4U7cWF5c",
+    email = "test@boilerplate.com",
+    password = "RdrK5QZ9xLGsAHg",
   }: {
     email?: string;
     password?: string;
