@@ -1,4 +1,4 @@
-import { Card, CardHeader, Container } from "@boilerplate/shared/ui";
+import { Card, CardHeader, CardProps, Container } from "@boilerplate/shared/ui";
 import { oryBrowserClient } from "@boilerplate/site/utility";
 import { FlowForm, FlowMessages, FlowMethods, getLayout, PageHeading, SettingsSection } from "@boilerplate/site/ui";
 import { handleGetFlowError, handleOryRedirect } from "@boilerplate/site/utility";
@@ -10,13 +10,12 @@ import useTranslation from "next-translate/useTranslation";
 import { useRouter } from "next/router";
 import React from "react";
 
-interface Props {
-  id?: string;
+interface SettingsCardProps extends CardProps {
   flow?: SelfServiceSettingsFlow;
   only?: FlowMethods;
 }
 
-function SettingsCard({ id, flow, only, children }: Props & { children: React.ReactNode }) {
+function SettingsCard({ flow, only, children, ...rest }: SettingsCardProps) {
   if (!flow) {
     return null;
   }
@@ -27,7 +26,7 @@ function SettingsCard({ id, flow, only, children }: Props & { children: React.Re
     return null;
   }
 
-  return <Card id={id}>{children}</Card>;
+  return <Card {...rest}>{children}</Card>;
 }
 
 export const getServerSideProps = async (context: GetServerSidePropsContext) => {
@@ -111,22 +110,22 @@ export default function Security() {
       <PageHeading heading={t("page-heading")} />
       <Container pb={{ base: 4, md: 10 }}>
         <SettingsSection>
-          <SettingsCard id="ory-profile-settings" only="profile" flow={flow}>
+          <SettingsCard data-testid="ory-profile-settings" only="profile" flow={flow}>
             <CardHeader mb={6} title={t("Profile settings")} />
             <FlowMessages mx={6} messages={flow?.ui.messages} mb={4} />
             <FlowForm hideGlobalMessages onSubmit={onSubmit} only="profile" flow={flow} flowLoading={flowLoading} />
           </SettingsCard>
-          <SettingsCard id="ory-password-settings" only="password" flow={flow}>
+          <SettingsCard data-testid="ory-password-settings" only="password" flow={flow}>
             <CardHeader mb={6} title={t("Change password")} />
             <FlowMessages mx={6} messages={flow?.ui.messages} mb={4} />
             <FlowForm hideGlobalMessages onSubmit={onSubmit} only="password" flow={flow} flowLoading={flowLoading} />
           </SettingsCard>
-          <SettingsCard id="ory-oidc-settings" only="oidc" flow={flow}>
+          <SettingsCard data-testid="ory-oidc-settings" only="oidc" flow={flow}>
             <CardHeader mb={6} title={t("Manage social sign in")} />
             <FlowMessages mx={6} messages={flow?.ui.messages} mb={4} />
             <FlowForm hideGlobalMessages onSubmit={onSubmit} only="oidc" flow={flow} flowLoading={flowLoading} />
           </SettingsCard>
-          <SettingsCard id="ory-lookup-secret-settings" only="lookup_secret" flow={flow}>
+          <SettingsCard data-testid="ory-lookup-secret-settings" only="lookup_secret" flow={flow}>
             <CardHeader
               mb={6}
               title={t("Manage 2FA Backup Recovery Codes")}
@@ -143,7 +142,7 @@ export default function Security() {
               flowLoading={flowLoading}
             />
           </SettingsCard>
-          <SettingsCard id="ory-totp-settings" only="totp" flow={flow}>
+          <SettingsCard data-testid="ory-totp-settings" only="totp" flow={flow}>
             <CardHeader mb={6} title={t("Manage 2FA TOTP Authenticator App")} />
             <Text>
               Add a TOTP Authenticator App to your account to improve your account security. Popular Authenticator Apps
@@ -168,7 +167,7 @@ export default function Security() {
             <FlowMessages mx={6} messages={flow?.ui.messages} mb={4} />
             <FlowForm hideGlobalMessages onSubmit={onSubmit} only="totp" flow={flow} flowLoading={flowLoading} />
           </SettingsCard>
-          <SettingsCard id="ory-webauthn-settings" only="webauthn" flow={flow}>
+          <SettingsCard data-testid="ory-webauthn-settings" only="webauthn" flow={flow}>
             <CardHeader
               mb={6}
               title={t("Manage Hardware Tokens and Biometrics")}

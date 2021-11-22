@@ -1,9 +1,7 @@
 import "@testing-library/cypress/add-commands";
 import * as dayjs from "dayjs";
 
-const KRATOS_PUBLIC = (Cypress.env("ory_kratos_public") || "http://localhost:3000/api/.ory")
-  .replace()
-  .replace(/\/$/, "");
+const KRATOS_PUBLIC = (Cypress.env("ory_kratos_url") || "http://localhost:3000/api/.ory").replace().replace(/\/$/, "");
 
 const mergeFields = (
   form: { nodes: { attributes: { name: string; value: any }; type: string }[] },

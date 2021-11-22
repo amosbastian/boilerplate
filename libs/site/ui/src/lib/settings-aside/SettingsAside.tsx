@@ -11,6 +11,7 @@ export function SettingsAside(props: SettingsAsideProps) {
 
   return (
     <LinkAside
+      data-testid="settings-aside"
       alignSelf="flex-start"
       links={[
         {
