@@ -1,9 +1,20 @@
+import { isMobile } from "../../support/utils";
+
 describe("header", () => {
   beforeEach(() => cy.visit("/"));
 
   it("should link to /login for non-authenticated users", () => {
     cy.get("nav").within(() => {
-      cy.findByTestId("login").should("have.attr", "href", "/login");
+      if (isMobile()) {
+        cy.findByTestId("menu-button").click();
+        cy.findByTestId("menu-button-content")
+          .should("be.visible")
+          .within(() => {
+            cy.findByTestId("login").should("have.attr", "href", "/login");
+          });
+      } else {
+        cy.findByTestId("login").should("have.attr", "href", "/login");
+      }
     });
   });
 
