@@ -60,7 +60,6 @@ const ProductRadioCard = ({
   const bg = useColorModeValue("gray.50", "gray.700");
   const priceColor = useColorModeValue("primary.800", "primary.100");
 
-  console.log(state.isChecked);
   return (
     <Box as="label">
       <input {...inputProps} />
