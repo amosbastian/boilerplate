@@ -12,18 +12,20 @@ export function SettingsSelect({ links, ...rest }: SettingsSelectProps & SelectP
   const { t } = useTranslation("settings");
   const { push, pathname } = useRouter();
 
-  const currentPage = pathname.split("/")[pathname.split("/").length - 1];
-
   const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     push(event.target.value);
   };
 
+  const currentPage = pathname.split("/")[pathname.split("/").length - 1];
+  const pageName = currentPage === "settings" ? t("settings:general") : t(`settings:${currentPage}`);
+
   return (
     <Select
-      // aria-label={t("selected-language-aria-label", { language: languageNames[currentLanguage] })}
+      data-testid="settings-select"
+      aria-label={t("selected-page-aria-label", { pageName })}
       id="language"
       name="language"
-      placeholder={currentPage === "settings" ? t("settings:general") : t(`settings:${currentPage}`)}
+      placeholder={pageName}
       onChange={handleChange}
       variant="filled"
       fontSize="sm"

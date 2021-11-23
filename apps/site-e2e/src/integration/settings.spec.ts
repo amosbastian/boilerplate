@@ -1,4 +1,5 @@
 import * as faker from "faker";
+import { isMobile } from "../support/utils";
 
 describe("settings", () => {
   beforeEach(() => {
@@ -17,15 +18,33 @@ describe("settings", () => {
     });
 
     it("links to /settings/billing", () => {
-      cy.findByTestId("settings-aside").within(() => {
-        cy.findByTestId("/settings/billing").should("have.attr", "href", "/settings/billing");
-      });
+      if (isMobile()) {
+        cy.findByTestId("settings-select")
+          .children("option")
+          .then((options) => {
+            const values = [...options].map((option) => option.value);
+            expect(values).to.contain("/settings/billing");
+          });
+      } else {
+        cy.findByTestId("settings-aside").within(() => {
+          cy.findByTestId("/settings/billing").should("have.attr", "href", "/settings/billing");
+        });
+      }
     });
 
     it("links to /settings/security", () => {
-      cy.findByTestId("settings-aside").within(() => {
-        cy.findByTestId("/settings/security").should("have.attr", "href", "/settings/security");
-      });
+      if (isMobile()) {
+        cy.findByTestId("settings-select")
+          .children("option")
+          .then((options) => {
+            const values = [...options].map((option) => option.value);
+            expect(values).to.contain("/settings/security");
+          });
+      } else {
+        cy.findByTestId("settings-aside").within(() => {
+          cy.findByTestId("/settings/security").should("have.attr", "href", "/settings/security");
+        });
+      }
     });
 
     it("should be possible to change theme", () => {
@@ -66,15 +85,33 @@ describe("settings", () => {
     });
 
     it("links to /settings", () => {
-      cy.findByTestId("settings-aside").within(() => {
-        cy.findByTestId("/settings").should("have.attr", "href", "/settings");
-      });
+      if (isMobile()) {
+        cy.findByTestId("settings-select")
+          .children("option")
+          .then((options) => {
+            const values = [...options].map((option) => option.value);
+            expect(values).to.contain("/settings");
+          });
+      } else {
+        cy.findByTestId("settings-aside").within(() => {
+          cy.findByTestId("/settings").should("have.attr", "href", "/settings");
+        });
+      }
     });
 
     it("links to /settings/security", () => {
-      cy.findByTestId("settings-aside").within(() => {
-        cy.findByTestId("/settings/security").should("have.attr", "href", "/settings/security");
-      });
+      if (isMobile()) {
+        cy.findByTestId("settings-select")
+          .children("option")
+          .then((options) => {
+            const values = [...options].map((option) => option.value);
+            expect(values).to.contain("/settings/security");
+          });
+      } else {
+        cy.findByTestId("settings-aside").within(() => {
+          cy.findByTestId("/settings/security").should("have.attr", "href", "/settings/security");
+        });
+      }
     });
 
     it("should be possible to upgrade a user's plan", () => {
@@ -100,15 +137,33 @@ describe("settings", () => {
     });
 
     it("links to /settings", () => {
-      cy.findByTestId("settings-aside").within(() => {
-        cy.findByTestId("/settings").should("have.attr", "href", "/settings");
-      });
+      if (isMobile()) {
+        cy.findByTestId("settings-select")
+          .children("option")
+          .then((options) => {
+            const values = [...options].map((option) => option.value);
+            expect(values).to.contain("/settings");
+          });
+      } else {
+        cy.findByTestId("settings-aside").within(() => {
+          cy.findByTestId("/settings").should("have.attr", "href", "/settings");
+        });
+      }
     });
 
     it("links to /settings/billing", () => {
-      cy.findByTestId("settings-aside").within(() => {
-        cy.findByTestId("/settings/billing").should("have.attr", "href", "/settings/billing");
-      });
+      if (isMobile()) {
+        cy.findByTestId("settings-select")
+          .children("option")
+          .then((options) => {
+            const values = [...options].map((option) => option.value);
+            expect(values).to.contain("/settings/billing");
+          });
+      } else {
+        cy.findByTestId("settings-aside").within(() => {
+          cy.findByTestId("/settings/billing").should("have.attr", "href", "/settings/billing");
+        });
+      }
     });
 
     describe("email", () => {
