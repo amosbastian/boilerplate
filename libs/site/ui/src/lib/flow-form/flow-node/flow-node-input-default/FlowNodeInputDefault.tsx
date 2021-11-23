@@ -32,21 +32,20 @@ export function FlowNodeInputDefault({
     }
   };
 
-  console.log(node.meta.label);
+  const labelText =
+    attributes.type === "password"
+      ? t("password")
+      : attributes.type === "email"
+      ? t("email")
+      : node.meta.label?.id
+      ? oryT(node.meta.label.id, node.meta.label.context)
+      : null;
 
   // Render a generic text input field.
   return (
     <>
       <FormControl isInvalid={node.messages.find(({ type }) => type === "error") ? true : false} {...rest}>
-        {node.meta.label?.id ? (
-          <FormLabel>
-            {attributes.type === "password"
-              ? t("password")
-              : attributes.type === "email"
-              ? t("email")
-              : oryT(node.meta.label.id, node.meta.label.context)}
-          </FormLabel>
-        ) : null}
+        {labelText ? <FormLabel>{labelText}</FormLabel> : null}
         {attributes.type === "password" ? (
           <PasswordInput
             onClick={onClick}
@@ -68,14 +67,28 @@ export function FlowNodeInputDefault({
             name={attributes.name}
             value={value}
             isDisabled={attributes.disabled || disabled}
-            placeholder={attributes.type === "email" ? t("email") : undefined}
+            placeholder={
+              attributes.type === "email"
+                ? t("email")
+                : node.meta.label?.id === 1070004
+                ? t("email-placeholder")
+                : undefined
+            }
           />
         )}
         {node.messages.length > 0 ? (
           <FormHelperText>
             <Stack spacing={1}>
-              {[...new Set(node.messages.map(({ id, context }) => oryT(id, context)))].map((text, index) => (
-                <div key={`${text}-${index}`}>{text}</div>
+              {[
+                ...new Set(
+                  node.messages.map(({ id, context }) => {
+                    return { id, text: oryT(id, context) };
+                  }),
+                ),
+              ].map(({ id, text }, index) => (
+                <div data-testid={`ory-${id}`} key={`${text}-${index}`}>
+                  {text}
+                </div>
               ))}
             </Stack>
           </FormHelperText>
@@ -83,7 +96,7 @@ export function FlowNodeInputDefault({
       </FormControl>
       {attributes.type === "password" && router.pathname === "/login" && !(aal || refresh) ? (
         <HStack justifyContent="flex-end">
-          <Link variant="cta" href="/recovery">
+          <Link data-testid="forgot-password" variant="cta" href="/recovery">
             {t("forgot-password")}
           </Link>
         </HStack>

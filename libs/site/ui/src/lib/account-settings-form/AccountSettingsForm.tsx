@@ -9,7 +9,7 @@ export function AccountSettingsForm(props: AccountSettingsFormProps) {
   const { t } = useTranslation("settings");
 
   return (
-    <Card as="form">
+    <Card data-testid="account-settings-form" as="form">
       <CardHeader title={t("account-settings-title")} subtitle={t("account-settings-subtitle")} />
       <CardContent
         display="grid"

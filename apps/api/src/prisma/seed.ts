@@ -11,6 +11,8 @@ async function main() {
   const products = await stripe.products.list();
   const prices = await stripe.prices.list();
 
+  await prisma.user.create({ data: { id: "7d2c291f-9667-45ea-8b05-ab959e4bb568", email: "test123@boilerplate.com" } });
+
   await Promise.all(
     products.data.map((each) =>
       prisma.product.upsert({

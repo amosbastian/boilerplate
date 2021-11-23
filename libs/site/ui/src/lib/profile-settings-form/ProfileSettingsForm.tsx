@@ -85,7 +85,7 @@ export function ProfileSettingsForm({ onSubmit, user, ...rest }: ProfileSettings
   };
 
   return (
-    <Card as="form" onSubmit={handleSubmit(onSubmit)}>
+    <Card data-testid="profile-settings-form" as="form" onSubmit={handleSubmit(onSubmit)}>
       <CardHeader title={t("profile-settings-title")} subtitle={t("profile-settings-subtitle")} />
       <CardContent>
         <Grid gridTemplateColumns={{ base: "1fr", md: "1fr 1fr" }} gridColumnGap={6} gridRowGap={8} {...rest}>
@@ -96,15 +96,6 @@ export function ProfileSettingsForm({ onSubmit, user, ...rest }: ProfileSettings
             <Input {...register("name")} disabled={isSubmitting} />
             <FormErrorMessage>{errors.name && errors.name.message}</FormErrorMessage>
           </FormControl>
-
-          <FormControl isInvalid={Boolean(errors.email)}>
-            <FormLabel htmlFor="email" fontSize="sm">
-              {t("common:email-address")}
-            </FormLabel>
-            <Input {...register("email")} disabled={isSubmitting || true} />
-            <FormErrorMessage>{errors.email && errors.email.message}</FormErrorMessage>
-          </FormControl>
-
           <FormControl isInvalid={Boolean(errors.image)}>
             <FormLabel htmlFor="image" fontSize="sm">
               {t("image-label")}

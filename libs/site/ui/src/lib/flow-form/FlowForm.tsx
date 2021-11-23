@@ -107,10 +107,10 @@ export class FlowForm<T extends Values> extends Component<Props<T>, State<T>> {
   };
 
   // Handles form submission
-  handleSubmit = (e: MouseEvent | FormEvent) => {
+  handleSubmit = (event: MouseEvent | FormEvent) => {
     // Prevent all native handlers
-    e.stopPropagation();
-    e.preventDefault();
+    event.stopPropagation();
+    event.preventDefault();
 
     // Prevent double submission!
     if (this.state.isLoading) {

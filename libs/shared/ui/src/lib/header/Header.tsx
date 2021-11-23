@@ -118,7 +118,7 @@ const NavModal = ({ isOpen, onClose }: Pick<ModalProps, "isOpen" | "onClose">) =
 
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
-      <ModalContent width="calc(100% - 32px)" marginTop={4}>
+      <ModalContent data-testid="menu-button-content" width="calc(100% - 32px)" marginTop={4}>
         <ModalHeader />
         <ModalCloseButton />
         <VStack spacing={8} alignItems="start" divider={<StackDivider opacity={0.6} />}>
@@ -185,7 +185,13 @@ export function Header() {
             <Logo />
           </a>
         </NextLink>
-        <IconButton display={{ base: "flex", lg: "none" }} aria-label={t("open-menu")} variant="ghost" onClick={onOpen}>
+        <IconButton
+          data-testid="menu-button"
+          display={{ base: "flex", lg: "none" }}
+          aria-label={t("open-menu")}
+          variant="ghost"
+          onClick={onOpen}
+        >
           <Icon as={RiMenuFill} />
         </IconButton>
         <NavModal isOpen={isOpen} onClose={onClose} />
@@ -219,7 +225,9 @@ export function Header() {
         </HStack>
         <Box display={{ base: "none", lg: "flex" }}>
           <NextLink href={isBlog ? `${process.env.NEXT_PUBLIC_SITE_URL}/login` : "/login"} passHref>
-            <Button colorScheme="primary">{t("sign-in")}</Button>
+            <Button data-testid="login" colorScheme="primary">
+              {t("sign-in")}
+            </Button>
           </NextLink>
         </Box>
       </Container>

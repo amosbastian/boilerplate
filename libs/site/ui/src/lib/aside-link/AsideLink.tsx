@@ -19,6 +19,7 @@ export function AsideLink({ icon, href, label, onClick, ...rest }: AsideLinkProp
 
   return (
     <Link
+      data-testid={href}
       onClick={onClick}
       display="flex"
       href={href}
