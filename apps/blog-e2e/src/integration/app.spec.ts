@@ -8,13 +8,15 @@ describe("blog", () => {
   });
 
   it("should be possible to subscribe to the newsletter", () => {
-    cy.get('input[type="email"]').first().type(faker.internet.email());
+    cy.get("main").within(() => {
+      cy.get('input[type="email"]').first().type(faker.internet.email());
 
-    cy.findAllByRole("button", { name: /Subscribe/i })
-      .first()
-      .click();
+      cy.findAllByRole("button", { name: /Subscribe/i })
+        .first()
+        .click();
 
-    // TODO: check if email is sent
+      // TODO: check if email is sent
+    });
   });
 
   it("should show blog posts ", () => {
