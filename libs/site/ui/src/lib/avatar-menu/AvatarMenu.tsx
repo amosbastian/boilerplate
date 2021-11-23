@@ -14,17 +14,22 @@ export function AvatarMenu(props: AvatarMenuProps) {
 
   return (
     <Menu {...props}>
-      <MenuButton borderRadius="50%" _focus={{ boxShadow: "outline" }}>
+      <MenuButton data-testid="avatar-menu-button" borderRadius="50%" _focus={{ boxShadow: "outline" }}>
         <Avatar src={undefined} h={7} w={7} />
       </MenuButton>
-      <MenuList>
+      <MenuList data-testid="avatar-menu">
         <NextLink href="/settings" passHref>
-          <MenuItem as={ChakraLink} icon={<Icon as={RiSettings2Line} boxSize={5} />}>
+          <MenuItem data-testid="settings" as={ChakraLink} icon={<Icon as={RiSettings2Line} boxSize={5} />}>
             {t("settings")}
           </MenuItem>
         </NextLink>
         <MenuDivider />
-        <MenuItem as={ChakraLink} icon={<Icon as={RiLogoutBoxLine} boxSize={5} />} onClick={handleLogout}>
+        <MenuItem
+          data-testid="sign-out"
+          as={ChakraLink}
+          icon={<Icon as={RiLogoutBoxLine} boxSize={5} />}
+          onClick={handleLogout}
+        >
           {t("sign-out")}
         </MenuItem>
       </MenuList>

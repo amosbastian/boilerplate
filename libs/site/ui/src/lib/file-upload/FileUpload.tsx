@@ -5,7 +5,7 @@ import { ReactNode, useRef } from "react";
 import { UseFormRegisterReturn } from "react-hook-form";
 
 export interface FileUploadProps {
-  register: UseFormRegisterReturn;
+  register?: UseFormRegisterReturn;
   accept?: string;
   multiple?: boolean;
   children?: ReactNode;

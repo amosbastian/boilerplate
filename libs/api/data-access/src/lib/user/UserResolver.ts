@@ -14,31 +14,37 @@ import { UpdateUserArgs } from "./UpdateUserArgs";
 export class UserResolver {
   @Authorized()
   @Query(() => User, { nullable: true })
-  async user(@Ctx() { prisma }: Context, @Args() args: FindUniqueUserArgs): Promise<User | null> {
+  async user(@Ctx() { prisma }: Context, @Args() args: FindUniqueUserArgs): Promise<Omit<User, "_count"> | null> {
     return prisma.user.findUnique(args);
   }
 
   @Authorized()
   @Query(() => User, { nullable: true })
-  async findFirstUser(@Ctx() { prisma }: Context, @Args() args: FindFirstUserArgs): Promise<User | null> {
+  async findFirstUser(
+    @Ctx() { prisma }: Context,
+    @Args() args: FindFirstUserArgs,
+  ): Promise<Omit<User, "_count"> | null> {
     return prisma.user.findFirst(args);
   }
 
   @Authorized()
   @Query(() => [User], { nullable: false })
-  async users(@Ctx() { prisma }: Context, @Args() args: FindManyUserArgs): Promise<User[]> {
+  async users(@Ctx() { prisma }: Context, @Args() args: FindManyUserArgs): Promise<Omit<User, "_count">[]> {
     return prisma.user.findMany(args);
   }
 
   @Authorized("Admin")
   @Mutation(() => User, { nullable: true })
-  async deleteUser(@Ctx() { prisma }: Context, @Args() args: DeleteUserArgs): Promise<User | null> {
+  async deleteUser(@Ctx() { prisma }: Context, @Args() args: DeleteUserArgs): Promise<Omit<User, "_count"> | null> {
     return prisma.user.delete(args);
   }
 
   @Authorized()
   @Mutation(() => User, { nullable: true })
-  async updateUser(@Ctx() { prisma, user }: Context, @Args() args: UpdateUserArgs): Promise<User | null> {
+  async updateUser(
+    @Ctx() { prisma, user }: Context,
+    @Args() args: UpdateUserArgs,
+  ): Promise<Omit<User, "_count"> | null> {
     if (!user) return null;
 
     return prisma.user.update({ ...args, where: { id: user.id } });
@@ -46,7 +52,7 @@ export class UserResolver {
 
   @Authorized()
   @Query(() => User, { nullable: true })
-  async me(@Ctx() { prisma, user }: Context): Promise<User | null> {
+  async me(@Ctx() { prisma, user }: Context): Promise<Omit<User, "_count"> | null> {
     if (!user) return null;
 
     return prisma.user.findUnique({ where: { id: user.id } });

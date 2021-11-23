@@ -15,6 +15,24 @@ export const useOryTranslation = () => {
         return t(`${messageId}-${flow}`, context);
       case 4000012:
         return t(`${messageId}-${flow}`, context);
+      case 4000005:
+        console.log(context);
+        // if (context?.reason.contains("length")) {
+        //   //FIXME:
+        //   // return t(`${messageId}`, { reason: t("common:email") });
+        // }
+        return t(messageId.toString(), context);
+      case 4000002:
+        console.log(context);
+        if (context?.property === "password_identifier" || context?.property === "email") {
+          return t(`${messageId}-email`);
+        }
+
+        if (context?.property === "password") {
+          return t(`${messageId}-password`);
+        }
+
+        return t(`${messageId}`, context);
       default:
         return t(messageId.toString(), context);
     }

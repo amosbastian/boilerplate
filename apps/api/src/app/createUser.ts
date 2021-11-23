@@ -24,7 +24,6 @@ export function addCreateUser(app: Express) {
       const userInput = {
         id: identity.id,
         email: identity.traits.email,
-        name: `${identity.traits.name.first} ${identity.traits.name.last}`,
       };
 
       await prisma.user.upsert({

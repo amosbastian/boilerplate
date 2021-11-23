@@ -27,6 +27,7 @@ export function ProductCards(props: ProductCardsProps) {
       {...props}
     >
       <ProductCard
+        data-testid="product-card"
         plan={{
           id: "",
           name: "free",
@@ -37,6 +38,7 @@ export function ProductCards(props: ProductCardsProps) {
       />
       {data?.products.map((plan, index) => (
         <ProductCard
+          data-testid="product-card"
           key={plan.id}
           plan={plan}
           recommended={index === 0}

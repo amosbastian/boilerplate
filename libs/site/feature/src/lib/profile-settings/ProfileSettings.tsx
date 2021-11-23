@@ -46,12 +46,14 @@ export function ProfileSettings() {
       toast({
         title: t("update-success"),
         status: "success",
+        id: "profile-update-success",
       });
     },
     onError: () => {
       toast({
         title: t("update-error"),
         status: "error",
+        id: "profile-update-error",
       });
     },
   });

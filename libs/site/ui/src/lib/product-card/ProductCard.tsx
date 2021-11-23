@@ -128,7 +128,12 @@ export function ProductCard({ plan, recommended = false, ...rest }: ProductCardP
           ))}
         </List>
       </Box>
-      <Button colorScheme={recommended ? "primary" : "gray"} isFullWidth onClick={handleCheckout}>
+      <Button
+        data-testid={`${planName}-button`}
+        colorScheme={recommended ? "primary" : "gray"}
+        isFullWidth
+        onClick={handleCheckout}
+      >
         {t(`${planName}-cta-button-text`)}
       </Button>
     </Card>

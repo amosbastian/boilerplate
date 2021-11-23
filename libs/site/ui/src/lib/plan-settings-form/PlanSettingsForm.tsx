@@ -60,6 +60,7 @@ const ProductRadioCard = ({
   const bg = useColorModeValue("gray.50", "gray.700");
   const priceColor = useColorModeValue("primary.800", "primary.100");
 
+  console.log(state.isChecked);
   return (
     <Box as="label">
       <input {...inputProps} />
@@ -89,7 +90,7 @@ const ProductRadioCard = ({
           <Text fontWeight="semibold">{t(`pricing:${planName}-description`)}</Text>
           <Text color={state.isChecked ? priceColor : "inherit"} fontWeight="semibold">
             <Trans
-              i18nKey="common:price-per-month"
+              i18nKey={price.recurring.interval === "month" ? "common:price-per-month" : "common:price-per-year"}
               components={[<></>, <></>]}
               values={{
                 currencySymbol: currencyToSymbol(planPrice?.currency ?? "gbp"),
@@ -136,13 +137,13 @@ export function PlanSettingsForm({ products, user, ...rest }: PlanSettingsFormPr
 
   const [billingPeriod, setBillingPeriod] = React.useState<"month" | "year">("month");
 
-  const [selectedPriceId, setSelectedPriceId] = React.useState<string>(
-    products[0].prices.find((price) => price.recurring.interval === billingPeriod)?.id ?? "",
+  const [selectedPriceId, setSelectedPriceId] = React.useState<string | undefined>(
+    products[0].prices.find((price) => price.recurring.interval === billingPeriod)?.id,
   );
 
   const { getRootProps, getRadioProps, setValue } = useRadioGroup({
     name: "plan",
-    defaultValue: products[0].prices[0].id,
+    defaultValue: products[0].prices.find((price) => price.recurring.interval === billingPeriod)?.id,
     onChange: setSelectedPriceId,
   });
 
@@ -200,7 +201,7 @@ export function PlanSettingsForm({ products, user, ...rest }: PlanSettingsFormPr
   };
 
   return (
-    <Card as="form">
+    <Card data-testid="plan-settings-form" as="form">
       <CardHeader
         title={t("plan-settings-title")}
         subtitle={t("plan-settings-subtitle", { subscriptionName })}
@@ -220,7 +221,7 @@ export function PlanSettingsForm({ products, user, ...rest }: PlanSettingsFormPr
                 <FormLabel htmlFor="billing-period" mb="0">
                   {billingPeriod === "month" ? t("common:switch-yearly-billing") : t("common:switch-monthly-billing")}
                 </FormLabel>
-                <Switch onChange={handleBillingPeriodChange} id="billing-period" />
+                <Switch onChange={handleBillingPeriodChange} data-testid="billing-period" />
               </FormControl>
             </Flex>
           </Stack>

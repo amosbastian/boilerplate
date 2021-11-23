@@ -9,7 +9,7 @@ export interface FlowNodeTextProps {
 
 const Content = ({ node, attributes }: FlowNodeTextProps) => {
   // This text node contains lookup secrets. Let's make them a bit more beautiful!
-  const secrets = (attributes.text.context as any).secrets.map((text: UiText, k: number) => (
+  const secrets = ((attributes.text.context as any).secrets ?? []).map((text: UiText, k: number) => (
     <div key={k} data-testid={`node/text/${attributes.id}/lookup_secret`}>
       <code>{text.id === 1050014 ? "Used" : text.text}</code>
     </div>

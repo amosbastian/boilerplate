@@ -1,9 +1,8 @@
 import { Context } from "@boilerplate/shared/types";
 import { logger } from "@boilerplate/shared/utility/logger";
 import { oryApiClient } from "@boilerplate/shared/utility/ory";
-import { User } from "@generated/type-graphql";
 
-export const getUserFromContext = async ({ prisma, req }: Pick<Context, "prisma" | "req">): Promise<User | null> => {
+export const getUserFromContext = async ({ prisma, req }: Pick<Context, "prisma" | "req">) => {
   const cookie = req.cookies?.["ory_kratos_session"];
 
   if (!cookie) {

@@ -40,6 +40,7 @@ export function ContactForm(props: ContactFormProps) {
 
   return (
     <Grid
+      data-testid="contact-form"
       as="form"
       onSubmit={handleSubmit(onSubmit)}
       gridTemplateColumns={{ base: "1fr", md: "1fr 1fr" }}

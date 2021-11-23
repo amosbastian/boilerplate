@@ -5,12 +5,15 @@ import { Args, Ctx, FieldResolver, Query, Resolver, Root } from "type-graphql";
 @Resolver(() => Product)
 export class ProductResolver {
   @Query(() => Product, { nullable: true })
-  async product(@Ctx() { prisma }: Context, @Args() args: FindUniqueProductArgs): Promise<Product | null> {
+  async product(
+    @Ctx() { prisma }: Context,
+    @Args() args: FindUniqueProductArgs,
+  ): Promise<Omit<Product, "_count"> | null> {
     return prisma.product.findUnique(args);
   }
 
   @Query(() => [Product], { nullable: false })
-  async products(@Ctx() { prisma }: Context, @Args() args: FindManyProductArgs): Promise<Product[]> {
+  async products(@Ctx() { prisma }: Context, @Args() args: FindManyProductArgs): Promise<Omit<Product, "_count">[]> {
     return prisma.product.findMany(args);
   }
 
@@ -19,7 +22,7 @@ export class ProductResolver {
     @Root() product: Product,
     @Ctx() { prisma }: Context,
     @Args() args: ProductPricesArgs,
-  ): Promise<Price[]> {
+  ): Promise<Omit<Price, "_count">[]> {
     return prisma.product
       .findUnique({
         where: {

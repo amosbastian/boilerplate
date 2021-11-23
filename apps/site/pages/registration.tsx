@@ -103,7 +103,7 @@ export default function Registration() {
     <Center height="-webkit-fill-available" flexDirection="column" px={4} justifyContent="center" bg={bg}>
       <NextSeo title={t("meta-title")} description={t("meta-description")} />
       <Logo />
-      <Heading size="lg" mt={4} mb={4}>
+      <Heading as="h1" size="lg" mt={4} mb={4}>
         {t("heading")}
       </Heading>
       <Card mt={4} px={10} py={8} flexDirection="column" width="100%" maxWidth={{ base: "100%", md: "md" }}>
@@ -114,7 +114,7 @@ export default function Registration() {
           <Trans
             i18nKey="registration:sign-in-to-account"
             components={{
-              link: <Link variant="cta" href="/login" />,
+              link: <Link data-testid="login" variant="cta" href="/login" />,
             }}
           />
         </Box>
