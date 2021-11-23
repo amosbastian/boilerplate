@@ -1,10 +1,10 @@
 import { render } from "@testing-library/react";
 
-import LinkAside from "./LinkAside";
+import SettingsSelect from "./SettingsSelect";
 
-describe("LinkAside", () => {
+describe("SettingsSelect", () => {
   it("should render successfully", () => {
-    const { baseElement } = render(<LinkAside />);
+    const { baseElement } = render(<SettingsSelect />);
     expect(baseElement).toBeTruthy();
   });
 });

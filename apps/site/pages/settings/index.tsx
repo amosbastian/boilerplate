@@ -18,7 +18,7 @@ export default function Settings() {
       <NextSeo title={t("meta-title")} />
       <PageHeading heading={t("page-heading")} />
       <Container pb={{ base: 4, md: 10 }}>
-        <SettingsSection display={{ base: "none", lg: "grid" }}>
+        <SettingsSection>
           <ProfileSettings />
           <AccountSettingsForm />
         </SettingsSection>
