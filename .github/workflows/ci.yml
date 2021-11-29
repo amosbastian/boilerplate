@@ -25,4 +25,6 @@ jobs:
           node-version: "14"
       - run: npm install
       - run: npx nx affected --target=build --parallel --max-parallel=3
-      # - run: npx nx affected --target=test --parallel --max-parallel=2
+      - run: npx nx affected --target=docker --parallel --max-parallel=3
+      - run: docker-compose -f "docker-compose.yml" up --build -V --abort-on-container-exit
+      - run: npx nx affected --target=test --parallel --max-parallel=2
