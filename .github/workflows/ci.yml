@@ -11,6 +11,26 @@ jobs:
   pr:
     runs-on: ubuntu-latest
     if: ${{ github.event_name == 'pull_request' }}
+    # Service containers to run with `container-job`
+    services:
+      # Label used to access the service container
+      postgres:
+        # Docker Hub PostgreSQL image
+        image: postgres
+        # Provide the password for postgres
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          # Maps tcp port 5432 on service container to the host
+          - 5432:5432
+    env:
+      DATABASE_URL: "postgres://postgres:postgres@localhost:5432/boilerplate"
     steps:
       - uses: actions/checkout@v2
         with:
@@ -24,7 +44,7 @@ jobs:
         with:
           node-version: "14"
       - run: npm install
-      - run: npx nx affected --target=build --parallel --max-parallel=3
-      - run: npx nx affected --target=docker --parallel --max-parallel=3
-      - run: docker-compose -f "docker-compose.yml" up --build -V --abort-on-container-exit
+      - run: npx nx affected --target=build --prod --parallel --max-parallel=3
+      # Create the database
+      - run: npx prisma migrate deploy
       - run: npx nx affected --target=test --parallel --max-parallel=2

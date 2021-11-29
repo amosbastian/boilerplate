@@ -51,6 +51,13 @@
             "passWithNoTests": true,
             "runInBand": true
           }
+        },
+        "docker": {
+          "builder": "@nrwl/workspace:run-commands",
+          "options": {
+            "commands": ["docker build -f ./apps/api/Dockerfile . -t api"],
+            "parallel": false
+          }
         }
       },
       "tags": []
