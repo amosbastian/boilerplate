@@ -47,4 +47,4 @@ jobs:
       - run: npx nx affected --target=build --prod --parallel --max-parallel=3
       # Create the database
       - run: npx prisma migrate deploy
-      - run: npx nx affected --target=test --parallel --max-parallel=2
+      - run: npx nx affected --target=test - --runInBand

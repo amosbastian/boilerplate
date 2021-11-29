@@ -15,7 +15,7 @@ describe("createOrRetrieveCustomer", () => {
     expect(retrievedStripeCustomerId).toBe(stripeCustomerId);
   });
 
-  it("should update user with new stripeCustomerId if it did not already exist", async () => {
+  it.skip("should update user with new stripeCustomerId if it did not already exist", async () => {
     const user = await createUser(ctx.prisma);
 
     const returnedCustomerId = await createOrRetrieveCustomer({ userId: user.id });
