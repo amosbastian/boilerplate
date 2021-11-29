@@ -1,8 +1,8 @@
-import type { Product, ProductCreateInput } from "@generated/type-graphql";
+import type { ProductCreateInput } from "@generated/type-graphql";
 import { PrismaClient } from "@prisma/client";
 import * as faker from "faker";
 
-export const createProduct = async (prisma: PrismaClient, props?: Partial<ProductCreateInput>): Promise<Product> => {
+export const createProduct = async (prisma: PrismaClient, props?: Partial<ProductCreateInput>) => {
   const defaultProps: ProductCreateInput = {
     id: faker.datatype.uuid(),
     active: true,

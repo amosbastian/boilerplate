@@ -1,14 +1,11 @@
-import type { Subscription, SubscriptionCreateInput } from "@generated/type-graphql";
+import type { SubscriptionCreateInput } from "@generated/type-graphql";
 import { SubscriptionStatus } from "@generated/type-graphql";
 import { PrismaClient } from "@prisma/client";
 import * as faker from "faker";
 import { createPrice } from "../create-price/createPrice";
 import { createUser } from "../create-user/createUser";
 
-export const createSubscription = async (
-  prisma: PrismaClient,
-  props?: Partial<SubscriptionCreateInput>,
-): Promise<Subscription> => {
+export const createSubscription = async (prisma: PrismaClient, props?: Partial<SubscriptionCreateInput>) => {
   const defaultProps = {
     id: faker.datatype.uuid(),
     currentPeriodStart: faker.date.past(),
