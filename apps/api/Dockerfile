@@ -5,7 +5,7 @@ COPY ./dist/apps/api/package.json ./
 COPY ./apps/api/src/prisma ./prisma
 # Remove output from Prisma schema since env variable does not work
 # ENV TYPEGRAPHQL_PRISMA_OUTPUT="./node_modules/@generated/type-graphql"
-RUN sed -i "" "s|output[[:space:]]*=[[:space:]]*env(\"TYPEGRAPHQL_PRISMA_OUTPUT\")||g" ./prisma/schema.prisma
+RUN sed -i -e "s|output[[:space:]]*=[[:space:]]*\"../../../../node_modules/@generated/type-graphql\"||g" ./prisma/schema.prisma
 # Install dependencies, but skip devDependencies
 # By running npm install in its own layer, it will be cached
 # So next time if we only change something in the app and not in package.json, docker will only
