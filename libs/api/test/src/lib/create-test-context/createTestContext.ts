@@ -17,10 +17,6 @@ export function createTestContext(): TestContext {
   const graphqlCtx = graphqlTestContext();
   const prismaCtx = prismaTestContext();
 
-  beforeAll(async () => {
-    await prismaCtx.beforeAll();
-  });
-
   beforeEach(async () => {
     const client = await graphqlCtx.beforeEach();
     const prismaClient = await prismaCtx.beforeEach();
