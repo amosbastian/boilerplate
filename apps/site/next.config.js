@@ -33,11 +33,11 @@ module.exports = withPlugins(
         },
         {
           source: "/blog",
-          destination: `${process.env.BASE_URL_BLOG}/blog`,
+          destination: `${process.env.NEX_PUBLIC_BASE_URL_BLOG ?? "http://localhost:4200"}/blog`,
         },
         {
           source: "/blog/:path*",
-          destination: `${process.env.BASE_URL_BLOG}/blog/:path*`,
+          destination: `${process.env.NEX_PUBLIC_BASE_URL_BLOG ?? "http://localhost:4200"}/blog/:path*`,
         },
       ];
     },

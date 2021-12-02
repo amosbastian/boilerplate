@@ -1,5 +1,6 @@
 import { createApolloServer } from "@boilerplate/api/apollo";
 import { prisma } from "@boilerplate/api/utility";
+import { configuration } from "@boilerplate/shared/configuration";
 import { logger } from "@boilerplate/shared/utility/logger";
 import * as Sentry from "@sentry/node";
 import * as Tracing from "@sentry/tracing";
@@ -54,7 +55,7 @@ const main = async () => {
   const url =
     process.env.NODE_ENV || "development" === "development"
       ? `http://localhost:${port}/graphql`
-      : `https://${process.env.DOMAIN_NAME}/graphql`;
+      : `https://${configuration.BASE_URL_API}/graphql`;
 
   const server = app.listen(port, () => {
     logger.info(`Listening at ${url}`);

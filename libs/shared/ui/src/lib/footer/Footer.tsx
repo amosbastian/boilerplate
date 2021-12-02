@@ -55,7 +55,7 @@ const FooterList = ({ navItem }: { navItem: NavItem }) => {
         {navItem.links.map(({ id, href }, index) => (
           <ListItem key={id} mb={index === navItem.links.length ? 0 : 2}>
             <Link
-              href={isBlog ? `${process.env.NEXT_PUBLIC_SITE_URL}${href}` : href}
+              href={isBlog ? `${configuration.BASE_URL_SITE}${href}` : href}
               fontWeight="normal"
               fontSize="sm"
               _hover={{ color: hoverColor }}
