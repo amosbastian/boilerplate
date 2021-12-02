@@ -12,21 +12,17 @@ export function Hero({ title, subtitle, cta, image }: HeroProps) {
   return (
     <Section
       containerProps={{
-        display: "flex",
+        display: { base: "flex", lg: "grid" },
         gridColumnGap: { md: 10, xl: 20 },
         gridRowGap: { base: 8, md: 16 },
+        gridTemplateColumns: { lg: "2fr 3fr" },
         flexDirection: { base: "column", lg: "row" },
         justifyContent: "space-between",
       }}
       variant="transparent"
       py={{ base: 20, lg: 44 }}
     >
-      <Flex
-        direction="column"
-        justifyContent="center"
-        alignItems={{ base: "center", lg: "flex-start" }}
-        maxW={{ base: "100%", lg: "500px" }}
-      >
+      <Flex direction="column" justifyContent="center" alignItems={{ base: "center", lg: "flex-start" }} w="100%">
         <Heading as="h1" fontSize={{ base: "4xl", md: "7xl" }} mb={6} maxW="2xl">
           {title}
         </Heading>
