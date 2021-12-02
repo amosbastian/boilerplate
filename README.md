@@ -1,94 +1,91 @@
-
-
 # Boilerplate
 
-This project was generated using [Nx](https://nx.dev).
+Monorepo boilerplate that comes with all the basic SaaS features that you need to get up and running.
+Stop wasting time setting up the same things over and over and start building!
 
-<p style="text-align: center;"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="450"></p>
+## Demo
 
-🔎 **Smart, Extensible Build Framework**
+- N/A
 
-## Adding capabilities to your workspace
+## Features
 
-Nx supports many plugins which add capabilities for developing different types of applications and different tools.
+- 🔐 Authentication using [Ory Kratos]()
+- 💰 Subscriptions with Stripe (syncing with webhooks)
+- 😻 Pretty UI using [Chakra UI]()
+- 👉 Typesafe ORM with [Prisma]()
+- 🚀 GraphQL API using [TypeGraphQL]() & [Apollo]()
+- ⚛️ Fetching, caching and updating asynchronous data with [React Query]()
+- 📝 Blog using MDX
+- 🌐 Internationalisation (i18n)
+- 📈 SEO with [NextSeo]()
+- 🪵 Logging with [Winston]()
+- 💿 CI / CD using GitHub Actions
+- 🖥 E2E tests with [Cypress]() & [React Testing Library]()
+- 🐛 Unit & integration tests with [Jest]()
+- 📕 UI component explorer with [Storybook]()
+- ⛔️ Error tracking with [Sentry]()
 
-These capabilities include generating applications, libraries, etc as well as the devtools to test, and build projects as well.
+## Running it locally
 
-Below are our core plugins:
+Set the environment variables shown in `env.example` in `.env`
 
-- [React](https://reactjs.org)
-  - `npm install --save-dev @nrwl/react`
-- Web (no framework frontends)
-  - `npm install --save-dev @nrwl/web`
-- [Angular](https://angular.io)
-  - `npm install --save-dev @nrwl/angular`
-- [Nest](https://nestjs.com)
-  - `npm install --save-dev @nrwl/nest`
-- [Express](https://expressjs.com)
-  - `npm install --save-dev @nrwl/express`
-- [Node](https://nodejs.org)
-  - `npm install --save-dev @nrwl/node`
+```
 
-There are also many [community plugins](https://nx.dev/community) you could add.
+```
 
-## Generate an application
+You must then run the migrations to set up the database
 
-Run `nx g @nrwl/react:app my-app` to generate an application.
+```
 
-> You can use any of the plugins above to generate applications as well.
+```
 
-When using Nx, you can create multiple applications and libraries in the same workspace.
+Finally, you can either run everything locally like so
 
-## Generate a library
+```
+nx serve api
+nx serve site
+nx serve blog
+```
 
-Run `nx g @nrwl/react:lib my-lib` to generate a library.
+or use Docker Compose to run everything in containers
 
-> You can also use any of the plugins above to generate libraries as well.
+```
+docker-compose up -d
+```
 
-Libraries are shareable across libraries and applications. They can be imported from `@boilerplate/mylib`.
+## Testing
 
-## Development server
+While not everything is covered by tests, I have done my best to include tests for the most important parts
+of the boilerplate. To run tests for a particular app or library you can use the following command
 
-Run `nx serve my-app` for a dev server. Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
+```
+# nx test <name>, e.g.
+nx test api
+```
 
-## Code scaffolding
+To run E2E tests you can use the following command
 
-Run `nx g @nrwl/react:component my-component --project=my-app` to generate a new component.
+```
+# nx e2e <name>, e.g.
+nx e2e site
+```
 
-## Build
+## Storybook
 
-Run `nx build my-app` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+To run the shared Storybook you can use the following command
 
-## Running unit tests
+```
+nx serve shared-storybook:storybook
+```
 
-Run `nx test my-app` to execute the unit tests via [Jest](https://jestjs.io).
+## Deployment
 
-Run `nx affected:test` to execute the unit tests affected by a change.
+N/A
 
-## Running end-to-end tests
+### Site & blog
 
-Run `ng e2e my-app` to execute the end-to-end tests via [Cypress](https://www.cypress.io).
+N/A
 
-Run `nx affected:e2e` to execute the end-to-end tests affected by a change.
+### API
 
-## Understand your workspace
-
-Run `nx dep-graph` to see a diagram of the dependencies of your projects.
-
-## Further help
-
-Visit the [Nx Documentation](https://nx.dev) to learn more.
-
-
-
-## ☁ Nx Cloud
-
-### Distributed Computation Caching & Distributed Task Execution
-
-<p style="text-align: center;"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-cloud-card.png"></p>
-
-Nx Cloud pairs with Nx in order to enable you to build and test code more rapidly, by up to 10 times. Even teams that are new to Nx can connect to Nx Cloud and start saving time instantly.
-
-Teams using Nx gain the advantage of building full-stack applications with their preferred framework alongside Nx’s advanced code generation and project dependency graph, plus a unified experience for both frontend and backend developers.
-
-Visit [Nx Cloud](https://nx.app/) to learn more.
+N/A
