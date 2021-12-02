@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient, PrismaPromise } from "@prisma/client";
 
 export function prismaTestContext() {
   let prismaClient: null | PrismaClient = null;
@@ -12,16 +12,31 @@ export function prismaTestContext() {
 
     async afterEach() {
       if (prismaClient) {
-        const tables = await prismaClient.$queryRawUnsafe(`SELECT tablename FROM pg_tables WHERE schemaname='public';`);
-        for (const { tablename } of tables as { tablename: string }[]) {
+        const transactions: PrismaPromise<any>[] = [];
+        transactions.push(prismaClient.$executeRaw`SET FOREIGN_KEY_CHECKS = 0;`);
+
+        const tablenames = await prismaClient.$queryRaw<
+          Array<{ TABLE_NAME: string }>
+        >`SELECT TABLE_NAME from information_schema.TABLES WHERE TABLE_SCHEMA = 'boilerplate';`;
+
+        for (const { TABLE_NAME: tablename } of tablenames) {
           if (tablename !== "_prisma_migrations") {
             try {
-              await prismaClient.$queryRawUnsafe(`TRUNCATE TABLE "public"."${tablename}" CASCADE;`);
+              transactions.push(prismaClient.$executeRawUnsafe(`TRUNCATE ${tablename};`));
             } catch (error) {
               console.log({ error });
             }
           }
         }
+
+        transactions.push(prismaClient.$executeRaw`SET FOREIGN_KEY_CHECKS = 1;`);
+
+        try {
+          await prismaClient.$transaction(transactions);
+        } catch (error) {
+          console.log({ error });
+        }
+
         // Release the Prisma Client connection
         await prismaClient.$disconnect();
       }
