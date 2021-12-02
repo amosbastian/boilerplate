@@ -2,12 +2,15 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider             = "mysql"
+  url                  = env("DATABASE_URL")
+  shadowDatabaseUrl    = env("SHADOW_DATABASE_URL")
+  referentialIntegrity = "prisma"
 }
 
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["referentialIntegrity"]
 }
 
 generator typegraphql {
@@ -56,6 +59,8 @@ model Price {
   metadata      Json
   currency      String         @db.VarChar(3)
   subscriptions Subscription[]
+
+  @@index([productId])
 }
 
 model Product {
@@ -86,14 +91,17 @@ model Subscription {
   priceId            String
   status             SubscriptionStatus
   cancelAtPeriodEnd  Boolean
-  currentPeriodEnd   DateTime           @db.Timestamptz
-  currentPeriodStart DateTime           @db.Timestamptz
-  trialStart         DateTime?          @db.Timestamptz
-  trialEnd           DateTime?          @db.Timestamptz
-  cancelAt           DateTime?          @db.Timestamptz
-  cancelledAt        DateTime?          @db.Timestamptz
-  endedAt            DateTime?          @db.Timestamptz
+  currentPeriodEnd   DateTime           @db.Timestamp
+  currentPeriodStart DateTime           @db.Timestamp
+  trialStart         DateTime?          @db.Timestamp
+  trialEnd           DateTime?          @db.Timestamp
+  cancelAt           DateTime?          @db.Timestamp
+  cancelledAt        DateTime?          @db.Timestamp
+  endedAt            DateTime?          @db.Timestamp
   metadata           Json
   createdAt          DateTime           @default(now())
   updatedAt          DateTime           @updatedAt
+
+  @@index([userId])
+  @@index([priceId])
 }
