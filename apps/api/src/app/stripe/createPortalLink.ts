@@ -1,3 +1,4 @@
+import { configuration } from "@boilerplate/shared/configuration";
 import { logger } from "@boilerplate/shared/utility/logger";
 import { oryApiClient } from "@boilerplate/shared/utility/ory";
 import { createOrRetrieveCustomer, stripe } from "@boilerplate/stripe";
@@ -18,7 +19,7 @@ export function addCreatePortalLink(app: Express) {
 
       const { url } = await stripe.billingPortal.sessions.create({
         customer,
-        return_url: `${process.env.NEXT_PUBLIC_BASE_URL}/settings/billing`,
+        return_url: `${configuration.BASE_URL_SITE}/settings/billing`,
       });
 
       return response.status(200).json({ url });

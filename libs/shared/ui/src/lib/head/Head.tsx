@@ -1,30 +1,31 @@
+import { configuration } from "@boilerplate/shared/configuration";
 import type { NextSeoProps } from "next-seo";
 import { DefaultSeo } from "next-seo";
 import NextHead from "next/head";
 
 const SEO: NextSeoProps = {
-  title: `${process.env.NEXT_PUBLIC_BRAND_NAME}`,
-  titleTemplate: `%s - ${process.env.NEXT_PUBLIC_BRAND_NAME}`,
-  description: `${process.env.NEXT_PUBLIC_BRAND_NAME} - ${process.env.NEXT_PUBLIC_BASE_URL}`,
+  title: `${configuration.BRAND_NAME}`,
+  titleTemplate: `%s - ${configuration.BRAND_NAME}`,
+  description: `${configuration.BRAND_NAME} - ${configuration.BASE_URL_SITE}`,
   openGraph: {
-    title: `${process.env.NEXT_PUBLIC_BRAND_NAME}`,
-    description: `${process.env.NEXT_PUBLIC_BRAND_NAME} - ${process.env.NEXT_PUBLIC_BASE_URL}`,
+    title: `${configuration.BRAND_NAME}`,
+    description: `${configuration.BRAND_NAME} - ${configuration.BASE_URL_SITE}`,
     type: "website",
     locale: "en",
-    url: `${process.env.NEXT_PUBLIC_BASE_URL}`,
-    site_name: `${process.env.NEXT_PUBLIC_BRAND_NAME}`,
+    url: `${configuration.BASE_URL_SITE}`,
+    site_name: `${configuration.BRAND_NAME}`,
     images: [
       {
         url: "/images/card.png",
         width: 800,
         height: 600,
-        alt: `${process.env.NEXT_PUBLIC_BRAND_NAME}`,
+        alt: `${configuration.BRAND_NAME}`,
       },
     ],
   },
   twitter: {
-    handle: `@${process.env.NEXT_PUBLIC_TWITTER_USERNAME}`,
-    site: `@${process.env.NEXT_PUBLIC_TWITTER_USERNAME}`,
+    handle: `${configuration.TWITTER_USERNAME}`,
+    site: `${configuration.TWITTER_USERNAME}`,
     cardType: "summary_large_image",
   },
   additionalLinkTags: [{ rel: "icon", href: "/images/favicon-196.png" }],

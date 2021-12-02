@@ -1,3 +1,4 @@
+import { configuration } from "@boilerplate/shared/configuration";
 import {
   Box,
   Divider,
@@ -140,7 +141,7 @@ export function Footer(props: FooterProps) {
           alignSelf="flex-start"
           alignItems="baseline"
         >
-          <Text fontSize="sm">&copy; 2021 {`${process.env.NEXT_PUBLIC_BRAND_NAME}`}</Text>
+          <Text fontSize="sm">&copy; 2021 {`${configuration.BRAND_NAME}`}</Text>
           <Link href="/privacy" fontSize="sm" fontWeight="normal">
             {t("privacy")}
           </Link>
@@ -151,16 +152,16 @@ export function Footer(props: FooterProps) {
           <ChangeLanguage maxW="max-content" />
         </Grid>
         <HStack spacing={4}>
-          <ChakraLink aria-label="GitHub" variant="link" href={process.env.NEXT_PUBLIC_GITHUB_URL} isExternal>
+          <ChakraLink aria-label="GitHub" variant="link" href={configuration.GITHUB_URL} isExternal>
             <Icon boxSize={5} as={RiGithubFill} />
           </ChakraLink>
-          <ChakraLink aria-label="Twitter" variant="link" href={process.env.NEXT_PUBLIC_TWITTER_URL} isExternal>
+          <ChakraLink aria-label="Twitter" variant="link" href={configuration.TWITTER_URL} isExternal>
             <Icon boxSize={5} as={RiTwitterFill} />
           </ChakraLink>
-          <ChakraLink aria-label="Instagram" variant="link" href={process.env.NEXT_PUBLIC_INSTAGRAM_URL} isExternal>
+          <ChakraLink aria-label="Instagram" variant="link" href={configuration.INSTAGRAM_URL} isExternal>
             <Icon boxSize={5} as={RiInstagramLine} />
           </ChakraLink>
-          <ChakraLink aria-label="LinkedIn" variant="link" href={process.env.NEXT_PUBLIC_LINKED_IN_URL} isExternal>
+          <ChakraLink aria-label="LinkedIn" variant="link" href={configuration.LINKED_IN_URL} isExternal>
             <Icon boxSize={5} as={RiLinkedinBoxFill} />
           </ChakraLink>
         </HStack>
