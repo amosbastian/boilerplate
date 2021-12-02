@@ -1,3 +1,4 @@
+import { configuration } from "@boilerplate/shared/configuration";
 import { theme } from "@boilerplate/shared/theme";
 import type { Page } from "@boilerplate/shared/types";
 import { Chakra, Head } from "@boilerplate/shared/ui";
@@ -10,7 +11,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
 import { Hydrate } from "react-query/hydration";
 
-setGraphqlEndpoint(process.env.API_ENDPOINT ?? "http://localhost:3333/graphql");
+setGraphqlEndpoint(`${configuration.BASE_URL_API}/graphql`);
 
 type CustomAppProps = AppProps & {
   Component: Page<unknown>;

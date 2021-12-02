@@ -1,4 +1,6 @@
+import { configuration } from "@boilerplate/shared/configuration";
+
 module.exports = {
-  siteUrl: process.env.NEXT_PUBLIC_BASE_URL,
+  siteUrl: configuration.BASE_URL_SITE,
   generateRobotsTxt: true,
 };

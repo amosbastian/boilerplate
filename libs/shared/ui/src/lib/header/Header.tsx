@@ -1,3 +1,4 @@
+import { configuration } from "@boilerplate/shared/configuration";
 import type { ModalProps } from "@chakra-ui/react";
 import {
   Box,
@@ -101,7 +102,7 @@ const MobileNavList = ({ onClick, headerNavItem }: MobileNavListProps) => {
       )}
       <Grid gridTemplateColumns="repeat(2, 1fr)" columnGap={1} rowGap={3}>
         {headerNavItem.links.map((link) => (
-          <HeaderLink href={isBlog ? `${process.env.NEXT_PUBLIC_SITE_URL}${link.href}` : link.href} onClick={onClick}>
+          <HeaderLink href={isBlog ? `${configuration.BASE_URL_SITE}${link.href}` : link.href} onClick={onClick}>
             <Icon as={link.icon} mr={2} color={color} />
             {t(link.id)}
           </HeaderLink>
@@ -128,7 +129,7 @@ const NavModal = ({ isOpen, onClose }: Pick<ModalProps, "isOpen" | "onClose">) =
         </VStack>
         <Divider />
         <ModalFooter>
-          <NextLink href={isBlog ? `${process.env.NEXT_PUBLIC_SITE_URL}/login` : "login"} passHref>
+          <NextLink href={isBlog ? `${configuration.BASE_URL_SITE}/login` : "/login"} passHref>
             <Button as="a" colorScheme="primary" width="100%">
               {t("sign-in")}
             </Button>
@@ -146,6 +147,7 @@ export function Header() {
   const { t } = useTranslation("common");
   const [scrolled, setScrolled] = React.useState<boolean>(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const router = useRouter();
   const { basePath } = useRouter();
   const isBlog = basePath === "/blog";
 
@@ -203,7 +205,7 @@ export function Header() {
                   {navItem.links.map((link) => (
                     <FlyoutMenuItem
                       key={link.id}
-                      href={isBlog ? `${process.env.NEXT_PUBLIC_SITE_URL}${link.href}` : link.href}
+                      href={isBlog ? `${configuration.BASE_URL_SITE}${link.href}` : link.href}
                       heading={t(link.id)}
                       description={t(`${link.id}-description`)}
                       iconType={link.icon}
@@ -216,7 +218,7 @@ export function Header() {
             return (
               <HeaderLink
                 key={navItem.id}
-                href={isBlog ? `${process.env.NEXT_PUBLIC_SITE_URL}${navItem.links[0].href}` : navItem.links[0].href}
+                href={isBlog ? `${configuration.BASE_URL_SITE}${navItem.links[0].href}` : navItem.links[0].href}
               >
                 {t(navItem.links[0].id)}
               </HeaderLink>
@@ -224,7 +226,7 @@ export function Header() {
           })}
         </HStack>
         <Box display={{ base: "none", lg: "flex" }}>
-          <NextLink href={isBlog ? `${process.env.NEXT_PUBLIC_SITE_URL}/login` : "/login"} passHref>
+          <NextLink href={isBlog ? `${configuration.BASE_URL_SITE}/login` : "/login"} passHref>
             <Button data-testid="login" colorScheme="primary">
               {t("sign-in")}
             </Button>

@@ -1,4 +1,5 @@
 import { DocumentType, gql } from "@boilerplate/generated/graphql";
+import { configuration } from "@boilerplate/shared/configuration";
 import { Card, CardContent, CardFooter, CardHeader } from "@boilerplate/shared/ui";
 import { currencyToSymbol, fetcher, getStripePromise } from "@boilerplate/site/utility";
 import {
@@ -152,7 +153,7 @@ export function PlanSettingsForm({ products, user, ...rest }: PlanSettingsFormPr
     setLoading(true);
 
     const { url } = await fetcher({
-      url: `${process.env.NEXT_PUBLIC_API_ENDPOINT}/stripe/create-portal-link`,
+      url: `${configuration.BASE_URL_API}/api/stripe/create-portal-link`,
       method: "POST",
     });
 
@@ -167,7 +168,7 @@ export function PlanSettingsForm({ products, user, ...rest }: PlanSettingsFormPr
     const stripe = await getStripePromise();
 
     const { sessionId } = await fetcher({
-      url: `${process.env.NEXT_PUBLIC_API_ENDPOINT}/stripe/create-checkout-session`,
+      url: `${configuration.BASE_URL_API}/api/stripe/create-checkout-session`,
       body: { price: selectedPriceId },
       method: "POST",
     });

@@ -8,7 +8,7 @@ export function addCreateUser(app: Express) {
   app.post("/api/create-user", async (request, response) => {
     const cookie = request.cookies["ory_kratos_session"];
 
-    if (!cookie || !process.env.JWT_SECRET) {
+    if (!cookie) {
       return response.status(500).json({ error: { statusCode: 500, message: "Invalid token" } });
     }
 

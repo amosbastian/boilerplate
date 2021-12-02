@@ -53,7 +53,7 @@
           }
         },
         "docker": {
-          "builder": "@nrwl/workspace:run-commands",
+          "executor": "@nrwl/workspace:run-commands",
           "options": {
             "commands": ["docker build -f ./apps/api/Dockerfile . -t api"],
             "parallel": false
@@ -380,6 +380,21 @@
           "options": {
             "jestConfig": "libs/markdown/jest.config.js",
             "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
+    },
+    "shared-configuration": {
+      "root": "libs/shared/configuration",
+      "sourceRoot": "libs/shared/configuration/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["libs/shared/configuration/**/*.ts"]
           }
         }
       },
