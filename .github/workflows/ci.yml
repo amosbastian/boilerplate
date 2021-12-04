@@ -1,9 +1,6 @@
 name: CI
 env:
   SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
-  DATABASE_NAME: boilerplate
-  DATABASE_USER: root
-  DATABASE_PASSWORD: root
 on:
   push:
     branches:
@@ -14,13 +11,25 @@ jobs:
   pr:
     runs-on: ubuntu-latest
     if: ${{ github.event_name == 'pull_request' }}
+    services:
+      mysql:
+        image: mysql:8
+        env:
+          MYSQL_DATABASE: boilerplate
+          MYSQL_HOST: 127.0.0.1
+          MYSQL_USER: admin
+          MYSQL_PASSWORD: password
+          MYSQL_ROOT_PASSWORD: password
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=3
     env:
-      DATABASE_URL: "mysql://${{ env.DATABASE_USER }}:${{ env.DATABASE_PASSWORD }}@localhost:5432/${{ env.DATABASE_NAME }}"
+      DATABASE_URL: "mysql://admin:password@127.0.0.1:3306/boilerplate"
     steps:
-      - name: Set up MySQL
-        run: |
-          sudo /etc/init.d/mysql start
-          mysql -e 'CREATE DATABASE ${{ env.DATABASE_NAME }};' -u ${{ env.DATABASE_USER }} -p ${{ env.DATABASE_PASSWORD }}
       - uses: actions/checkout@v2
         with:
           ref: ${{ github.event.pull_request.head.ref }}

@@ -46,7 +46,7 @@ describe("ProductResolver", () => {
 
       expect(queryResult).toEqual({
         data: {
-          products: [{ id: product1.id }, { id: product2.id }],
+          products: expect.arrayContaining([{ id: product1.id }, { id: product2.id }]),
         },
       });
     });
@@ -73,7 +73,7 @@ describe("ProductResolver", () => {
       expect(queryResult).toEqual({
         data: {
           product: {
-            prices: [{ id: price1.id }, { id: price2.id }],
+            prices: expect.arrayContaining([{ id: price1.id }, { id: price2.id }]),
           },
         },
       });
