@@ -11,19 +11,19 @@ Stop wasting time setting up the same things over and over and start building!
 
 - 🔐 Authentication using [Ory Kratos]()
 - 💰 Subscriptions with Stripe (syncing with webhooks)
-- 😻 Pretty UI using [Chakra UI]()
+- 😻 Pretty UI with light / dark mode using [Chakra UI]()
 - 👉 Typesafe ORM with [Prisma]()
 - 🚀 GraphQL API using [TypeGraphQL]() & [Apollo]()
 - ⚛️ Fetching, caching and updating asynchronous data with [React Query]()
 - 📝 Blog using MDX
 - 🌐 Internationalisation (i18n)
 - 📈 SEO with [NextSeo]()
-- 🪵 Logging with [Winston]()
 - 💿 CI / CD using GitHub Actions
 - 🖥 E2E tests with [Cypress]() & [React Testing Library]()
 - 🐛 Unit & integration tests with [Jest]()
 - 📕 UI component explorer with [Storybook]()
 - ⛔️ Error tracking with [Sentry]()
+- 😋 Logging, GraphQL codegen, git hooks for linting, Prettier, ESLint etc.
 
 ## Running it locally
 
