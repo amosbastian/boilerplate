@@ -13,7 +13,8 @@
             "outputPath": "dist/apps/api",
             "main": "apps/api/src/main.ts",
             "tsConfig": "apps/api/tsconfig.app.json",
-            "assets": ["apps/api/src/assets"]
+            "assets": ["apps/api/src/assets"],
+            "generatePackageJson": true
           },
           "configurations": {
             "production": {
@@ -49,6 +50,13 @@
             "jestConfig": "apps/api/jest.config.js",
             "passWithNoTests": true,
             "runInBand": true
+          }
+        },
+        "docker": {
+          "executor": "@nrwl/workspace:run-commands",
+          "options": {
+            "commands": ["docker build -f ./apps/api/Dockerfile . -t api"],
+            "parallel": false
           }
         }
       },
@@ -372,6 +380,21 @@
           "options": {
             "jestConfig": "libs/markdown/jest.config.js",
             "passWithNoTests": true
+          }
+        }
+      },
+      "tags": []
+    },
+    "shared-configuration": {
+      "root": "libs/shared/configuration",
+      "sourceRoot": "libs/shared/configuration/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "outputs": ["{options.outputFile}"],
+          "options": {
+            "lintFilePatterns": ["libs/shared/configuration/**/*.ts"]
           }
         }
       },

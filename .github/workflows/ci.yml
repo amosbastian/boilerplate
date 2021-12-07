@@ -11,6 +11,24 @@ jobs:
   pr:
     runs-on: ubuntu-latest
     if: ${{ github.event_name == 'pull_request' }}
+    services:
+      mysql:
+        image: mysql:8
+        env:
+          MYSQL_DATABASE: boilerplate
+          MYSQL_HOST: 127.0.0.1
+          MYSQL_USER: admin
+          MYSQL_PASSWORD: password
+          MYSQL_ROOT_PASSWORD: password
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=3
+    env:
+      DATABASE_URL: "mysql://admin:password@127.0.0.1:3306/boilerplate"
     steps:
       - uses: actions/checkout@v2
         with:
@@ -23,6 +41,11 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: "14"
-      - run: npm install
-      - run: npx nx affected --target=build --parallel --max-parallel=3
-      # - run: npx nx affected --target=test --parallel --max-parallel=2
+      - name: Install dependencies
+        run: npm install
+      - name: Build
+        run: npx nx affected --target=build --prod --parallel --max-parallel=3
+      - name: Migrate
+        run: npx prisma migrate deploy
+      - name: Test
+        run: npx nx affected --target=test --parallel --max-parallel=2

@@ -1,3 +1,4 @@
+import { configuration } from "@boilerplate/shared/configuration";
 import { logger } from "@boilerplate/shared/utility/logger";
 import { oryApiClient } from "@boilerplate/shared/utility/ory";
 import { createOrRetrieveCustomer, stripe } from "@boilerplate/stripe";
@@ -34,8 +35,8 @@ export function addCreateCheckoutSession(app: Express) {
           trial_from_plan: true,
           metadata,
         },
-        success_url: `${process.env.NEXT_PUBLIC_BASE_URL}/settings/billing`,
-        cancel_url: `${process.env.NEXT_PUBLIC_BASE_URL}/settings/billing`,
+        success_url: `${configuration.BASE_URL_SITE}/settings/billing`,
+        cancel_url: `${configuration.BASE_URL_SITE}/settings/billing`,
       });
 
       return response.status(200).json({ sessionId: checkoutSession.id });

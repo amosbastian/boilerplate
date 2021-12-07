@@ -24,6 +24,7 @@
       "@boilerplate/blog/ui": ["libs/blog/ui/src/index.ts"],
       "@boilerplate/generated/graphql": ["libs/generated/graphql/src/index.ts"],
       "@boilerplate/markdown": ["libs/markdown/src/index.ts"],
+      "@boilerplate/shared/configuration": ["libs/shared/configuration/src/index.ts"],
       "@boilerplate/shared/i18n": ["libs/shared/i18n/src/index.ts"],
       "@boilerplate/shared/mdx": ["libs/shared/mdx/src/index.ts"],
       "@boilerplate/shared/storybook": ["libs/shared/storybook/src/index.ts"],

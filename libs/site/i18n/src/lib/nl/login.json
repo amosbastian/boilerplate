@@ -1,9 +1,9 @@
 {
   "callback-error": "Try signing with a different account.",
+  "create-account": "",
   "default-error": "",
   "emailcreateaccount-error": "Try signing with a different account.",
   "emailsignin-error": "Please check your email address.",
-  "create-account": "",
   "heading": "Sign in to Boilerplate",
   "meta-description": "meta-description",
   "meta-title": "Sign in",

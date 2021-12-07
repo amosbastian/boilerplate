@@ -1,0 +1,23 @@
+# Set the version of docker compose to use
+version: "3.9"
+
+# The containers that compose the project
+services:
+  db:
+    image: postgres:13
+    restart: always
+    container_name: db
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: boilerplate
+  api:
+    image: api
+    environment:
+      DATABASE_URL: "postgres://postgres:postgres@localhost:5432/boilerplate"
+    ports:
+      - "3333:3333"
+    depends_on:
+      - db

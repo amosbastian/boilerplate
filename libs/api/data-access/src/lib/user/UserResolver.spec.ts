@@ -79,7 +79,7 @@ describe("UserResolver", () => {
 
       expect(queryResult).toEqual({
         data: {
-          users: [{ id: user1.id }, { id: user2.id }],
+          users: expect.arrayContaining([{ id: user1.id }, { id: user2.id }]),
         },
       });
     });

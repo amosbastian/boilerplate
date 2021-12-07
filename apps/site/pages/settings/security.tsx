@@ -111,27 +111,25 @@ export default function Security() {
       <Container pb={{ base: 4, md: 10 }}>
         <SettingsSection>
           <SettingsCard data-testid="ory-profile-settings" only="profile" flow={flow}>
-            <CardHeader mb={6} title={t("Profile settings")} />
+            <CardHeader mb={6} title={t("ory-profile-settings-title")} />
             <FlowMessages mx={6} messages={flow?.ui.messages} mb={4} />
             <FlowForm hideGlobalMessages onSubmit={onSubmit} only="profile" flow={flow} flowLoading={flowLoading} />
           </SettingsCard>
           <SettingsCard data-testid="ory-password-settings" only="password" flow={flow}>
-            <CardHeader mb={6} title={t("Change password")} />
+            <CardHeader mb={6} title={t("ory-password-settings-title")} />
             <FlowMessages mx={6} messages={flow?.ui.messages} mb={4} />
             <FlowForm hideGlobalMessages onSubmit={onSubmit} only="password" flow={flow} flowLoading={flowLoading} />
           </SettingsCard>
           <SettingsCard data-testid="ory-oidc-settings" only="oidc" flow={flow}>
-            <CardHeader mb={6} title={t("Manage social sign in")} />
+            <CardHeader mb={6} title={t("ory-oidc-settings-title")} />
             <FlowMessages mx={6} messages={flow?.ui.messages} mb={4} />
             <FlowForm hideGlobalMessages onSubmit={onSubmit} only="oidc" flow={flow} flowLoading={flowLoading} />
           </SettingsCard>
           <SettingsCard data-testid="ory-lookup-secret-settings" only="lookup_secret" flow={flow}>
             <CardHeader
               mb={6}
-              title={t("Manage 2FA Backup Recovery Codes")}
-              subtitle={t(
-                "Recovery codes can be used in panic situations where you have lost access to your 2FA device.",
-              )}
+              title={t("ory-lookup-secret-settings-title")}
+              subtitle={t("ory-lookup-secret-settings-subtitle")}
             />
             <FlowMessages mx={6} messages={flow?.ui.messages} mb={4} />
             <FlowForm
@@ -143,37 +141,16 @@ export default function Security() {
             />
           </SettingsCard>
           <SettingsCard data-testid="ory-totp-settings" only="totp" flow={flow}>
-            <CardHeader mb={6} title={t("Manage 2FA TOTP Authenticator App")} />
-            <Text>
-              Add a TOTP Authenticator App to your account to improve your account security. Popular Authenticator Apps
-              are{" "}
-              <a href="https://www.lastpass.com" rel="noreferrer" target="_blank">
-                LastPass
-              </a>{" "}
-              and Google Authenticator (
-              <a href="https://apps.apple.com/us/app/google-authenticator/id388497605" target="_blank" rel="noreferrer">
-                iOS
-              </a>
-              ,{" "}
-              <a
-                href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&hl=en&gl=US"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Android
-              </a>
-              ).
-            </Text>
+            <CardHeader mb={6} title={t("ory-totp-settings-title")} />
+            <Text>{t("ory-totp-settings-description")}</Text>
             <FlowMessages mx={6} messages={flow?.ui.messages} mb={4} />
             <FlowForm hideGlobalMessages onSubmit={onSubmit} only="totp" flow={flow} flowLoading={flowLoading} />
           </SettingsCard>
           <SettingsCard data-testid="ory-webauthn-settings" only="webauthn" flow={flow}>
             <CardHeader
               mb={6}
-              title={t("Manage Hardware Tokens and Biometrics")}
-              subtitle={t(
-                "Use Hardware Tokens (e.g. YubiKey) or Biometrics (e.g. FaceID, TouchID) to enhance your account security.",
-              )}
+              title={t("ory-webauthn-settings-title")}
+              subtitle={t("ory-webauthn-settings-subtitle")}
             />
             <FlowMessages mx={6} messages={flow?.ui.messages} mb={4} />
             <FlowForm hideGlobalMessages onSubmit={onSubmit} only="webauthn" flow={flow} flowLoading={flowLoading} />

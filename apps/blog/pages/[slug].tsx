@@ -1,5 +1,6 @@
 import { Heading } from "@boilerplate/blog/ui";
 import { getParsedFileContentBySlug, renderMarkdown } from "@boilerplate/markdown";
+import { configuration } from "@boilerplate/shared/configuration";
 import { mdxComponents } from "@boilerplate/shared/mdx";
 import { Container, getLayout } from "@boilerplate/shared/ui";
 import fs from "fs";
@@ -38,14 +39,14 @@ export function Page({ frontMatter, html }: InferGetStaticPropsType<typeof getSt
   return (
     <Container maxW="container.md" py={10}>
       <ArticleJsonLd
-        url={`${process.env.NEXT_PUBLIC_SITE_URL}/blog/${frontMatter.slug}`}
+        url={`${configuration.BASE_URL_SITE}/blog/${frontMatter.slug}`}
         title={frontMatter.title}
-        images={[`${process.env.NEXT_PUBLIC_SITE_URL}/blog/${frontMatter.slug}.png`]}
+        images={[`${configuration.BASE_URL_SITE}/blog/${frontMatter.slug}.png`]}
         datePublished={frontMatter.datePublished}
         dateModified={frontMatter.dateModified}
         authorName={[frontMatter.author.name]}
-        publisherName={process.env.NEXT_PUBLIC_BRAND_NAME}
-        publisherLogo={`${process.env.NEXT_PUBLIC_SITE_URL}/logo.png`}
+        publisherName={configuration.BRAND_NAME}
+        publisherLogo={`${configuration.BASE_URL_SITE}/logo.png`}
         description={frontMatter.description}
       />
       <NextSeo title={frontMatter.title} description={frontMatter.description} />
