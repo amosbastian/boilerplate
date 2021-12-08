@@ -13,7 +13,7 @@ export class SubscriptionResolver {
   }
 
   @FieldResolver(() => Price, { nullable: true })
-  async price(@Root() subscription: Subscription, @Ctx() { prisma }: Context): Promise<Omit<Price, "_count"> | null> {
+  async price(@Root() subscription: Subscription, @Ctx() { prisma }: Context): Promise<Price | null> {
     return prisma.subscription
       .findUnique({
         where: {
