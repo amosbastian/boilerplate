@@ -22,5 +22,6 @@ export const useGraphqlQuery = <TData = any, TVariables = Record<string, any>>(
 ) => {
   const operationName = React.useMemo(() => getOperationName(operation), [operation]);
   const queryKey = React.useMemo(() => [operationName, variables ?? {}], [operationName, variables]);
-  return useQuery(queryKey, () => graphqlFetch(operation, variables), options);
+
+  return useQuery(queryKey, () => graphqlFetch(operation, variables), options as any);
 };

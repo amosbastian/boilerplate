@@ -1,3 +1,4 @@
+import { configuration } from "@boilerplate/shared/configuration";
 import { Card, Link, Logo } from "@boilerplate/shared/ui";
 import { FlowForm } from "@boilerplate/site/ui";
 import { fetcher, handleGetFlowError, handleOryRedirect, oryBrowserClient } from "@boilerplate/site/utility";
@@ -78,7 +79,7 @@ export default function Registration() {
       //
 
       await fetcher({
-        url: "http://localhost:3333/api/create-user",
+        url: `${configuration.BASE_URL_API}/api/create-user`,
         method: "POST",
         body: { identity: data.identity },
       });

@@ -8,7 +8,7 @@ import { graphqlFetch } from "../graphql-fetch/graphqlFetch";
 
 /*
   Graphql wrapper on react-query `useInfiniteQuery`.
-import { getOperationName } from "../get-operation-name/getOperationName";
+  import { getOperationName } from "../get-operation-name/getOperationName";
 
   const { data, error, isLoading, refetch } = useGraphqlInfiniteQuery(
     SearchThingsDocument,
@@ -23,9 +23,10 @@ export const useGraphqlInfiniteQuery = <TData = any, TVariables = Record<string,
 ) => {
   const operationName = React.useMemo(() => getOperationName(operation), [operation]);
   const queryKey = React.useMemo(() => [operationName, variables ?? {}, "infinite"], [operationName, variables]);
+
   return useInfiniteQuery(
     queryKey,
     ({ pageParam }) => graphqlFetch(operation, { ...variables, ...pageParam }),
-    options,
+    options as any,
   );
 };
