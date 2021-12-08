@@ -40,7 +40,7 @@ jobs:
           main-branch-name: "master"
       - uses: actions/setup-node@v1
         with:
-          node-version: "14"
+          node-version: "16"
       - name: Install dependencies
         run: npm install
       - name: Build
