@@ -23,7 +23,7 @@
   "1050009": "{{secret}}",
   "1050010": "These are your back up recovery codes. Please keep them in a safe place!",
   "1050011": "Confirm backup recovery codes",
-  "1050012": "Add security key / Remove security key \"{{display_name}}\"",
+  "1050012": "Add security key",
   "1050013": "Name of the security key",
   "1050014": "Secret was used at {{used_at}}",
   "1050015": "{{code-1}}, {{code-2}}",

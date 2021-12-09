@@ -1,7 +1,6 @@
 import { Card, CardHeader, CardProps, Container } from "@boilerplate/shared/ui";
-import { oryBrowserClient } from "@boilerplate/site/utility";
 import { FlowForm, FlowMessages, FlowMethods, getLayout, PageHeading, SettingsSection } from "@boilerplate/site/ui";
-import { handleGetFlowError, handleOryRedirect } from "@boilerplate/site/utility";
+import { handleGetFlowError, handleOryRedirect, oryBrowserClient } from "@boilerplate/site/utility";
 import { Text } from "@chakra-ui/react";
 import { SelfServiceSettingsFlow, SubmitSelfServiceSettingsFlowBody } from "@ory/kratos-client";
 import type { GetServerSidePropsContext } from "next";
@@ -142,11 +141,13 @@ export default function Security() {
           </SettingsCard>
           <SettingsCard data-testid="ory-totp-settings" only="totp" flow={flow}>
             <CardHeader mb={6} title={t("ory-totp-settings-title")} />
-            <Text>{t("ory-totp-settings-description")}</Text>
+            <Text mb={4} mx={6}>
+              {t("ory-totp-settings-description")}
+            </Text>
             <FlowMessages mx={6} messages={flow?.ui.messages} mb={4} />
             <FlowForm hideGlobalMessages onSubmit={onSubmit} only="totp" flow={flow} flowLoading={flowLoading} />
           </SettingsCard>
-          <SettingsCard data-testid="ory-webauthn-settings" only="webauthn" flow={flow}>
+          <SettingsCard data-testid="ory-webauthn-settings" only="webauthn" flow={flow} pb={6}>
             <CardHeader
               mb={6}
               title={t("ory-webauthn-settings-title")}
