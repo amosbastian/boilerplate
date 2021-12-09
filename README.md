@@ -266,7 +266,7 @@ While not everything is covered by tests, I have done my best to include tests f
 nx test api
 ```
 
-To run E2E tests you can use the following command
+To run E2E tests you first need to create a test user by logging in to the website and then update the `seed.ts` file found in the `apps/api/src/prisma` with the user's ID and email (I don't know a better way of doing this, sorry 🙈). Once you have done this, you can run the E2E tests with
 
 ```
 # nx e2e <name>, e.g.
