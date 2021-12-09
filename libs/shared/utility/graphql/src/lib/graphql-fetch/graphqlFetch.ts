@@ -12,8 +12,8 @@ export const setGraphqlEndpoint = (endpoint: string) => (GRAPHQL_ENDPOINT = endp
   Graphql fetch wrapper
 
   try {
-    const res = graphqlFetch(GetThingDocument, { id: 'x' })
-    console.log(res.getThing?.name)
+    const response = graphqlFetch(GetThingDocument, { id: 'x' })
+    console.log(response.getThing?.name)
   } catch (err) {
     console.err(err)
   }
@@ -25,7 +25,7 @@ export const graphqlFetch = async <TData = any, TVariables = Record<string, any>
   const operationName = getOperationName(operation) || "";
   const query = print(operation);
 
-  const res = await fetch(getGraphqlEndpoint(), {
+  const response = await fetch(getGraphqlEndpoint(), {
     headers: { "Content-Type": "application/json" },
     method: "POST",
     body: JSON.stringify({ operationName, query, variables }),
@@ -35,18 +35,18 @@ export const graphqlFetch = async <TData = any, TVariables = Record<string, any>
   // extract the results, catch json parse errors
   let json;
   try {
-    json = await res.json();
+    json = await response.json();
   } catch (err) {
-    throw new GraphqlError(res.statusText, res.status, operationName, query);
+    throw new GraphqlError(response.statusText, response.status, operationName, query);
   }
 
   // if not a 20x status code, throw an error
-  if (!res.ok) throw new GraphqlError(res.statusText, res.status, operationName, query);
+  if (!response.ok) throw new GraphqlError(response.statusText, response.status, operationName, query);
 
   // graphql errors are an array of errors with a 200 response, pluck the first one
   if (Array.isArray(json.errors)) {
     const [error] = json.errors;
-    throw new GraphqlError(error.message, res.status, operationName, query);
+    throw new GraphqlError(error.message, response.status, operationName, query);
   }
 
   // all is good, return the data property

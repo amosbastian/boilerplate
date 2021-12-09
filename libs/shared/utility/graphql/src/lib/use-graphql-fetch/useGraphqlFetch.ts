@@ -12,8 +12,8 @@ import { graphqlFetch } from "../graphql-fetch/graphqlFetch";
   const getThing = useGraphqlFetch(GetThingDocument)
 
   try {
-    const res = await getThing({ id: 1 }, { ...fetchQueryOptions })
-    console.log(`${res.getThing?.name} was updated`)
+    const response = await getThing({ id: 1 }, { ...fetchQueryOptions })
+    console.log(`${response.getThing?.name} was updated`)
   } catch (err) {
     console.error(err)
   }
