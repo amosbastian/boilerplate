@@ -8,7 +8,7 @@ export interface CustomErrorProps {
 }
 
 export function CustomError({ statusCode }: CustomErrorProps) {
-  const { t } = useTranslation("404");
+  const { t } = useTranslation(statusCode.toString());
   const statusColor = useColorModeValue("primary.500", "primary.200");
 
   return (
