@@ -35,7 +35,7 @@ export function FlowNodeText({ node, attributes }: FlowNodeTextProps) {
   const { oryT } = useOryTranslation();
 
   return (
-    <FormControl>
+    <FormControl mx={6}>
       {node.meta?.label?.id ? (
         <FormLabel textTransform="capitalize" data-testid={`node/text/${attributes.id}/label`}>
           {oryT(node.meta.label.id, node.meta.label.context)}

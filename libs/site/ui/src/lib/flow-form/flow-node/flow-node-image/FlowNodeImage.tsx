@@ -9,6 +9,7 @@ export interface FlowNodeImageProps {
 export function FlowNodeImage({ node, attributes }: FlowNodeImageProps) {
   return (
     <Image
+      mx={6}
       data-testid={`node/image/${attributes.id}`}
       w={`${attributes.width}px`}
       h={`${attributes.height}px`}

@@ -11,6 +11,7 @@ async function main() {
   const products = await stripe.products.list();
   const prices = await stripe.prices.list();
 
+  // User used for testing, get the ID and email after logging in with Kratos
   await prisma.user.create({ data: { id: "7d2c291f-9667-45ea-8b05-ab959e4bb568", email: "test123@boilerplate.com" } });
 
   await Promise.all(
