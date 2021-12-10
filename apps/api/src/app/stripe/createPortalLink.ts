@@ -6,7 +6,7 @@ import type { Express } from "express";
 
 export function addCreatePortalLink(app: Express) {
   app.post("/api/stripe/create-portal-link", async (request, response) => {
-    const token = request.cookies["ory_kratos_session"];
+    const token = request.cookies["ory_kratos_session"] ?? request.cookies["ory_session_playground"];
 
     if (!token) {
       return response.status(500).json({ error: { statusCode: 500, message: "Invalid token" } });

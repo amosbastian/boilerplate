@@ -3,7 +3,7 @@ import { logger } from "@boilerplate/shared/utility/logger";
 import { oryApiClient } from "@boilerplate/shared/utility/ory";
 
 export const getUserFromContext = async ({ prisma, req }: Pick<Context, "prisma" | "req">) => {
-  const cookie = req.cookies?.["ory_kratos_session"];
+  const cookie = req.cookies?.["ory_kratos_session"] ?? req.cookies["ory_session_playground"];
 
   if (!cookie) {
     return null;

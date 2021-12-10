@@ -6,7 +6,7 @@ import type { Express } from "express";
 
 export function addCreateUser(app: Express) {
   app.post("/api/create-user", async (request, response) => {
-    const cookie = request.cookies["ory_kratos_session"];
+    const cookie = request.cookies["ory_kratos_session"] ?? request.cookies["ory_session_playground"];
 
     if (!cookie) {
       return response.status(500).json({ error: { statusCode: 500, message: "Invalid token" } });
