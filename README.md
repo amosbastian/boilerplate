@@ -107,7 +107,7 @@ It uses the `seed.ts` file found in the `apps/api/src/prisma` folder and assumes
 
 ### Site
 
-The site & blog apps are built with Next.js and try to use [Next.js' multi zones feature](https://nextjs.org/docs/advanced-features/multi-zones) so you can develop and deploy both apps independently. For this you need to set the following environment variables for the site app (`apps/site/.env`):
+The site & blog apps are built with Next.js and try to use [Next.js' multi zones feature](https://nextjs.org/docs/advanced-features/multi-zones) so you can develop and deploy both apps independently. The following environment variables for the site app (`apps/site/.env`) are needed
 
 ```
 # For when a user wants to update their subscription
@@ -118,6 +118,9 @@ NEXT_PUBLIC_SENTRY_DSN_SITE=""
 
 # We need to redirect /blog to where the blog app is deployed
 NEXT_PUBLIC_BASE_URL_BLOG="http://localhost:4200"
+
+# API
+NEXT_PUBLIC_BASE_URL_API=""
 ```
 
 You can then run the site with
@@ -134,7 +137,13 @@ The code for the blog is based on the ["Building a blog with Next.js and Nx"](ht
 
 Simply put, all blog posts can be found in the `_articles` folder and adding a `.mdx` file there will create a new blog post when building the blog app. This is done using [next-mdx-remote](https://github.com/hashicorp/next-mdx-remote), which loads the blog posts from the `_articles` folder through `getStaticProps` in `[slug].tsx`.
 
-You can run the blog with
+The only environment variable needed (in production) for the blog app is
+
+```
+NEXT_PUBLIC_BASE_URL_SITE=""
+```
+
+You can then run the blog with
 
 ```
 nx serve blog
