@@ -52,10 +52,7 @@ const main = async () => {
 
   const port = process.env.PORT || 3333;
 
-  const url =
-    process.env.NODE_ENV || "development" === "development"
-      ? `http://localhost:${port}/graphql`
-      : `https://${configuration.BASE_URL_API}/graphql`;
+  const url = `https://${configuration.BASE_URL_API}/graphql`;
 
   const server = app.listen(port, () => {
     logger.info(`Listening at ${url}`);
