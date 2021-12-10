@@ -21,6 +21,7 @@ const SentryWebpackPluginOptions = {
 module.exports = withPlugins(
   [withNx, nextTranslate, (nextConfig) => withSentryConfig(nextConfig, SentryWebpackPluginOptions)],
   {
+    outputFileTracing: false,
     nx: { svgr: true },
     images: {
       domains: ["placekitten.com"],

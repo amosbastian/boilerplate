@@ -8,4 +8,5 @@ process.env.NEXT_TRANSLATE_PATH = "apps/blog";
 module.exports = withPlugins([withNx, nextTranslate], {
   nx: { svgr: true },
   basePath: "/blog",
+  outputFileTracing: false,
 });
