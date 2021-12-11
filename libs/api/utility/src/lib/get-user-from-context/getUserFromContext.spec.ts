@@ -9,7 +9,7 @@ jest.mock("@boilerplate/shared/utility/ory");
 const ctx = createTestContext();
 
 describe("getUserFromContext", () => {
-  it("should return null if no ory_kratos_session cookie", async () => {
+  it("should return null if no ory kratos cookie", async () => {
     const mockRequest = {
       headers: {},
     } as Request;
@@ -19,17 +19,7 @@ describe("getUserFromContext", () => {
     expect(user).toBeNull();
   });
 
-  it("should return null if ory_kratos_session cookie is null", async () => {
-    const mockRequest = {
-      cookies: { ory_kratos_session: "null" },
-    } as Request;
-
-    const user = await getUserFromContext({ prisma: ctx.prisma, req: mockRequest });
-
-    expect(user).toBeNull();
-  });
-
-  it("should return a user if ory_kratos_session cookie set correctly", async () => {
+  it("should return a user if ory kratos cookie set correctly", async () => {
     const createdUser = await createUser(ctx.prisma);
 
     const mockRequest = {
