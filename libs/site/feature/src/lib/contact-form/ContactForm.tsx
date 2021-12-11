@@ -81,7 +81,7 @@ export function ContactForm(props: ContactFormProps) {
       <FormControl gridColumn="1 / -1" mt={2} isRequired>
         <Checkbox colorScheme="primary" {...register("agreed", { required: true })}>
           <Trans
-            i18nKey="privacy-policy-agreement"
+            i18nKey="contact:privacy-policy-agreement"
             components={{
               link: <Link href="/privacy" />,
             }}

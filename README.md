@@ -391,7 +391,6 @@ and add more features. Some things that are on my mind:
 - [ ] Add more guides for deploying
 - [ ] Add Github Action for CD
 - [ ] Fix internationalisation for Ory Kratos
-- [ ] Complete i18n for Dutch
 - [ ] Set up SMTP, mailing list etc.
 
 ## Contributing

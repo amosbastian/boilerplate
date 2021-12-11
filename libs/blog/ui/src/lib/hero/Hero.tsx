@@ -21,7 +21,7 @@ export function Hero(props: HeroProps) {
       <Heading as="h1" fontSize={{ base: "4xl", md: "7xl" }} mb={6} maxW="2xl">
         {t("hero-heading")}
       </Heading>
-      <Heading variant="secondary" as="h2" fontSize={{ base: "md", md: "2xl" }} mb={8}>
+      <Heading variant="secondary" textAlign="center" maxW="60ch" as="h2" fontSize={{ base: "md", md: "2xl" }} mb={8}>
         {t("hero-subtitle")}
       </Heading>
       <NewsletterSubscriptionInput w={{ base: "100%", md: "40%" }} size="md" />
