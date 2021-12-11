@@ -1,5 +1,5 @@
 import type { BoxProps } from "@chakra-ui/react";
-import { Box, Button, FormControl, Input, InputGroup, InputRightElement, useColorModeValue } from "@chakra-ui/react";
+import { Box, Button, FormControl, Input, InputGroup, InputRightAddon, useColorModeValue } from "@chakra-ui/react";
 import useTranslation from "next-translate/useTranslation";
 import { useForm } from "react-hook-form";
 
@@ -40,11 +40,16 @@ export function NewsletterSubscriptionInput({ size = "sm", ...rest }: Newsletter
             type="email"
             {...register("email", { required: true })}
           />
-          <InputRightElement bg="transparent" px={1} zIndex={0} w="max-content">
-            <Button flexShrink={0} colorScheme="primary" size={size} isLoading={isSubmitting} type="submit">
-              {t("newsletter-cta")}
-            </Button>
-          </InputRightElement>
+          <Button
+            flexShrink={0}
+            colorScheme="primary"
+            size={size === "sm" ? "md" : "lg"}
+            isLoading={isSubmitting}
+            type="submit"
+            ml={size === "sm" ? 2 : 4}
+          >
+            {t("newsletter-cta")}
+          </Button>
         </InputGroup>
       </FormControl>
     </Box>

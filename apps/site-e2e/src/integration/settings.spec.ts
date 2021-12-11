@@ -49,21 +49,21 @@ describe("settings", () => {
 
     it("should be possible to change theme", () => {
       cy.findByTestId("account-settings-form").within(() => {
-        cy.findByLabelText("Theme").select("dark");
-        cy.findByLabelText("Theme").should("have.value", "dark");
+        cy.get('select[name="theme"]').select("dark");
+        cy.get('select[name="theme"]').should("have.value", "dark");
 
-        cy.findByLabelText("Theme").select("light");
-        cy.findByLabelText("Theme").should("have.value", "light");
+        cy.get('select[name="theme"]').select("light");
+        cy.get('select[name="theme"]').should("have.value", "light");
       });
     });
 
     it("should be possible to change language", () => {
       cy.findByTestId("account-settings-form").within(() => {
-        cy.findByLabelText("Language").select("nl");
-        cy.findByLabelText("Language").should("have.value", "nl");
+        cy.get('select[name="language"]').select("nl");
+        cy.get('select[name="language"]').should("have.value", "nl");
 
-        cy.findByLabelText("Language").select("en");
-        cy.findByLabelText("Language").should("have.value", "en");
+        cy.get('select[name="language"]').select("en");
+        cy.get('select[name="language"]').should("have.value", "en");
       });
     });
 
@@ -186,7 +186,7 @@ describe("settings", () => {
 
       it("should be possible to update a user's email", () => {
         cy.findByTestId("ory-profile-settings").within(() => {
-          cy.get('[name="traits.email"]').clear().type("test123@boilerplate.com").type("{enter}");
+          cy.get('[name="traits.email"]').clear().type("testuser@boilerplate.com").type("{enter}");
 
           cy.findAllByTestId("ory-1050001").should("have.length", 1);
         });

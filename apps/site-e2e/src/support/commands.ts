@@ -1,7 +1,7 @@
 import "@testing-library/cypress/add-commands";
 import * as dayjs from "dayjs";
 
-const KRATOS_PUBLIC = (Cypress.env("ory_kratos_url") || "http://localhost:3000/api/.ory").replace().replace(/\/$/, "");
+const KRATOS_PUBLIC = (Cypress.env("ory_sdk_url") || "http://localhost:3000/api/.ory").replace().replace(/\/$/, "");
 
 const mergeFields = (
   form: { nodes: { attributes: { name: string; value: any }; type: string }[] },
@@ -67,7 +67,7 @@ Cypress.Commands.add("noSession", () =>
 Cypress.Commands.add(
   "login",
   ({
-    email = "test123@boilerplate.com",
+    email = "testuser@boilerplate.com",
     password = "RdrK5QZ9xLGsAHg",
     expectSession = true,
   }: {
@@ -138,7 +138,7 @@ Cypress.Commands.add(
 Cypress.Commands.add(
   "loginApi",
   ({
-    email = "test123@boilerplate.com",
+    email = "testuser@boilerplate.com",
     password = "RdrK5QZ9xLGsAHg",
   }: {
     email?: string;
