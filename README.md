@@ -47,6 +47,7 @@ Stop wasting time setting up the same things over and over and start building!
     - [Vercel](#vercel)
     - [Other](#other-1)
 - [Miscellaneous](#miscellaneous)
+  - [Chakra UI](#chakra-ui)
   - [Storybook](#storybook)
   - [Codegen](#codegen)
   - [Internationalisation](#internationalisation)
@@ -346,6 +347,10 @@ For deploying to Vercel you can use Nx's [guide](https://nx.dev/l/r/guides/deplo
 I'm currently looking into a way to deploy the blog [with Cloudflare](https://developers.cloudflare.com/pages/framework-guides/deploy-a-nextjs-site) and the site on [AWS Lambda@Edge via Serverless Components](https://github.com/serverless-nextjs/serverless-next.js) and will update the section once I have done so.
 
 ## Miscellaneous
+
+### Chakra UI
+
+Chakra UI is great and allows you to update your theme very easily. If you want to change the primary colour of the site and blog apps, then simply header over to `libs/shared/theme` and update the primary colour in `colors.ts`. If you want to further customise the theme, I recommend reading their [guide](https://chakra-ui.com/docs/theming/customize-theme).
 
 ### Storybook
 
