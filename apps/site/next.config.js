@@ -35,13 +35,17 @@ module.exports = withPlugins(
         {
           source: "/blog",
           destination: `${
-            process.env.NODE_ENV === "production" ? process.env.NEXT_PUBLIC_BASE_URL_BLOG : "http://localhost:4200"
+            process.env.NODE_ENV === "production"
+              ? process.env.NEXT_PUBLIC_BASE_URL_BLOG ?? "http://localhost:4200"
+              : "http://localhost:4200"
           }/blog`,
         },
         {
           source: "/blog/:path*",
           destination: `${
-            process.env.NODE_ENV === "production" ? process.env.NEXT_PUBLIC_BASE_URL_BLOG : "http://localhost:4200"
+            process.env.NODE_ENV === "production"
+              ? process.env.NEXT_PUBLIC_BASE_URL_BLOG ?? "http://localhost:4200"
+              : "http://localhost:4200"
           }/blog/:path*`,
         },
       ];
