@@ -7,7 +7,6 @@ interface FormData {
   email: string;
 }
 
-/* eslint-disable-next-line */
 export interface NewsletterSubscriptionInputProps extends BoxProps {
   size?: "sm" | "md";
 }

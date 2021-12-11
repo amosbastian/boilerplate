@@ -13,7 +13,7 @@ export function Layout({ children }: LayoutProps) {
   return (
     <Box backgroundColor={backgroundColor}>
       <Header />
-      <Box as="main" minHeight="calc(100% - var(--chakra-sizes-16))">
+      <Box as="main" minHeight="calc(100vh - var(--chakra-sizes-16))">
         {children}
       </Box>
       <Footer />

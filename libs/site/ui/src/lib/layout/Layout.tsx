@@ -18,7 +18,7 @@ export function Layout({ children }: LayoutProps) {
       gridTemplateRows="max-content 1fr max-content"
     >
       <Header />
-      <Box as="main" minHeight="100%">
+      <Box as="main" minHeight="calc(100vh - var(--chakra-sizes-16))">
         {children}
       </Box>
       <Footer />

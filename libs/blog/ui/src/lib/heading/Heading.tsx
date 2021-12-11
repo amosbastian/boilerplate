@@ -12,12 +12,12 @@ export interface HeadingProps {
 
 export function Heading({ frontMatter }: HeadingProps) {
   return (
-    <Box>
+    <Box mb={8}>
       <ChakraHeading as="h1" size="2xl" mb={4}>
         {frontMatter.title}
       </ChakraHeading>
-      <Flex flexDirection={{ base: "column", md: "row" }} justifyContent="space-between" alignItems="center">
-        <Flex mb={{ base: 2, md: 0 }} alignItems="center">
+      <Flex flexDirection="row" justifyContent="space-between" alignItems="center">
+        <Flex alignItems="center">
           <Image h={6} w={6} src={`/blog${frontMatter.author.image}`} alt="" borderRadius="50%" mr={2} />
           <Text lineHeight={1} isTruncated>
             {frontMatter.author.name} /{" "}
