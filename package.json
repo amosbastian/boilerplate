@@ -68,6 +68,7 @@
     "next-remote-watch": "^1.0.0",
     "next-seo": "^4.28.1",
     "next-translate": "1.2.0",
+    "nextjs-progressbar": "^0.0.13",
     "nodemailer": "^6.7.2",
     "nookies": "^2.5.2",
     "react": "17.0.2",

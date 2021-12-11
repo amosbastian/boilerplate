@@ -4,6 +4,7 @@ import { Chakra, Head } from "@boilerplate/shared/ui";
 import { ChakraProvider } from "@chakra-ui/react";
 import "focus-visible/dist/focus-visible";
 import { AppProps } from "next/app";
+import NextNprogress from "nextjs-progressbar";
 import React from "react";
 
 type CustomAppProps = AppProps & {
@@ -17,6 +18,14 @@ function CustomApp({ Component, pageProps }: CustomAppProps) {
     <Chakra cookies={pageProps.cookies}>
       <ChakraProvider theme={theme} resetCSS>
         <Head />
+        <NextNprogress
+          color={theme.colors.primary[500]}
+          startPosition={0.3}
+          stopDelayMs={200}
+          height={2}
+          showOnShallow={true}
+          options={{ showSpinner: false }}
+        />
         {getLayout(<Component {...pageProps} />)}
       </ChakraProvider>
     </Chakra>
