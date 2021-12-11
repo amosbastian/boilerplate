@@ -37,7 +37,7 @@ export const getStaticProps = async ({ params }: GetStaticPropsContext) => {
 
 export function Page({ frontMatter, html }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
-    <Container maxW="container.md" py={10}>
+    <Container maxW="container.md" py={{ base: 8, md: 16 }}>
       <ArticleJsonLd
         url={`${configuration.BASE_URL_SITE}/blog/${frontMatter.slug}`}
         title={frontMatter.title}
