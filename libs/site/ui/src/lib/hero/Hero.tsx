@@ -22,7 +22,7 @@ export function Hero({ title, subtitle, cta, image }: HeroProps) {
       variant="transparent"
       py={{ base: 20, lg: 44 }}
     >
-      <Flex direction="column" justifyContent="center" alignItems={{ base: "center", lg: "flex-start" }} w="100%">
+      <Flex direction="column" alignItems={{ base: "center", lg: "flex-start" }} w="100%">
         <Heading as="h1" fontSize={{ base: "4xl", md: "7xl" }} mb={6} maxW="2xl">
           {title}
         </Heading>

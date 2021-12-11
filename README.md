@@ -28,6 +28,8 @@ Stop wasting time setting up the same things over and over and start building!
 
 ## Table of contents
 
+- [Features](#features)
+- [Demo](#demo)
 - [Structure](#structure)
 - [Running it locally](#running-it-locally)
   - [API](#api)
@@ -38,14 +40,26 @@ Stop wasting time setting up the same things over and over and start building!
 - [Testing](#testing)
 - [Deployment](#deployment)
   - [API](#api-1)
+    - [Heroku](#heroku)
+    - [Other](#other)
   - [Kratos](#kratos-1)
   - [Site & Blog](#site---blog)
+    - [Vercel](#vercel)
+    - [Other](#other-1)
 - [Miscellaneous](#miscellaneous)
+  - [Chakra UI](#chakra-ui)
   - [Storybook](#storybook)
   - [Codegen](#codegen)
   - [Internationalisation](#internationalisation)
 - [Roadmap](#roadmap)
 - [Contributing](#contributing)
+- [Inspiration](#inspiration)
+
+## Demo
+
+- https://boilerplate-site.vercel.app/
+
+Unfortunately the redirects to the blog app aren't working correctly when deployed (not sure why). Also, since I am hosting the API on a free Heroku dyno I can't put the site app and API on the same domain, which means Ory cookies aren't being received, so authenticatted endpoints don't work (I think).
 
 ## Structure
 
@@ -79,12 +93,12 @@ SENTRY_AUTH_TOKEN=""
 SENTRY_ORG=""
 SENTRY_PROJECT=""
 
-ORY_KRATOS_URL="http://127.0.0.1:4433"
+# You can also use Ory Cloud URL here
+ORY_SDK_URL="http://127.0.0.1:4433"
 
 ```
 
-Of course you will need to replace this with the URL of a MySQL database you have running locally. If you want,
-I have also set it up so you can use it with a PlanetScale database, as described [here](https://docs.planetscale.com/tutorials/automatic-prisma-migrations), so you can do that instead.
+Of course you will need to replace this with your own tokens, so e.g. the URL of a MySQL database you have running locally. If you want, I have also set it up so you can use it with a PlanetScale database, as described [here](https://docs.planetscale.com/tutorials/automatic-prisma-migrations), so you can do that instead.
 
 Once set up, you will need to run the migrations and start the server
 
@@ -114,13 +128,20 @@ The site & blog apps are built with Next.js and try to use [Next.js' multi zones
 NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=""
 
 # https://docs.sentry.io/platforms/javascript/guides/nextjs/
-NEXT_PUBLIC_SENTRY_DSN_SITE=""
+SENTRY_DSN=""
+# These are already defined in the .env file in your root folder, but will be needed when deploying to Vercel for example
+SENTRY_AUTH_TOKEN=""
+SENTRY_ORG=""
+SENTRY_PROJECT=""
 
 # We need to redirect /blog to where the blog app is deployed
 NEXT_PUBLIC_BASE_URL_BLOG="http://localhost:4200"
 
 # API
 NEXT_PUBLIC_BASE_URL_API=""
+
+# Used in /api/.ory/[...paths], can also use Ory Cloud URL here
+ORY_SDK_URL="http://127.0.0.1:4433"
 ```
 
 You can then run the site with
@@ -151,7 +172,7 @@ nx serve blog
 
 ### Kratos
 
-For authentication Ory Kratos is used since it handles all kinds of stuff for us, such as login, registration, verification and account recovery (and you can host it yourself)! To set it up you can either use [Ory Cloud](https://www.ory.sh/pricing) or run Ory Kratos locally by cloning their repository and using `docker-compose`
+For authentication Ory Kratos is used, which handles login, registration, verification, account recovery etc. (and you can host it yourself)! To set it up you can either use [Ory Cloud](https://www.ory.sh/pricing) or run Ory Kratos locally by cloning their repository and using `docker-compose`
 
 ```
 git clone https://github.com/ory/kratos.git
@@ -294,7 +315,22 @@ You can build a Docker image with the command
 docker build -f ./apps/api/Dockerfile . -t api
 ```
 
-and [deploy it to e.g. Heroku](https://devcenter.heroku.com/categories/deploying-with-docker) which is really simple. I've not deployed the API anywhere else (e.g. AWS, DigitalOcean), but once I have decided what I want to use and figured out how to deploy it, I will update this section. As for the database: I am using PlanetScale.
+#### Heroku
+
+Deploying to Heroku is very simple, as seen [here](https://devcenter.heroku.com/articles/container-registry-and-runtime).
+
+```
+# Where <app> is your Heroku app
+docker tag api registry.heroku.com/<app>/web
+docker push registry.heroku.com/<app>/web
+
+# Create a new release
+heroku container:release web --app <app>
+```
+
+#### Other
+
+I've not deployed the API anywhere else (e.g. AWS, DigitalOcean), but if I do I will update this section. As for the database: I am using PlanetScale.
 
 ### Kratos
 
@@ -302,11 +338,19 @@ I've not deployed Ory Kratos yet myself, so I'm not sure exactly how to do it. T
 
 ### Site & Blog
 
-I've tried to find the best way to deploy multiple apps from a Nx monorepo to no avail, so unfortunately I can't help here (yet). The aforementioned "Building a blog with Next.js and Nx" series has [a post](https://blog.nrwl.io/publishing-a-next-js-app-to-vercel-with-nx-df81916548f5) about deploying, but it unfortunately does not account for multiple apps, and the same is the case for [the official guide](https://nx.dev/l/r/guides/deploy-nextjs-to-vercel).
+#### Vercel
 
-I'll update this section once I have found a way to do it properly. I'm currently looking into a way to deploy the blog to [with Cloudflare](https://developers.cloudflare.com/pages/framework-guides/deploy-a-nextjs-site) and the site on [AWS Lambda@Edge via Serverless Components](https://github.com/serverless-nextjs/serverless-next.js).
+For deploying to Vercel you can use Nx's [guide](https://nx.dev/l/r/guides/deploy-nextjs-to-vercel), which shows how straightforward it is. A script for ignoring the build step is found in `/tools/ignore-vercel-build-<app>`.
+
+#### Other
+
+I'm currently looking into a way to deploy the blog [with Cloudflare](https://developers.cloudflare.com/pages/framework-guides/deploy-a-nextjs-site) and the site on [AWS Lambda@Edge via Serverless Components](https://github.com/serverless-nextjs/serverless-next.js) and will update the section once I have done so.
 
 ## Miscellaneous
+
+### Chakra UI
+
+Chakra UI is great and allows you to update your theme very easily. If you want to change the primary colour of the site and blog apps, then simply header over to `libs/shared/theme` and update the primary colour in `colors.ts`. If you want to further customise the theme, I recommend reading their [guide](https://chakra-ui.com/docs/theming/customize-theme).
 
 ### Storybook
 
@@ -349,12 +393,20 @@ and add more features. Some things that are on my mind:
 
 - [ ] Add E2E tests for CI
 - [ ] Fix `basePath`, `i18n` and other problems with Next.js multi zones feature (site, blog)
-- [ ] Add guides for deploying
+- [ ] Add more guides for deploying
 - [ ] Add Github Action for CD
 - [ ] Fix internationalisation for Ory Kratos
-- [ ] Complete i18n for Dutch
 - [ ] Set up SMTP, mailing list etc.
 
 ## Contributing
 
 I would like to make this boilerplate the best it can be, so if you have any suggestions, problems running apps, issues etc. then please don't hesitate to create an issue or even a pull request!
+
+## Inspiration
+
+I am terrible at design so I've taken a lot of inspiration from these places:
+
+- https://linear.app/
+- https://tailwindui.com/
+- https://pro.chakra-ui.com/
+- https://saaslandingpage.com/

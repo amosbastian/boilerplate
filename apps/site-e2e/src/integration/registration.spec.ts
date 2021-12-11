@@ -14,7 +14,7 @@ describe("registration", () => {
   });
 
   it("requires an email that isn't already in use", () => {
-    cy.get('[name="traits.email"]').type("test123@boilerplate.com");
+    cy.get('[name="traits.email"]').type("testuser@boilerplate.com");
     cy.get('[name="password"]').type(faker.internet.password()).type("{enter}");
 
     cy.findByTestId("ory-4000007").should("be.visible");

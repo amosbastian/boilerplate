@@ -1,14 +1,14 @@
 {
-  "cta-button-text": "cta-button-text",
-  "cta-heading": "cta-heading",
-  "cta-subtitle": "cta-subtitle",
-  "first-name": "First name",
-  "heading": "heading",
-  "last-name": "Last name",
-  "message": "Message",
-  "meta-description": "meta-description",
-  "meta-title": "Contact us",
-  "privacy-policy-agreement": "I agree to the <link>privacy policy</link>.",
-  "subject": "Subject",
-  "subtitle": "subtitle"
+  "cta-button-text": "Log gratis in",
+  "cta-heading": "Begin nu",
+  "cta-subtitle": "Consectetur qui laborum ex anim qui fugiat nisi aliquip laboris aute occaecat.",
+  "first-name": "Voornaam",
+  "heading": "Neem contact met ons op",
+  "last-name": "Achternaam",
+  "message": "Bericht",
+  "meta-description": "Velit cillum non mollit proident et fugiat mollit non sit.",
+  "meta-title": "Neem contact met ons op",
+  "privacy-policy-agreement": "Ik ga akkoord met de <link>algemene voorwaarden</link>.",
+  "subject": "Onderwerp",
+  "subtitle": "Velit cillum non mollit proident et fugiat mollit non sit."
 }

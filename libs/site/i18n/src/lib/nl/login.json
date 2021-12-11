@@ -1,17 +1,6 @@
 {
-  "callback-error": "Try signing with a different account.",
-  "create-account": "",
-  "default-error": "",
-  "emailcreateaccount-error": "Try signing with a different account.",
-  "emailsignin-error": "Please check your email address.",
-  "heading": "Sign in to Boilerplate",
+  "create-account": "Heb je nog geen account? <link>Maak er gratis een aan!</link>",
+  "heading": "Inloggen",
   "meta-description": "meta-description",
-  "meta-title": "Sign in",
-  "oauthaccountnotlinked-error": "To confirm your identity, sign in with the same account you used originally.",
-  "oauthcallback-error": "Try signing with a different account.",
-  "oauthcreateaccount-error": "Try signing with a different account.",
-  "oauthsignin-error": "Try signing with a different account.",
-  "or": "Or",
-  "sign-in-with": "Sign in with {{provider}}",
-  "signin-error": "Try signing with a different account."
+  "meta-title": "Inloggen"
 }

@@ -1,5 +1,5 @@
 {
-  "account-settings-subtitle": "account-settings-subtitle",
+  "account-settings-subtitle": "Account settings subtitle",
   "account-settings-title": "Account",
   "billing": "Plan & Billing",
   "general": "General",
@@ -20,7 +20,7 @@
   "page-heading": "Settings",
   "plan-settings-subtitle": "You are currently on the {{subscriptionName}} plan",
   "plan-settings-title": "Plan",
-  "profile-settings-subtitle": "profile-settings-subtitle",
+  "profile-settings-subtitle": "Profile settings subtitle",
   "profile-settings-title": "Profile",
   "security": "Security",
   "selected-page-aria-label": "Selected page: {{pageName}}",
