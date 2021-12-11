@@ -34,8 +34,10 @@ const main = async () => {
     }
   });
 
+  const corsOptions = { credentials: true, origin: true };
+
   addStripeWebhook(app);
-  app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
+  app.use(cors(corsOptions));
   addCreateUser(app);
   addCreateCheckoutSession(app);
   addCreatePortalLink(app);
@@ -44,10 +46,7 @@ const main = async () => {
 
   apolloServer.applyMiddleware({
     app,
-    cors: {
-      credentials: true,
-      origin: "http://localhost:3000",
-    },
+    cors: corsOptions,
   });
 
   const port = process.env.PORT || 3333;
