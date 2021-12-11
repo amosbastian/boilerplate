@@ -2,6 +2,9 @@ import { createApolloServer } from "@boilerplate/api/apollo";
 import { prisma } from "@boilerplate/api/utility";
 import { createTestClient } from "apollo-server-integration-testing";
 
+// We want to mock it because of getUserFromContext
+jest.mock("@boilerplate/shared/utility/ory");
+
 export function graphqlTestContext() {
   // let apolloServer: ApolloServer | null = null;
   let apolloServer: any = null;
