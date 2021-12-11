@@ -28,9 +28,9 @@
     "prepare": "husky install",
     "codegen": "graphql-codegen --config codegen.yml",
     "i18n": "npm run i18n:site & npm run i18n:blog & npm run i18n:shared",
-    "i18n:site": "npx i18next-locales-sync -c ./locales-sync/localesSync.site.config.js",
-    "i18n:blog": "npx i18next-locales-sync -c ./locales-sync/localesSync.blog.config.js",
-    "i18n:shared": "npx i18next-locales-sync -c ./locales-sync/localesSync.shared.config.js"
+    "i18n:site": "npx i18next-locales-sync -c ./tools/locales-sync/localesSync.site.config.js",
+    "i18n:blog": "npx i18next-locales-sync -c ./tools/locales-sync/localesSync.blog.config.js",
+    "i18n:shared": "npx i18next-locales-sync -c ./tools/locales-sync/localesSync.shared.config.js"
   },
   "private": true,
   "dependencies": {
