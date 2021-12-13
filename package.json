@@ -161,6 +161,7 @@
   },
   "lint-staged": {
     "*.{js,ts,jsx,tsx}": "eslint --cache --fix",
+    "**/*.{md,mdx}": "ts-node ./tools/update-front-matter/updateFrontMatter.ts",
     "*": "prettier --write --ignore-unknown"
   },
   "config": {
