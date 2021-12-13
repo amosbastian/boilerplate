@@ -35,7 +35,7 @@ export default function Index({ articles }: InferGetStaticPropsType<typeof getSt
 
   return (
     <>
-      <NextSeo title={t("meta-title")} description={t("meta-title")} />
+      <NextSeo title={t("meta-title")} description={t("meta-description")} />
       <Hero />
       <Container
         display="grid"

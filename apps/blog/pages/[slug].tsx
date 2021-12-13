@@ -40,10 +40,10 @@ export function Page({ frontMatter, html }: InferGetStaticPropsType<typeof getSt
     <Container maxW="container.md" py={{ base: 8, md: 16 }}>
       <ArticleJsonLd
         url={`${configuration.BASE_URL_SITE}/blog/${frontMatter.slug}`}
-        title={frontMatter.title}
+        title={frontMatter.seoTitle ?? frontMatter.title}
         images={[`${configuration.BASE_URL_SITE}/blog/${frontMatter.slug}.png`]}
-        datePublished={frontMatter.datePublished}
-        dateModified={frontMatter.dateModified}
+        datePublished={frontMatter.datePublished ? frontMatter.datePublished : undefined}
+        dateModified={frontMatter.dateModified ? frontMatter.dateModified : undefined}
         authorName={[frontMatter.author.name]}
         publisherName={configuration.BRAND_NAME}
         publisherLogo={`${configuration.BASE_URL_SITE}/logo.png`}
