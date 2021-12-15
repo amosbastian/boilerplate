@@ -9,7 +9,7 @@ import { MDXRemote } from "next-mdx-remote";
 import { ArticleJsonLd, NextSeo } from "next-seo";
 import { join } from "path";
 
-const POSTS_PATH = join(process.cwd(), process.env.ARTICLES_MARKDOWN_PATH ?? "_articles");
+const POSTS_PATH = join(process.cwd(), process.env.ARTICLES_MARKDOWN_PATH ?? "articles");
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const paths = fs

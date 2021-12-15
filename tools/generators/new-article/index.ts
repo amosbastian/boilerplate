@@ -9,7 +9,7 @@ interface NewArticleSchemaOptions {
 }
 
 export default async function (host: Tree, schema: NewArticleSchemaOptions) {
-  generateFiles(host, joinPathFragments(__dirname, "./files"), "./_articles", {
+  generateFiles(host, joinPathFragments(__dirname, "./files"), "./articles", {
     authorImage: schema.authorImage,
     authorName: schema.authorName,
     category: schema.category,
