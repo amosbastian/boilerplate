@@ -1,31 +1,16 @@
 import { Hero } from "@boilerplate/blog/ui";
-import { getParsedFileContentBySlug } from "@boilerplate/markdown";
+import { getPublishedArticles } from "@boilerplate/markdown";
 import { ArticleCard, Container, getLayout } from "@boilerplate/shared/ui";
-import fs from "fs";
 import type { InferGetStaticPropsType } from "next";
 import { NextSeo } from "next-seo";
 import useTranslation from "next-translate/useTranslation";
-import { join } from "path";
-
-const POSTS_PATH = join(process.cwd(), process.env.ARTICLES_MARKDOWN_PATH ?? "articles");
 
 export const getStaticProps = async () => {
-  const slugs = fs
-    .readdirSync(POSTS_PATH)
-    .map((path) => path.replace(/\.mdx?$/, ""))
-    .map((slug) => slug);
-
-  const articles = [];
-
-  for (const slug of slugs) {
-    const articleMarkdownContent = getParsedFileContentBySlug(slug as string, POSTS_PATH);
-
-    articles.push(articleMarkdownContent);
-  }
+  const publishedArticles = getPublishedArticles();
 
   return {
     props: {
-      articles,
+      articles: publishedArticles,
     },
   };
 };
