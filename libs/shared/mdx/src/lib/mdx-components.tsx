@@ -1,6 +1,7 @@
 import { Image, Link, LinkProps } from "@boilerplate/shared/ui";
-import { Heading, HeadingProps, Text, TextProps, useColorModeValue } from "@chakra-ui/react";
+import { Heading, HeadingProps, UnorderedList, ListItem, Text, TextProps, useColorModeValue } from "@chakra-ui/react";
 import { YouTube } from "./you-tube/YouTube";
+import type { ListProps, ListItemProps } from "@chakra-ui/react";
 
 const CustomLink = ({ children, href, ...rest }: LinkProps) => {
   const isInternalLink = href && (href.startsWith("/") || href.startsWith("#"));
@@ -18,7 +19,7 @@ const CustomP = ({ children, ...rest }: TextProps) => {
   const colour = useColorModeValue("gray.700", "gray.400");
 
   return (
-    <Text as="p" color={colour} fontSize="lg" my="2.25em" lineHeight="calc(1em + 0.625rem)" {...rest}>
+    <Text as="p" color={colour} fontSize="lg" my="1.75em" lineHeight="calc(1em + 0.625rem)" {...rest}>
       {children}
     </Text>
   );
@@ -31,6 +32,17 @@ const CustomStrong = ({ children }: TextProps) => {
     <CustomP as="strong" fontWeight="semibold" color={colour}>
       {children}
     </CustomP>
+  );
+};
+
+const CustomList = ({ children }: ListProps) => <UnorderedList spacing={3}>{children}</UnorderedList>;
+
+const CustomListItem = ({ children }: ListItemProps) => {
+  const colour = useColorModeValue("gray.700", "gray.400");
+  return (
+    <ListItem color={colour} fontSize="md">
+      {children}
+    </ListItem>
   );
 };
 
@@ -53,6 +65,8 @@ export const mdxComponents = {
   ),
   p: CustomP,
   strong: CustomStrong,
+  ul: CustomList,
+  li: CustomListItem,
   Image,
   YouTube,
 };
