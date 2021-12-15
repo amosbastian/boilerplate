@@ -23,12 +23,13 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps = async ({ params }: GetStaticPropsContext) => {
-  const articleMarkdownContent = getParsedFileContentBySlug(params.slug as string, ARTICLES_PATH);
+  const slug = params.slug as string;
+  const articleMarkdownContent = getParsedFileContentBySlug(slug, ARTICLES_PATH);
   const renderedHTML = await renderMarkdown(articleMarkdownContent.content);
 
   return {
     props: {
-      frontMatter: articleMarkdownContent.frontMatter,
+      frontMatter: { ...articleMarkdownContent.frontMatter, slug },
       html: renderedHTML,
     },
   };

@@ -10,7 +10,6 @@ export type FrontMatter = {
   dateModified?: string;
   description: string;
   readingTime: IReadTimeResults;
-  slug: string;
   seoTitle?: string;
   title: string;
 };
