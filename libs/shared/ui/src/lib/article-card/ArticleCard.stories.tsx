@@ -15,7 +15,7 @@ Primary.args = {
     title: "Article title",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam hendrerit pellentesque ex a malesuada. Nunc vitae mollis ante, convallis hendrerit ante. Aliquam nec metus turpis. Cras vestibulum risus at ante.",
-    date: "1994-01-01",
+    datePublished: "1994-01-01",
     author: {
       name: "Amos Bastian",
       image: "/blog/author.jpeg",
@@ -28,4 +28,5 @@ Primary.args = {
       minutes: 0,
     },
   },
+  slug: "slug",
 };

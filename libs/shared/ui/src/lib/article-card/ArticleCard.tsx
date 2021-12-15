@@ -1,4 +1,5 @@
 import type { FrontMatter } from "@boilerplate/markdown";
+import { configuration } from "@boilerplate/shared/configuration";
 import type { LinkBoxProps } from "@chakra-ui/react";
 import { Badge, Box, Flex, Heading, HStack, LinkBox, LinkOverlay, Text } from "@chakra-ui/react";
 import dayjs from "dayjs";
@@ -11,15 +12,16 @@ dayjs.extend(relativeTime);
 
 export interface ArticleCardProps extends LinkBoxProps {
   frontMatter: FrontMatter;
+  slug: string;
 }
 
-export function ArticleCard({ frontMatter, ...rest }: ArticleCardProps) {
+export function ArticleCard({ frontMatter, slug, ...rest }: ArticleCardProps) {
   const { t } = useTranslation("common");
 
   return (
     <LinkBox as="article" {...rest}>
       <Badge mb={4}>{t(frontMatter.category.toLowerCase().replace(" ", "-"))}</Badge>
-      <NextLink href={`/${frontMatter.slug}`} passHref>
+      <NextLink href={`${configuration.BASE_URL_BLOG}/${slug}`} passHref>
         <LinkOverlay>
           <Heading as="h2" size="md" mb={4}>
             {frontMatter.title}

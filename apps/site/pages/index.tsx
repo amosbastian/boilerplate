@@ -129,8 +129,8 @@ export default function Index({ articles }: InferGetStaticPropsType<typeof getSt
           gridRowGap={{ base: 16, xl: 32 }}
           pb={20}
         >
-          {(articles ?? []).map(({ frontMatter }) => (
-            <ArticleCard key={frontMatter.title} frontMatter={frontMatter} />
+          {(articles ?? []).map(({ frontMatter, slug }) => (
+            <ArticleCard key={frontMatter.title} frontMatter={frontMatter} slug={slug} />
           ))}
         </Grid>
       </Section>
