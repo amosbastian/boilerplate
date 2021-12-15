@@ -17,6 +17,7 @@ export default async function (host: Tree, schema: NewArticleSchemaOptions) {
     description: schema.description || "",
     normalizedTitle: names(schema.title).fileName,
     title: schema.title,
+    seoTitle: schema.title,
   });
 
   await formatFiles(host);

@@ -1,21 +1,20 @@
 import { Heading } from "@boilerplate/blog/ui";
-import { getParsedFileContentBySlug, renderMarkdown } from "@boilerplate/markdown";
+import { getParsedFileContentBySlug, getPublishedArticles, renderMarkdown } from "@boilerplate/markdown";
 import { configuration } from "@boilerplate/shared/configuration";
 import { mdxComponents } from "@boilerplate/shared/mdx";
 import { Container, getLayout } from "@boilerplate/shared/ui";
-import fs from "fs";
 import type { GetStaticPaths, GetStaticPropsContext, InferGetStaticPropsType } from "next";
 import { MDXRemote } from "next-mdx-remote";
 import { ArticleJsonLd, NextSeo } from "next-seo";
 import { join } from "path";
+import * as React from "react";
 
-const POSTS_PATH = join(process.cwd(), process.env.ARTICLES_MARKDOWN_PATH ?? "articles");
+const ARTICLES_PATH = join(process.cwd(), process.env.ARTICLES_MARKDOWN_PATH ?? "articles");
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = fs
-    .readdirSync(POSTS_PATH)
-    .map((path) => path.replace(/\.mdx?$/, ""))
-    .map((slug) => ({ params: { slug } }));
+  const publishedArticles = getPublishedArticles();
+
+  const paths = publishedArticles.map((article) => ({ params: { slug: article.slug } }));
 
   return {
     paths,
@@ -24,7 +23,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps = async ({ params }: GetStaticPropsContext) => {
-  const articleMarkdownContent = getParsedFileContentBySlug(params.slug as string, POSTS_PATH);
+  const articleMarkdownContent = getParsedFileContentBySlug(params.slug as string, ARTICLES_PATH);
   const renderedHTML = await renderMarkdown(articleMarkdownContent.content);
 
   return {
