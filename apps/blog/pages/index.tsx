@@ -1,12 +1,12 @@
 import { Hero } from "@boilerplate/blog/ui";
-import { getPublishedArticles } from "@boilerplate/markdown";
+import { getSortedArticles } from "@boilerplate/markdown";
 import { ArticleCard, Container, getLayout } from "@boilerplate/shared/ui";
 import type { InferGetStaticPropsType } from "next";
 import { NextSeo } from "next-seo";
 import useTranslation from "next-translate/useTranslation";
 
 export const getStaticProps = async () => {
-  const publishedArticles = getPublishedArticles();
+  const publishedArticles = getSortedArticles();
 
   return {
     props: {
