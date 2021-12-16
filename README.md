@@ -342,6 +342,14 @@ I've not deployed Ory Kratos yet myself, so I'm not sure exactly how to do it. T
 
 For deploying to Vercel you can use Nx's [guide](https://nx.dev/l/r/guides/deploy-nextjs-to-vercel), which shows how straightforward it is. A script for ignoring the build step is found in `/tools/ignore-vercel-build-<app>`.
 
+To automatically generate the sitemap make sure to include the `postbuild` target in the build script, like so:
+
+```
+npx nx build site --prod && npx nx postbuild site
+```
+
+You may also need to run `prisma generate` after running `npm install`.
+
 #### Other
 
 I'm currently looking into a way to deploy the blog [with Cloudflare](https://developers.cloudflare.com/pages/framework-guides/deploy-a-nextjs-site) and the site on [AWS Lambda@Edge via Serverless Components](https://github.com/serverless-nextjs/serverless-next.js) and will update the section once I have done so.
