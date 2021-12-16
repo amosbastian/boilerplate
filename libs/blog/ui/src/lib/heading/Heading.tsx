@@ -46,7 +46,7 @@ export function Heading({ frontMatter }: HeadingProps) {
           {frontMatter.readingTime.text}
         </Text>
       </Flex>
-      {frontMatter.dateModified ? (
+      {frontMatter.dateModified && frontMatter.dateModified !== frontMatter.datePublished ? (
         <Badge mt={4}>{t("last-updated", { lastUpdated: dayjs(frontMatter.dateModified).fromNow() })}</Badge>
       ) : null}
     </Box>

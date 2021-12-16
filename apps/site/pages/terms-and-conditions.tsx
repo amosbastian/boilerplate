@@ -40,7 +40,7 @@ export function TermsAndConditions({ frontMatter, html }: InferGetStaticPropsTyp
         <Heading as="h1" size="2xl" mb={8}>
           {frontMatter.title}
         </Heading>
-        {frontMatter.dateModified ? (
+        {frontMatter.dateModified && frontMatter.dateModified !== frontMatter.datePublished ? (
           <Badge mt={4}>{t("last-updated", { lastUpdated: dayjs(frontMatter.dateModified).fromNow() })}</Badge>
         ) : null}
         <MDXRemote {...html} components={mdxComponents} />
