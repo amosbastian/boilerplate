@@ -1,8 +1,8 @@
-import { ButtonLink, getLayout, Section } from "@boilerplate/shared/ui";
+import { getSortedArticles } from "@boilerplate/markdown";
+import { ArticleCard, ButtonLink, getLayout, Section } from "@boilerplate/shared/ui";
 import { CtaCard, Features, GradientButton, Hero, ImageSection, Testimonials } from "@boilerplate/site/ui";
-import { handleOryRedirect } from "@boilerplate/site/utility";
-import { Box, Heading, Icon, useColorModeValue } from "@chakra-ui/react";
-import type { GetServerSidePropsContext } from "next";
+import { Box, Grid, Heading, Icon, useColorModeValue } from "@chakra-ui/react";
+import type { InferGetStaticPropsType } from "next";
 import { NextSeo } from "next-seo";
 import Trans from "next-translate/Trans";
 import useTranslation from "next-translate/useTranslation";
@@ -11,11 +11,17 @@ import NextLink from "next/link";
 import * as React from "react";
 import { RiArrowRightLine } from "react-icons/ri";
 
-export const getServerSideProps = async (context: GetServerSidePropsContext) => {
-  return await handleOryRedirect(false, "/home", context.req.headers.cookie);
+export const getStaticProps = async () => {
+  const publishedArticles = getSortedArticles({ limit: 3 });
+
+  return {
+    props: {
+      articles: publishedArticles,
+    },
+  };
 };
 
-export default function Index() {
+export default function Index({ articles }: InferGetStaticPropsType<typeof getStaticProps>) {
   const { t } = useTranslation("index");
   const py = { base: 20, lg: 44 };
   const cardBackgroundColor = useColorModeValue("primary.100", "primary.500");
@@ -110,7 +116,25 @@ export default function Index() {
         imageLocation="center"
       />
       <Testimonials py={py} />
-      <Section variant="transparent" py={py}>
+      <Section py={py} variant="transparent">
+        <Heading fontSize={{ base: "3xl", md: "5xl" }} mb={4}>
+          {t("articles-section-heading")}
+        </Heading>
+        <Heading as="h3" fontSize={{ base: "md", md: "xl" }} variant="secondary" mb={{ base: 8, md: 16, lg: 24 }}>
+          {t("articles-section-subtitle")}
+        </Heading>
+        <Grid
+          gridTemplateColumns={{ base: "1fr", md: "repeat(2, 1fr)", lg: "repeat(3, 1fr)" }}
+          gridColumnGap={4}
+          gridRowGap={{ base: 16, xl: 32 }}
+          pb={20}
+        >
+          {(articles ?? []).map(({ frontMatter, slug }) => (
+            <ArticleCard key={frontMatter.title} frontMatter={frontMatter} slug={slug} />
+          ))}
+        </Grid>
+      </Section>
+      <Section py={py}>
         <CtaCard backgroundColor={cardBackgroundColor} heading={t("cta-heading")} subtitle={t("cta-subtitle")}>
           <ButtonLink href="/login" colorScheme="primary">
             {t("cta-button-text")}

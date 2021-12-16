@@ -158,8 +158,8 @@
       "tags": []
     },
     "articles": {
-      "root": "_articles",
-      "sourceRoot": "_articles",
+      "root": "articles",
+      "sourceRoot": "articles",
       "projectType": "application",
       "targets": {},
       "tags": []

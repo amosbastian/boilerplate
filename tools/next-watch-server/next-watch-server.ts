@@ -14,7 +14,7 @@ export default async function nextWatchServer(
   const handle = app.getRequestHandler();
   await app.prepare();
 
-  const articlesPath = process.env.ARTICLES_MARKDOWN_PATH || "_articles";
+  const articlesPath = process.env.ARTICLES_MARKDOWN_PATH || "articles";
 
   // watch folders if specified
   if (articlesPath) {

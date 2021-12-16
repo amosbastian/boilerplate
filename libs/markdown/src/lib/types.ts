@@ -6,10 +6,10 @@ export type FrontMatter = {
     image: string;
   };
   category: string;
-  datePublished: string;
-  dateModified: string;
+  datePublished?: string;
+  dateModified?: string;
   description: string;
   readingTime: IReadTimeResults;
-  slug: string;
+  seoTitle?: string;
   title: string;
 };

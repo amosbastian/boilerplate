@@ -156,7 +156,7 @@ Unfortunately the multi zones feature is not working 100% correctly because of a
 
 The code for the blog is based on the ["Building a blog with Next.js and Nx"](https://blog.nrwl.io/create-a-next-js-web-app-with-nx-bcf2ab54613) series by @juristr, so if you want to know more about how it works, then I recommend you check it out.
 
-Simply put, all blog posts can be found in the `_articles` folder and adding a `.mdx` file there will create a new blog post when building the blog app. This is done using [next-mdx-remote](https://github.com/hashicorp/next-mdx-remote), which loads the blog posts from the `_articles` folder through `getStaticProps` in `[slug].tsx`.
+Simply put, all blog posts can be found in the `articles` folder and adding a `.mdx` file there will create a new blog post when building the blog app. This is done using [next-mdx-remote](https://github.com/hashicorp/next-mdx-remote), which loads the blog posts from the `articles` folder through `getStaticProps` in `[slug].tsx`.
 
 The only environment variable needed (in production) for the blog app is
 
