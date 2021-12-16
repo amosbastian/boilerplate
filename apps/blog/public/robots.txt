@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://boilerplate-blog.vercel.app
+
+# Sitemaps
+Sitemap: https://boilerplate-blog.vercel.app/sitemap.xml

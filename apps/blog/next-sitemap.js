@@ -1,6 +1,6 @@
-import { configuration } from "@boilerplate/shared/configuration";
-
 module.exports = {
-  siteUrl: configuration.BASE_URL_BLOG,
+  siteUrl: process.env.NEXT_PUBLIC_BASE_URL_BLOG,
   generateRobotsTxt: true,
+  sourceDir: "./dist/apps/blog/.next",
+  outDir: "./apps/blog/public",
 };
