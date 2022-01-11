@@ -1,5 +1,5 @@
 import "reflect-metadata";
-import { createTestContext, createUser } from "@boilerplate/api/test";
+import { createTestContext, UserFactory } from "@boilerplate/api/test";
 import * as faker from "faker";
 import Stripe from "stripe";
 import { copyBillingDetailsToCustomer } from "./copyBillingDetailsToCustomer";
@@ -62,7 +62,7 @@ describe("copyBillingDetailsToCustomer", () => {
   };
 
   it("should copy billing details to customer", async () => {
-    const user = await createUser(ctx.prisma);
+    const user = await UserFactory.create(ctx.prisma);
 
     await copyBillingDetailsToCustomer(user.id, paymentMethod);
     const updatedUser = await ctx.prisma.user.findUnique({ where: { id: user.id } });
@@ -76,7 +76,7 @@ describe("copyBillingDetailsToCustomer", () => {
   });
 
   it("should not copy billing details to customer if no customer exists", async () => {
-    const user = await createUser(ctx.prisma);
+    const user = await UserFactory.create(ctx.prisma);
 
     await copyBillingDetailsToCustomer(user.id, { ...paymentMethod, customer: null });
     const updatedUser = await ctx.prisma.user.findUnique({ where: { id: user.id } });

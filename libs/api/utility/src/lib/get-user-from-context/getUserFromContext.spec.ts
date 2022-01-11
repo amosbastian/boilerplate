@@ -1,5 +1,5 @@
 import "reflect-metadata";
-import { createTestContext, createUser } from "@boilerplate/api/test";
+import { createTestContext, UserFactory } from "@boilerplate/api/test";
 import { oryApiClient } from "@boilerplate/shared/utility/ory";
 import type { Request } from "express";
 import { getUserFromContext } from "./getUserFromContext";
@@ -20,7 +20,7 @@ describe("getUserFromContext", () => {
   });
 
   it("should return a user if ory kratos cookie set correctly", async () => {
-    const createdUser = await createUser(ctx.prisma);
+    const createdUser = await UserFactory.create(ctx.prisma);
 
     const mockRequest = {
       cookies: { ory_kratos_session: "ory_kratos_session" },

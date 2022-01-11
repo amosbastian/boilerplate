@@ -1,5 +1,5 @@
 import "reflect-metadata";
-import { createPrice, createSubscription, createTestContext, createUser, mockFunction } from "@boilerplate/api/test";
+import { createTestContext, mockFunction, PriceFactory, SubscriptionFactory, UserFactory } from "@boilerplate/api/test";
 import { SubscriptionStatus } from "@boilerplate/generated/graphql";
 import * as faker from "faker";
 import Stripe from "stripe";
@@ -17,7 +17,7 @@ describe("manageSubscriptionStatusChange", () => {
   let userAddress: any;
 
   beforeEach(async () => {
-    const price = await createPrice(ctx.prisma);
+    const price = await PriceFactory.create(ctx.prisma);
 
     userAddress = {
       city: faker.address.city(),
@@ -198,7 +198,7 @@ describe("manageSubscriptionStatusChange", () => {
 
   it("should create a subscription for the user if one does not already exist", async () => {
     const stripeCustomerId = faker.datatype.uuid();
-    await createUser(ctx.prisma, { stripeCustomerId });
+    await UserFactory.create(ctx.prisma, { data: { stripeCustomerId } });
 
     mockedStripeSubscriptionsRetrieve.mockResolvedValueOnce(
       subscription as unknown as Stripe.Response<Stripe.Subscription>,
@@ -212,8 +212,10 @@ describe("manageSubscriptionStatusChange", () => {
 
   it("should update a subcription if it already exists", async () => {
     const stripeCustomerId = faker.datatype.uuid();
-    const existingSubscription = await createSubscription(ctx.prisma);
-    await createUser(ctx.prisma, { stripeCustomerId, subscription: { connect: { id: existingSubscription.id } } });
+    const existingSubscription = await SubscriptionFactory.create(ctx.prisma);
+    await UserFactory.create(ctx.prisma, {
+      data: { stripeCustomerId, subscription: { connect: { id: existingSubscription.id } } },
+    });
 
     mockedStripeSubscriptionsRetrieve.mockResolvedValueOnce({
       ...subscription,
@@ -229,14 +231,14 @@ describe("manageSubscriptionStatusChange", () => {
   });
 
   it("should throw an error if the user does not have a `stripeCustomerId`", async () => {
-    await createUser(ctx.prisma);
+    await UserFactory.create(ctx.prisma);
 
     await expect(manageSubscriptionStatusChange(subscription.id, "stripeCustomerId")).rejects.toThrowError();
   });
 
   it("should copy billing details to customer if `createAction` is true", async () => {
     const stripeCustomerId = faker.datatype.uuid();
-    const createdUser = await createUser(ctx.prisma, { stripeCustomerId });
+    const createdUser = await UserFactory.create(ctx.prisma, { data: { stripeCustomerId } });
 
     mockedStripeSubscriptionsRetrieve.mockResolvedValueOnce(
       subscription as unknown as Stripe.Response<Stripe.Subscription>,

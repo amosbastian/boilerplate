@@ -1,5 +1,5 @@
 import "reflect-metadata";
-import { createPrice, createProduct, createTestContext } from "@boilerplate/api/test";
+import { createTestContext, PriceFactory, ProductFactory } from "@boilerplate/api/test";
 import { gql } from "apollo-server-express";
 
 const ctx = createTestContext();
@@ -7,7 +7,7 @@ const ctx = createTestContext();
 describe("PriceResolver", () => {
   describe("price", () => {
     it("should return the price matching the given filter", async () => {
-      const price = await createPrice(ctx.prisma);
+      const price = await PriceFactory.create(ctx.prisma);
 
       const PriceQuery = gql`
         query Price($where: PriceWhereUniqueInput!) {
@@ -31,8 +31,8 @@ describe("PriceResolver", () => {
 
   describe("product", () => {
     it("should return the price's product", async () => {
-      const product = await createProduct(ctx.prisma);
-      const price = await createPrice(ctx.prisma, { product: { connect: { id: product.id } } });
+      const product = await ProductFactory.create(ctx.prisma);
+      const price = await PriceFactory.create(ctx.prisma, { data: { product: { connect: { id: product.id } } } });
 
       const PriceProductQuery = gql`
         query PriceProduct($where: PriceWhereUniqueInput!) {
