@@ -1,5 +1,5 @@
 import "reflect-metadata";
-import { createPrice, createProduct, createTestContext } from "@boilerplate/api/test";
+import { createTestContext, PriceFactory, ProductFactory } from "@boilerplate/api/test";
 import { gql } from "apollo-server-express";
 
 const ctx = createTestContext();
@@ -7,7 +7,7 @@ const ctx = createTestContext();
 describe("ProductResolver", () => {
   describe("product", () => {
     it("should return the product matching the given filter", async () => {
-      const product = await createProduct(ctx.prisma);
+      const product = await ProductFactory.create(ctx.prisma);
 
       const ProductQuery = gql`
         query Product($where: ProductWhereUniqueInput!) {
@@ -31,8 +31,8 @@ describe("ProductResolver", () => {
 
   describe("products", () => {
     it("should return a list of products matching the given filter", async () => {
-      const product1 = await createProduct(ctx.prisma);
-      const product2 = await createProduct(ctx.prisma);
+      const product1 = await ProductFactory.create(ctx.prisma);
+      const product2 = await ProductFactory.create(ctx.prisma);
 
       const ProductsQuery = gql`
         query Products {
@@ -54,9 +54,9 @@ describe("ProductResolver", () => {
 
   describe("prices", () => {
     it("should return a list of the product's prices", async () => {
-      const product = await createProduct(ctx.prisma);
-      const price1 = await createPrice(ctx.prisma, { product: { connect: { id: product.id } } });
-      const price2 = await createPrice(ctx.prisma, { product: { connect: { id: product.id } } });
+      const product = await ProductFactory.create(ctx.prisma);
+      const price1 = await PriceFactory.create(ctx.prisma, { data: { product: { connect: { id: product.id } } } });
+      const price2 = await PriceFactory.create(ctx.prisma, { data: { product: { connect: { id: product.id } } } });
 
       const ProductPricesQuery = gql`
         query ProductPrices($where: ProductWhereUniqueInput!) {

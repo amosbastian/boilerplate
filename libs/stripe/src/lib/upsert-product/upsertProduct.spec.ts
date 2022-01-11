@@ -1,6 +1,6 @@
 import "reflect-metadata";
 import { upsertProduct } from "./upsertProduct";
-import { createTestContext, createProduct } from "@boilerplate/api/test";
+import { createTestContext, ProductFactory } from "@boilerplate/api/test";
 import * as faker from "faker";
 
 const ctx = createTestContext();
@@ -24,7 +24,7 @@ describe("upsertProduct", () => {
   });
 
   it("should update an existing price if it already exists", async () => {
-    const product = await createProduct(ctx.prisma);
+    const product = await ProductFactory.create(ctx.prisma);
 
     await upsertProduct({
       id: product.id,

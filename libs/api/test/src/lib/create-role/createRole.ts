@@ -1,12 +1,24 @@
-import type { RoleCreateInput } from "@generated/type-graphql";
-import { PrismaClient } from "@prisma/client";
+import { Prisma, PrismaClient } from "@prisma/client";
 import * as faker from "faker";
 
-export const createRole = async (prisma: PrismaClient, props?: Partial<RoleCreateInput>) => {
-  const defaultProps: RoleCreateInput = {
-    name: faker.name.title(),
-    ...props,
-  };
+export const RoleFactory = {
+  build: (props?: Omit<Prisma.RoleCreateArgs, "data"> & { data?: Partial<Prisma.RoleCreateArgs["data"]> }) => {
+    const defaultProps: Prisma.RoleCreateArgs["data"] = {
+      name: faker.name.title(),
+      ...props?.data,
+    };
 
-  return prisma.role.create({ data: { ...defaultProps, ...props } });
+    return defaultProps;
+  },
+
+  create: async (
+    prisma: PrismaClient,
+    props?: Omit<Prisma.RoleCreateArgs, "data"> & { data?: Partial<Prisma.RoleCreateArgs["data"]> },
+  ) => {
+    const data = RoleFactory.build(props);
+
+    const role = await prisma.role.create({ ...props, data });
+
+    return role;
+  },
 };
