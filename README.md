@@ -98,7 +98,7 @@ ORY_SDK_URL="http://127.0.0.1:4433"
 
 ```
 
-Of course you will need to replace this with your own tokens, so e.g. the URL of a MySQL database you have running locally. If you want, I have also set it up so you can use it with a PlanetScale database, as described [here](https://docs.planetscale.com/tutorials/automatic-prisma-migrations), so you can do that instead.
+Of course you will need to replace this with your own tokens, so e.g. the URL of a MySQL database you have running locally. Best practices on how to use Prisma with PlanetScale can be found in [this video](https://www.youtube.com/watch?v=iaHt5_hg44c).
 
 Once set up, you will need to run the migrations and start the server
 
