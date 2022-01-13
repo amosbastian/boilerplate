@@ -1,6 +1,6 @@
 import "reflect-metadata";
+import { createTestContext, mockFunction, RoleFactory, UserFactory } from "@boilerplate/api/test";
 import { getUserFromContext } from "@boilerplate/api/utility";
-import { createRole, createTestContext, createUser, mockFunction } from "@boilerplate/api/test";
 import { gql } from "apollo-server-express";
 
 jest.mock("../../../../utility/src/lib/get-user-from-context/getUserFromContext");
@@ -11,8 +11,8 @@ const ctx = createTestContext();
 describe("UserResolver", () => {
   describe("user", () => {
     it("should return the user matching the given filter", async () => {
-      const user = await createUser(ctx.prisma);
-      mockedGetUserFromContext.mockResolvedValueOnce(user);
+      const user = await UserFactory.create(ctx.prisma);
+      mockedGetUserFromContext.mockResolvedValueOnce(user as any);
 
       const UserQuery = gql`
         query User($where: UserWhereUniqueInput!) {
@@ -36,8 +36,8 @@ describe("UserResolver", () => {
 
   describe("findFirstUser", () => {
     it("should return the first user matching the given filter", async () => {
-      const user = await createUser(ctx.prisma);
-      mockedGetUserFromContext.mockResolvedValueOnce(user);
+      const user = await UserFactory.create(ctx.prisma);
+      mockedGetUserFromContext.mockResolvedValueOnce(user as any);
 
       const FindFirstUserQuery = gql`
         query FindFirstUser($where: UserWhereInput!) {
@@ -63,9 +63,9 @@ describe("UserResolver", () => {
 
   describe("users", () => {
     it("should return a list of users matching the given filter", async () => {
-      const user1 = await createUser(ctx.prisma);
-      const user2 = await createUser(ctx.prisma);
-      mockedGetUserFromContext.mockResolvedValueOnce(user1);
+      const user1 = await UserFactory.create(ctx.prisma);
+      const user2 = await UserFactory.create(ctx.prisma);
+      mockedGetUserFromContext.mockResolvedValueOnce(user1 as any);
 
       const UsersQuery = gql`
         query Users {
@@ -87,10 +87,13 @@ describe("UserResolver", () => {
 
   describe("deleteUser", () => {
     it("should delete the user matching the given filter", async () => {
-      const adminRole = await createRole(ctx.prisma, { name: "Admin" });
-      const user = await createUser(ctx.prisma, { roles: { connect: [{ id: adminRole.id }] } });
+      const adminRole = await RoleFactory.create(ctx.prisma, { data: { name: "Admin" } });
+      const user = await UserFactory.create(ctx.prisma, {
+        data: { roles: { connect: [{ id: adminRole.id }] } },
+        include: { roles: true },
+      });
 
-      mockedGetUserFromContext.mockResolvedValueOnce(user);
+      mockedGetUserFromContext.mockResolvedValueOnce(user as any);
 
       const DeleteUserMutation = gql`
         mutation DeleteUser($where: UserWhereUniqueInput!) {
@@ -117,8 +120,8 @@ describe("UserResolver", () => {
   describe("updateUser", () => {
     it("should update the user making the request", async () => {
       const newName = "New Name";
-      const user = await createUser(ctx.prisma);
-      mockedGetUserFromContext.mockResolvedValueOnce(user);
+      const user = await UserFactory.create(ctx.prisma);
+      mockedGetUserFromContext.mockResolvedValueOnce(user as any);
 
       const UpdateUserMutation = gql`
         mutation UpdateUser($data: UserUpdateInput!) {
@@ -146,8 +149,8 @@ describe("UserResolver", () => {
 
   describe("me", () => {
     it("should return the user making the request", async () => {
-      const user = await createUser(ctx.prisma);
-      mockedGetUserFromContext.mockResolvedValueOnce(user);
+      const user = await UserFactory.create(ctx.prisma);
+      mockedGetUserFromContext.mockResolvedValueOnce(user as any);
 
       const MeQuery = gql`
         query Me {

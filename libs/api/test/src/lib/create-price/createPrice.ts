@@ -1,24 +1,37 @@
-import { PriceCreateInput, PriceType } from "@generated/type-graphql";
-import { PrismaClient } from "@prisma/client";
+import { PriceType } from "@generated/type-graphql";
+import { Prisma, PrismaClient } from "@prisma/client";
 import * as faker from "faker";
-import { createProduct } from "../create-product/createProduct";
+import { ProductFactory } from "../create-product/createProduct";
 
-export const createPrice = async (prisma: PrismaClient, props?: Partial<PriceCreateInput>) => {
-  const defaultProps = {
-    id: faker.datatype.uuid(),
-    active: true,
-    currency: "EUR",
-    recurring: {},
-    type: PriceType.RECURRING,
-    unitAmount: faker.datatype.number({ min: 100, max: 1000 }),
-    metadata: {},
-    ...props,
-  };
+export const PriceFactory = {
+  build: (props?: Omit<Prisma.PriceCreateArgs, "data"> & { data?: Partial<Prisma.PriceCreateArgs["data"]> }) => {
+    const defaultProps: Partial<Prisma.PriceCreateArgs["data"]> = {
+      id: faker.datatype.uuid(),
+      active: true,
+      currency: "EUR",
+      recurring: {},
+      type: PriceType.RECURRING,
+      unitAmount: faker.datatype.number({ min: 100, max: 1000 }),
+      metadata: {},
+      ...props?.data,
+    };
 
-  if (!props?.product) {
-    const product = await createProduct(prisma);
-    defaultProps.product = { connect: { id: product.id } };
-  }
+    if (!defaultProps.product) {
+      const product = ProductFactory.build();
+      defaultProps.product = { create: { ...product } };
+    }
 
-  return prisma.price.create({ data: { ...(defaultProps as PriceCreateInput), ...props } });
+    return defaultProps as Prisma.PriceCreateArgs["data"];
+  },
+
+  create: async (
+    prisma: PrismaClient,
+    props?: Omit<Prisma.PriceCreateArgs, "data"> & { data?: Partial<Prisma.PriceCreateArgs["data"]> },
+  ) => {
+    const data = PriceFactory.build(props);
+
+    const price = await prisma.price.create({ ...props, data });
+
+    return price;
+  },
 };

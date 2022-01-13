@@ -22,7 +22,7 @@ export function prismaTestContext() {
         for (const { TABLE_NAME: tablename } of tablenames) {
           if (tablename !== "_prisma_migrations") {
             try {
-              transactions.push(prismaClient.$executeRawUnsafe(`TRUNCATE ${tablename};`));
+              transactions.push(prismaClient.$executeRawUnsafe(`TRUNCATE \`${tablename}\`;`));
             } catch (error) {
               console.log({ error });
             }

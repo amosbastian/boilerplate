@@ -4,7 +4,6 @@
 datasource db {
   provider             = "mysql"
   url                  = env("DATABASE_URL")
-  shadowDatabaseUrl    = env("SHADOW_DATABASE_URL")
   referentialIntegrity = "prisma"
 }
 
@@ -69,7 +68,7 @@ model Product {
   active      Boolean
   image       String?
   metadata    Json
-  description String?
+  description String? @db.Text
   prices      Price[]
 }
 
@@ -91,8 +90,8 @@ model Subscription {
   priceId            String
   status             SubscriptionStatus
   cancelAtPeriodEnd  Boolean
-  currentPeriodEnd   DateTime           @db.Timestamp
-  currentPeriodStart DateTime           @db.Timestamp
+  currentPeriodEnd   DateTime           @db.DateTime
+  currentPeriodStart DateTime           @db.DateTime
   trialStart         DateTime?          @db.Timestamp
   trialEnd           DateTime?          @db.Timestamp
   cancelAt           DateTime?          @db.Timestamp
