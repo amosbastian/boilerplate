@@ -1,3 +1,4 @@
+import { prisma } from "@boilerplate/api/utility";
 import { PrismaClient, PrismaPromise } from "@prisma/client";
 
 export function prismaTestContext() {
@@ -6,7 +7,7 @@ export function prismaTestContext() {
   return {
     async beforeEach() {
       // Construct a new Prisma Client connected to the generated schema
-      prismaClient = new PrismaClient();
+      prismaClient = prisma;
       return prismaClient;
     },
 
