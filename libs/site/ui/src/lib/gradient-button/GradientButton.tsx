@@ -1,5 +1,5 @@
-import { Button, useColorMode, useColorModeValue, useToken } from "@chakra-ui/react";
 import type { ButtonProps } from "@chakra-ui/react";
+import { Button, useToken } from "@chakra-ui/react";
 
 export type GradientButtonProps = ButtonProps;
 
