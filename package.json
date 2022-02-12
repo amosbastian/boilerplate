@@ -30,7 +30,8 @@
     "i18n": "npm run i18n:site & npm run i18n:blog & npm run i18n:shared",
     "i18n:site": "npx i18next-locales-sync -c ./tools/locales-sync/localesSync.site.config.js",
     "i18n:blog": "npx i18next-locales-sync -c ./tools/locales-sync/localesSync.blog.config.js",
-    "i18n:shared": "npx i18next-locales-sync -c ./tools/locales-sync/localesSync.shared.config.js"
+    "i18n:shared": "npx i18next-locales-sync -c ./tools/locales-sync/localesSync.shared.config.js",
+    "asset-generator": "pwa-asset-generator apps/site/public/logo.svg apps/site/public/images -m apps/site/public/manifest.json --padding \"calc(50vh - 37.5%) calc(50vw - 37.5%)\" -b \"linear-gradient(135deg, #805AD5, #553C9A)\" -q 100 --favicon --xhtml"
   },
   "private": true,
   "dependencies": {
@@ -150,6 +151,7 @@
     "next-sitemap": "^1.9.12",
     "prettier": "2.5.1",
     "prisma": "~3.9.2",
+    "pwa-asset-generator": "^6.0.6",
     "react-refresh": "^0.11.0",
     "storybook-addon-next-router": "^3.1.1",
     "ts-jest": "27.1.3",

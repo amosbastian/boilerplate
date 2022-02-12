@@ -393,6 +393,10 @@ For more information about how it works, see the amazing [gql-tag-operations-pre
 
 All i18n files can be found under `libs/site/i18n`, `libs/blog/i18n` and `libs/shared/i18n`. Both the site and blog use [next-translate](https://github.com/vinissimus/next-translate/), as seen in their respective `i18n.js` files. To sync the JSON files you can use the command `npm run i18n`.
 
+### Asset generation
+
+You can generate assets for the site using the `asset-generator` command. It uses the `pwa-asset-generator` package to automatically generate icon and splash screen images, favicons and mstile images.
+
 ## Roadmap
 
 Of course this boilerplate is not perfect: things could have probably been implemented in a better way
