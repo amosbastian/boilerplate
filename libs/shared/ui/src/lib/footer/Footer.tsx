@@ -141,7 +141,7 @@ export function Footer(props: FooterProps) {
           alignSelf="flex-start"
           alignItems="baseline"
         >
-          <Text fontSize="sm">&copy; 2021 {`${configuration.BRAND_NAME}`}</Text>
+          <Text fontSize="sm">&copy; 2022 {`${configuration.BRAND_NAME}`}</Text>
           <Link href="/privacy" fontSize="sm" fontWeight="normal">
             {t("privacy")}
           </Link>
