@@ -87,7 +87,7 @@ export default function Feature1Page() {
       <Features title={t("features-section-heading")} subtitle={t("features-section-subtitle")} py={py} />
       <Section variant="transparent" py={py}>
         <CtaCard backgroundColor={cardBackgroundColor} heading={t("cta-heading")} subtitle={t("cta-subtitle")}>
-          <ButtonLink href="/login" colorScheme="primary">
+          <ButtonLink maxW={{ base: "100%", md: "max-content" }} href="/login" colorScheme="primary">
             {t("cta-button-text")}
           </ButtonLink>
         </CtaCard>

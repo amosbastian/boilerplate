@@ -29,7 +29,7 @@ export function Custom404() {
       <Text variant="secondary" fontSize="md" mb={8}>
         {t("subtitle")}
       </Text>
-      <ButtonLink href="/" rightIcon={<Icon as={RiArrowRightLine} />}>
+      <ButtonLink maxW={{ base: "100%", md: "max-content" }} href="/" rightIcon={<Icon as={RiArrowRightLine} />}>
         {t("common:go-back-home")}
       </ButtonLink>
     </Section>

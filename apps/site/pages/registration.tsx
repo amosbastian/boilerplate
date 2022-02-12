@@ -76,7 +76,6 @@ export default function Registration() {
       await router.push(`/registration?flow=${flow?.id}`, undefined, { shallow: true });
       const { data } = await oryBrowserClient.submitSelfServiceRegistrationFlow(String(flow?.id), values);
       // If we ended up here, it means we are successfully signed up!
-      //
 
       await fetcher({
         url: `${configuration.BASE_URL_API}/api/create-user`,

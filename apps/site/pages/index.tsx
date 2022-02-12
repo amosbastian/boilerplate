@@ -136,7 +136,7 @@ export default function Index({ articles }: InferGetStaticPropsType<typeof getSt
       </Section>
       <Section py={py}>
         <CtaCard backgroundColor={cardBackgroundColor} heading={t("cta-heading")} subtitle={t("cta-subtitle")}>
-          <ButtonLink href="/login" colorScheme="primary">
+          <ButtonLink maxW={{ base: "100%", md: "max-content" }} href="/login" colorScheme="primary">
             {t("cta-button-text")}
           </ButtonLink>
         </CtaCard>

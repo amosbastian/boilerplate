@@ -26,7 +26,7 @@ export default function Contact() {
       </Section>
       <Section>
         <CtaCard backgroundColor={cardBackgroundColor} heading={t("cta-heading")} subtitle={t("cta-subtitle")}>
-          <ButtonLink w="100%" colorScheme="primary" href="mailto:support@boilerplate.com">
+          <ButtonLink maxW="max-content" colorScheme="primary" href="mailto:support@boilerplate.com">
             {t("cta-button-text")}
           </ButtonLink>
         </CtaCard>
