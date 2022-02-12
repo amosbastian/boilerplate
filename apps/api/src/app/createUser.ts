@@ -10,10 +10,16 @@ export function addCreateUser(app: Express) {
       const { data: session } = await oryApiClient.toSession(undefined, request.headers.cookie);
 
       if (!session.id) {
+        logger.error("Create user", { message: "Invalid session" });
         return response.status(500).json({ error: { statusCode: 500, message: "Invalid session" } });
       }
 
       const { identity } = request.body as SuccessfulSelfServiceRegistrationWithoutBrowser;
+
+      logger.info("Create user", {
+        id: identity.id,
+        email: identity.traits.email,
+      });
 
       const userInput = {
         id: identity.id,
