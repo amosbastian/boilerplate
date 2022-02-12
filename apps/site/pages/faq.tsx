@@ -1,6 +1,6 @@
-import { getLayout, Section } from "@boilerplate/shared/ui";
+import { ButtonLink, getLayout, Section } from "@boilerplate/shared/ui";
 import { CtaCard, FaqSection } from "@boilerplate/site/ui";
-import { Button, Link as ChakraLink, useColorModeValue } from "@chakra-ui/react";
+import { useColorModeValue } from "@chakra-ui/react";
 import { FAQPageJsonLd, NextSeo } from "next-seo";
 import type { Question } from "next-seo/lib/jsonld/faqPage";
 import useTranslation from "next-translate/useTranslation";
@@ -25,11 +25,9 @@ export default function Faq() {
       </Section>
       <Section>
         <CtaCard backgroundColor={cardBackgroundColor} heading={t("cta-heading")} subtitle={t("cta-subtitle")}>
-          <ChakraLink>
-            <Button w="100%" colorScheme="primary" href="mailto:support@frontend.com">
-              {t("cta-button-text")}
-            </Button>
-          </ChakraLink>
+          <ButtonLink w="100%" colorScheme="primary" href="mailto:support@boilerplate.com">
+            {t("cta-button-text")}
+          </ButtonLink>
         </CtaCard>
       </Section>
     </>

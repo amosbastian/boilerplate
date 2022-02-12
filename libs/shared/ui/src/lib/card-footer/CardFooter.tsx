@@ -8,7 +8,7 @@ export function CardFooter({ children, ...rest }: CardFooterProps) {
 
   return (
     <Box __css={styles.footer} {...rest}>
-      <HStack spacer={4}>{children}</HStack>
+      <HStack spacing={4}>{children}</HStack>
     </Box>
   );
 }
