@@ -91,16 +91,16 @@ export const TESTIMONIALS: Array<Testimonial[]> = [
 export interface TestimonialsProps extends SectionProps {}
 
 export function Testimonials(props: TestimonialsProps) {
-  const { t } = useTranslation("home");
+  const { t } = useTranslation("index");
 
   return (
     <Section {...props}>
       <Flex direction="column" alignItems={{ base: "flex-start", md: "center" }} mb={{ base: 8, md: 16, lg: 24 }}>
         <Heading maxW={{ base: "100%", md: "42em" }} fontSize={{ base: "3xl", md: "5xl" }} mb={4}>
-          {t("features-section-heading")}
+          {t("testimonials-section-heading")}
         </Heading>
         <Heading as="h3" fontSize={{ base: "md", md: "xl" }} variant="secondary">
-          {t("features-section-subtitle")}
+          {t("testimonials-section-subtitle")}
         </Heading>
       </Flex>
       <Grid gridTemplateColumns={{ base: "1fr", md: "repeat(2, 1fr)", lg: "repeat(3, 1fr)" }} gridGap={{ base: 4 }}>

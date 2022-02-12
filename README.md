@@ -57,7 +57,7 @@ Stop wasting time setting up the same things over and over and start building!
 
 ## Demo
 
-- https://boilerplate-site.vercel.app/
+- https://boilerplate.live/
 
 Unfortunately the redirects to the blog app aren't working correctly when deployed (not sure why). Also, since I am hosting the API on a free Heroku dyno I can't put the site app and API on the same domain, which means Ory cookies aren't being received, so authenticatted endpoints don't work (I think).
 
