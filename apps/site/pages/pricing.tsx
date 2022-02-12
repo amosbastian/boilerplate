@@ -1,8 +1,8 @@
-import { getLayout, Section } from "@boilerplate/shared/ui";
+import { ButtonLink, getLayout, Section } from "@boilerplate/shared/ui";
 import { prefetchGraphqlQuery } from "@boilerplate/shared/utility/graphql";
 import { ProductCards, ProductsQuery } from "@boilerplate/site-feature";
 import { CtaCard, FaqSection } from "@boilerplate/site/ui";
-import { Button, Heading, Link as ChakraLink, Text, useColorModeValue } from "@chakra-ui/react";
+import { Heading, Text, useColorModeValue } from "@chakra-ui/react";
 import { NextSeo } from "next-seo";
 import type { Question } from "next-seo/lib/jsonld/faqPage";
 import useTranslation from "next-translate/useTranslation";
@@ -46,11 +46,9 @@ export default function Pricing() {
       </Section>
       <Section variant="transparent">
         <CtaCard backgroundColor={cardBackgroundColor} heading={t("cta-heading")} subtitle={t("cta-subtitle")}>
-          <ChakraLink>
-            <Button w="100%" colorScheme="primary" href="mailto:support@frontend.com">
-              {t("cta-button-text")}
-            </Button>
-          </ChakraLink>
+          <ButtonLink w="100%" colorScheme="primary" href="mailto:support@boilerplate.com">
+            {t("cta-button-text")}
+          </ButtonLink>
         </CtaCard>
       </Section>
     </>
