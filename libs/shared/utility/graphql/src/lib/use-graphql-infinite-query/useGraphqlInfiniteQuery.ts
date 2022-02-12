@@ -19,7 +19,7 @@ import { graphqlFetch } from "../graphql-fetch/graphqlFetch";
 export const useGraphqlInfiniteQuery = <TData = any, TVariables = Record<string, any>>(
   operation: TypedDocumentNode<TData, TVariables>,
   variables: TVariables,
-  options?: UseInfiniteQueryOptions<TData, GraphqlError>,
+  options?: Omit<UseInfiniteQueryOptions<TData, GraphqlError>, "queryKey" | "queryFn">,
 ) => {
   const operationName = React.useMemo(() => getOperationName(operation), [operation]);
   const queryKey = React.useMemo(() => [operationName, variables ?? {}, "infinite"], [operationName, variables]);
@@ -27,6 +27,6 @@ export const useGraphqlInfiniteQuery = <TData = any, TVariables = Record<string,
   return useInfiniteQuery(
     queryKey,
     ({ pageParam }) => graphqlFetch(operation, { ...variables, ...pageParam }),
-    options as any,
+    options,
   );
 };

@@ -18,10 +18,10 @@ import { graphqlFetch } from "../graphql-fetch/graphqlFetch";
 export const useGraphqlQuery = <TData = any, TVariables = Record<string, any>>(
   operation: TypedDocumentNode<TData, TVariables>,
   variables?: TVariables,
-  options?: UseQueryOptions<TData, GraphqlError>,
+  options?: Omit<UseQueryOptions<TData, GraphqlError>, "queryKey" | "queryFn">,
 ) => {
   const operationName = React.useMemo(() => getOperationName(operation), [operation]);
   const queryKey = React.useMemo(() => [operationName, variables ?? {}], [operationName, variables]);
 
-  return useQuery(queryKey, () => graphqlFetch(operation, variables), options as any);
+  return useQuery(queryKey, () => graphqlFetch(operation, variables), options);
 };
