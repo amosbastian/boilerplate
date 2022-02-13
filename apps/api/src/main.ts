@@ -34,7 +34,7 @@ const main = async () => {
     }
   });
 
-  const corsOptions = { credentials: true, origin: true };
+  const corsOptions = { credentials: true, origin: configuration.BASE_URL_SITE };
 
   addStripeWebhook(app);
   app.use(cors(corsOptions));
