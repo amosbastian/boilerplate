@@ -2,10 +2,9 @@ import { ButtonLink, getLayout, Section } from "@boilerplate/shared/ui";
 import { CtaCard, FaqSection } from "@boilerplate/site/ui";
 import { useColorModeValue } from "@chakra-ui/react";
 import { FAQPageJsonLd, NextSeo } from "next-seo";
-import type { Question } from "next-seo/lib/jsonld/faqPage";
 import useTranslation from "next-translate/useTranslation";
 
-const FREQUENTLY_ASKED_QUESTIONS: Question[] = [
+const FREQUENTLY_ASKED_QUESTIONS: { questionName: string; acceptedAnswerText: string }[] = [
   { questionName: "question-1", acceptedAnswerText: "answer-1" },
   { questionName: "question-2", acceptedAnswerText: "answer-2" },
   { questionName: "question-3", acceptedAnswerText: "answer-3" },

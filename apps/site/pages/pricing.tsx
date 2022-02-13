@@ -4,11 +4,10 @@ import { ProductCards, ProductsQuery } from "@boilerplate/site-feature";
 import { CtaCard, FaqSection } from "@boilerplate/site/ui";
 import { Heading, Text, useColorModeValue } from "@chakra-ui/react";
 import { NextSeo } from "next-seo";
-import type { Question } from "next-seo/lib/jsonld/faqPage";
 import useTranslation from "next-translate/useTranslation";
 import { dehydrate } from "react-query";
 
-const FREQUENTLY_ASKED_QUESTIONS: Question[] = [
+const FREQUENTLY_ASKED_QUESTIONS: { questionName: string; acceptedAnswerText: string }[] = [
   { questionName: "pricing:question-1", acceptedAnswerText: "pricing:answer-1" },
   { questionName: "pricing:question-2", acceptedAnswerText: "pricing:answer-2" },
   { questionName: "pricing:question-3", acceptedAnswerText: "pricing:answer-3" },
