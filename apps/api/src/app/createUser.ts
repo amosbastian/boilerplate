@@ -7,8 +7,8 @@ import type { Express } from "express";
 export function addCreateUser(app: Express) {
   app.post("/api/create-user", async (request, response) => {
     try {
-      console.log(request.headers.cookie);
-      const { data: session } = await oryApiClient.toSession(undefined, request.headers.cookie);
+      console.log(request.cookies, request.signedCookies);
+      const { data: session } = await oryApiClient.toSession(undefined, request.cookies ?? request.signedCookies);
 
       if (!session.id) {
         logger.error("Create user", { message: "Invalid session" });
