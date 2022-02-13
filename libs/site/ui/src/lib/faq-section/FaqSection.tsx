@@ -9,12 +9,11 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { FAQPageJsonLd } from "next-seo";
-import type { Question } from "next-seo/lib/jsonld/faqPage";
 import useTranslation from "next-translate/useTranslation";
 
 export interface FaqSectionProps {
   defaultNs?: string;
-  faq: Question[];
+  faq: { questionName: string; acceptedAnswerText: string }[];
   heading: string;
 }
 
