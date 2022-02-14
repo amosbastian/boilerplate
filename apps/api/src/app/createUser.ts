@@ -7,7 +7,9 @@ import type { Express } from "express";
 export function addCreateUser(app: Express) {
   app.post("/api/create-user", async (request, response) => {
     try {
-      console.log(request.cookies, request.signedCookies);
+      console.log("request.headers.cookie", request.headers.cookie);
+      console.log("request.cookies: ", request.cookies);
+      console.log("request.signedCookies: ", request.signedCookies);
       const { data: session } = await oryApiClient.toSession(undefined, request.cookies ?? request.signedCookies);
 
       if (!session.id) {
