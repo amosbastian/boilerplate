@@ -143,7 +143,7 @@ export class FlowForm<T extends Values> extends Component<Props<T>, State<T>> {
       <>
         {this.props.flowLoading ? (
           <Center>
-            <Spinner />
+            <Spinner color="primary.200" />
           </Center>
         ) : null}
         <Collapse in={Boolean(flow)}>
