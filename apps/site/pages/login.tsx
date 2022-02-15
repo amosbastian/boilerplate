@@ -6,12 +6,13 @@ import {
   oryBrowserClient,
   useCreateLogoutHandler,
 } from "@boilerplate/site/utility";
-import { Box, Button, Center, Heading, useColorModeValue, VStack } from "@chakra-ui/react";
+import { Box, Button, Center, Heading, useColorModeValue, VisuallyHidden, VStack } from "@chakra-ui/react";
 import { SelfServiceLoginFlow, SubmitSelfServiceLoginFlowBody } from "@ory/kratos-client";
 import type { GetServerSidePropsContext } from "next";
 import { NextSeo } from "next-seo";
 import Trans from "next-translate/Trans";
 import useTranslation from "next-translate/useTranslation";
+import NextLink from "next/link";
 import { useRouter } from "next/router";
 import * as React from "react";
 
@@ -118,7 +119,12 @@ export default function Login() {
       bg={bg}
     >
       <NextSeo title={t("meta-title")} description={t("meta-description")} />
-      <Logo />
+      <NextLink href="/home">
+        <a>
+          <VisuallyHidden>{t("home")}</VisuallyHidden>
+          <Logo />
+        </a>
+      </NextLink>
       <Heading as="h1" size="lg" mt={4} mb={4}>
         {t("heading")}
       </Heading>

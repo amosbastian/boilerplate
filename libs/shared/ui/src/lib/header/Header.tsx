@@ -182,7 +182,7 @@ export function Header() {
     >
       <Container display="flex" justifyContent="space-between" alignItems="center" h={16} w="100%">
         <NextLink href="/" passHref>
-          <a href="/">
+          <a>
             <VisuallyHidden>{t("home")}</VisuallyHidden>
             <Logo />
           </a>

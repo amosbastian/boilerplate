@@ -27,7 +27,7 @@ export function Header() {
     >
       <Container display="flex" justifyContent="space-between" alignItems="center" h={16} w="100%">
         <NextLink href="/home">
-          <a href="/home">
+          <a>
             <VisuallyHidden>{t("home")}</VisuallyHidden>
             <Logo />
           </a>

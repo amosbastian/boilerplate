@@ -1,11 +1,12 @@
 import { Card, Link, Logo } from "@boilerplate/shared/ui";
 import { oryBrowserClient } from "@boilerplate/site/utility";
-import { Center, Collapse, Heading, Spinner, useColorModeValue } from "@chakra-ui/react";
+import { Center, Collapse, Heading, Spinner, useColorModeValue, VisuallyHidden } from "@chakra-ui/react";
 import { SelfServiceError } from "@ory/kratos-client";
 import type { NextPage } from "next";
 import { NextSeo } from "next-seo";
 import Trans from "next-translate/Trans";
 import useTranslation from "next-translate/useTranslation";
+import NextLink from "next/link";
 import { useRouter } from "next/router";
 import * as React from "react";
 
@@ -66,7 +67,12 @@ const Error: NextPage = () => {
       bg={bg}
     >
       <NextSeo title={t("meta-title")} description={t("meta-description")} />
-      <Logo />
+      <NextLink href="/home">
+        <a>
+          <VisuallyHidden>{t("home")}</VisuallyHidden>
+          <Logo />
+        </a>
+      </NextLink>
       <Heading as="h1" size="lg" mt={4} mb={4}>
         {t("heading")}
       </Heading>

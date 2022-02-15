@@ -2,12 +2,13 @@ import { configuration } from "@boilerplate/shared/configuration";
 import { Card, Link, Logo } from "@boilerplate/shared/ui";
 import { FlowForm } from "@boilerplate/site/ui";
 import { fetcher, handleGetFlowError, handleOryRedirect, oryBrowserClient } from "@boilerplate/site/utility";
-import { Box, Center, Heading, useColorModeValue } from "@chakra-ui/react";
+import { Box, Center, Heading, useColorModeValue, VisuallyHidden } from "@chakra-ui/react";
 import { SelfServiceRegistrationFlow, SubmitSelfServiceRegistrationFlowBody } from "@ory/kratos-client";
 import type { GetServerSidePropsContext } from "next";
 import { NextSeo } from "next-seo";
 import Trans from "next-translate/Trans";
 import useTranslation from "next-translate/useTranslation";
+import NextLink from "next/link";
 import { useRouter } from "next/router";
 import * as React from "react";
 
@@ -108,7 +109,12 @@ export default function Registration() {
       bg={bg}
     >
       <NextSeo title={t("meta-title")} description={t("meta-description")} />
-      <Logo />
+      <NextLink href="/home">
+        <a>
+          <VisuallyHidden>{t("home")}</VisuallyHidden>
+          <Logo />
+        </a>
+      </NextLink>
       <Heading as="h1" size="lg" mt={4} mb={4}>
         {t("heading")}
       </Heading>
