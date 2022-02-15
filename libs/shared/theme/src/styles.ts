@@ -6,7 +6,7 @@ export const styles: Styles = {
       height: "100%",
     },
     body: {
-      height: "-webkit-fill-available",
+      height: { base: "-webkit-fill-available", lg: "100vh" },
       background: mode("white", "gray.900")(props),
       fontSize: "0.875rem",
       overflowY: "scroll",
@@ -21,7 +21,7 @@ export const styles: Styles = {
       },
     },
     "div#__next": {
-      height: "-webkit-fill-available",
+      height: { base: "-webkit-fill-available", lg: "100vh" },
     },
     a: {
       _hover: {

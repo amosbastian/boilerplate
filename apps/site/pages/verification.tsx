@@ -102,7 +102,13 @@ export default function Verification() {
   };
 
   return (
-    <Center height="-webkit-fill-available" flexDirection="column" px={4} justifyContent="center" bg={bg}>
+    <Center
+      height={{ base: "-webkit-fill-available", lg: "100vh" }}
+      flexDirection="column"
+      px={4}
+      justifyContent="center"
+      bg={bg}
+    >
       <NextSeo title={t("meta-title")} description={t("meta-description")} />
       <Logo />
       <Heading as="h1" size="lg" mt={4} mb={4}>
