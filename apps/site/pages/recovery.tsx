@@ -2,7 +2,7 @@ import { Card, Link, Logo } from "@boilerplate/shared/ui";
 import { FlowForm } from "@boilerplate/site/ui";
 import { handleGetFlowError, handleOryRedirect, oryBrowserClient } from "@boilerplate/site/utility";
 import { Center, Heading, useColorModeValue, VisuallyHidden } from "@chakra-ui/react";
-import { SelfServiceRecoveryFlow, SubmitSelfServiceRecoveryFlowBody } from "@ory/kratos-client";
+import { SelfServiceRecoveryFlow, SubmitSelfServiceRecoveryFlowBody } from "@ory/client";
 import type { GetServerSidePropsContext } from "next";
 import { NextSeo } from "next-seo";
 import Trans from "next-translate/Trans";

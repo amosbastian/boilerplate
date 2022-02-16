@@ -1,6 +1,6 @@
 import { useOryTranslation } from "@boilerplate/site/utility";
 import { Box, FormControl, FormLabel } from "@chakra-ui/react";
-import { UiNode, UiNodeTextAttributes, UiText } from "@ory/kratos-client";
+import { UiNode, UiNodeTextAttributes, UiText } from "@ory/client";
 
 export interface FlowNodeTextProps {
   node: UiNode;

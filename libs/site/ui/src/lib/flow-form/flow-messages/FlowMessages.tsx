@@ -1,7 +1,7 @@
 import { useOryTranslation } from "@boilerplate/site/utility";
 import type { StackProps } from "@chakra-ui/react";
 import { Alert, AlertDescription, AlertIcon, VStack } from "@chakra-ui/react";
-import { UiText } from "@ory/kratos-client";
+import { UiText } from "@ory/client";
 
 interface FlowMessagesProps extends StackProps {
   messages?: UiText[];

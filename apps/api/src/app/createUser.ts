@@ -1,7 +1,7 @@
 import { prisma } from "@boilerplate/api/utility";
 import { logger } from "@boilerplate/shared/utility/logger";
 import { oryApiClient } from "@boilerplate/shared/utility/ory";
-import { SuccessfulSelfServiceRegistrationWithoutBrowser } from "@ory/kratos-client";
+import { SuccessfulSelfServiceRegistrationWithoutBrowser } from "@ory/client";
 import type { Express } from "express";
 
 export function addCreateUser(app: Express) {

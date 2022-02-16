@@ -1,5 +1,5 @@
 // https://github.com/ory/kratos-selfservice-ui-react-native/blob/master/src/helpers/sdk.tsx
-import { Configuration, V0alpha2Api } from "@ory/kratos-client";
+import { Configuration, V0alpha2Api } from "@ory/client";
 import axiosFactory, { AxiosInstance } from "axios";
 
 const axios = axiosFactory.create();
