@@ -2,7 +2,7 @@ import { Card, CardHeader, CardProps, Container } from "@boilerplate/shared/ui";
 import { FlowForm, FlowMessages, FlowMethods, getLayout, PageHeading, SettingsSection } from "@boilerplate/site/ui";
 import { handleGetFlowError, handleOryRedirect, oryBrowserClient } from "@boilerplate/site/utility";
 import { Text } from "@chakra-ui/react";
-import { SelfServiceSettingsFlow, SubmitSelfServiceSettingsFlowBody } from "@ory/kratos-client";
+import { SelfServiceSettingsFlow, SubmitSelfServiceSettingsFlowBody } from "@ory/client";
 import type { GetServerSidePropsContext } from "next";
 import { NextSeo } from "next-seo";
 import useTranslation from "next-translate/useTranslation";

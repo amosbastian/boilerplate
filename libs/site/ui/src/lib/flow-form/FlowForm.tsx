@@ -12,7 +12,7 @@ import {
   SubmitSelfServiceSettingsFlowBody,
   SubmitSelfServiceVerificationFlowBody,
   UiNode,
-} from "@ory/kratos-client";
+} from "@ory/client";
 import { Component, FormEvent } from "react";
 import { FlowMessages } from "./flow-messages/FlowMessages";
 import { FlowNode } from "./flow-node/FlowNode";
@@ -79,13 +79,13 @@ export class FlowForm<T extends Values> extends Component<Props<T>, State<T>> {
     nodes.forEach((node) => {
       // This only makes sense for text nodes
       if (isUiNodeInputAttributes(node.attributes)) {
-        if (node.attributes.type === "button" || node.attributes.type === "submit") {
+        if ((node.attributes as any).type === "button" || (node.attributes as any).type === "submit") {
           // In order to mimic real HTML forms, we need to skip setting the value
           // for buttons as the button value will (in normal HTML forms) only trigger
           // if the user clicks it.
           return;
         }
-        values[node.attributes.name as keyof Values] = node.attributes.value;
+        values[(node.attributes as any).name as keyof Values] = (node.attributes as any).value;
       }
     });
 

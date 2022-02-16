@@ -1,5 +1,5 @@
 import { Image } from "@chakra-ui/react";
-import { UiNode, UiNodeImageAttributes } from "@ory/kratos-client";
+import { UiNode, UiNodeImageAttributes } from "@ory/client";
 
 export interface FlowNodeImageProps {
   node: UiNode;

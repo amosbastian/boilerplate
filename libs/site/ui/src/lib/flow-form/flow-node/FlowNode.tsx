@@ -1,3 +1,4 @@
+import { UiNodeImageAttributes } from "@ory/client";
 import {
   isUiNodeAnchorAttributes,
   isUiNodeImageAttributes,
@@ -20,7 +21,7 @@ export const FlowNode = ({
   dispatchSubmit,
 }: Omit<FlowNodeInputProps, "attributes">) => {
   if (isUiNodeImageAttributes(node.attributes)) {
-    return <FlowNodeImage node={node} attributes={node.attributes} />;
+    return <FlowNodeImage node={node} attributes={node.attributes as UiNodeImageAttributes} />;
   }
 
   if (isUiNodeScriptAttributes(node.attributes)) {
