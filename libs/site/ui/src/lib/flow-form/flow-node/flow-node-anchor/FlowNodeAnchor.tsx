@@ -1,5 +1,5 @@
 import { Button } from "@chakra-ui/react";
-import { UiNode, UiNodeAnchorAttributes } from "@ory/kratos-client";
+import { UiNode, UiNodeAnchorAttributes } from "@ory/client";
 
 interface FlowNodeAnchorProps {
   node: UiNode;

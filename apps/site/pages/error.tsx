@@ -1,7 +1,7 @@
 import { Card, Link, Logo } from "@boilerplate/shared/ui";
 import { oryBrowserClient } from "@boilerplate/site/utility";
 import { Center, Collapse, Heading, Spinner, useColorModeValue, VisuallyHidden } from "@chakra-ui/react";
-import { SelfServiceError } from "@ory/kratos-client";
+import { SelfServiceError } from "@ory/client";
 import type { NextPage } from "next";
 import { NextSeo } from "next-seo";
 import Trans from "next-translate/Trans";

@@ -7,7 +7,7 @@ import {
   useCreateLogoutHandler,
 } from "@boilerplate/site/utility";
 import { Box, Button, Center, Heading, useColorModeValue, VisuallyHidden, VStack } from "@chakra-ui/react";
-import { SelfServiceLoginFlow, SubmitSelfServiceLoginFlowBody } from "@ory/kratos-client";
+import { SelfServiceLoginFlow, SubmitSelfServiceLoginFlowBody } from "@ory/client";
 import type { GetServerSidePropsContext } from "next";
 import { NextSeo } from "next-seo";
 import Trans from "next-translate/Trans";

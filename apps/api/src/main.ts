@@ -36,7 +36,7 @@ const main = async () => {
 
   const corsOptions = {
     credentials: true,
-    origin: "https://www.boilerplate.live",
+    origin: configuration.BASE_URL_SITE,
   };
 
   addStripeWebhook(app);
