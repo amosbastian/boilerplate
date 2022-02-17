@@ -1,3 +1,4 @@
+import { configuration } from "@boilerplate/shared/configuration";
 // @ory/integrations offers a package for integrating with NextJS.
 import { config, createApiHandler } from "@ory/integrations/next-edge";
 
@@ -7,4 +8,5 @@ export { config };
 // And create the Ory Cloud API "bridge".
 export default createApiHandler({
   fallbackToPlayground: true,
+  forceCookieDomain: configuration.BASE_URL_SITE.replace("https://www.", ""),
 });
