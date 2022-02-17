@@ -21,6 +21,7 @@ module.exports = {
     "/verification": ["verification", "ory"],
     "rgx:^/settings": ["settings"],
     "/settings/security": ["settings", "ory"],
+    "/settings/billing": ["settings", "pricing"],
   },
   loadLocaleFrom: async (locale, namespace) => {
     const i18nShared = await import(`../../libs/shared/i18n/src/lib/${locale}/common`).then((m) => m.default);

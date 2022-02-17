@@ -8,5 +8,6 @@ export { config };
 // And create the Ory Cloud API "bridge".
 export default createApiHandler({
   fallbackToPlayground: true,
-  forceCookieDomain: configuration.BASE_URL_SITE.replace("https://www.", ""),
+  forceCookieDomain:
+    process.env.NODE_ENV === "production" ? configuration.BASE_URL_SITE.replace("https://www.", "") : undefined,
 });
