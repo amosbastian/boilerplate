@@ -328,6 +328,10 @@ docker push registry.heroku.com/<app>/web
 heroku container:release web --app <app>
 ```
 
+#### Render
+
+Deploying to [Render](https://render.com/) is even more simple and is where the live demo's API is deployed. It is so simple there isn't really any need for me to explain it here - just log in and see how easy it is for yourself.
+
 #### Other
 
 I've not deployed the API anywhere else (e.g. AWS, DigitalOcean), but if I do I will update this section. As for the database: I am using PlanetScale.
